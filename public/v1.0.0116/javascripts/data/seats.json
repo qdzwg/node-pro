@@ -1,0 +1,2226 @@
+{
+    "rowCounts": "8",
+    "colCounts": "42",
+    "areaCode": "1004",
+    "areaName": "A1",
+    "retdata": {
+        "totalCount": "246",
+        "sellCount": "206",
+        "data": [
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "2",
+                "scol": "17",
+                "srow": "2",
+                "gcol": "5"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "2",
+                "scol": "15",
+                "srow": "2",
+                "gcol": "6"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "2",
+                "scol": "16",
+                "srow": "2",
+                "gcol": "23"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "2",
+                "scol": "18",
+                "srow": "2",
+                "gcol": "24"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "3",
+                "scol": "23",
+                "srow": "3",
+                "gcol": "2"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "3",
+                "scol": "21",
+                "srow": "3",
+                "gcol": "3"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "3",
+                "scol": "19",
+                "srow": "3",
+                "gcol": "4"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "3",
+                "scol": "17",
+                "srow": "3",
+                "gcol": "5"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "3",
+                "scol": "15",
+                "srow": "3",
+                "gcol": "6"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "3",
+                "scol": "16",
+                "srow": "3",
+                "gcol": "23"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "3",
+                "scol": "18",
+                "srow": "3",
+                "gcol": "24"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "3",
+                "scol": "20",
+                "srow": "3",
+                "gcol": "25"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "3",
+                "scol": "22",
+                "srow": "3",
+                "gcol": "26"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "3",
+                "scol": "24",
+                "srow": "3",
+                "gcol": "27"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "4",
+                "scol": "25",
+                "srow": "4",
+                "gcol": "1"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "4",
+                "scol": "23",
+                "srow": "4",
+                "gcol": "2"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "4",
+                "scol": "21",
+                "srow": "4",
+                "gcol": "3"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "4",
+                "scol": "19",
+                "srow": "4",
+                "gcol": "4"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "4",
+                "scol": "17",
+                "srow": "4",
+                "gcol": "5"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "4",
+                "scol": "15",
+                "srow": "4",
+                "gcol": "6"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "4",
+                "scol": "16",
+                "srow": "4",
+                "gcol": "23"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "4",
+                "scol": "18",
+                "srow": "4",
+                "gcol": "24"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "4",
+                "scol": "20",
+                "srow": "4",
+                "gcol": "25"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "4",
+                "scol": "22",
+                "srow": "4",
+                "gcol": "26"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "4",
+                "scol": "24",
+                "srow": "4",
+                "gcol": "27"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "4",
+                "scol": "26",
+                "srow": "4",
+                "gcol": "28"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "5",
+                "scol": "25",
+                "srow": "5",
+                "gcol": "1"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "5",
+                "scol": "23",
+                "srow": "5",
+                "gcol": "2"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "5",
+                "scol": "21",
+                "srow": "5",
+                "gcol": "3"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "5",
+                "scol": "19",
+                "srow": "5",
+                "gcol": "4"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "5",
+                "scol": "17",
+                "srow": "5",
+                "gcol": "5"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "5",
+                "scol": "15",
+                "srow": "5",
+                "gcol": "6"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "5",
+                "scol": "16",
+                "srow": "5",
+                "gcol": "23"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "5",
+                "scol": "18",
+                "srow": "5",
+                "gcol": "24"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "5",
+                "scol": "20",
+                "srow": "5",
+                "gcol": "25"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "5",
+                "scol": "22",
+                "srow": "5",
+                "gcol": "26"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "5",
+                "scol": "24",
+                "srow": "5",
+                "gcol": "27"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "5",
+                "scol": "26",
+                "srow": "5",
+                "gcol": "28"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "25",
+                "srow": "6",
+                "gcol": "1"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "23",
+                "srow": "6",
+                "gcol": "2"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "21",
+                "srow": "6",
+                "gcol": "3"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "19",
+                "srow": "6",
+                "gcol": "4"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "17",
+                "srow": "6",
+                "gcol": "5"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "15",
+                "srow": "6",
+                "gcol": "6"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "13",
+                "srow": "1",
+                "gcol": "8"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "11",
+                "srow": "1",
+                "gcol": "9"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "9",
+                "srow": "1",
+                "gcol": "10"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "7",
+                "srow": "1",
+                "gcol": "11"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "5",
+                "srow": "1",
+                "gcol": "12"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "3",
+                "srow": "1",
+                "gcol": "13"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "1",
+                "srow": "1",
+                "gcol": "14"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "2",
+                "srow": "1",
+                "gcol": "15"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "4",
+                "srow": "1",
+                "gcol": "16"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "6",
+                "srow": "1",
+                "gcol": "17"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "8",
+                "srow": "1",
+                "gcol": "18"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "10",
+                "srow": "1",
+                "gcol": "19"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "12",
+                "srow": "1",
+                "gcol": "20"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "14",
+                "srow": "1",
+                "gcol": "21"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "16",
+                "srow": "6",
+                "gcol": "23"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "18",
+                "srow": "6",
+                "gcol": "24"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "20",
+                "srow": "6",
+                "gcol": "25"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "22",
+                "srow": "6",
+                "gcol": "26"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "24",
+                "srow": "6",
+                "gcol": "27"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "26",
+                "srow": "6",
+                "gcol": "28"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "7",
+                "scol": "25",
+                "srow": "7",
+                "gcol": "1"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "7",
+                "scol": "23",
+                "srow": "7",
+                "gcol": "2"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "7",
+                "scol": "21",
+                "srow": "7",
+                "gcol": "3"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "7",
+                "scol": "19",
+                "srow": "7",
+                "gcol": "4"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "7",
+                "scol": "17",
+                "srow": "7",
+                "gcol": "5"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "7",
+                "scol": "15",
+                "srow": "7",
+                "gcol": "6"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "7",
+                "scol": "13",
+                "srow": "2",
+                "gcol": "8"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "7",
+                "scol": "11",
+                "srow": "2",
+                "gcol": "9"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "7",
+                "scol": "9",
+                "srow": "2",
+                "gcol": "10"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "7",
+                "scol": "7",
+                "srow": "2",
+                "gcol": "11"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "7",
+                "scol": "5",
+                "srow": "2",
+                "gcol": "12"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "7",
+                "scol": "3",
+                "srow": "2",
+                "gcol": "13"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "7",
+                "scol": "1",
+                "srow": "2",
+                "gcol": "14"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "7",
+                "scol": "2",
+                "srow": "2",
+                "gcol": "15"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "7",
+                "scol": "4",
+                "srow": "2",
+                "gcol": "16"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "7",
+                "scol": "6",
+                "srow": "2",
+                "gcol": "17"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "7",
+                "scol": "8",
+                "srow": "2",
+                "gcol": "18"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "7",
+                "scol": "10",
+                "srow": "2",
+                "gcol": "19"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "7",
+                "scol": "12",
+                "srow": "2",
+                "gcol": "20"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "7",
+                "scol": "14",
+                "srow": "2",
+                "gcol": "21"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "7",
+                "scol": "16",
+                "srow": "7",
+                "gcol": "23"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "7",
+                "scol": "18",
+                "srow": "7",
+                "gcol": "24"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "7",
+                "scol": "20",
+                "srow": "7",
+                "gcol": "25"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "12",
+                "scol": "3",
+                "srow": "12",
+                "gcol": "13"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "12",
+                "scol": "1",
+                "srow": "12",
+                "gcol": "14"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "12",
+                "scol": "2",
+                "srow": "12",
+                "gcol": "15"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "12",
+                "scol": "4",
+                "srow": "12",
+                "gcol": "16"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "12",
+                "scol": "6",
+                "srow": "12",
+                "gcol": "17"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "12",
+                "scol": "8",
+                "srow": "12",
+                "gcol": "18"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "12",
+                "scol": "10",
+                "srow": "12",
+                "gcol": "19"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "12",
+                "scol": "12",
+                "srow": "12",
+                "gcol": "20"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "12",
+                "scol": "14",
+                "srow": "12",
+                "gcol": "21"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "12",
+                "scol": "16",
+                "srow": "12",
+                "gcol": "23"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "12",
+                "scol": "18",
+                "srow": "12",
+                "gcol": "24"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "12",
+                "scol": "20",
+                "srow": "12",
+                "gcol": "25"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "12",
+                "scol": "22",
+                "srow": "12",
+                "gcol": "26"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "12",
+                "scol": "24",
+                "srow": "12",
+                "gcol": "27"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "12",
+                "scol": "26",
+                "srow": "12",
+                "gcol": "28"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "13",
+                "scol": "25",
+                "srow": "13",
+                "gcol": "1"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "13",
+                "scol": "23",
+                "srow": "13",
+                "gcol": "2"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "13",
+                "scol": "21",
+                "srow": "13",
+                "gcol": "3"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "13",
+                "scol": "19",
+                "srow": "13",
+                "gcol": "4"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "13",
+                "scol": "17",
+                "srow": "13",
+                "gcol": "5"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "13",
+                "scol": "15",
+                "srow": "13",
+                "gcol": "6"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "13",
+                "scol": "13",
+                "srow": "13",
+                "gcol": "8"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "13",
+                "scol": "11",
+                "srow": "13",
+                "gcol": "9"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "13",
+                "scol": "9",
+                "srow": "13",
+                "gcol": "10"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "13",
+                "scol": "7",
+                "srow": "13",
+                "gcol": "11"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "13",
+                "scol": "5",
+                "srow": "13",
+                "gcol": "12"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "13",
+                "scol": "3",
+                "srow": "13",
+                "gcol": "13"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "13",
+                "scol": "1",
+                "srow": "13",
+                "gcol": "14"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "13",
+                "scol": "2",
+                "srow": "13",
+                "gcol": "15"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "13",
+                "scol": "4",
+                "srow": "13",
+                "gcol": "16"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "13",
+                "scol": "6",
+                "srow": "13",
+                "gcol": "17"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "13",
+                "scol": "8",
+                "srow": "13",
+                "gcol": "18"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "13",
+                "scol": "10",
+                "srow": "13",
+                "gcol": "19"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "13",
+                "scol": "12",
+                "srow": "13",
+                "gcol": "20"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "13",
+                "scol": "14",
+                "srow": "13",
+                "gcol": "21"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "13",
+                "scol": "16",
+                "srow": "13",
+                "gcol": "23"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "13",
+                "scol": "18",
+                "srow": "13",
+                "gcol": "24"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "13",
+                "scol": "20",
+                "srow": "13",
+                "gcol": "25"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "13",
+                "scol": "22",
+                "srow": "13",
+                "gcol": "26"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "13",
+                "scol": "24",
+                "srow": "13",
+                "gcol": "27"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "13",
+                "scol": "26",
+                "srow": "13",
+                "gcol": "28"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "7",
+                "scol": "22",
+                "srow": "7",
+                "gcol": "26"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "7",
+                "scol": "24",
+                "srow": "7",
+                "gcol": "27"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "7",
+                "scol": "26",
+                "srow": "7",
+                "gcol": "28"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "8",
+                "scol": "25",
+                "srow": "8",
+                "gcol": "1"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "8",
+                "scol": "23",
+                "srow": "8",
+                "gcol": "2"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "8",
+                "scol": "21",
+                "srow": "8",
+                "gcol": "3"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "8",
+                "scol": "19",
+                "srow": "8",
+                "gcol": "4"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "8",
+                "scol": "17",
+                "srow": "8",
+                "gcol": "5"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "8",
+                "scol": "15",
+                "srow": "8",
+                "gcol": "6"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "8",
+                "scol": "13",
+                "srow": "3",
+                "gcol": "8"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "8",
+                "scol": "11",
+                "srow": "3",
+                "gcol": "9"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "8",
+                "scol": "9",
+                "srow": "3",
+                "gcol": "10"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "8",
+                "scol": "7",
+                "srow": "3",
+                "gcol": "11"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "8",
+                "scol": "5",
+                "srow": "3",
+                "gcol": "12"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "8",
+                "scol": "3",
+                "srow": "3",
+                "gcol": "13"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "8",
+                "scol": "1",
+                "srow": "3",
+                "gcol": "14"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "8",
+                "scol": "2",
+                "srow": "3",
+                "gcol": "15"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "8",
+                "scol": "4",
+                "srow": "3",
+                "gcol": "16"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "8",
+                "scol": "6",
+                "srow": "3",
+                "gcol": "17"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "8",
+                "scol": "8",
+                "srow": "3",
+                "gcol": "18"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "8",
+                "scol": "10",
+                "srow": "3",
+                "gcol": "19"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "8",
+                "scol": "12",
+                "srow": "3",
+                "gcol": "20"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "8",
+                "scol": "14",
+                "srow": "3",
+                "gcol": "21"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "8",
+                "scol": "16",
+                "srow": "8",
+                "gcol": "23"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "8",
+                "scol": "18",
+                "srow": "8",
+                "gcol": "24"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "8",
+                "scol": "20",
+                "srow": "8",
+                "gcol": "25"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "8",
+                "scol": "22",
+                "srow": "8",
+                "gcol": "26"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "8",
+                "scol": "24",
+                "srow": "8",
+                "gcol": "27"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "8",
+                "scol": "26",
+                "srow": "8",
+                "gcol": "28"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "9",
+                "scol": "25",
+                "srow": "9",
+                "gcol": "1"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "9",
+                "scol": "23",
+                "srow": "9",
+                "gcol": "2"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "9",
+                "scol": "21",
+                "srow": "9",
+                "gcol": "3"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "9",
+                "scol": "19",
+                "srow": "9",
+                "gcol": "4"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "9",
+                "scol": "17",
+                "srow": "9",
+                "gcol": "5"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "9",
+                "scol": "15",
+                "srow": "9",
+                "gcol": "6"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "9",
+                "scol": "13",
+                "srow": "4",
+                "gcol": "8"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "9",
+                "scol": "11",
+                "srow": "4",
+                "gcol": "9"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "9",
+                "scol": "9",
+                "srow": "4",
+                "gcol": "10"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "9",
+                "scol": "7",
+                "srow": "4",
+                "gcol": "11"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "9",
+                "scol": "5",
+                "srow": "4",
+                "gcol": "12"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "9",
+                "scol": "3",
+                "srow": "4",
+                "gcol": "13"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "9",
+                "scol": "1",
+                "srow": "4",
+                "gcol": "14"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "9",
+                "scol": "2",
+                "srow": "4",
+                "gcol": "15"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "9",
+                "scol": "4",
+                "srow": "4",
+                "gcol": "16"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "9",
+                "scol": "6",
+                "srow": "4",
+                "gcol": "17"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "9",
+                "scol": "8",
+                "srow": "4",
+                "gcol": "18"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "9",
+                "scol": "10",
+                "srow": "4",
+                "gcol": "19"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "9",
+                "scol": "12",
+                "srow": "4",
+                "gcol": "20"
+            },
+            {
+                "status": "2",
+                "seatname": "一等座",
+                "seatid": "",
+                "grow": "9",
+                "scol": "14",
+                "srow": "4",
+                "gcol": "21"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "9",
+                "scol": "16",
+                "srow": "9",
+                "gcol": "23"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "9",
+                "scol": "18",
+                "srow": "9",
+                "gcol": "24"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "9",
+                "scol": "20",
+                "srow": "9",
+                "gcol": "25"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "9",
+                "scol": "22",
+                "srow": "9",
+                "gcol": "26"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "9",
+                "scol": "24",
+                "srow": "9",
+                "gcol": "27"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "9",
+                "scol": "26",
+                "srow": "9",
+                "gcol": "28"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "10",
+                "scol": "25",
+                "srow": "10",
+                "gcol": "1"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "10",
+                "scol": "23",
+                "srow": "10",
+                "gcol": "2"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "10",
+                "scol": "21",
+                "srow": "10",
+                "gcol": "3"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "10",
+                "scol": "19",
+                "srow": "10",
+                "gcol": "4"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "10",
+                "scol": "17",
+                "srow": "10",
+                "gcol": "5"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "10",
+                "scol": "15",
+                "srow": "10",
+                "gcol": "6"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "10",
+                "scol": "13",
+                "srow": "10",
+                "gcol": "8"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "10",
+                "scol": "11",
+                "srow": "10",
+                "gcol": "9"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "10",
+                "scol": "9",
+                "srow": "10",
+                "gcol": "10"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "10",
+                "scol": "7",
+                "srow": "10",
+                "gcol": "11"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "10",
+                "scol": "5",
+                "srow": "10",
+                "gcol": "12"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "10",
+                "scol": "3",
+                "srow": "10",
+                "gcol": "13"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "10",
+                "scol": "1",
+                "srow": "10",
+                "gcol": "14"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "10",
+                "scol": "2",
+                "srow": "10",
+                "gcol": "15"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "10",
+                "scol": "4",
+                "srow": "10",
+                "gcol": "16"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "10",
+                "scol": "6",
+                "srow": "10",
+                "gcol": "17"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "10",
+                "scol": "8",
+                "srow": "10",
+                "gcol": "18"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "10",
+                "scol": "10",
+                "srow": "10",
+                "gcol": "19"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "10",
+                "scol": "12",
+                "srow": "10",
+                "gcol": "20"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "10",
+                "scol": "14",
+                "srow": "10",
+                "gcol": "21"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "10",
+                "scol": "16",
+                "srow": "10",
+                "gcol": "23"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "10",
+                "scol": "18",
+                "srow": "10",
+                "gcol": "24"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "10",
+                "scol": "20",
+                "srow": "10",
+                "gcol": "25"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "10",
+                "scol": "22",
+                "srow": "10",
+                "gcol": "26"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "10",
+                "scol": "24",
+                "srow": "10",
+                "gcol": "27"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "10",
+                "scol": "26",
+                "srow": "10",
+                "gcol": "28"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "11",
+                "scol": "25",
+                "srow": "11",
+                "gcol": "1"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "11",
+                "scol": "23",
+                "srow": "11",
+                "gcol": "2"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "11",
+                "scol": "21",
+                "srow": "11",
+                "gcol": "3"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "11",
+                "scol": "19",
+                "srow": "11",
+                "gcol": "4"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "11",
+                "scol": "17",
+                "srow": "11",
+                "gcol": "5"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "11",
+                "scol": "15",
+                "srow": "11",
+                "gcol": "6"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "11",
+                "scol": "13",
+                "srow": "11",
+                "gcol": "8"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "11",
+                "scol": "11",
+                "srow": "11",
+                "gcol": "9"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "11",
+                "scol": "9",
+                "srow": "11",
+                "gcol": "10"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "11",
+                "scol": "7",
+                "srow": "11",
+                "gcol": "11"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "11",
+                "scol": "5",
+                "srow": "11",
+                "gcol": "12"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "11",
+                "scol": "3",
+                "srow": "11",
+                "gcol": "13"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "11",
+                "scol": "1",
+                "srow": "11",
+                "gcol": "14"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "11",
+                "scol": "2",
+                "srow": "11",
+                "gcol": "15"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "11",
+                "scol": "4",
+                "srow": "11",
+                "gcol": "16"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "11",
+                "scol": "6",
+                "srow": "11",
+                "gcol": "17"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "11",
+                "scol": "8",
+                "srow": "11",
+                "gcol": "18"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "11",
+                "scol": "10",
+                "srow": "11",
+                "gcol": "19"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "11",
+                "scol": "12",
+                "srow": "11",
+                "gcol": "20"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "11",
+                "scol": "14",
+                "srow": "11",
+                "gcol": "21"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "11",
+                "scol": "16",
+                "srow": "11",
+                "gcol": "23"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "11",
+                "scol": "18",
+                "srow": "11",
+                "gcol": "24"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "11",
+                "scol": "20",
+                "srow": "11",
+                "gcol": "25"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "11",
+                "scol": "22",
+                "srow": "11",
+                "gcol": "26"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "11",
+                "scol": "24",
+                "srow": "11",
+                "gcol": "27"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "11",
+                "scol": "26",
+                "srow": "11",
+                "gcol": "28"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "12",
+                "scol": "25",
+                "srow": "12",
+                "gcol": "1"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "12",
+                "scol": "23",
+                "srow": "12",
+                "gcol": "2"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "12",
+                "scol": "21",
+                "srow": "12",
+                "gcol": "3"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "12",
+                "scol": "19",
+                "srow": "12",
+                "gcol": "4"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "12",
+                "scol": "17",
+                "srow": "12",
+                "gcol": "5"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "12",
+                "scol": "15",
+                "srow": "12",
+                "gcol": "6"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "12",
+                "scol": "13",
+                "srow": "12",
+                "gcol": "8"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "12",
+                "scol": "11",
+                "srow": "12",
+                "gcol": "9"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "12",
+                "scol": "9",
+                "srow": "12",
+                "gcol": "10"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "12",
+                "scol": "7",
+                "srow": "12",
+                "gcol": "11"
+            },
+            {
+                "status": "2",
+                "seatname": "二等座",
+                "seatid": "",
+                "grow": "12",
+                "scol": "5",
+                "srow": "12",
+                "gcol": "12"
+            }
+        ]
+    }
+}

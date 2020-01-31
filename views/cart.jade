@@ -1,0 +1,86 @@
+extends layout
+
+block stylesheets
+  link(rel="stylesheet", href="#{baseUrl}/stylesheets/cart.css?#{vCode}")
+  link(rel="stylesheet", href="#{baseUrl}/stylesheets/newtheme.css?#{vCode}")
+block javascripts
+  script(type='text/javascript', src='#{baseUrl}/javascripts/pageItem.js?#{vCode}')
+  script(type='text/javascript', src='#{baseUrl}/javascripts/cart.js?#{vCode}')
+block content
+  include common/index
+  include common/quickLink
+  include ./allcomponents/controller
+  if data[0].data.cartItemDtos
+    - let skuInfo = data[1].data;
+    .cart-box 
+      .cart-shop-wrap
+        each item,index in data[0].data.cartItemDtos
+          .cart-list.clearfix(data-id=item.mdseDetailId,data-mdseInfoId=item.merchantMdseInfoId,data-obj=item)
+            .clearfix
+              .check-box.fl
+                a.check(href='javascript:;')
+                  i
+              .order-content.fl.clearfix
+                .show-img.fl
+                  img(src=(skuInfo[index].linkImg || item.wapUrl), alt='...')
+                .order-detail.fl
+                  p.title.c-333=(skuInfo[index].nickName || item.productName)
+                  p.description.c-666
+                    +replaceStr((skuInfo[index].specParam || item.specParam))
+                  .price.clearfix
+                    input(name="number",value=item.num,data-max=item.stockNum).cartNumber
+                    em.c-price
+                      | ￥
+                      strong=(skuInfo[index].sellPrice).toFixed(2)
+                a(href="javascript:;").cart-del-btn.cart-del
+                  i.xx-icon.icon-shanchu
+                .confirmtips
+                  p="确认删除该商品吗？"
+                  .tips-handle
+                      a(href="javascript:;").queding 确定
+                      a(href="javascript:;").cancel 取消
+            .cart-list-price.c-333
+              | 小计：
+              span.order-item-price.c-price="￥"
+                - var totalPrice = (item.num*skuInfo[index].sellPrice).toFixed(2)
+                em=totalPrice
+          .page-line
+    //- clear-box   
+    //-   button.clear-box-btn 全部清空
+    .cart-footer-box     
+      if ifshowFoot&&footerData.list && footerData.list.length>0       
+        .cart-footer-warp.clearfix.bt245
+          .choice-box.fl
+            a.check.check-all(href='javascript:;')
+              i
+            span.c-666 全选
+          .go-pay-btn.go-pay-btn-disabled.fr#cart-pay-btn
+            span 结算（
+              em=0
+              ="）"
+          .price-box.fr
+            em.c-price 合计：￥
+              strong#totalprice=0
+        +newfooter(footerData, module)
+      else
+        .cart-footer-warp.clearfix
+          .choice-box.fl
+            a.check.check-all(href='javascript:;')
+              i
+            span.c-666 全选
+          a.go-pay-btn.go-pay-btn-disabled.fr(href='javascript:;')#cart-pay-btn
+            span 结算（
+              em=0
+              ="）"
+          .price-box.fr
+            em.c-price 合计：￥
+              strong#totalprice=0
+  else
+    .no-data="暂无数据"
+    if ifshowFoot&&footerData.list && footerData.list.length>0 
+      +newfooter(footerData, module)
+  +flowBtn(userInfo,marketDisAccount,showWholeMarket)  
+  .mask#mask
+  .tips
+    p
+    a(href="javascript:;").queding 确定

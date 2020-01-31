@@ -1,0 +1,11 @@
+mixin productFlag(status){
+    - var m = '';
+    case status
+        when '0'
+            - m = '通用，'
+        when '1'
+            - m = ' 指定产品类别，'
+        when '2'
+            - m =  '指定产品，'  
+    = m          
+}

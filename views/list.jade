@@ -1,0 +1,166 @@
+extends layout
+
+block stylesheets
+  if module==='traffic'|| module==='hotel'
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/calendar.css?#{vCode}")
+  link(rel="stylesheet", href="#{baseUrl}/stylesheets/dropload.css?#{vCode}")
+  link(rel="stylesheet", href="#{baseUrl}/stylesheets/list.css?#{vCode}")
+  if module === 'yearcard'
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/yearCard.css?#{vCode}")  
+  link(rel="stylesheet", href="#{baseUrl}/stylesheets/newtheme.css?#{vCode}")
+block javascripts
+  if isAli === 'T' 
+    script(src='//gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.inc.min.js', type='text/javascript')  
+  if module==='traffic'|| module==='hotel'
+    script(type='text/javascript', src='#{baseUrl}/javascripts/jquery.calendar.js?#{vCode}')  
+  script(type='text/javascript', src='#{baseUrl}/javascripts/lib/dropload.js')
+  script.
+    var modelName = '#{modelName || ""}',isSpecial = '#{isSpecial || ""}',isAli = '#{isAli}', lbaseUrl = '#{baseUrl}';
+  script(type='text/javascript', src='#{baseUrl}/javascripts/list.js?#{vCode}')
+  script.
+      var openSingle= "#{openSingle}";
+  if module === 'yearcard'
+    script(type="text/javascript", src="#{baseUrl}/javascripts/yearCard.js?#{vCode}")
+block content
+  include common/footer
+  include common/index
+  include list/common
+  include ./allcomponents/controller
+
+  //- 筛选条件
+  unless module==='commentList' || module === 'yearcard'
+    if module === 'hotel'
+      .hotel-filter-head
+        .hotel-seach-warper
+              .hotel-calender-show#hotelCalendar
+                  .hotel-date.hotel-join-date#beginDate
+                      span 住
+                      span.date
+                        +formatDate(new Date())
+                  .hotel-date.hotel-leave-date#endDate
+                      span 离
+                      span.date
+                        +formatDate(new Date())  
+              .hotel-search-input
+                  input#listSearchInput(type="search",placeholder="搜索")
+              .hotel-search-btn#hotelSearchBtn
+                i.xx-icon.icon-ico-search  
+        .hotel-filter-warper
+            .hotel-filter-btn#hotelFilter
+              | 筛选
+              i.xx-icon.icon-shaixuan
+    if module === 'route'
+      .hotel-filter-head
+        .hotel-seach-warper.route-seach-warper
+              .hotel-search-input
+                  input#listSearchInput(type="search",placeholder="搜索")
+              .hotel-search-btn#hotelSearchBtn
+                i.xx-icon.icon-ico-search  
+        .hotel-filter-warper
+            .hotel-filter-btn#hotelFilter
+              | 筛选
+              i.xx-icon.icon-shaixuan
+    if module==='traffic'
+      .traffic-filter
+        .disAdress
+          select
+            option(value="") 出发站
+            each item in data[0].datas
+              option(value=item.value)=item.cname
+          img(src="#{baseUrl}/images/list/traffic-dire.png", alt="")
+          select
+            option(value="") 终点站
+            each item,index in data[0].datas
+              option(value=item.value)=item.cname
+        .startDay
+          span#prevDay 前一天
+          a(href="javascript:;")
+            +formatDate(new Date())
+          span#nextDay 后一天     
+    else 
+      if module==='hotel' 
+        +panel(module,hotelLevel,hotelType)
+      else if module === 'route'
+        +routePanel(module,searchLabel) 
+         
+      else 
+        #search-h(class=module==='order'?'member-search-box':'search-box')
+          unless module==='order'|| module==='hotel' 
+            +search(modelName)
+          //- if module === 'hotel'
+            .traffic-filter.hotel-filter#hotelCalendar
+              .disAdress.clearfix
+                .startDay.fl#beginDate
+                  em 入住
+                  a(href="javascript:;")
+                    +formatDate(new Date())
+                .startDay.fl#endDate
+                  em 离店
+                  a(href="javascript:;")
+                    +formatDate(new Date()) 
+                    .hotel-search-header         
+          //- unless module==='strategy'
+            +filter(module,orderStatus)
+          if module === 'order'  
+            +filter(module,orderStatus,merchantInfoId)
+    
+
+  //- 列表
+  div(class='drop-box '+(module==='strategy'?'raiders-list':(module==='commentList'?'comment-list':'')) data-module=module)
+    case module
+      when 'shop'
+        ul(class="goods-list clearfix")
+      when 'traffic'
+        ul(class="page-list list-main traffic-list")
+      when 'order'
+        ul(class="page-list list-main",data-orderStatus=orderStatus)
+      when 'yearcard'
+        ul(class="page-list list-main yearcard-list")
+      when 'route'  
+        ul(class="page-list route-list")
+      when 'theater'  
+        ul(class="page-list route-list")
+      default
+        ul(class="page-list list-main")  
+  if module==='traffic' || module==='hotel'
+    #calendar-box.calendar-box
+      #calendar
+  #socialShare
+  if ifshowFoot && footerData.list && footerData.list.length>0
+    +newfooter(footerData, module)
+  .mask#mask
+    .tips
+        p
+        a(href="javascript:;").queding 确定
+  #pay-mask         
+  .pay-module#payModule(class=(isWx === 'T' )?'wxpay':'alipay')
+      .pay-sealPrice
+          span 支付金额：
+          em.price-em ￥
+          span.price 0.00
+      ul#pay-mold.order-list.pay-list.pay-type 
+            if isWx === 'T'
+                li.wenxin
+                    a(href='javascript:;')
+                        label.lab-title(for='')
+                            i.xx-icon.icon-iconfont-weixin
+                            | 微信支付
+                        i.select-icon.xx-icon.fr.icon-yuanxingxuanzhongfill
+            else
+                li.zhifubao
+                    a(href='javascript:;')
+                        label.lab-title(for='')
+                            i.xx-icon.icon-iconfont-zhifubao
+                            | 支付宝
+                        i.select-icon.xx-icon.fr.icon-yuanxingxuanzhongfill
+            if merchantInfoId ===  '610'
+              li.longCard
+                  a(href='javascript:;')
+                      label.lab-title(for='')
+                          i.xx-icon.icon-longcard
+                          | 龙支付
+                      i.select-icon.xx-icon.fr.icon-yuanxingweixuanzhong                
+        .pay-btn 
+            a#goPayBtn(data-href="", data-chanel='normal',title="title")  去支付                                  
+    
+

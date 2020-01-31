@@ -1,0 +1,8 @@
+/*footer*/
+.footer-box{width:100%;height:2.45rem}
+footer{height:2.45rem;width:100%;position:fixed;left:0;bottom:0;box-sizing:border-box;background:#2366c9;z-index:99}
+footer a{float:left;width:33%;margin:0;font-size:.6rem;color:#fff;text-align:center;height:2.45rem;padding-top:.25rem}
+footer a.on{color:#fff;background:#3f98f6;border-bottom:.1rem solid #abcdff;box-sizing:border-box}
+footer a:active{background:#2ea5c4}
+footer a span{display:block;line-height:1rem}
+footer a i.xx-icon{display:inline-block;color:#fff;vertical-align:top;line-height:1rem;font-size:1rem}

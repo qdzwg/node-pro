@@ -1,0 +1,32 @@
+extends ../../layout
+
+block stylesheets
+  link(rel="stylesheet", href="#{baseUrl}/stylesheets/order.css?#{vCode}")
+block javascripts
+  script(type='text/javascript', src='#{baseUrl}/javascripts/validate/jquery.validate.min.js')
+  script(type='text/javascript', src='#{baseUrl}/javascripts/validate/messages_zh.min.js')
+  script(type='text/javascript', src='#{baseUrl}/javascripts/validate/additional-methods.js')
+  script(type='text/javascript', src='#{baseUrl}/javascripts/member/modify.js?#{vCode}')
+block content
+  .page-line
+  form#form
+    ul.order-list-big.order-list.form-list
+      li
+        input.w100(type='text',value=data[modify] || '', name=modify)
+    .member-handle.btn-handle
+      a.btn(href='javascript:;') 确认修改
+  .mask#mask
+  .tips
+    p
+    a(href="javascript:;").queding 确定
+
+mixin placeTxtFunc(modify)
+  case modify
+    when 'realName'
+      return '真实姓名'
+    when 'mobile'
+      return '手机号'
+    when 'idcard'
+      return '身份证'
+    when 'email'
+      return '邮箱'

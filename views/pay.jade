@@ -1,0 +1,106 @@
+extends layout
+
+block stylesheets
+  link(href="#{baseUrl}/stylesheets/order.css?#{vCode}", rel="stylesheet")
+  style.
+    .order-item {font-size: 0.55rem;border-bottom: 1px solid #eaeaea;}
+    .order-item:last-child {border-bottom: none}
+block javascripts
+  script(src='#{baseUrl}/javascripts/pay.js?#{vCode}', type='text/javascript')
+block content
+  -var item = data[0].data;
+    header.myorder-header.pro-header
+      h3.myorder-title=item.orderDescription
+      p.myorder-explian
+        span
+          | 请在
+          em.c-price
+            if item.marketingType == 2
+              | 5
+            else
+              | 30
+          | 分钟内支付订单，否则订单将被取消
+    .orderDetails.order-details
+      ul
+        //- li
+        //-   label.lab-title(for='') 费用明细
+        //-   .order-item
+        //-     span.price
+        //-       em ￥
+        //-       strong=item.price
+        //-     | *&ensp;#{item.amount}
+        
+        if item.linkAddress
+          li
+            label.lab-title(for='') 收货地址
+            .order-item
+              span.price
+                strong=item.linkAddress
+        li
+          label.lab-title(for='') 游客信息
+          if module === 'ticket' && item.linkManDTOList
+            each _item in item.linkManDTOList
+              .order-item
+                if _item.telephone
+                  p 联&ensp;系&ensp;人：  #{_item.linkMan}
+                  p 手&ensp;机&ensp;号：  #{_item.telephone}
+                else
+                  p 姓&ensp;&ensp;&ensp;&ensp;名：  #{_item.linkMan}
+                p 身份证号： #{_item.idNo}
+          else
+            .order-item
+              p 联 系 人：  #{item.linkName}
+              p 手 机 号：  #{item.linkMobile}
+              if module !== 'shop' && module !== 'repast'&& module !== 'spec'&& module !== 'mealCoupon'
+                if item.linkIdcard
+                  p 身份证号：  #{item.linkIdcard}
+          li
+            label.lab-title(for='') 订单总额
+            .order-item
+              span.price
+                em(style="font-size:.45rem") ￥
+                strong(style="color:#ff6666")=item.orderSum      
+          if item.couponSum
+            li
+              label.lab-title(for='') 优惠券金额
+              .order-item
+                span.price
+                  em(style="font-size:.45rem") ￥
+                  strong(style="color:#ff6666")=item.couponSum 
+          if item.postage 
+            li
+              label.lab-title(for='') 邮费
+              .order-item
+                span.price
+                  em(style="font-size:.45rem") ￥
+                  strong(style="color:#ff6666").c-price=item.postage       
+    ul.order-list.account-list.bt
+      li.toogleli
+        label.lab-title(for='') 
+          | 支付金额
+        .order-item
+          span.price
+            em ￥
+            strong=(item.paySum).toFixed(2)
+          a.arrow(href='javascript:;')
+            i.xx-icon.icon-iconfont-jiantou
+  .page-line
+  ul#pay-mold.order-list.pay-list
+    if is_weixn
+      li.wenxin
+        a(href='javascript:;')
+          label.lab-title(for='')
+            i.xx-icon.icon-iconfont-weixin
+            | 微信支付
+          i.xx-icon.fr.icon-iconfont-gougou
+    else
+      li.zhifubao
+        a(href='javascript:;')
+          label.lab-title(for='')
+            i.xx-icon.icon-iconfont-zhifubao
+            | 支付宝
+          i.xx-icon.fr.icon-iconfont-gougou  
+  .btn-handle
+    a.btn(href='/pay/'+module+'?orderNo='+payOrderNo+'&paySum='+item.paySum+'&m_id='+merchantInfoId) 去支付
+
+

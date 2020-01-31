@@ -1,0 +1,27 @@
+extends layout
+
+block stylesheets
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/dropload.css?#{vCode}")
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/list.css?#{vCode}")
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/coupons.css?#{vCode}")
+block javascripts
+    script(type='text/javascript', src='#{baseUrl}/javascripts/lib/dropload.min.js')
+    script.
+        var from = '#{from}',fromUrl = '#{fromUrl}';
+    script(type='text/javascript', src='#{baseUrl}/javascripts/coupons.js?#{vCode}')
+block content
+    include common/footer
+    if from === 'member'
+        section.header-tab.goods-header
+            ul#search_tab.tab.clearfix.ticket-tab.goods-tab
+                li.on(data-div='able')
+                    a(href='javascript:;') 可用优惠券
+                li(data-div='all')
+                    a(href='javascript:;') 全部优惠券
+    .coupons-details
+        .coupons_list.drop-box
+            ul    
+    //- if footerDatas&& footerDatas.data.list.length > 0
+    //-     +diyFooter(footerDatas)
+    //- else 
+    //-     +footer(templateCode)

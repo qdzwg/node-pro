@@ -1,0 +1,26 @@
+mixin moduleName(type)
+    case type
+        when 'park'
+            span 景区 
+        when 'ticket'
+            span 门票                
+        when 'hotel' 
+            span 酒店
+        when 'room' 
+            span 酒店    
+        when 'mdse'   
+            span 商品
+        when 'route'   
+            span 跟团游    
+        when 'repast'
+            span 餐饮
+
+mixin moduleType(type)
+    case type
+        when 'room'
+            ='hotel'
+        when 'mdse'
+            ='shop'
+        default
+            =type
+    

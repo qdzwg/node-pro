@@ -1,0 +1,64 @@
+body{background: url(../../images/index/bg.jpg);}
+
+.index_box{padding: 0 1.6%;width: 100%;box-sizing: border-box;}
+/*菜单列表*/
+.mt25{margin-top: 0.25rem;}
+.index_list a{display: block;width: 100%;height: 100%;overflow: hidden;}
+.index_list .menu_l,.index_list .menu_r{width: 49.2%;}
+.index_list .menu_b{width: 100%;}
+.index_list .menu_b em {margin-top: .15rem}
+.index_list .ticket{width: 100%;height: 7.4rem;background: url(../../images/index/menu1.png) no-repeat;background-size: cover;overflow: hidden;}
+.index_list .gold{width: 100%;height: 3.575rem;background: url(../../images/index/menu2.png) no-repeat;background-size: cover;overflow: hidden;}
+.index_list .mou{display: block;width: 48%;text-align: center;}
+.index_list .hotel{width: 100%;height: 3.575rem;background: url(../../images/index/menu3.png) no-repeat;background-size: cover;overflow: hidden;}
+.index_list .package{width: 100%;height: 3.575rem;background: url(../../images/index/menu4.png) no-repeat;background-size: cover;overflow: hidden;}
+.index_list .goods,.index_list .tour{width: 48.35%;height: 3.575rem;border-radius: 4px;overflow: hidden;}
+.index_list .goods{background: #edb17e}
+.index_list .tour{background: #acc8e9}
+.i_ticket{background: url(../../images/index/ticket.png) no-repeat ;display: block;width: 1.625rem;height: 0.95rem;background-size: cover;margin:2.4rem auto 0;}
+.index_list .ticket em{font-size: 0.3rem;color: #864d03;margin-top: 0.25rem;display: block;text-align: center;}
+.index_list .ticket span{font-size: 0.6rem;color: #864d03;margin-top:0.1rem;display: block;text-align: center;}
+.i_gold{background: url(../../images/index/gold.png) no-repeat;display: inline-block;width: 1.22rem;height: 1.15rem;background-size: cover;margin-top: 0.4rem;}
+.index_list .gold em{font-size: 0.3rem;color: #0f730f;display: block;}
+.index_list .gold span{font-size: 0.6rem;color: #0f730f;margin-top:0.1rem;display: block;}
+.i_hotel{background: url(../../images/index/hotel.png) no-repeat;display: inline-block;width: 1.2rem;height: 1.05rem;background-size: cover;margin-top: 0.4rem}
+.index_list .hotel em{font-size: 0.3rem;color: #1f47a7;display: block;}
+.index_list .hotel span{font-size: 0.6rem;color: #1f47a7;margin-top:0.1rem;display: block;}
+.i_package{background: url(../../images/index/package.png) no-repeat;display: inline-block;width: 1rem;height: 1.075rem;background-size: cover;margin-top: 0.4rem;}
+.index_list .package em{font-size: 0.3rem;color: #ac2413;display: block;}
+.index_list .package span{font-size: 0.6rem;color: #ac2413;margin-top:0.1rem;display: block;}
+.i_goods{background: url(../../images/index/goods.png) no-repeat;display: inline-block;width: 1.5rem;height: 0.9rem;background-size: cover;margin-top: 0.4rem;}
+.i_tour{background: url(../../images/index/tour.png) no-repeat;display: block;width: 1.05rem;height: 1.05rem;background-size: cover;margin: 0.5rem auto 0;}
+.goods em,.tour em{text-align: center;display: block;font-size: 0.3rem;margin-top: 0.1rem;}
+.goods span,.tour span{text-align: center;display: block;font-size: 0.6rem;margin-top: 0.1rem;}
+.goods em,.goods span{color: #a36026}
+.tour em,.tour span{color: #2a5296}
+
+.box-tit{display: block;width: 100%;}
+.box-tit img{width: 3.2rem;height: 0.8rem;margin: 0 auto;display: block;}
+.box-tit em{color: #65574b;font-size: 0.4rem;display: block;text-align: center;margin-top: 0.3rem;}
+
+/*精品推荐*/
+.recommended{width: 100%;margin-top: 0.6rem;}
+.recommended li{margin: 0 0.6%;max-height: 8rem;width: 32%;float: left;}
+.recommended li a {display: block}
+.recommended li img{height: 4.7rem;width: 100%;}
+.recommended li h4{color: #65574b;font-size: 0.6rem;text-align: center;margin-top: 0.45rem;display: -webkit-box !important;-webkit-box-orient: vertical;-webkit-line-clamp: 2;overflow: hidden;word-wrap: break-word;word-break: break-all;}
+.recommended li span{color: #e50d0d;font-size: 0.6rem;text-align: center;margin: 0.2rem 0;text-align: center;display: block;}
+.recommended li span em{color: #808080;font-size: 0.5rem;}
+
+/*热销产品*/
+.hot{width: 100%;padding: 0 0.25rem;box-sizing: border-box;}
+.hot li{padding: 0.5rem 0;width: 100%;border-bottom: 2px solid #e8e8e8;height: 3.525rem;position: relative;}
+.hot li:nth-last-child(1){border: none;}
+.hot li img{float: left;width: 4.45rem;height: 3.525rem;}
+.hot li .hot_con{margin-left: 4.95rem;width:10rem;overflow: hidden;}
+
+.hot li .hot_con h4 {color: #65574b;line-height:1.2;font-size: 0.6rem;display: block; display: -webkit-box !important;-webkit-box-orient: vertical;-webkit-line-clamp: 2;overflow: hidden;word-wrap: break-word;word-break: break-all}
+.hot li .hot_con p{ color: #666666; font-size: 0.55rem; margin-top: 0.25rem; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+.hot li .hot_con .info{position: absolute;left: 4.95rem;bottom: 0.5rem;display: block;width: 10rem;}
+.hot li .hot_con .info span{color: #e50d0d;font-size: 0.6rem;}
+.hot li .hot_con .info em{color: #808080;font-size: 0.5rem;}
+
+
+.xian{width: 100%;height: 1.25rem;background: url(../../images/index/xian.png) repeat-x center center;}

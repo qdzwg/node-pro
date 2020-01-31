@@ -1,0 +1,100 @@
+doctype html
+html
+  head
+    meta(charset='UTF-8')
+    if seo
+        meta(name='apple-mobile-web-app-title', content=seo.title)
+        meta(name='keywords', content=seo.keywords)
+        meta(name='description', content=seo.description)
+    meta(name='viewport', content='width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no')
+    meta(name='apple-mobile-web-app-capable', content='yes')
+    meta(name='apple-mobile-web-app-status-bar-style', content='black')
+    meta(name='format-detection', content='telephone=yes')
+    meta(name='format-detection', content='email=no')
+    title= title
+    - let baseUrl = '', vCode='154824274564446', specialPark = '229', specialCalendar = '561';
+    //- 正式环境     
+    case  nodeEnv 
+        when 'production' 
+            - baseUrl = `//statics.lotsmall.cn/wapnode/${version}`
+            - pubsUrl = '//pubswap.zhiyoubao.com'
+            - axiosUrl = '//www.lotsmall.cn'
+        when 'pre' 
+            - baseUrl = `//statics.lotsmall.cn/wapnode/${version}`
+            - pubsUrl = '//pubswap.zhiyoubao.com'
+            - axiosUrl = '//prewww.lotsmall.cn'
+        when 'test'
+            - baseUrl = `/${version}`
+            - pubsUrl = '//pubswap.sendinfo.com.cn'
+            - axiosUrl = '//testwww.lotsmall.cn'
+        when 'local'
+            - baseUrl = `/${version}`  
+            - pubsUrl = '//pubswap.sendinfo.com.cn'
+            - axiosUrl = '//testwww.lotsmall.cn'
+        when 'development'
+            - baseUrl = `/${version}`  
+            - pubsUrl = '//pubswap.sendinfo.com.cn'
+            - axiosUrl = '//testwww.lotsmall.cn'
+        default
+            - baseUrl = `//statics.lotsmall.cn/wapnode/${version}` 
+            - pubsUrl = '//pubswap.zhiyoubao.com' 
+            - axiosUrl = '//testwww.lotsmall.cn' 
+    //- - let baseUrl = `//statics.lotsmall.cn/wappublic/${version}`, vCode='15482427456456', specialPark = '229', specialCalendar = '561';
+    link(href='#{baseUrl}/stylesheets/reset.css?#{vCode}', rel='stylesheet')
+    link(href='#{baseUrl}/stylesheets/weui/weui.min.css', rel='stylesheet')
+    link(href='#{baseUrl}/stylesheets/weui/jquery-weui.css', rel='stylesheet')
+    link(href='#{baseUrl}/stylesheets/common.css?#{vCode}', rel='stylesheet')
+    link(href="#{baseUrl}/stylesheets/iconfont.css?#{vCode}", rel="stylesheet")
+    link(href="#{baseUrl}/stylesheets/mfb.css?#{vCode}", rel="stylesheet")
+    if footerDatas
+        link(href="#{baseUrl}/stylesheets/theme/footer.css?#{vCode}", rel="stylesheet")
+    else
+        case templateCode
+            when 'MTI20180316172401'
+                link(href="#{baseUrl}/stylesheets/theme/foot_n.css?#{vCode}", rel="stylesheet")
+            when 'MTI20180316172801'
+                link(href="#{baseUrl}/stylesheets/theme/foot_c.css?#{vCode}", rel="stylesheet")
+            when 'MTI20180316173101'
+                link(href="#{baseUrl}/stylesheets/theme/foot_l.css?#{vCode}", rel="stylesheet")
+            when 'MTI18062213232769'
+                  link(href="#{baseUrl}/stylesheets/theme/foot_p.css?#{vCode}", rel="stylesheet")
+    block stylesheets
+    script(src="#{baseUrl}/javascripts/jquery-1.8.3.min.js", type='text/javascript')
+    script(src="#{baseUrl}/javascripts/touch-0.2.14.min.js", type='text/javascript')
+    script(src='#{baseUrl}/javascripts/lib/jquery-weui.js?#{vCode}', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/lib/mfb.js?#{vCode}', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/moveBtn.js?#{vCode}', type='text/javascript')
+    if inWx
+        script(src='//res.wx.qq.com/open/js/jweixin-1.4.0.js')
+    script.
+        var merchantInfoId = '#{merchantInfoId}'
+        , marketDisAccount = '#{marketDisAccount}'
+        , showWholeMarket = '#{showWholeMarket}'
+        , showNewUserSpecialOffer = '#{showNewUserSpecialOffer}'
+        , qyyxUrl = '#{qyyxUrl}'
+        , isWx = '#{inWx ? "T":"F"}'
+        , curPath = '#{curPath}'
+        , shareObj = {}
+        , specialCalendar = '#{specialCalendar}';
+        var openSingle = "#{openSingle}";
+    script(src="#{baseUrl}/javascripts/public.js?#{vCode}", type='text/javascript')
+    script(src="https://www.googletagmanager.com/gtag/js?id=UA-152595298-1",async,type='text/javascript')
+    script.
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());      
+        gtag('config', 'UA-152595298-1');
+    script(src="https://www.googletagmanager.com/gtag/js?id=UA-152595298-3",async,type='text/javascript')
+    script.
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());      
+        gtag('config', 'UA-152595298-3');
+    script(src='https://pv.sohu.com/cityjson?ie=utf-8', type='text/javascript')   
+    script.
+        $.get('/merchant/api/node/changeInfo?adr='+ returnCitySN["cip"])
+    block javascripts
+    body
+        block content
+        if inWx
+            script(src="#{baseUrl}/javascripts/wxShare.js?#{vCode}", type='text/javascript')

@@ -1,0 +1,348 @@
+extends layout
+
+block stylesheets
+    link(href="#{baseUrl}/stylesheets/calendar.css?#{vCode}", rel="stylesheet")
+    link(href="#{baseUrl}/stylesheets/swiper-3.4.1.min.css", rel="stylesheet")
+    link(href="#{baseUrl}/stylesheets/detail.css?#{vCode}", rel="stylesheet")
+    style.
+        .mfb-component--location {top: 4.5rem;}
+block javascripts
+    if data.length > 1 && data[1].data
+        script.
+            var goodsCode = '#{data[1].data.goodsCode}' || '';
+    script.
+        var module = '#{module}',isSpecial='#{isSpecial || "F"}'
+        if (module === 'hotel') {
+            var beginDate = '#{data[0].data.beginDate}', endDate = '#{data[0].data.endDate}', merchantHotelInfoId = '#{data[0].data.id}',
+                hotelInfoId = '#{data[0].data.hotelInfoId}', numDays = '#{data[0].data.numDays}';
+        }
+        if (module === 'ticket') {
+            var merchantParkInfoId = '#{data[0].data.id}', ticketDate = '#{endDate}',ticketOrderType = '#{data[0].data.orderType}';
+        }
+        if (module === 'shop') {
+            var merchantShopId = "#{data[0].data.id}",productCode="#{data[0].data.productCode}",productName="#{data[0].data.name}",prodFrom="#{data[0].data.prodFrom}"
+        }
+    script.
+        var openSingle = "#{openSingle}";
+    script(src='#{baseUrl}/javascripts/jquery.calendar.js?#{vCode}', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/swiper-3.4.1.jquery.min.js', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/lib/clipboard.min.js', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/pageItem.js?#{vCode}', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/validate/jquery.validate.min.js', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/validate/messages_zh.min.js', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/validate/additional-methods.js', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/member/comment.js?#{vCode}', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/detail.js?#{vCode}', type='text/javascript')
+    if module === 'route'
+        script(src='#{baseUrl}/javascripts/routeDetail.js?#{vCode}', type='text/javascript')
+    if module === 'ticket'
+        script(src='#{baseUrl}/javascripts/zenscroll.js?#{vCode}', type='text/javascript')
+    if !inWx
+        script(src='#{baseUrl}/javascripts/groupShare.js?#{vCode}', type='text/javascript')
+block content
+    include common/footer
+    include common/index
+    include detail/common
+    include common/quickLink
+
+    if module === 'ticket' && data[0].data.parkNotice != ''
+        .parkNotice
+            p.scroll-width
+                span.scroll-box
+                    em #{data[0].data.parkNotice}
+
+    if(data[0].data.merchantPictureLibVo)
+        - var swiperImg = data[0].data.merchantPictureLibVo.wapUrl?data[0].data.merchantPictureLibVo.wapUrl.split(","):[]
+    if module === 'shop'
+        include order/orderBtn
+    if module === 'strategy'
+        +detailShow(data[0].data,module)
+    else
+        if swiperImg.length > 0
+            .block_home_slider.details-slider1
+                .swiper-container.detail-container(id=swiperImg.length > 1 ? 'home_swiper':'')
+                    ul.swiper-wrapper
+                        each item in swiperImg
+                            li.swiper-slide
+                                img(src='#{item}?imageMogr2/thumbnail/640x/strip/quality/100')
+                    if module === "repast"
+                        -var rPageNum = swiperImg.length
+                        .details-repast-pagination
+                            span #{rPageNum}张
+                    else
+                        .swiper-pagination
+        if module === 'strategy'
+            .raiders-details
+                .raiders-info
+                    h3=data.name
+                    p
+                        span
+                            i.xx-icon.icon-clock
+                            | #{data[0].data.pubDate}
+                        span.fr
+                            i.xx-icon.icon-views
+                            | #{data[0].data.browseNum}
+                .raiders-content(data-img=data[0].data.picAddr)!=data[0].data.content
+        else
+            +information(data,module)
+            //-.page-line
+            - var data2 = data[1]?data[1].data:''
+            - var data3 =  data[2]?data[2].data:''
+            +detailList(data[0].data, data2 ,data3)
+    .page-line
+    if module === "ticket" || module === 'hotel'
+        .order-footer
+            .order-total.float-layer
+                div.order-total__price
+                    p
+                        span="已选："
+                        em#num=0
+                        ="份"
+                    p
+                        span="总额："
+                        strong.detail-total-price="￥"
+                        em#totalPrice=0
+                a(data-mold=module, href="javascript:;").detail-order.disabled-btn#detail-order=merchantInfoId === specialPark ? "立即预约" : "立即预订"
+                if (data[0].data.isBindQyyx === 'T' && showWholeMarket === 'T' ) || (openSingle === 'T' && showWholeMarket==='T')
+                    .share-btn.fr#shareBtn(data-newid=data[0].data.id, data-id=module==='hotel'?data[0].data.hotelInfoId:data[0].data.id, data-iswx=userFrom,data-mold=module)
+                        i.icon-qiandai.icon-img
+                        .share-btn-text 去赚钱
+                    .share-mask
+                    .share-content-box#shareContentBox
+                        a(href='javascript:;').title
+                            | 选择推广方式
+                            i.fr.xx-icon.icon-guanbi1#closeContentBox
+                        a(data-url='',href='javascript:;').showBillUrl
+                            | 生成海报
+                        a(data-url='', href='javascript:;', data-title=data[0].data.nickName).showTextUrl
+                            | 生成文案
+                        a(data-description=data[0].data.subtitle,data-img=data[0].data.linkMobileImg,data-title=data[0].data.nickName,href='javascript:;').shareUrl
+                            | 链接推广
+    else if module === 'shop'
+        .order-footer
+            .order-total.float-layer
+                .icon-link
+                    a(href="/cart?m_id="+merchantInfoId).cart-link
+                        i.xx-icon.icon-shopping-car
+                        span="购物车"
+                        if data.length > 3
+                            em#cartNmu=data[3].data.cartItemDtos.length
+                a(data-mold=module,href="javascript:;").detail-order#detail-order="立即预订"
+                a(data-mold="cart", href="javascript:;").detail-order.cart-btn#cart-order="加入购物车"
+                if (data[0].data.isBindQyyx === 'T' && showWholeMarket === 'T' ) || (openSingle === 'T' && showWholeMarket==='T')
+                    .share-btn.fr#shareBtn(data-newid=data[0].data.id, data-id=data[0].data.msdeInfoId,data-iswx=userFrom,data-mold=module)
+                        i.icon-qiandai.icon-img
+                        .share-btn-text 去赚钱
+                    .share-mask
+                    .share-content-box#shareContentBox
+                        a(href='javascript:;').title
+                            | 选择推广方式
+                            i.fr.xx-icon.icon-guanbi1#closeContentBox
+                        a(data-url='',href='javascript:;').showBillUrl
+                            | 生成海报
+                        a(data-url='', href='javascript:;', data-title=data[0].data.nickName).showTextUrl
+                            | 生成文案
+                        a(data-description=data[0].data.subtitle,data-img=data[0].data.linkMobileImg,data-title=data[0].data.nickName,href='javascript:;').shareUrl
+                            | 链接推广
+    else if module === 'route'
+        .order-footer
+            .order-total.float-layer
+                //- .icon-link
+                    a(href="tel:555").cart-link.tel
+                        i.xx-icon.icon-kefufill
+                        span="在线客服"
+                a(href="/routeDetail/"+data[0].data.id+'/'+data[0].data.productCode+'?m_id='+merchantInfoId).detail-order.route-detail-order="立即报名"
+                if (data[0].data.isBindQyyx === 'T' && showWholeMarket === 'T' ) || (openSingle === 'T' && showWholeMarket==='T')
+                    .share-btn.fr#shareBtn(data-newid=data[0].data.id, data-id=data[0].data.routeInfoId,data-iswx=userFrom,data-mold=module)
+                        i.icon-qiandai.icon-img
+                        .share-btn-text 去赚钱
+                    .share-mask
+                    .share-content-box#shareContentBox
+                        a(href='javascript:;').title
+                            | 选择推广方式
+                            i.fr.xx-icon.icon-guanbi1#closeContentBox
+                        a(data-url='',href='javascript:;').showBillUrl
+                            | 生成海报
+                        a(data-url='', href='javascript:;', data-title=data[0].data.nickName).showTextUrl
+                            | 生成文案
+                        a(data-description=data[0].data.subtitle, data-img=data[0].data.linkMobileImg, data-title=data[0].data.nickName, href='javascript:;').shareUrl
+                            | 链接推广
+    else if module === "repast"
+        if (data[0].data.isBindQyyx === 'T' && showWholeMarket === 'T' ) || (openSingle === 'T' && showWholeMarket==='T')
+            .order-footer
+                .order-total.float-layer
+                    .share-btn.fr#shareBtn(data-newid=data[0].data.id, data-id=data[0].data.repastEateryId, data-iswx=userFrom,data-mold=module,style='width:100%')
+                        i.icon-qiandai.icon-img
+                        .share-btn-text 去赚钱
+                    .share-mask
+                    .share-content-box#shareContentBox
+                        a(href='javascript:;').title
+                            | 选择推广方式
+                            i.fr.xx-icon.icon-guanbi1#closeContentBox
+                        a(data-url='',href='javascript:;').showBillUrl
+                            | 生成海报
+                        a(data-url='', href='javascript:;', data-title=(data[0].data.nickName || data[0].data.name) ).showTextUrl
+                            | 生成文案
+                        a(data-description=data[0].data.subtitle,data-img=data[0].data.linkMobileImg,data-title=(data[0].data.nickName || data[0].data.name),href='javascript:;').shareUrl
+                            | 链接推广
+    .mask#mask
+    .mask#noticeMask
+    .billmask
+    .show-bill#showBill
+        h5.bill-tips 长按海报保存相册
+        i.close-show-bill.xx-icon.icon-guanbi1#closeShowBill
+        .show-bill-image
+            .swiper-container#billSwiper
+                .swiper-wrapper
+                    //.swiper-slide
+                    //    .ss-con
+                    //        img(src='http://qyyxstatics.zhiyoubao.com/attached/image/20190819/20190819094856wtqjb7.jpg')
+                    //.swiper-slide
+                    //    .ss-con
+                    //        img( style='height:700px;', src='http://qyyxstatics.zhiyoubao.com/attached/image/20190924/20190924150230hnc7rw.jpg')
+                //.swiper-button-prev
+                //.swiper-button-next
+    .textmask
+    .show-bill.show-bill-text#showText
+        i.close-show-bill.xx-icon.icon-guanbi1#closeShowText
+        .show-bill-com
+            .showbill-tit 生成文案
+            .showbill-txt
+                textarea#bill_text
+            a.showbiil-btn(href='javascript:;')#showTextBtn 复制文案
+
+    if module === 'shop'
+        .goodsSkuLayer#goodsLayer
+            i.xx-icon.layer-close.icon-guanbi1
+            .layer-container
+                .itemInfo
+                    if data[2].data.length
+                        img(src=data[2].data[0].linkImg)
+                        .itemInfo-content
+                            .itemPrice-box
+                                .deletePrice(style=(data[2].data[0].isMember ? 'display:block':'display:none')) 
+                                    del ￥
+                                        span.del-price=data[2].data[0].sellPrice
+                                .itemPrice ￥
+                                    span.price.skuPrice=(data[2].data[0].memberPrice || data[2].data[0].sellPrice)
+                                    if openSingle==='T'
+                                        span.extension-price.c-f63#ttPrice.markshow_open(data-price1="#{data[0].data.earning||data[2].data[0].earning}", data-price2="#{data[0].data.recommend||data[2].data[0].recommend}")
+                                            if data[0].data.earning != undefined
+                                                | 推广奖励：￥
+                                                =data[0].data.earning
+                                                | >
+                                            else if data[2].data[0].earning != undefined
+                                                | 推广奖励：￥
+                                                =data[2].data[0].earning
+                                                | >
+                                .sku-member-flag(style=(data[2].data[0].isMember ? 'display:block':'display:none')) 会员专享            
+                            if data[2].data[0].isViewStock === 'T'
+                                .itemName.ellipsis 库存:
+                                    if data[2].data&&data[2].data[0].stockNum
+                                        span.stockNum=data[2].data[0].stockNum
+                                    else
+                                        span.stockNum.c-price 库存不足
+                            .itemName.ellipsis 已选：
+                                span.selectedSkuName
+                                    +replaceStr(data[2].data[0].specParam)
+                .skuInfoBox
+                    - var _style = data[2].data.length&&data[2].data[0].stockNum ? 'display:block' : 'display:none';
+                    .itemLine.goodsNumBox(style=_style)
+                        span.itemLabel 购买数量:
+                        span.itemVal
+                            if data[2].data.length
+                                input.number(data-max=data[2].data[0].stockNum, data-min='1', type='tel', value='1')
+                    .itemTitle 规格
+                    ul.skuList
+                        each item,index in data[2].data
+                            -var className=""
+                            if index==0&&item.specParam==0
+                                -className="on disabled"
+                            else if index==0
+                                -className="on"
+                            li.skuItem(class=className,data-skuObj=item)
+                                +replaceStr(item.specParam)
+                .sumbitBtnBox
+                    - var _disabled = data[2].data.length&&data[2].data[0].stockNum ? false:true;
+                    - var getByMySelf = "F"
+                        if !data[0].data.shipType && data[0].data.isExpress === 'T'
+                            - getByMySelf = 'T'
+                    button#goodsSubmitOrder.submitBtn(class="#{_disabled?'':'background-btn'}",data-bymyself=getByMySelf,data-mold=module,disabled=_disabled) 确定
+
+    #calendar-box.calendar-box
+        if module=== 'route'
+            #calendar(data-date=data[2].data)
+        else
+            #calendar
+    //分享弹框
+    .sharetip#sharetip
+    //- +flowBtn(userInfo,marketDisAccount,showWholeMarket)
+    #whiteMask.mfb-component__mask
+    ul#menu.mfb-component--location.mfb-component--tr.mfb-slidein-spring(data-mfb-toggle='click')
+        li.mfb-component__wrap
+            a.mfb-component__button--main(href='#')
+                i.mfb-component__main-icon--resting
+                    img.mfb-component__main-icon--resting__bg(src="#{baseUrl}/images/member/my_face_bg.png")
+                    if userInfo
+                        img.mfb-component__main-icon--resting__img(src=userInfo.headImg || "#{baseUrl}/images/member/defaultFace.jpg",alt="",style="height:100%;width:100%;")
+                    else
+                        img.mfb-component__main-icon--resting__img(src="#{baseUrl}/images/member/defaultFace.jpg",alt="",style="height:100%;width:100%;")
+                    span.mfb-component__main-icon--resting__flag
+                        | 我的
+                i.mfb-component__main-icon--active.xx-icon.icon-guanbi1
+            ul.mfb-component__list
+                if marketDisAccount && showWholeMarket === 'T'
+                    li
+                        a.mfb-component__button--child#becomeSales(data-mfb-label='全员营销', href='javascript:;')
+                            i.mfb-component__child-icon.xx-icon.icon-qiandai
+                li
+                    a.mfb-component__button--child(data-mfb-label='首页', href='/?m_id='+merchantInfoId)
+                        i.mfb-component__child-icon.xx-icon.icon-shouye
+                li
+                    a.mfb-component__button--child(data-mfb-label='个人中心', href='/member?m_id='+merchantInfoId)
+                        i.mfb-component__child-icon.xx-icon.icon-member
+    +marketingRegLayer()
+    +marketInfoLayer()
+    .addressLayer#userEditerInput
+        .addressLayer-handle.background-base
+            a.userEditer-close#addUserEditerClose(href='javascript:;')
+                i.xx-icon.icon-guanbi1
+        .layerContent.newAddress(style='display:block;')
+            form#form
+                .comment-panel
+                    p
+                        textarea#comment.order-textarea(name='content', rows='10', placeholder='请写下您对我们的感受吧')
+                .common-num-box
+                    p
+                        strong 满意度评分
+                        span.pfxtFen
+                            i.xx-icon.icon-iconfont-aixin
+                            i.xx-icon.icon-iconfont-aixin
+                            i.xx-icon.icon-iconfont-aixin
+                            i.xx-icon.icon-iconfont-aixin
+                            i.xx-icon.icon-iconfont-aixin
+                    p
+                        label.weui-agree(for='weuiAgree')
+                            input#weuiAgree.weui-agree__checkbox(name='isAnonymous',type='checkbox')
+                            span.weui-agree__text
+                                | 匿名评论
+                .btn-handle
+                    a#subComment.btn.comment-submit(href='javascript:;') 发表评论
+
+    .tips
+        p
+        a(href="javascript:;").queding 确定
+    #socialShare
+    - var msg = data[0].data.summary ? data[0].data.summary.replace(/<\/?[^>]*>/g, '') : "小鲸商城，旅行购物好平台"; //去除HTML Tag
+    if module === 'route'
+        - msg = data[0].data.lineDescription
+    - msg = msg.replace(/[|]*\n/, '') //去除行尾空格
+    - msg = msg.replace(/&nbsp;/ig, ''); //去掉npsp
+    if msg.length > 20
+        - msg = msg.substring(0,20) + '...';
+    #shareData(data-dec=msg, data-img=data[0].data.linkMobileImg,data-title=(data[0].data.nickName || data[0].data.name))
+
+
+
+
+

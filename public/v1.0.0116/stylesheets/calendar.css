@@ -1,0 +1,27 @@
+.calendar_wrapper { float: left; font-size: 0.6rem;}
+
+.calendar_head, .calendar_week, .calendar_body { overflow: hidden; width: 100%; text-align: center;
+    line-height: 20px; }
+
+.calendar_head { position: relative; }
+.calendar_head .prev, .calendar_head .next { position: absolute; top: 0; left: 0; display: none; }
+.calendar_head .next { left: auto; right: 0; }
+.calendar_head span { margin: 0 10px; cursor: pointer; }
+.calendar_week{ background: #48ab31; height:40px; line-height: 40px; color: #fff; font-size: .65rem; }
+.calendar_week li { width: 14%; float: left; }
+
+.calendar_body li { width: 14%; float: left; cursor: pointer; text-align: center; font-size: 0.4rem;padding-top: 5px;
+    padding-bottom: 5px;font-size: .6rem;height: 1.75rem;}
+.calendar_body li span{ display: block; color: #f60;}
+.calendar_body li.item-empty span{ color: #ccc;}
+.calendar_body li b{ font-weight: normal; }
+.calendar_body li strong{ font-weight: normal; color: #999;}
+.calendar_body .today { background: #f6d2c6; color: #fff; }
+.calendar_body .item-empty { color: #ccc;  cursor: default; background: #fff; }
+.calendar_body .selected-between { background: #add9a3; color: #fff; } 
+.calendar_body .selected { background: #48ab31; color: #fff; }
+#closecalendar{  position:fixed; z-index: 9999;
+    width: 1rem; height: 1rem; border-radius: 100%; line-height: 1rem; background: rgba(0,0,0,.5); font-size: 0.7rem; text-align: center;
+color: #fff; right: 5px; top: 8px; display: none;}
+.calendar_wrapper .calendar_head{ padding-top: .5rem;font-size: .65rem;}
+/*# sourceMappingURL=calendar.css.map */

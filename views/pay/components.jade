@@ -1,0 +1,31 @@
+mixin payModule(isWx,isAli,merchantInfoId)
+  #pay-mask
+  .pay-module#payModule(class=(isWx === 'T' )?'wxpay':'alipay')
+      .pay-sealPrice
+          span 支付金额：
+          em.price-em  ￥
+          span.price 0.00
+      ul#pay-mold.order-list.pay-list.pay-type 
+          if isWx === 'T'
+              li.wenxin
+                  a(href='javascript:;')
+                      label.lab-title(for='')
+                          i.xx-icon.icon-iconfont-weixin
+                          | 微信支付
+                      i.select-icon.xx-icon.fr.icon-yuanxingxuanzhongfill
+          else
+              li.zhifubao
+                  a(href='javascript:;')
+                      label.lab-title(for='')
+                          i.xx-icon.icon-iconfont-zhifubao
+                          | 支付宝
+                      i.select-icon.xx-icon.fr.icon-yuanxingxuanzhongfill
+          if merchantInfoId ===  '610'
+            li.longCard
+                a(href='javascript:;')
+                    label.lab-title(for='')
+                        i.xx-icon.icon-longcard
+                        | 龙支付
+                    i.select-icon.xx-icon.fr.icon-yuanxingweixuanzhong                
+      .pay-btn 
+          a#goPayBtn(data-href="", data-chanel='normal',title="title")  去支付

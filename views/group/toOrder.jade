@@ -1,0 +1,56 @@
+extends ../layout
+
+block stylesheets
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/coupons.css?#{vCode}")
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/order.css?#{vCode}")
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/group.css?#{vCode}")
+block javascripts
+    script(type='text/javascript', src='#{baseUrl}/javascripts/jquery.calendar.js')
+    script(type='text/javascript', src='#{baseUrl}/javascripts/validate/jquery.validate.min.js')
+    script(type='text/javascript', src='#{baseUrl}/javascripts/validate/messages_zh.min.js')
+    script(type='text/javascript', src='#{baseUrl}/javascripts/validate/additional-methods.js')
+    script(type='text/javascript', src='#{baseUrl}/javascripts/pageItem.js?#{vCode}')
+    script(type='text/javascript', src='#{baseUrl}/javascripts/order.js?#{vCode}')
+block content
+    .detail-block
+        .address-blcok
+            a(href="")
+                .itemLine.importantLine
+                    span.itemLabel.bigFont 收货人:
+                    span.itemVal.bigFont.ellipsis 小刘 13829482952
+                .itemLine
+                    span.itemLabel 收货地址:
+                    span.itemVal.ellipsis 浙江杭州滨江区产品部上述
+                i.xx-icon.icon-xiangyoujiantou
+    .page-line
+    .order-list-block
+        .orderProductList
+            .orderProductItem
+                .itemTitle.ellipsis 狗狗熊
+                .itemBody
+                    .itemImg
+                        img(src="")
+                    .itemInfo
+                        .itemName.ellipsis 多来阿盟公仔毛绒公仔
+                        .pageLine.price ￥ 26.90
+                        .itemLine(style="margin-top:.8rem")
+                            span 深蓝 20*28*199
+                            span.goodsNum x1
+                .itemBottom
+                    .itemTotal
+                        span.txt 合计:
+                        span.price ￥26.90
+    .page-line
+    .detail-block
+        p 备注：您的订单可能会被分成多个订单配送，敬请谅解！
+    .page-line
+    .detail-block
+        p 合计信息: 共1件。应付：￥26.90元
+
+    .group-detail-footer
+        .footerItem(style="width:70%")
+            .orderPayMoney
+                span 实付:
+                span.price ￥26.90元
+        .footerItem(style="width:30%")
+            button.submitOrderBtn(type="button") 提交订单

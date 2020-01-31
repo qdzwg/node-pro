@@ -1,0 +1,302 @@
+extends ../layout
+
+block stylesheets
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/calendar.css?#{vCode}")
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/swiper-3.4.1.min.css")
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/detail.css?#{vCode}")
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/group.css?#{vCode}")
+block javascripts
+    script(type='text/javascript', src='#{baseUrl}/javascripts/swiper-3.4.1.jquery.min.js')
+    script(src='https://res.wx.qq.com/open/js/jweixin-1.0.0.js')
+    script(type='text/javascript', src='#{baseUrl}/javascripts/pageItem.js?#{vCode}')
+    script(type='text/javascript', src='#{baseUrl}/javascripts/lib/clipboard.min.js')
+    script(type='text/javascript', src='#{baseUrl}/javascripts/group.js?#{vCode}')
+    script.
+        var merchantShopId = "#{main.data.id}",productCode="#{main.data.productCode}",productName="#{main.data.name}",prodFrom="#{main.data.prodFrom}"
+block content
+    include ../common/index
+    include ../detail/common
+    include ../common/quickLink
+    //-团购商品轮播图
+    - var groupData = main.data;
+    - var baseImgUrl = 'http://192.168.200.189:8080/merchant/webjars/springfox-swagger-ui/images/logo_small.png';
+    - var startTime = Date.parse(new Date(groupInfo.data.marketLptVo.validPeriodStart));
+    - var endTime = Date.parse(new Date(groupInfo.data.marketLptVo.validPeriodEnd));
+    - var nowTime = Date.parse(new Date(groupInfo.data.marketLptVo.newTiem));
+    - var sprice=[],gprice=[],minSprice,minGprice
+    each item in skuInfo.data
+        if item.sellPrice
+            -sprice.push(Number(item.sellPrice))
+        if  item.lptPrice   
+            -gprice.push(Number(item.lptPrice))  
+    - minSprice = Math.min(...sprice);
+    - minGprice = Math.min(...gprice); 
+
+    .block_home_slider
+        if !!groupData.merchantPictureLibVo && groupData.merchantPictureLibVo.wapUrl
+            #home_swiper.swiper-container.group-detail-container      
+                ul.swiper-wrapper
+                    each img,i in groupData.merchantPictureLibVo.wapUrl.split(',')
+                        li.swiper-slide
+                            img(src=img+'?imageMogr2/thumbnail/640x/strip/quality/100')
+                .swiper-pagination
+    //-团购倒计时
+    .groupTime
+        span 来拼团
+        .countDownBox
+            if nowTime < startTime         
+                span 距活动开始还有
+                .countDownTime(data-styleType='1', data-time=startTime,data-now=nowTime)
+            else if startTime < nowTime  &&  nowTime < endTime
+                span 距活动结束仅剩
+                .countDownTime(data-styleType='1', data-time=endTime,data-now=nowTime)
+            else 
+                span 活动已结束    
+            
+    //-团购商品信息
+    .group-details
+        .groupDetailInfo
+            .priceBox
+                .salePrice
+                    span.rmb ￥
+                    span.price= groupInfo.data.marketLptVo.minSkuPrice 
+                | &ensp;
+                .originPrice
+                    span.rmb ￥
+                    span.price= groupData.priceShow
+            .salesInfo
+                span.salesNum=groupInfo.data.marketLptVo.personQuantity+"人成团"
+        .detailTitle
+            h3= groupData.nickName
+    if (startTime < nowTime && nowTime < endTime) && groupInfo.data.allMarketLpt.length > 0
+        .page-line
+        //-待拼团列表
+        .detail-block
+            .detail-title-box
+                p 以下小伙伴正在拼团，可直接参与
+            .detail-container
+                each item,index in groupInfo.data.allMarketLpt
+                    if index <2
+                        .waitGroupList
+                            - var  time = Date.parse(new Date(item.closeTime))
+                            .waitGroupItem
+                                img.initiaorImg(src=(item.headImg || '#{baseUrl}/images/member/defaultFace.jpg'))
+                                span.initiaorName.ellipsis #{item.nickName || ''}
+                                span.groupInfo
+                                    span.lastNum 还差#{item.residuePerson}人拼成
+                                    span.lastTime 剩余
+                                        .countDownTime(data-styleType='2', data-time=endTime,data-now=nowTime)
+                                a.toGroupBtn(href="javascript:;") 去拼团
+                            //确认弹框
+                            .group-detail-layer
+                                span.close-group-detail-layer
+                                    i.xx-icon.icon-guanbi1
+                                p.group-detail-title
+                                    | 参与#{item.nickName || ''}的拼团
+                                span.group-detail-content
+                                    | 还剩
+                                    em(style="color:#e02e24")
+                                        #{item.residuePerson}
+                                    | 个名额，
+                                    .countDownTime(data-styleType='2', data-time=endTime,data-now=nowTime)
+                                    | 后结束
+                                p.group-member-list
+                                    span.has-face.face-show
+                                        em.flag
+                                            | 团长
+                                        img(src=(item.headImg || "#{baseUrl}/images/member/defaultFace.jpg"), alt="")
+                                    span.default.face-show
+                                        | ?
+                                a.group-detail-btn.joinGroup(href="javascript:;",data-id=item.marketLptInfoId)
+                                    | 立即参团
+    //- +detailList(groupData, commentInfo, module)                                
+    if groupData.summary
+        .page-line
+        //-详情
+        .detail-block
+            .detail-title-box
+                h3 图文详情
+            .detail-container.detailSummary
+                | !{groupData.summary}
+                                
+    if commentInfo.data.length > 0                    
+        .page-line
+        //-评论
+        .detail-block
+            .detail-title-box
+                h3 买家口碑
+            .detail-container
+                .commentList
+                    each item in commentInfo.data
+                        .commentItem
+                            .commentHeader
+                                //-span.avator
+                                    img(src="")
+                                if item.isAnonymous === 'T'
+                                    - let name=item.userName,len = name.length;
+                                    if len > 2
+                                        - name = name[0] + '***' + name[len - 1] ;
+                                    else
+                                        - name = name[0] + '***';
+                                    span.userName= name
+                                else
+                                    span.userName= item.userName
+                                | &emsp;
+                                span.score.c-base= item.score || 0
+                                | 分
+                            .commentContent!= item.content
+    .page-line
+    //-团购详情底部栏
+    .footBlock 
+    .group-detail-footer
+        if !invited 
+            .footerItem(style="width:24%")
+                a.linkIconBtn(href="/cart?m_id="+merchantInfoId)
+                    i.xx-icon.icon-gouwuche1
+                    .iconTxt 购物车
+            if (main.data.isBindQyyx === 'T' && showWholeMarket === 'T' ) || (openSingle === 'T' && showWholeMarket==='T')
+                .share-btn.fr.footerItem(style="width:16%",data-mold=module,data-iswx=userFrom,data-id=main.data.msdeInfoId, data-newid=main.data.id)#shareBtn
+                    i.icon-qiandai.icon-img
+                    .share-btn-text 去赚钱
+                .share-mask
+                .share-content-box#shareContentBox
+                    a(href='javascript:;').title
+                        | 选择推广方式
+                        i.fr.xx-icon.icon-guanbi1#closeContentBox
+                    a(href='javascript:;',data-url='').showBillUrl
+                        | 生成海报
+                    a(href='javascript:;', data-title=main.data.nickName).showTextUrl
+                        | 生成文案
+                    a(href='javascript:;',data-description='小鲸商城，旅行购物好平台。',data-img=main.data.linkMobileImg,data-title=main.data.nickName).shareUrl
+                        | 链接推广
+            else
+               .footerItem(style="width:16%")
+            if startTime < nowTime && nowTime < endTime   
+                .footerItem.showGroupLayer(style="width:30%",data-mold="shop")
+                    .buyBtn
+                        p ￥#{minSprice}
+                        p 单独购买         
+                .footerItem.showGroupLayer(style="width:30%",data-mold="group")
+                    .groupBuy
+                        p ￥#{minGprice}
+                        p 发起拼团
+            else
+                .footerItem.showGroupLayer(style="width:60%",data-mold="shop")
+                    .groupBuy
+                        p ￥#{minSprice}
+                        p 单独购买  
+        else
+            .footerItem(style="width:24%")
+                a.linkIconBtn(href="/cart?m_id="+merchantInfoId)
+                    i.xx-icon.icon-gouwuche1
+                    .iconTxt 购物车
+            if (main.data.isBindQyyx === 'T' && showWholeMarket === 'T' ) || (openSingle === 'T' && showWholeMarket==='T')
+                .share-btn.fr.footerItem(style="width:16%",data-mold=module,data-iswx=userFrom,data-id=main.data.msdeInfoId, data-newid=main.data.id)#shareBtn
+                    i.icon-qiandai.icon-img
+                    .share-btn-text 去赚钱
+                .share-mask
+                .share-content-box#shareContentBox
+                    a(href='javascript:;').title
+                        | 选择推广方式
+                        i.fr.xx-icon.icon-guanbi1#closeContentBox
+                    a(href='javascript:;',data-url='').showBillUrl
+                        | 生成海报
+                    a(href='javascript:;', data-title=main.data.nickName).showTextUrl
+                        | 生成文案
+                    a(href='javascript:;',data-description='小鲸商城，旅行购物好平台。',data-img=main.data.linkMobileImg,data-title=main.data.nickName).shareUrl
+                        | 链接推广
+            else
+                .footerItem(style="width:16%")                                   
+            if startTime < nowTime && nowTime < endTime      
+                .footerItem#showInvitedGroupLayer(style="width:60%",data-mold="group",data-lptid=lptId)
+                    .groupBuy
+                        p ￥#{minGprice}
+                        p 立即参团
+            else
+                .footerItem.showGroupLayer(style="width:60%",data-mold="shop")
+                    .groupBuy
+                        p ￥#{minSprice}
+                        p 单独购买  
+
+    //-购买确认弹框
+    .goodsSkuLayer#goodsLayer
+        i.xx-icon.layer-close.icon-guanbi1
+        -var max=skuInfo.data[0].stockNum
+        if groupInfo.data.marketLptVo.purchaseLimitFlag=="T"
+            -max=groupInfo.data.marketLptVo.purchaseLimitQuantity<skuInfo.data[0].stockNum?groupInfo.data.marketLptVo.purchaseLimitQuantity:skuInfo.data[0].stockNum
+        if skuInfo.data.length>0
+            .layer-container
+                .itemInfo
+                    img(src=skuInfo.data[0].linkImg)
+                    .itemPrice ￥
+                        span.price.skuPrice(data-sellprice=skuInfo.data[0].sellPrice,data-lptprice=skuInfo.data[0].lptPrice)=skuInfo.data[0].sellPrice
+                    if skuInfo.data[0].isViewStock=='T'    
+                        .itemName.ellipsis 库存:
+                            if skuInfo.data[0].stockNum
+                                span.stockNum=skuInfo.data[0].stockNum
+                            else
+                                span.stockNum.c-price 库存不足
+                    .itemName 已选：
+                        span.selectedSkuName
+                            +replaceStr(skuInfo.data[0].specParam)
+                .skuInfoBox
+                    if groupInfo.data.marketLptVo.purchaseLimitFlag === 'T'
+                        p.group-explian="该商品限购" + groupInfo.data.marketLptVo.purchaseLimitQuantity + "件"
+                    .itemLine.goodsNumBox
+                        span.itemLabel 购买数量:
+                        span.itemVal
+                            input.number(type='tel', value='1', data-min='1', data-max=max, data-shopmax=skuInfo.data[0].stockNum)
+                    .itemTitle 规格
+                    ul.skuList
+                        each item,index in skuInfo.data
+                            -var className=""
+                            if index==0&&item.specParam==0
+                                -className="on disabled"
+                            else if index==0
+                                -className="on"
+                            li.skuItem(data-skuObj=item,class=className,data-limitQuantity=groupInfo.data.marketLptVo.purchaseLimitQuantity,data-limitFlag=groupInfo.data.marketLptVo.purchaseLimitFlag)
+                                +replaceStr(item.specParam)
+                .sumbitBtnBox
+                    - var _disabled = skuInfo.data&&skuInfo.data[0].stockNum? false:true;
+                    button#goodsSubmitOrder.submitBtn(data-lptid='0',disabled=_disabled,class="#{_disabled ? '' : 'background-btn'}") 确定
+    .mask#mask 
+    //分享弹框
+    .billmask
+    .sharetip#sharetip
+    //.show-bill#showBill
+    //    i.close-show-bill.xx-icon.icon-guanbi1#closeShowBill
+    //    .show-bill-image
+    //        img(src='', alt="")
+    .show-bill#showBill
+        h5.bill-tips 长按海报保存相册
+        i.close-show-bill.xx-icon.icon-guanbi1#closeShowBill
+        .show-bill-image
+            .swiper-container#billSwiper
+                .swiper-wrapper
+                    //.swiper-slide
+                    //    .ss-con
+                    //        img(src='http://qyyxstatics.zhiyoubao.com/attached/image/20190819/20190819094856wtqjb7.jpg')
+                //.swiper-button-prev
+                //.swiper-button-next
+    .textmask
+    .show-bill.show-bill-text#showText
+        i.close-show-bill.xx-icon.icon-guanbi1#closeShowText
+        .show-bill-com
+            .showbill-tit 生成文案
+            .showbill-txt
+                textarea#bill_text
+            a.showbiil-btn(href='javascript:;')#showTextBtn 复制文案
+    +flowBtn(userInfo,marketDisAccount,showWholeMarket) 
+    .tips
+        p
+        a(href="javascript:;").queding 确定 
+    - var msg = groupData.summary ? groupData.summary.replace(/<\/?[^>]*>/g, '') : "小鲸商城，旅行购物好平台"; //去除HTML Tag
+    - msg = msg.replace(/[|]*\n/, '') //去除行尾空格
+    - msg = msg.replace(/&nbsp;/ig, ''); //去掉npsp
+    if msg.length > 20
+        - msg = msg.substring(0,20) + '...';
+    #shareData(data-dec=msg,data-img=groupData.linkMobileImg,data-title=(groupData.nickName))    
+               
+
+
+

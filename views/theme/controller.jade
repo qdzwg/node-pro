@@ -1,0 +1,28 @@
+
+
+//- @Author: lixuepeng
+//- @Date: 2018-07-11 17:01:15 
+//- @Last Modified by: lixuepeng
+//- @Last Modified time: 2018-07-11 17:11:57
+
+include ./component
+ 
+mixin choiceComponent(type,datas,merchantInfoId) 
+    if type === 'Bill__normal'
+        +Bill__normal(datas)
+    else if type === 'Banner__swiper1' 
+        +Banner__swiper1(datas)  
+    else if type === 'Header__logo'
+        +Bill__logo(datas)    
+    else if type === 'Nav__normal' 
+        +Nav__normal(datas) 
+    else if type === 'Nav__normal2'
+        +Nav__normal2(datas)    
+    else if type === 'Search__normal'
+        +Search__normal(datas)
+    else if type === 'Product__normal'
+        +product__swiper(datas)    
+    else if type === 'Product__normal2'
+        +Product__normal(datas)
+    else if type === 'ProductList__normal' 
+        +ProductList__normal(datas)    

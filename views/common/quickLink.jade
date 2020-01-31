@@ -1,0 +1,35 @@
+mixin quickLink()
+    .goMyIndex
+        a(href='/member?m_id=' + merchantInfoId)
+            i.xx-icon.icon-member
+    .goIndex
+        a(href="/?m_id=" + merchantInfoId)
+            i.xx-icon.icon-shouye
+
+mixin flowBtn(userInfo,marketDisAccount,showWholeMarket) 
+    #whiteMask.mfb-component__mask
+    ul#menu.mfb-component--location.mfb-component--br.mfb-slidein-spring(data-mfb-toggle='click')
+        li.mfb-component__wrap
+          a.mfb-component__button--main(href='#')
+            i.mfb-component__main-icon--resting
+              img.mfb-component__main-icon--resting__bg(src="#{baseUrl}/images/member/my_face_bg.png")
+              if userInfo
+                img.mfb-component__main-icon--resting__img(src=userInfo.headImg || "#{baseUrl}/images/member/defaultFace.jpg",style="height:100%;width:100%;" alt="")
+              else
+                img.mfb-component__main-icon--resting__img(src="#{baseUrl}/images/member/defaultFace.jpg",style="height:100%;width:100%;" alt="")
+              span.mfb-component__main-icon--resting__flag
+                | 我的
+            i.mfb-component__main-icon--active.xx-icon.icon-guanbi1
+          ul.mfb-component__list
+            if marketDisAccount && showWholeMarket === 'T'
+              li
+                a.mfb-component__button--child#becomeSales(href='javascript:;', data-mfb-label='全员营销')
+                  i.mfb-component__child-icon.xx-icon.icon-qiandai
+            li
+              a.mfb-component__button--child(href='/?m_id='+merchantInfoId, data-mfb-label='首页')
+                i.mfb-component__child-icon.xx-icon.icon-shouye
+            li
+              a.mfb-component__button--child(href='/member?m_id='+merchantInfoId, data-mfb-label='个人中心')
+                i.mfb-component__child-icon.xx-icon.icon-member
+    include index
+    +marketingRegLayer()

@@ -1,0 +1,63 @@
+extends ../layout
+
+block stylesheets
+    link(href="#{baseUrl}/stylesheets/detail.css?#{vCode}", rel="stylesheet")
+    link(href="#{baseUrl}/stylesheets/newDetail.css?#{vCode}", rel="stylesheet")
+block javascripts
+    script.
+        var module = '#{module}';
+    script(src='#{baseUrl}/javascripts/newDetail.js?#{vCode}', type='text/javascript')
+block content
+    include ../common/quickLink
+    include ../common/footer
+    - const datas = data instanceof Array && data.length > 0 ? data[0].data : {};
+    - const showResponseDto = datas.showResponseDto;
+    - const theaterPlace = datas.theaterPlace;
+    .detail-header.clearfix
+        .detail-header-info
+            if showResponseDto
+                p.detail-header-info-subtitle.detail-header-show-info 演出名称：#{sessionName}
+                p.detail-header-info-subtitle.detail-header-show-info 演出场所：#{theaterName}
+            p.detail-header-info-subtitle.detail-header-show-info 演出时间：#{palyDate}
+            p.detail-header-info-subtitle.detail-header-show-info 演出场次：#{startTime}
+        .detail-header-navigation#showSeatingPlan(data-tcode=tcode)
+            a(href='javascript:;')
+                i.xx-icon.icon-zuoweiyuyue
+                p.desc 座位分布图
+
+    .page-line
+    .detail-module(style='padding:0')
+        .show-area-table
+            if canSale
+                each item in canSale
+                    - let ticketCode = [];
+                    - const ticketList = item.ticketList.showTicketModel || [];
+                    each ticket in ticketList
+                        - ticketCode.push(ticket.code);
+                    .area-table-item(data-areaCode=item.areaCode,data-areaName=item.areaName,data-ticketcode=ticketCode.join(','))
+                        .area-table-item-name #{item.areaName}
+                        // 剩余数量
+                        .area-table-item-info
+                            if item.ticketPrices
+                                .area-table-item-price
+                                    //span 起价：
+                                    if typeof item.ticketPrices.lowPrice != 'undefined' && item.ticketPrices.lowPrice !==''
+                                        em ￥
+                                        span#ticket-low-price #{item.ticketPrices.lowPrice} 起
+                                    //em &ensp;-&ensp;
+                                    //span#ticket-high-price #{item.ticketPrices.highPrice}
+                                .area-table-item-num 剩余：#{item.num}
+
+    .order-footer
+        .order-total.float-layer
+            a(href='javascript:;')#detailOrderBtn.detail-order.route-detail-order.goChooseSeat.disabled-btn="请选择区域"
+
+    #mask
+    if theaterPlace && theaterPlace.locationImg
+        .detail-flow.seating-plan-flower#seatingPlanFlower
+            .flow-close#seatingflowClose
+                i.xx-icon.icon-guanbi2
+            .flow-seating-plan-img
+                img(src=theaterPlace.locationImg, alt="")
+
+

@@ -1,0 +1,38 @@
+mixin themePark(datas,merchantInfoId)
+    // 门票列表
+    .index-mainList
+        .blockTitle
+            a.moreBtn(href="/list/ticket?m_id="+merchantInfoId) 查看更多
+                i.xx-icon.icon-iconfont-jiantou
+            if merchantInfoId === specialPark    
+                h3.block-title
+                    em 博物馆
+                    span 门票
+            else
+                h3.block-title
+                    em 景区
+                    span 门票        
+            p.block-des 小编为您整理的品质线路
+        #detailsList.inner.spe-box.clearfix.swiper-slide
+            - const sellWellList = datas[1].data.sellWell;
+            ul.page-list.ticket-list.hauto
+                each item in sellWellList
+                    - let _type = item.businessType
+                    - if(item.businessType === 'room') _type = 'hotel';
+                    - if(item.businessType === 'mdse') _type = 'shop';            
+                    li.opacity
+                        a(href='/detail/'+_type+'/'+item.merchantProdcutId+'/'+item.productCode+'?m_id='+merchantInfoId)
+                          .page-list-img
+                               img(src=item.linkMobileImg+'?imageMogr2/thumbnail/640x/strip/quality/100', width='100%')
+                          .page-list-info
+                               h3.page-list-title #{item.nickName || item.name}
+                               p.page-list-article.listLimit #{item.subtitle}
+                               .page-list-explian.clearfix
+                                   span.fl.list-vars
+                                       em #{item.sellNum}
+                                       | 人已#{merchantInfoId === specialPark ? '预约':'购买'}
+                                   span.price.fr
+                                       i.icon-rmb ¥
+                                       strong #{item.priceShow}
+                                       //span 起
+    .page-line

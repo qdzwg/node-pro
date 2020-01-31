@@ -1,0 +1,57 @@
+extends layout
+
+block stylesheets
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/swiper-3.4.1.min.css")
+    //- link(rel="stylesheet", href="/stylesheets/index.css")
+    case templateCode
+        when 'MTI20180316172401'
+            link(rel="stylesheet", href="#{baseUrl}/stylesheets/theme/index_n.css?#{vCode}")
+        when 'MTI20180316172801'
+            link(rel="stylesheet", href="#{baseUrl}/stylesheets/theme/index_c.css?#{vCode}")
+        when 'MTI20180316173101'
+            link(rel="stylesheet", href="#{baseUrl}/stylesheets/theme/index_l.css?#{vCode}")
+        when 'MTI18062213232769'
+            link(rel="stylesheet", href="#{baseUrl}/stylesheets/theme/index_p.css?#{vCode}")    
+
+block javascripts
+    script.
+       var themeCode = '#{templateCode}';
+
+       
+    //-    var spreadCode = '#{spreadCode}';
+    script(type='text/javascript', src='#{baseUrl}/javascripts/swiper-3.4.1.jquery.min.js')
+    script(type='text/javascript', src='#{baseUrl}/javascripts/touch-0.2.14.min.js')
+    script(type='text/javascript', src='#{baseUrl}/javascripts/index.js?#{vCode}')
+block content
+    include  common/footer
+    include  theme/common
+    include  theme/theme1
+    include  theme/theme2
+    include  theme/theme3
+    include  theme/theme_park
+
+    //头部搜索
+    if data[0].data.mainPageFix
+        .top
+            h1.logo
+                img(src=data[0].data.mainPageFix[0].picAddr)
+                
+    .index-slider(id=(data[0].data.mainPageTop && data[0].data.mainPageTop.length > 1)? 'bannerSlider':'')
+        ul.swiper-wrapper 
+            if data[0].data.mainPageTop&&data[0].data.mainPageTop.length > 0
+                each banner in data[0].data.mainPageTop
+                    li.swiper-slide
+                        a(href=banner.picLink, title=banner.title)
+                            img(src=banner.picAddr+'?imageView2/1/w/640/h/310/imageMogr2/strip/quality/100', alt='') 
+        .index-pagination
+   
+    case templateCode
+        when 'MTI20180316172401'
+            +themeOne(data,merchantInfoId)
+        when 'MTI20180316172801'
+            +themeTwo(data,merchantInfoId)
+        when 'MTI20180316173101'
+            +themeThree(data,merchantInfoId)
+        when 'MTI18062213232769' 
+            +themePark(data,merchantInfoId)   
+    +footer(templateCode)

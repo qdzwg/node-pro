@@ -1,0 +1,34 @@
+extends ../layout
+
+block stylesheets
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/coupons.css?#{vCode}")
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/order.css?#{vCode}")
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/calendar.css?#{vCode}")
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/group.css?#{vCode}")
+block javascripts
+    script(type='text/javascript', src='#{baseUrl}/javascripts/jquery.calendar.js')
+    script(type='text/javascript', src='#{baseUrl}/javascripts/validate/jquery.validate.min.js')
+    script(type='text/javascript', src='#{baseUrl}/javascripts/validate/messages_zh.min.js')
+    script(type='text/javascript', src='#{baseUrl}/javascripts/validate/additional-methods.js')
+    script(type='text/javascript', src='#{baseUrl}/javascripts/pageItem.js?#{vCode}')
+    script(type='text/javascript', src='#{baseUrl}/javascripts/order.js?#{vCode}')
+block content
+    .detail-block.orderItems
+        .itemLine
+            .itemLabel 订单编号
+            .itemVal.fr WSCS0210390291
+        .itemLine
+            .itemLabel 订单金额
+            .itemVal.fr
+                span.price ￥26.90
+    .page-line
+    .payMethodBlock
+        .payMethodItem
+            i.xx-icon.icon-wx.icon-iconfont-weixin1
+            span.payMethodName 微信支付
+            span.recommendSign 推荐
+            span.icon-selected.selected
+
+    .group-detail-footer
+        .footerItem(style="width:100%;")
+            button.submitOrderBtn(type="button") 确认支付

@@ -1,0 +1,282 @@
+//- 表单组件 datas[type:Array]
+mixin formComponent(formString)
+    - var formArray = typeof formString === 'string' ? JSON.parse(formString) : formString 
+    style.
+        .order-list {
+            background-color: #fff;
+        }
+
+        .order-list li {
+            border-top: 1px solid #eee;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.6rem;
+            color: #999;
+            overflow: auto;
+            position: relative;
+        }
+
+        .order-list li>a {
+            display: block;
+            color: #333;
+            overflow: hidden;
+        }
+
+        .order-list li input {
+            background: none;
+            border: none;
+            height: 0.8rem;
+            font-size: 0.6rem;
+            padding: 0;
+        }
+
+        .order-list-big li {
+            min-height: 1.5rem;
+        }
+
+        .order-list-big li input {
+            height: 1.5rem;
+            line-height: 1.5rem;
+            font-size: 0.6rem;
+            outline: none;
+            padding-left: 0.5rem
+        }
+
+        .order-list-big li input.card-text {
+            position: absolute;
+            width: 6.5rem;
+            right: 0;
+            top: 0;
+            height: 2.5rem;
+            line-height: 2.5rem;
+            border-left: 1px solid #dcdcdc;
+            color: #ff6666;
+        }
+        .form-module .order-list .lab-title {
+            padding-right:0.25rem;
+            width:3rem;
+        }
+        .order-list .order-face {
+            text-align: left;
+        }
+
+        .order-list .order-face .order-face-icon {
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 1.25rem;
+            color: #f05b47;
+            line-height: 1;
+            width: 1.2rem;
+            margin-right: 0.25rem;
+        }
+        .order-list .order-face img {
+            width: 2rem;
+        }
+        .order-list .persion-order-item .xx-icon {
+            color: #f05b47;
+        }
+        .order-list .order-text {
+            border:none;
+            line-height:1.2rem;
+            min-height:1.2rem;
+        }
+        .order-list textarea.order-text {
+            display:block;
+            width:100%;
+            border-radius:4px; 
+            height:2rem;
+            font-size: 0.6rem;
+            border:1px solid #ccc;
+            color:#999999;
+        } 
+        .order-list .img-list .img-item {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            position: relative;
+        }
+        
+        .order-list .img-list .img-item img {
+            border-radius : 5px;
+            display: block;
+            height:1.6rem;
+            width:1.6rem;
+            margin:0.15rem;
+        }
+        .order-list .img-list .img-item img:first-child {
+            margin-left:0;
+        }
+        .order-list .img-list .photo-page {
+            margin:0.15rem;
+            margin-left:0;
+        }
+
+        .order-list .img-list .photo-page .change-label  {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            width: 100%;
+        }
+        .order-list .img-list .img-notice {
+            position: absolute;
+            border-radius: 3px;
+            left: 0.15rem;
+            top: -1.45rem;
+            font-size: .45rem;
+            padding: .25rem .45rem;
+            padding-right: 0;
+            background: #cbcbcb;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            white-space: nowrap;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            color: #5c5c5c;
+        }
+        .order-list .img-list  .img-item-notice {
+            display:none
+        }
+        .order-list .img-list .img-notice .img-text {
+           
+        }
+        .order-list .img-list .img-notice  .icon-guanbi1.xx-icon {
+            font-size: .8rem;
+            line-height:.85;
+            padding:0.1rem 0.35rem 0 0.25rem;
+        }
+        .order-list .img-list .img-notice  .jiao {
+            display: inline-block;
+            position: absolute;
+            left: .55rem;
+            bottom: -.5rem;
+            width: 0;
+            height: 0;
+            border-left: .266667rem solid transparent;
+            border-right: .266667rem solid transparent;
+            border-top: .266667rem solid #cbcbcb;
+            border-bottom: .266667rem solid transparent;
+            color: #999;
+        }
+    .form-module
+        ul.order-list.myorder-list.formComponent(data-str=formString)
+            input(type="text",name='lvString',value=formString ,hidden)
+            each item,index in formArray    
+                - var itemName = /^lv/.test(item.name) ? item.name +'_'+index : item.name
+                li
+                    case item.type
+                        //- 手机号
+                        when 'buyerMobile'
+                            label.lab-title(for=itemName)=item.title
+                            .order-item(data-name=itemName,data-type=item.type)
+                                if member.mobile
+                                    span.changeInput
+                                        +replacePhone(member.mobile)
+                                    input.hide(name=itemName, type="tel", placeholder=item.tips, value=member.mobile || '').order-text
+                                else
+                                    span.changeInput(style="display:none")
+                                    input(name=itemName, type="tel", placeholder=item.tips, value=member.mobile || '').order-text
+                                i.xx-icon.fr.icon-iconfont-xie
+                        //- 姓名
+                        when 'buyerName'
+                            label.lab-title(for=itemName)=item.title
+                            .order-item(data-name=itemName,data-type=item.type)
+                                input.order-text(name=itemName, type='text', value=(member.realName || member.nickName || ''), placeholder='请填写姓名')
+                                i.xx-icon.fr.icon-iconfont-xie
+                        //- 身份证        
+                        when 'buyerIdNo'
+                            label.lab-title(for=itemName)=item.title
+                            .order-item(data-name=itemName,data-type=item.type)
+                                if member.idcard
+                                    span.changeInput
+                                        +replaceCertNo(member.idcard)
+                                    input.hide(name=itemName, type="text", placeholder=item.tips, value=member.idcard || '').order-text
+
+                                else
+                                    span.changeInput(style="display:none")
+                                    input(name=itemName, type="text", placeholder=item.tips, value=member.idcard || '').order-text
+                                i.xx-icon.fr.icon-iconfont-xie
+                        //- 留言区-身份证        
+                        when 'lvIdCard' 
+                            label.lab-title(for=itemName)=item.title
+                            .order-item(data-name=itemName,data-type=item.type)
+                                span.changeInput(style="display:none")
+                                input(name=itemName, type="text", placeholder=item.tips).order-text
+                                i.xx-icon.fr.icon-iconfont-xie 
+                        //- 留言区-手机号        
+                        when 'lvMobile'
+                            label.lab-title(for=itemName)=item.title
+                            .order-item(data-name=itemName,data-type=item.type)
+                                span.changeInput(style="display:none")
+                                input(name=itemName, type="tel", placeholder=item.tips).order-text
+                                i.xx-icon.fr.icon-iconfont-xie
+                        //- 留言区-单行文本        
+                        when 'lvOneText'
+                            label.lab-title(for=itemName)=item.title
+                            .order-item(data-name=itemName,data-type=item.type) 
+                                input.order-text(name=itemName, type='text', placeholder=item.tips)
+                                i.xx-icon.fr.icon-iconfont-xie
+                        //- 留言区-多行文本        
+                        when 'lvManyText'
+                            label.lab-title(for=itemName)=item.title
+                            .order-item(data-name=itemName,data-type=item.type) 
+                                textarea.order-text(name=itemName, cols="30", rows="10",placeholder=item.tips)
+                        //- 留言区-数字        
+                        when 'lvMumber' 
+                            label.lab-title(for=itemName)=item.title
+                            .order-item(data-name=itemName,data-type=item.type) 
+                                input.order-text(name=itemName, type='number', placeholder=item.tips)
+                                i.xx-icon.fr.icon-iconfont-xie  
+                        //- 留言区-email        
+                        when 'lvEmail' 
+                            label.lab-title(for=itemName)=item.title
+                            .order-item(data-name=itemName,data-type=item.type) 
+                                input.order-text(name=itemName, type='text', placeholder=item.tips)
+                                i.xx-icon.fr.icon-iconfont-xie  
+                        //- 留言区-时间        
+                        when 'lvTime' 
+                            label.lab-title(for=itemName)=item.title
+                            //- - var nowTimes = new Date()
+                            //- - var thisMonth = '0' + (nowTimes.getMonth() + 1)
+                            //- - var thisDay = '0'+ nowTimes.getDate()
+                            //- - var thisH = '0' + nowTimes.getHours()
+                            //- - var thisMin = '0'+ nowTimes.getMinutes()
+                            //- - var minTimes = nowTimes.getFullYear() + '-' + thisMonth.substr(thisMonth.length-2,2) + '-' + thisDay.substr(thisDay.length-2,2)  + ' '+thisH.substr(thisH.length-2,2)+':'+thisMin.substr(thisMin.length-2,2);
+                            .order-item(data-name=itemName,data-type=item.type) 
+                                input.order-text.lvGetTime(name=itemName, data-title=item.title,type='text', placeholder=item.tips ,readonly)
+                                i.xx-icon.fr.icon-iconfont-pxchaxian  
+                        //- 留言区-日期        
+                        when 'lvDate' 
+                            label.lab-title(for=itemName)=item.title
+                            //- - var nowTimes = new Date()
+                            //- - var thisMonth = '0' + (nowTimes.getMonth() + 1)
+                            //- - var thisDay = '0'+ nowTimes.getDate()
+                            //- - var nowDate = nowTimes.getFullYear() + '-' + thisMonth.substr(thisMonth.length-2,2) + '-' + thisDay.substr(thisDay.length-2,2)
+                            .order-item(data-name=itemName,data-type=item.type) 
+                                input.order-text.lvGetCalendar(name=itemName, data-title=item.title,type='text', placeholder=item.tips ,readonly)
+                                i.xx-icon.fr.icon-iconfont-pxchaxian 
+                        //- 留言区-图片            
+                        when 'lvPic'   
+                            label.lab-title(for='')=item.title
+                            .order-item.order-face(data-name=itemName,data-type=item.type)
+                                //- .order-face-icon
+                                //-     i.xx-icon.icon-camera
+                                //- span=item.tips
+                                .img-list.clearfix
+                                    .img-item.fl
+                                        .img-item-notice
+                                            .img-notice
+                                                span.img-text  长按照片可删除
+                                                i.icon-guanbi1.xx-icon
+                                                span.jiao
+                                    .photo-page.fl.updataImg
+                                        .order-face-icon
+                                            i.xx-icon.icon-camera
+                                        span.text=item.tips
+                                    input.updataImgFile(type="file",accept="image/*",hidden)     
+                            input.order-text.order-faceUrl(name=itemName,type="text",hidden)       
+
+

@@ -1,0 +1,462 @@
+extends ../../layout
+block stylesheets
+    link(href="#{baseUrl}/stylesheets/order.css?#{vCode}", rel="stylesheet")
+    link(href="#{baseUrl}/stylesheets/pmsOrder.css?#{vCode}", rel="stylesheet")
+block javascripts    
+    script.
+        var isAli = '#{isAli}'
+        var orderCloseTime = '#{orderCloseTime}'
+    if isWeixn    
+        script(src='//res.wx.qq.com/open/js/jweixin-1.4.0.js', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/lib/exif.js?#{vCode}', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/swiper-3.4.1.jquery.min.js', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/lib/jquery.crop.js?#{vCode}', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/addWxCard.js?#{vCode}', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/addFaceUrl.js?#{vCode}', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/pmsOrder.js?#{vCode}', type='text/javascript')
+block content
+  include ../../common/index
+  include ../../common/replaceNum
+  - const datas = data[0].data,hotelInfo = data[0].data.pmsHotelRpcDto,roomInfo=data[0].data.pmsTypeProductDetailDto,orderTimeLine=data[0].data.orderOptLogs;
+  - const iscomment = data[2].message;
+  - const extendParam = typeof datas.extendParam === 'string' ? JSON.parse(datas.extendParam) : {};
+  .page-line
+  - let statusName = '',statusClass = '',statusIcon = '',breakfast='';
+  case +datas.orderStatus
+    when 0
+      - statusName='待付款';statusIcon='icon_full_price';statusClass='status-warn'
+    when 5
+      - statusName='已关闭';statusIcon='icon-close';statusClass='status-fail'
+    when 6
+      - statusName='退款中';statusIcon='icon_refund';statusClass='status-warn'
+    when 7
+      - statusName='已退款';statusIcon='icon-close';statusClass='status-fail'
+    when 10
+      - statusName='部分入住';statusIcon='icon-home-half';statusClass='status-warn'
+    when 11
+      - statusName='部分退房';statusIcon='icon-home-half';statusClass='status-warn'  
+    when 12
+      - statusName='已取消';statusIcon='icon-close';statusClass='status-fail'  
+    when 13
+      - statusName='Noshow' ;statusIcon='icon-close';statusClass='status-fail' 
+    when 14
+      - statusName='预订成功' ;statusIcon='icon-success';statusClass='status-success' 
+    when 15
+      - statusName='已拒绝'  ;statusIcon='icon-close';statusClass='status-warn'
+    when 16
+      - statusName='全部入住'  ;statusIcon='icon-success';statusClass='status-success'
+    when 17
+      - statusName='待接单'  ;statusIcon='icon-time';statusClass='status-warn'
+    //- when 18
+    //-   - statusName='已接单'  ;statusIcon='icon-success';statusClass='status-success'
+    when 19
+      - statusName='已拒接'  ;statusIcon='icon_close';statusClass='status-fail'
+    when 20
+      - statusName='退款审核中'  ;statusIcon='icon_refund';statusClass='status-warn'
+    when 22
+      - statusName='交易成功'  ;statusIcon='icon-success';statusClass='status-success'
+    when 23
+      - statusName='交易失败';statusIcon='icon-close';statusClass='status-fail'  
+
+  .order-status-banner(class=statusClass)
+    .order-base-padding.order-status-box
+      .order-status-title
+        .order-status-title-icon.xx-icon(class=statusIcon)
+        .order-status-title-name=statusName
+        //- if datas.orderCloseTime
+      if  +datas.orderStatus === 0 
+        .order-status-time
+          span.closeTimeText    
+  .page-line
+  .order-detail-warp   
+    .order-detail-box 
+      .order-detail-li
+        a.order-detail-title(href="/vue/detail/pmsHotel?id="+datas.merchantHotelId +"&m_id="+ merchantInfoId)
+          span=hotelInfo.pmsName
+          i.xx-icon.icon-more 
+        //- .order-  
+      .order-detail-li.time
+        - let startTime = datas.startTime || '',endTime = datas.endTime || '';
+        if startTime 
+          - startTime = startTime.substring(0,10).split('-')
+        if endTime
+          - endTime = endTime.substring(0,10).split('-')
+        .order-detail-time.start-time #{startTime[1]}月#{startTime[2]}日
+        .white-space  
+        .order-detail-time-label
+          | #{datas.startTimeHan}入住
+        .white-space
+        .order-detail-time-night
+          | #{datas.days}晚  
+        .white-space  
+        .order-detail-time.end-time  #{endTime[1]}月#{endTime[2]}日
+        .white-space  
+        .order-detail-time-label
+          | #{datas.endTimeHan}退房  
+      .order-detail-li.address
+        .xx-icon.icon-ziyuan
+        .order-detail-address-name 
+          | #{hotelInfo.area}
+        a.order-detail-address-go(href='//uri.amap.com/navigation?to=' + hotelInfo.latitudeLongitude + ',' + hotelInfo.pmsName+ '&mode=car&callnative=1')
+          span 到这里去 
+          i.xx-icon.icon-more
+      if hotelInfo.isShow === 'F'    
+        .order-detail-li.address
+          .xx-icon.icon-bohao
+          .order-detail-address-name 
+            | 联系商家
+          a.order-detail-address-go(href="tel:"+hotelInfo.linkTel)
+            i.xx-icon.icon-more   
+      .order-detail-li.room-detail-list#orderDetailLabel
+        .room-detail-content
+          .room-detail-title #{roomInfo.name} x#{datas.amount}
+          .room-detail-keywords
+            case +roomInfo.ruleBook.ifBreakfast
+              when 0
+                - breakfast = '无早'
+                span 无早
+              when 1
+                - breakfast = '含早餐'
+                span 含单早
+              when 2
+                - breakfast = '含双早'
+                span 含双早
+              when 3
+                - breakfast = '含三早'
+                span 含三早
+            if roomInfo.acreage    
+              span #{roomInfo.acreage}㎡
+            case +roomInfo.ifWindow
+              when 0
+                span 有窗
+              when 1 
+                span 无窗  
+            if roomInfo.bedStr
+              each item in  roomInfo.bedStr.split('-')  
+                span #{item}
+            if roomInfo.number    
+              span 可住#{roomInfo.number}人
+        a.order-detail-address-go(href="javascript:;")
+          i.xx-icon.icon-more   
+      .order-detail-li.price#showPriceDetail
+        .order-detail-price
+          span 实付金额：
+          span.amount ¥#{datas.finalPaySuml}
+        .order-detail-address-go
+          i.xx-icon.icon-more  
+  .page-line
+  .order-detail-canclerule
+    - let refundRule = ''
+    if  extendParam.typeProduct.ruleCancel.ifCancel === 'F'
+      - refundRule= '不允许取消'
+    else if extendParam.typeProduct.ruleCancel.ifCancel === 'T' && extendParam.typeProduct.ruleCancel.cancelTimeRule === 'F' 
+      - refundRule= '入住前，可免费取消'
+    else
+      - refundRule= cancelRuleStr
+    .order-detail-canclerule-text
+      | #{refundRule}
+    .order-detail-canclerule-more#ruleCancelShow
+      span 更多规则
+      i.xx-icon.icon-more
+  .page-line   
+  .order-detail-user 
+    .order-detail-user-li
+      .order-detail-user-li-label 联系人
+      .order-detail-user-li-value #{datas.linkName}
+    .order-detail-user-li
+      .order-detail-user-li-label 手机号
+      .order-detail-user-li-value #{datas.linkMobile}
+    .order-detail-user-li
+      .order-detail-user-li-label 身份证
+      .order-detail-user-li-value
+        +replaceCertNo(datas.linkIdCard)
+  .page-line    
+  .order-detail-info
+    .order-base-padding
+      .order-detail-info-title 入住须知
+      .order-detail-info-content
+        p
+          span 
+            | • 入离时间：
+          span.timeText
+            | #{hotelInfo.checkInTime}
+          span 
+            | 以后入住， 
+          span.timeText 
+            | #{hotelInfo.checkOutTime}  
+          span 
+            | 前退房  
+        if  hotelInfo.ifPet   
+          p 
+            span 
+              | • 宠物携带：  
+            span  
+              | #{hotelInfo.ifPet=='T'?'允许宠物携带':'不允许宠物携带'}
+        each item in hotelInfo.checkInJson
+          if item.value
+            p 
+              span 
+                | • #{item.key}
+              span #{item.value}
+
+  if datas.orderOptLogs instanceof Array    
+    .page-line
+    .order-detail-acunt 
+      .order-detail-acunt-li
+        .order-detail-acunt-num  订单编号：#{datas.orderOptLogs[0].orderNo}
+        .order-detail-acunt-action#showMoreLine 
+          | 更多轨迹
+          i.xx-icon.icon-more
+      .order-detail-acunt-li
+        .order-detail-acunt-num  下单时间：#{datas.orderOptLogs[0].logTime}
+  .page-line  
+  //- 底部功能按钮
+  if datas.orderStatus == "0"
+    .order-detail-footer 
+      .order-detail-footer-warp
+        .order-detail-footer-btn#cancel(data-id=payOrderNo) 取消订单
+        a.order-detail-footer-btn.active#pmsPay(data-no=payOrderNo,data-code=hotelInfo.code,data-name=hotelInfo.name+"-"+roomInfo.name,data-price=datas.paySum,href="javascript:;" )  立即支付
+  else if datas.refundButton=='T'&&datas.orderStatus == '14' && extendParam.typeProduct.ruleCancel.ifCancel === 'T' 
+    .order-detail-footer 
+      .order-detail-footer-warp
+        a.order-detail-footer-btn(href='/member/refund/pmsHotel' + '?orderId='+payOrderNo+'&maxNum='+datas.amount+'&m_id='+merchantInfoId) 申请退款  
+  else if datas.orderStatus == '22' && iscomment === 'T' 
+    .order-detail-footer 
+      .order-detail-footer-warp
+        a.order-detail-footer-btn(href='/member/comment/pmsHotel'+ '?orderNo=' + datas.orderNo+'&orderId='+ datas.orderId +'&modelCode='+roomInfo.code+ '&productCode='+hotelInfo.code+'&payOrderNo='+payOrderNo+'&m_id='+merchantInfoId) 发表评价  
+        //- (href='/member/comment/'+ datas.orderType + '?orderNo=' + datas.orderNo+'&orderId='+ datas.id +'&modelCode='+datas.modelCode+'&m_id='+merchantInfoId) 发表评价   
+  .mask
+  .tips
+    p   
+    a(href="javascript:;").queding 确定 
+  #popupMask.popup-mask
+  //- 订单轨迹
+  #timeLinePopupWarp.popup-wrap
+    .popup-head
+      .popup-title
+        | 订单轨迹
+      .popup-close
+        i.xx-icon.icon-cha1
+    .popup-body
+      if orderTimeLine instanceof Array  
+        .popup-module.order-timeline
+          .order-timeline-acount 
+            .order-timeline-acount-span 
+              span 订单编号：#{orderTimeLine[0].orderNo}
+              i.xx-icon.icon-fuzhi
+            .order-timeline-acount-span 下单时间：#{orderTimeLine[0].logTime}
+          .order-timeline-warp  
+            - let lastIndex = orderTimeLine.length
+            - let newTimeLine = orderTimeLine.reverse()
+            each item,index in newTimeLine
+              - let className = ''
+              if index === 0
+                - className = 'active'
+              if (index+1) === lastIndex 
+                - className += ' last' 
+              .order-timeline-span(class=className) 
+                .order-timeline-span__time
+                  - let dateString = item.logTime.substring(5,10)
+                  - let timeString = item.logTime.split(' ')[1]
+                  p.date #{dateString}
+                  p.time #{timeString}
+                .order-timeline-span__line 
+                .order-timeline-span__status
+                  | #{item.title} 
+  //- 明细
+  #pricePopupWarp.popup-wrap
+    .popup-head
+      .popup-title
+        | 明细
+      .popup-close
+        i.xx-icon.icon-cha1
+    .popup-body.price-detail
+      .price-detail-title
+        .price-detail-room__name 房费
+        //- .price-detail-room__price ¥#{roomInfo.productPrice}
+      .price-detail-list
+        each item in roomInfo.priceList
+          - let thisDate = item.priceDate.substring(5,10)
+          - let thisDateArray = thisDate.split('-')
+          .price-detail-list-li
+            .price-detail-list__name • #{thisDateArray[0]}月#{thisDateArray[1]}日  #{breakfast} 
+            .price-detail-list__price ¥#{item.price}  x#{datas.amount}间
+      //- 暂时不做优惠    
+      //- .price-detail-title.active
+      //-   .price-detail-room__name 立减优惠
+      //-   .price-detail-room__price ¥1300.00
+      //- .price-detail-list
+      //-   .price-detail-list-li
+      //-     .price-detail-list__name • 秋季特惠，下单享9折 
+      //-     .price-detail-list__price ¥300  x1间 
+    .popup-footer.price-detail-footer
+      .price-detail-payPrice
+        | 合计：¥#{datas.finalPaySuml}
+  #ruleCancel.popup-wrap
+    .popup-head
+      .popup-title
+        | 取消及退款政策
+      .popup-close
+        i.xx-icon.icon-cha1
+    .popup-body.rulecancle-detail
+      if extendParam.typeProduct.ruleCancel.ifCancel=='T' && extendParam.typeProduct.ruleCancel.cancelTimeRule=='F'
+        p.order-notice 入住前，可免费取消
+      else if  extendParam.typeProduct.ruleCancel.ifCancel=='F' 
+        p.order-notice 订单付款成功后不可以取消/变更，如未入住，商家将扣除全部房费
+      if cancelRuleJson && cancelRuleJson.excludeTime.minutes > 0
+        p.order-notice • 下单#{cancelRuleJson.excludeTime.minutes}分钟内免费取消，此规则不受下述规则限制
+      if timeArr instanceof Array  && timeArr.length
+        table.rule-table(cellspacing="0")
+          thead
+            tr 
+              th 时间
+              th 规划
+          tbody
+            each item,index in  timeArr
+              tr 
+                td  
+                  if item.start
+                    div #{item.start.month}-#{item.start.day} #{item.start.showTime}后
+                  if item.end
+                    div #{item.end.month}-#{item.end.day} #{item.end.showTime}前
+                td
+                  if index === cancelRuleJson.excludeTimeAdd.length
+                    div 不可取消
+                  else 
+                    div 可取消，退支付金额#{item.proportion}%
+
+    //-   <table v-if="timeArr.length" cellspacing="0" class="rule-table">
+    //-   <thead>
+    //-     <tr>
+    //-       <th>北京时间</th>
+    //-       <th>规则</th>
+    //-     </tr>
+    //-   </thead>
+    //-   <tbody>
+    //-     <tr v-for="(item,index) in timeArr" :key="index">
+    //-       <td>
+    //-         <div v-if="item.start">{{item.start.month}}-{{item.start.day}} {{item.start.showTime}}后</div>
+    //-         <div v-if="item.end">{{item.end.month}}-{{item.end.day}} {{item.end.showTime}}前</div>
+    //-       </td>
+    //-       <td>
+    //-         <div v-if="index==timeArr.length-1">不可取消</div>
+    //-         <div v-else>可取消，扣除全款{{100-item.proportion}}%的手续费</div>
+    //-       </td>
+    //-     </tr>
+    //-   </tbody>
+    //- </table>
+
+  //- <p class="order-notice" v-if="ruleCancel.ifCancel=='T'&&ruleCancel.cancelTimeRule=='F'">入住前，可免费取消</p>
+  //-      <p class="order-notice" v-else-if="ruleCancel.ifCancel=='F'">订单付款成功后不可以取消/变更，如未入住，商家将扣除全部房费</p>
+  //-   <p v-if="quantuiTime>0" class="order-notice">• 下单{{quantuiTime}}{{timeType}}内免费取消，此规则不受下述规则限制</p>
+
+  //- 房型详情     
+  #roomDetailPopupWarp.popup-wrap
+    .popup-head
+      .popup-title
+        | #{roomInfo.name}
+      .popup-close
+        i.xx-icon.icon-cha1
+    .popup-body.room-detail
+      .room-detail-banner
+        .swiper-container(id=roomInfo.pmsImgs.length > 1 ? 'room_detail_swiper':'')
+          ul.swiper-wrapper
+            each item in roomInfo.pmsImgs
+              li.swiper-slide
+                img(src='#{item.imgUrl}?imageMogr2/thumbnail/640x/strip/quality/100')
+      .room-detail-info
+        .room-detail-info-title 客房信息
+        .room-detail-info-list 
+          .room-detail-info-li 可住：#{roomInfo.number}人
+          .room-detail-info-li 窗户：有窗
+        .room-detail-info-list 
+          .room-detail-info-li 面积：#{roomInfo.acreage}㎡
+          .room-detail-info-li 楼层：#{roomInfo.floor}层
+        .room-detail-info-list 
+          .room-detail-info-li 床型：#{roomInfo.bedStr}  
+          .room-detail-info-li 
+        .room-detail-info-list 
+          .room-detail-info-li 说明：#{roomInfo.summary}
+      .page-line 
+      .room-detail-notice 
+        .room-detail-notice-title 预订说明
+        .room-detail-notice-content
+          .room-detail-notice-li
+            | • 早餐规则
+            span #{breakfast}
+      //- .page-line 
+      //- .room-detail-notice 
+      //-   .room-detail-notice-title 取消及退款政策
+      //-   .room-detail-refund-rule
+  #pay-mask         
+  .pay-module#payModule(class=(isWx === 'T' )?'wxpay':'alipay')
+      .pay-sealPrice
+          span 支付金额：
+          em.price-em ￥
+          span.price 0.00
+      ul#pay-mold.order-list.pay-list.pay-type 
+            if isWx === 'T'
+                li.wenxin
+                    a(href='javascript:;')
+                        label.lab-title(for='')
+                            i.xx-icon.icon-iconfont-weixin
+                            | 微信支付
+                        i.select-icon.xx-icon.fr.icon-yuanxingxuanzhongfill
+            else
+                li.zhifubao
+                    a(href='javascript:;')
+                        label.lab-title(for='')
+                            i.xx-icon.icon-iconfont-zhifubao
+                            | 支付宝
+                        i.select-icon.xx-icon.fr.icon-yuanxingxuanzhongfill
+            if merchantInfoId ===  '610'
+              li.longCard
+                  a(href='javascript:;')
+                      label.lab-title(for='')
+                          i.xx-icon.icon-longcard
+                          | 龙支付
+                      i.select-icon.xx-icon.fr.icon-yuanxingweixuanzhong                
+        .pay-btn 
+            a#goPayBtn(data-href="", data-chanel='normal',title="title")  去支付   
+
+
+
+
+
+
+
+
+
+
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        
+
+
+
+
+
+
+

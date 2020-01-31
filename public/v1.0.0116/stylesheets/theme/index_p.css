@@ -1,0 +1,321 @@
+/*模块标题*/
+.blockTitle {
+    padding: .55rem .3rem;
+    overflow: hidden;
+    background: white;
+}
+.blockTitle h3 {
+    float: left;
+    width: 70%;
+    height: 1rem;
+    line-height: 1rem;
+    font-size: .7rem;
+    color: #333;
+    border-bottom:none;
+    margin-bottom: .25rem;
+    font-weight: 500;
+}
+.blockTitle h3 em{
+    color: #f90;
+}
+.blockTitle .block-des {
+    float: left;
+    width: 70%;
+    font-size: .55em;
+    color: #999;
+}
+.blockTitle .moreBtn {
+    float: right;
+    width: 30%;
+    font-size: .55rem;
+    color: #999;
+    text-align: right;
+    margin-top: .1rem;
+}
+.float-layer {
+    position: fixed;
+    bottom: 3.3rem;
+    width: 100%;
+    left: 0;
+}
+
+.order-footer {
+    padding-top: 2.1rem;
+    padding-bottom: 0;
+}
+
+.order-total {
+    background-color: #fff;
+    height: 2.2rem;
+    line-height: 2.2rem;
+    border-top: 1px solid #eee;
+}
+
+.total-price {
+    font-size: 0.6rem;
+    color: #333;
+    padding-left: 0.75rem;
+}
+
+.total-price i.icon-iconfont-dianhua {
+    font-size: 0.65rem;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+}
+
+.total-price #del-all {
+    font-size: .8rem;
+    vertical-align: middle;
+    margin: 0 .4rem 0 .2rem;
+}
+
+.price .cart-totalprice {
+    font-size: .7rem;
+}
+
+.total-price del.price {
+    margin-left: 0.5rem;
+}
+
+.total-price del.price .cart-totalprice, .total-price del.price em {
+    font-size: 0.6rem;
+    color: #999;
+}
+
+/*????б?*/
+.page-list {
+    background-color: #fff;
+}
+
+.page-list li {
+    border-bottom: 1px solid #eee;
+    padding: 0.5rem;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.page-list li a {
+    display: block;
+}
+
+.page-list-img {
+    width: 5.225rem;
+    height: 3.825rem;
+    float: left;
+    overflow: hidden;
+}
+
+.page-list-img img {
+    height: 100%;
+    width: 100%;
+}
+
+.page-list-info {
+    margin-left: 5.35rem;
+    min-height: 3.85rem;
+    height: auto;
+}
+
+.page-list-info .lis-tit {
+    display: block;
+    width: 75%;
+}
+
+.page-list-title {
+    font-size: 0.7rem;
+    color: #333;
+    height: 0.8rem;
+    line-height: 0.75rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.page-list-title span {
+    margin-left: 0.25rem;
+}
+
+.page-list-article {
+    font-size: 0.5rem;
+    line-height: 140%;
+    color: #999;
+    margin-top: 0.25rem;
+    margin-bottom: .25rem;
+    overflow: hidden;
+}
+
+.page-list-explian {
+    margin-top: 0.15rem;
+    font-size: 0.5rem;
+    color: #999;
+    height: 0.6rem;
+    line-height: 0.6rem;
+}
+
+.page-list-explian .price {
+    font-size: 0.5rem;
+    float: right;
+    margin-top: 0.2rem;
+}
+
+.page-list-explian .price strong {
+    margin-right: 0.1rem;
+}
+
+.page-list-explian .original-price {
+    margin-right: 0.25rem;
+}
+
+.page-list-explian .original-price.mb2 {
+    margin-bottom: 0.2rem;
+}
+
+.page-list-explian:last-child {
+    margin-top: 0.1rem;
+}
+
+.hauto .page-list-explian {
+    height: auto;
+}
+
+.hotel-list .page-list-explian {
+    height: auto;
+}
+/*???*/
+.border-base {
+    border: 1px solid #26bcef;
+    border-radius: 2px;
+}
+
+.bt {
+    border-top: 1px solid #eee;
+}
+
+.bb {
+    border-bottom: 1px solid #eee;
+}
+
+/*????*/
+.background-base {
+    background-color: #f90;
+}
+
+.background-off {
+    background-color: #666;
+}
+
+.bgfff {
+    background: #fff;
+}
+
+.background-fd {
+    background-color: #fd9814;
+}
+
+/*???*/
+.price strong {
+    font-size: 0.75rem;
+    color: #f90;
+}
+
+.price em {
+    color: #f90;
+    font-size: .5rem;
+    margin-right: .15rem;
+}
+
+.price i {
+    color: #f90;
+    font-size: .5rem;
+    font-style: normal;
+}
+
+.price .icon-rmb {
+    color: #f90;
+}
+
+.price, .original-price {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: .55rem;
+    color: #ccc;
+}
+
+.price em, .original-price em {
+    font-family: Arial;
+    font-weight: normal;
+}
+
+.original-price {
+    text-decoration: line-through;
+}
+
+.clr-org, .price strong.clr-org, .price em.clr-org {
+    color: #f90;
+}
+.page-list-info {
+    margin-left: 6.15rem;
+}
+.ticket-tab li a {
+    height: 2.1rem;
+    line-height: 2.1rem;
+}
+
+.page-list-article {
+    overflow: hidden;
+    line-height: 0.8rem;
+    height: 0.8rem !important;
+}
+.page-list-article.listLimit {
+    max-height: 1.3rem;
+    min-height: 1.3rem;
+    line-height: 0.69rem;
+}
+.page-list-zy {
+    line-height: 0.8rem;
+    padding-top: 0.1rem;
+}
+
+.page-list-zy .page-list-tits {
+    display: inline-block;
+    vertical-align: top;
+    overflow: hidden;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    box-sizing: border-box;
+    border: 1px solid #f90;
+    color: #f90;
+    font-size: 0.5rem;
+    padding: 0 0.3rem;
+    border-radius: 0.1rem;
+    margin-right: 0.2rem;
+    margin-bottom: 0.2rem;
+}
+.list-vars {
+    padding-top: .06rem;
+}
+.list-vars em {
+    color: #f90;
+}
+div.index-pagination{
+    z-index: 3;
+    text-align: right;
+    width: 98%!important;
+}
+
+.index-slider .swiper-pagination-bullet {
+    width: 0.2rem;
+    height: 0.2rem;
+    border: 1px solid #fff;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: none;
+    opacity: 1;
+    overflow: hidden;
+    margin: 0 0.1rem !important;
+}
+
+.index-slider .swiper-pagination-bullet-active {
+    background: #fff;
+}

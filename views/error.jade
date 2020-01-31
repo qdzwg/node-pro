@@ -1,0 +1,21 @@
+extends layout
+block stylesheets
+  link(rel="stylesheet", href="#{baseUrl}/stylesheets/order.css?#{vCode}")
+block content
+  .pay-results
+    img.xx-icon(src='#{baseUrl}/images/member/error.png', alt='')
+    p 未加载成功
+  .results-only
+    p 原因：#{message}
+  .btn-box2
+    .btn-bottom
+      .btn-handle
+        a.btn(href='/?m_id=' + merchantInfoId) 返回首页
+        //.btn-handle
+          a.btn-RP(href='ticket-pay-success.html') 刷新页面
+
+
+//block content
+  h1= message
+  h2= error.status
+  pre #{error.stack}

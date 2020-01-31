@@ -1,0 +1,21 @@
+extends layout
+
+block stylesheets
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/swiper-3.4.1.min.css")
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/theme.css?#{vCode}")
+block javascripts
+    script(type='text/javascript', src='#{baseUrl}/javascripts/swiper-3.4.1.jquery.min.js')
+    script(type='text/javascript', src='#{baseUrl}/javascripts/touch-0.2.14.min.js')
+    script(type='text/javascript', src='#{baseUrl}/javascripts/theme.js?#{vCode}')
+block content
+    include ./theme/controller
+    include ./theme/common
+    include ./common/footer
+    .index-box
+        each item in modules
+            +choiceComponent(item.type,item.data,merchantInfoId)
+        if footerDatas&&footerDatas.data
+            +diyFooter(footerDatas)
+        else 
+            +footer(templateCode)  
+              

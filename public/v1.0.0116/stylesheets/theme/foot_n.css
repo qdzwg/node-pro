@@ -1,0 +1,7 @@
+/*底部*/
+.footer{width: 100%;height: 2.35rem;}
+.footer_box{position: fixed;bottom: 0;left: 0;height: 2.1rem;width: 100%;background: #fff;border-top: 1px solid #eee;z-index: 99;}
+.footer_box a{display: block;width: 33%;float: left;text-align: center;}
+.footer_box a i {font-size: 0.8rem;color: #303043;margin-top: 0.05rem;display: inline-block}
+.footer_box a p{font-size: 0.5rem;color: #303043;}
+.footer_box a.slt p,.footer_box a.slt i{color:#af670e;} 

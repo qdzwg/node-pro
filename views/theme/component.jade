@@ -1,0 +1,221 @@
+
+//- @Author: lixuepeng
+//- @Date: 2018-07-11 17:01:15 
+//- @Last Modified by: lixuepeng
+//- @Last Modified time: 2018-07-11 17:11:57
+
+
+//-**************************************************************\
+//- | Banner Component |
+//-**************************************************************/
+
+mixin Banner__swiper1(datas)
+    - let bannerList = datas instanceof Array ? datas : [];
+    .banner__swiper1(class=bannerList.length > 1 ? 'bannerSwiper' : '')
+        ul.swiper-wrapper
+            each item in datas 
+                li.swiper-slide
+                    a(href= !closeLink ? item.picLink : 'javascript:;', title=item.title)
+                        img(src=item.picAddr+'?imageMogr2/thumbnail/640x/strip/quality/100', alt='')
+        .banner__swiper1-pagination    
+    .page-line
+
+mixin Bill__normal(datas)
+    each item in datas
+        .bill__normal
+            .bill__normal-backbord
+                a(href=!closeLink ? (item.picLink || "javascript:;") : "javascript:;",style="display:block;height:100%;")
+                    img(src=item.picAddr+'?imageMogr2/thumbnail/640x/strip/quality/100', alt='')
+        .page-line        
+
+mixin Bill__logo(datas)    
+    .bill__logo.clearfix
+        .bill__logo-img.fl
+            img(src=datas.logoUrl + '?imageMogr2/thumbnail/640x/strip/quality/100', alt='')
+        .bill__logo-line.fl
+            span
+        if  datas.tel      
+            .bill__logo-content.fl
+                .bill__logo-content-title(style='color: #{datas.color}') #{datas.name}
+                .bill__logo-content-description #{datas.intro}   
+            .bill__logo-tel.fr
+                a(href='tel:#{datas.tel}')
+                    img(src="#{baseUrl}/images/icon/kefu.png", alt="")
+        else 
+           .bill__logo-content.fl(style="width:72.5%")
+                .bill__logo-content-title(style='color: #{datas.color}') #{datas.name}
+                .bill__logo-content-description #{datas.intro}             
+    .page-line
+
+//-**************************************************************\
+//- | Nav Component |
+//-**************************************************************/
+//- mixin Nav__normal2(datas)  
+//-     .nav__normal
+//-         .nav__normal-list
+//-             each item,index in datas
+//-                 a(href=!closeLink ? '/list/'+item.businessType+'?m_id='+merchantInfoId : 'javascript:;')
+//-                     strong(class="nav-bg#{index+1}" style="background-color:#{item.bgColor}")
+//-                         if item.picAddr
+//-                             img(src=item.picAddr, alt="")
+//-                         else 
+//-                             i.xx-icon(class='#{item.icon}',style="color:#{item.iconColor}")    
+//-                     span= item.title  
+//-             .cb
+//-     .page-line        
+
+mixin Nav__normal2(datas)  
+    .nav__normal
+        .nav__normal-list
+            each item,index in datas
+                a(href=!closeLink ? (item.businessType == 'publicServer' ? 'javascript:;' :'/list/'+item.businessType+'?m_id='+merchantInfoId) : 'javascript:;', class=item.businessType=='publicServer'?'gotoPublic':'')
+                    strong(class="nav-bg#{index+1}" style="background-color:#{item.bgColor}")
+                        if item.picAddr
+                            img(src=item.picAddr, alt="")
+                        else 
+                            i.xx-icon(class='#{item.icon}',style="color:#{item.iconColor}")    
+                    span= item.title  
+            .cb
+    .page-line     
+
+mixin Nav__normal(datas)  
+    .nav__lingao.clearfix
+        each item,index in datas
+            a(class="bg#{index+1}",style="background:#{item.bgColor}",href=!closeLink ? (item.businessType == 'publicServer' ? 'javascript:;' : '/list/'+item.businessType+'?m_id='+merchantInfoId)  : 'javascript:;', class=item.businessType=='publicServer'?'gotoPublic':'')
+                if item.picAddr
+                    img(src=item.picAddr, alt='...')
+                else
+                    i.xx-icon(class="#{item.icon}",style="color:#{item.iconColor}")
+                span
+                    em #{item.title}
+                    i #{item.subtitle}
+    .page-line                
+//-**************************************************************\
+//- | Search Component |
+//-**************************************************************/
+mixin Search__normal(datas)
+    .searchNormal.search__normal
+        .search__normal-box
+            .search__normal-con
+                //- .search__normal-lab
+                //-     if datas&&datas.length > 0
+                //-         strong.search__normal-keyword
+                //-             span.searchNormalKeyname(data-type=datas[0].businessType) #{datas[0].name}
+                //-             i.xx-icon.icon-back
+                //-         ul.search__normal-list.down
+                //-             each item in datas
+                //-                 li(data-type=item.businessType) #{item.name}
+                button.search__normal-btn(class="#{!closeLink?'searchNormalBtn':'javascript:;'}")
+                    i.xx-icon.icon-ico-search
+                input.search__normal-inp(type='text', placeholder='请输入您要搜索的产品')
+    .page-line        
+
+
+//-**************************************************************\
+//- | Product Component |
+//-**************************************************************/
+mixin product__swiper(datas)
+    .product__swiper2
+        .product__swiper2-title
+            i
+            p  #{datas.title || '精品推荐'}
+            i
+        if datas.list&&datas.list.length > 0    
+            .swiper-container.clearfix(class=datas.list.length > 1 ? 'productSwiper':'')
+                .swiper-wrapper
+                    each item in datas.list
+                        - let _type = item.businessType
+                        - if(item.businessType === 'room') _type = 'hotel';
+                        - if(item.businessType === 'mdse') _type = 'shop';
+                        a.swiper-slide(href=!closeLink? '/detail/'+_type+'/'+item.merchantProdcutId+'/'+item.productCode+'?m_id='+merchantInfoId : 'javascript:;')
+                            img(src=item.linkMobileImg + '?imageMogr2/thumbnail/640x/strip/quality/100', alt='', title='')
+                            div
+                                span.product__swiper2-content
+                                    if _type === 'hotel'
+                                        em.title.text-over 【#{item.parkNickName}】#{item.nickName}
+                                    else 
+                                        em.title.text-over #{item.nickName}    
+                                    i.detail.text-over #{item.subtitle}
+                                span.product__swiper2-price
+                                    - let showPrice = item.businessType === 'route' ? item.parkPriceShow : item.priceShow;                                        
+                                    span
+                                        if !!showPrice
+                                            i ￥
+                                            em #{showPrice}
+                                            strong #{(item.businessType === 'mdse') ? '':'/人'}
+                                    span
+                                        if item.businessType === 'ticket' || item.businessType === 'room'
+                                            | 已售#{item.sellNum}份
+                                        else
+                                            | 已售#{item.virtualSale}份     
+                            span.product__swiper2-flog
+                                +moduleName(item.businessType)
+                // 如果需要分页器
+                .swiper-pagination
+    .page-line        
+
+mixin Product__normal(datas)
+    .product__normal
+        .product__normal-title.clearfix
+            span #{datas.title || '精品推荐'}
+        .product__normal-box
+            .swiper-container.clearfix(class=(datas.list.length > 1 ? 'productNormal' : ''))
+                .swiper-wrapper
+                    each item in datas.list
+                        - let _type = item.businessType
+                        - if(item.businessType === 'room') _type = 'hotel';
+                        - if(item.businessType === 'mdse') _type = 'shop';
+                        a.swiper-slide(href=!closeLink ? '/detail/'+_type+'/'+item.merchantProdcutId+'/'+item.productCode+'?m_id='+merchantInfoId : 'javascript:;')
+                            .product__normal-img
+                                span.product__normal-price
+                                    | ￥
+                                    em #{item.parkPriceShow || item.priceShow}
+                                    |  起
+                                img(src=item.linkMobileImg + '?imageMogr2/thumbnail/640x/strip/quality/100', alt='', title='')
+                            .product__normal-info
+                                h3 #{item.parkNickName || item.nickName}
+                                - var msg = item.content.replace(/<\/?[^>]*>/g, ''); //去除HTML Tag
+                                - msg = msg.replace(/[|]*\n/, '') //去除行尾空格
+                                - msg = msg.replace(/&nbsp;/ig, ''); //去掉npsp
+                                p #{msg}
+                // 分页器
+                .swiper-pagination
+    .page-line   
+
+mixin ProductList__normal(datas)
+    .productList__swiper1
+        .productListSwiper1.fq-slide-box
+            .hd.fq-recommend-nav
+                ul.clearfix
+                    each item,index in datas
+                        li(class="#{index === 0 ? 'on':''}") #{item.groupName}
+            .img-list
+                .fq_swiper.swiper-container
+                    .swiper-wrapper.fq-img-list
+                        each item in datas
+                            - let _type = item.type
+                            - if(item.type === 'room') _type = 'hotel';
+                            - if(item.type === 'mdse') _type = 'shop';
+                            ul.swiper-slide.clearfix
+                                each _item in item.data
+                                    li  
+                                        a(href=!closeLink ? '/detail/'+_type+'/'+_item.merchantProdcutId+'/'+_item.productCode+'?m_id='+merchantInfoId :'javascript:;')
+                                            img(src=_item.linkMobileImg + '?imageMogr2/thumbnail/640x/strip/quality/100', alt='')
+                                            if _type === 'hotel'
+                                                p 【#{_item.parkNickName}】#{_item.nickName}
+                                            else 
+                                                p #{_item.nickName || _item.name}
+                                            - let showPrice = _item.businessType === 'route' ? _item.parkPriceShow : _item.priceShow;                                        
+                                            span.clearfix
+                                                em
+                                                    if !!showPrice
+                                                        i ￥
+                                                        |  #{showPrice}
+                                                if _item.businessType === 'ticket' || _item.businessType === 'room'
+                                                    if !!_item.sellNum || _item.sellNum === 0
+                                                        strong #{_item.sellNum}人购买 
+                                                else 
+                                                
+                                                    if !!_item.virtualSale || _item.virtualSale === 0
+                                                        strong #{_item.virtualSale}人购买 
+    .page-line  

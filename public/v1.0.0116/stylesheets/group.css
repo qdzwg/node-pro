@@ -1,0 +1,1140 @@
+/*团购商品详情*/
+
+.error {
+    color: #f11;
+}
+
+.group-detail-container ul li {
+    height: 12rem;
+    width: 100%;
+    display: block;
+}
+
+.group-detail-container ul li img {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.groupTime {
+    height: 1.5rem;
+    line-height: 1.5rem;
+    padding: 0 .55rem;
+    background-color: #f33;
+    color: #fff;
+    overflow: hidden;
+}
+
+.countDownBox {
+    float: right;
+}
+
+.group-details {
+    padding: .35rem .2rem;
+    background-color: #fff;
+}
+
+.groupDetailInfo {
+    height: 1.2rem;
+    line-height: 1.2rem;
+    padding: 0 .25rem;
+}
+
+.priceBox,
+.salePrice,
+.originPrice {
+    display: inline-block;
+    vertical-align: baseline;
+}
+
+.salesInfo {
+    float: right;
+}
+
+.salePrice {
+    color: #f33;
+    font-size: .75rem;
+    font-weight: bold;
+}
+
+.originPrice {
+    text-decoration: line-through;
+    color: #999;
+    font-size: .45rem;
+}
+
+.salesInfo {
+    color: #666;
+    font-size: .45rem;
+}
+
+.detailTitle {
+    margin-top: .15rem;
+    max-height: 1.8rem;
+    line-height: .85rem;
+    font-weight: 600;
+    font-size: .55rem;
+    color: #333;
+    padding: 0 .25rem;
+}
+
+.detail-info,
+.detail-block {
+    background-color: #fff;
+    padding: .55rem .75rem;
+}
+
+.detail-info .fr {
+    float: right;
+}
+
+.detail-info .infoTxt {
+    color: #333;
+}
+
+.detail-info .linkTxt .xx-icon,
+.detail-title-box .linkTxt .xx-icon {
+    font-size: .45rem;
+    margin-left: .1rem;
+    color: #999;
+}
+
+.detail-title-box {
+    height: 1rem;
+}
+
+.detail-title-box h3 {
+    line-height: 1rem;
+    font-size: .55rem;
+    color: #333;
+}
+
+.detail-title-box p {
+    color: #666;
+    font-size: .55rem;
+    line-height: .8rem;
+}
+
+.detail-container img {
+    max-width: 100%;
+}
+
+.waitGroupList {
+    margin: .45rem 0;
+}
+
+.waitGroupItem {
+    height: 1.8rem;
+    line-height: 1.8rem;
+    border: 1px solid #f33;
+    background-color: #ffdfdf;
+    border-radius: 9rem;
+    margin: 0.25rem 0;
+}
+
+img.initiaorImg {
+    border-radius: 100%;
+    height: calc(1.8rem + 2px);
+    width: calc(1.8rem + 2px);
+    margin-left: -0.25rem;
+    margin-top: -1px;
+    margin-right: .2rem;
+    float: left;
+    overflow: hidden;
+}
+
+.initiaorName {
+    color: #999;
+    font-size: .5rem;
+    float: left;
+    width: 4.7rem;
+}
+
+.waitGroupItem .groupInfo {
+    width: 4.5rem;
+    float: left;
+    text-align: right;
+}
+
+.waitGroupItem .groupInfo span {
+    height: .9rem;
+    line-height: .9rem;
+    color: #f33;
+    font-size: .50rem;
+    display: block;
+}
+
+.waitGroupItem .groupInfo span.lastTime {
+    color: #333;
+}
+
+.waitGroupItem .toGroupBtn {
+    background-color: #f33;
+    color: #fff;
+    height: 1.8rem;
+    line-height: 1.8rem;
+    border-radius: 0 9rem 9rem 0;
+    text-align: center;
+    float: right;
+    width: 3rem;
+}
+
+.waitGroupItem .groupInfo span.lastNum {
+    line-height: 1.1rem;
+}
+
+.commentList {
+    padding: .2rem 0;
+}
+
+.commentItem {
+    padding: .55rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.commentItem:last-child {
+    border-bottom: 0;
+}
+
+.commentInfo {
+    height: 1rem;
+    line-height: 1rem;
+}
+
+.commentInfo .avator {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    float: left;
+    margin-right: .35rem;
+}
+
+.commentorName {
+    font-size: .45rem;
+    color: #666;
+}
+
+.commentTime {
+    float: right;
+    color: #999;
+}
+
+.commentContent {
+    padding: .25rem 0 0;
+    color: #333;
+}
+
+.group-detail-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 2rem;
+    background-color: #fff;
+    flex: 1;
+    display: flex;
+}
+
+.group-detail-footer .footerItem {
+    height: 2rem;
+    text-align: center;
+}
+
+.footerItem .mainBtn {
+    height: 2rem;
+    line-height: 2rem;
+    display: block;
+    background-color: #e23a2f;
+    color: #fff;
+}
+
+.footerItem .cancelBtn {
+    height: 2rem;
+    line-height: 2rem;
+    display: block;
+}
+
+.footerItem .xx-icon {
+    font-size: .85rem;
+}
+
+.footerItem .linkIconBtn {
+    display: block;
+    /* padding-top: .2rem; */
+}
+
+.group-detail-footer .groupBuy,
+.group-detail-footer .buyBtn {
+    background-color: #f00;
+    color: #fff;
+    display: block;
+    height: 1.6rem;
+    padding: .2rem 0;
+    overflow: hidden;
+    /*text-emphasis: circle;*/
+}
+.group-detail-footer .groupBuy p,
+.group-detail-footer .buyBtn p {
+    overflow: hidden;
+    display: block;
+    font-style: normal;
+    font-family: Arial;
+}
+
+.group-detail-footer .buyBtn {
+    background-color: #ff9d9d;
+}
+
+.group-buy-layer {
+    position: fixed;
+    bottom: -10rem;
+    padding: .85rem 1rem;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    transition: bottom .2s ease-in;
+    box-shadow: 0 0 8px 0px #d8d8d8;
+}
+
+.group-buy-layer.show {
+    bottom: 0
+}
+
+.group-buy-layer .layer-close {
+    position: absolute;
+    top: .25rem;
+    right: .55rem;
+    width: .75rem;
+    height: .75rem;
+    color: #666;
+}
+
+.group-buy-layer .sumbitBtnBox {
+    width: 100%;
+    height: 1.6rem;
+    line-height: 1.6rem;
+    text-align: center;
+    padding: .15rem 0;
+}
+
+.sumbitBtnBox .submitBtn {
+    color: #fff;
+    font-size: .6rem;
+    width: 100%;
+    /*background-color: #f11;*/
+    border: none;
+    height: 1.6rem;
+    line-height: 1.6rem;
+    border-radius: 5px;
+}
+
+.group-buy-layer .itemInfo {
+    overflow: hidden;
+    margin-bottom: .45rem;
+}
+
+.group-buy-layer .itemInfo img {
+    float: left;
+    height: 2.4rem;
+    width: 2.4rem;
+    margin-right: .35rem;
+}
+
+.group-buy-layer .itemInfo .itemName {
+    height: 1rem;
+    line-height: 1rem;
+    color: #333;
+}
+
+.group-buy-layer .itemPrice {
+    color: #f11;
+    font-size: .55rem;
+}
+
+.footerItem .iconfont {
+    display: block;
+    height: .85rem;
+    width: .85rem;
+    margin: .25rem auto .1rem;
+    background-color: #f11;
+}
+
+.footerItem .iconTxt {
+    font-size: .45rem;
+    color: #666;
+}
+
+.itemLine {
+    height: 1.4rem;
+    line-height: 1.4rem;
+    color: #666;
+}
+
+/*团购详情状态*/
+
+.groupStatus {
+    overflow: hidden;
+    position: relative;
+}
+
+.groupStatus .orderStatusSign {
+    position: absolute;
+    width: 3rem;
+    height: 3rem;
+    right: 1.2rem;
+    top: .5rem;
+    border-radius: 50%;
+}
+
+.groupStatus .orderStatusSign span {
+    line-height: 1rem;
+    text-align: center;
+    font-size: .75rem;
+    margin: .5rem;
+    display: block;
+    transform: rotate(-15deg);
+}
+
+.groupSuccess .orderStatusSign {
+    border: 3px solid #f11;
+}
+
+.groupSuccess .orderStatusSign span {
+    color: #f11
+}
+
+.waitSuccess .orderStatusSign {
+    border: 3px solid #00CC99;
+}
+
+.waitSuccess .orderStatusSign span {
+    color: #00CC99
+}
+
+.groupFail .orderStatusSign {
+    border: 3px solid #ccc;
+}
+
+.groupFail .orderStatusSign span {
+    color: #666
+}
+
+.groupStatus .itemImg {
+    width: 4rem;
+    height: 4rem;
+    float: left;
+    margin-right: .4rem;
+}
+
+.groupStatus .itemImg img {
+    width: 100%;
+    height: 100%;
+}
+
+.groupStatus .itemInfo {
+    color: #666;
+    padding-top: .05rem;
+}
+
+.groupStatus .itemName,
+.groupStatus .groupType {
+    font-size: .55rem;
+}
+
+.address-blcok .itemLine {
+    height: 1rem;
+    line-height: 1rem;
+    font-size: .45rem;
+    color: #666;
+    display: flex;
+}
+
+.itemLine.importantLine {
+    height: 1.6rem;
+    line-height: 1.6rem;
+    font-size: .7rem;
+    color: #333;
+}
+
+.itemLabel {
+    min-width: 2.5rem;
+}
+
+.itemVal,
+.itemLabel {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.groupStatus .price {
+    color: #f00;
+    font-size: .65rem;
+}
+
+.groupStatus .itemName {
+    height: 1.4rem;
+    line-height: 1.4rem;
+}
+
+.groupStatusBlock {
+    text-align: center;
+    background-color: #f8f8f8;
+}
+
+.groupNumText {
+    height: 1.2rem;
+    line-height: 1.2rem;
+    padding-top: .2rem;
+    font-size: .45rem;
+    color: #666;
+}
+
+.highlight {
+    color: #f33;
+}
+
+.groupMemberList {
+    padding: .45rem 0;
+}
+
+.groupMemberList .groupMemberItem {
+    width: 2rem;
+    height: 2rem;
+    margin: 0 .15rem;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 0;
+    position: relative;
+}
+
+.groupMemberItem .memberImg {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.groupLeaderSign {
+    position: absolute;
+    z-index: 2;
+    bottom: 0;
+    left: 50%;
+    margin-left: -30%;
+    padding: 0 .15rem;
+    border-radius: 3px;
+    font-size: .45rem;
+    text-align: center;
+    color: #fff;
+    background-color: #f96;
+}
+
+.lastGroupNum {
+    font-size: .65rem;
+    color: #666;
+}
+
+.groupInfoTitle {
+    height: 1.8rem;
+    line-height: 1.8rem;
+    text-align: center;
+    color: #666;
+    font-size: .5rem;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.groupInfoTitle>span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.groupInfoTitle .line {
+    height: 1px;
+    width: 3rem;
+    background-color: #ccc;
+}
+
+.groupInfoTitle .titleName {
+    margin: 0 .55rem;
+}
+
+.groupMemberDetailInfo {
+    padding: .5rem .5rem 0;
+    text-align: left;
+    position: relative;
+}
+
+.groupMemberDetailInfo i.icon-arr-up {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-top: -.62rem;
+    margin-left: -.6rem;
+    width: 0;
+    height: 0;
+    border: .6rem solid;
+    border-color: transparent transparent #4a4a4a;
+}
+
+.groupMemberDetailItem {
+    height: 2rem;
+    line-height: 2rem;
+    border: 1px solid #ff8484;
+    background-color: #ffebe1;
+    margin-bottom: .25rem;
+    border-radius: 5px;
+}
+
+.groupMemberDetailItem.on {
+    background-color: #4a4a4a;
+    border: 0;
+}
+
+.groupMemberDetailItem>span {
+    display: inline-block;
+    vertical-align: middle;
+    color: #666;
+    font-size: .55rem;
+    text-align: center;
+    overflow: hidden;
+}
+
+.groupMemberDetailItem.on>span {
+    color: #f1f1f1;
+}
+
+.groupMemberDetailItem:last-child {
+    margin-bottom: 0;
+}
+
+.memberAvator {
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+    overflow: hidden;
+    display: inline-block;
+    margin: 0 .25rem;
+}
+
+.memberLeader {
+    width: 1.5rem;
+}
+
+.groupMemberDetailItem span.memberName {
+    width: 5rem;
+    text-align: left;
+}
+
+.joinGroupTime {
+    width: 6.2rem;
+}
+
+.groupActive {
+    width: 1.5rem;
+}
+
+/*团购订单列表*/
+
+.group-tab {
+    display: flex;
+    flex: 1;
+    padding: 0;
+}
+
+.group-tab li {
+    float: none;
+    width: 25%;
+    border-right: none;
+    height: 1.6rem;
+    line-height: 1.6rem;
+}
+
+.group-tab li.on {
+    border-bottom: 1px solid #f11;
+}
+
+.group-tab li a {
+    color: #666;
+}
+
+.group-tab li a.c-base {
+    display: block;
+    color: #f11;
+}
+
+.group-order-item {
+    background-color: #fff;
+    margin-bottom: .45rem;
+    padding: .35rem;
+}
+
+.group-order-item .groupInfo {
+    overflow: hidden;
+}
+
+.groupInfo .itemImg {
+    width: 3.6rem;
+    height: 3.6rem;
+    float: left;
+    margin-right: .35rem;
+}
+
+.itemInfo .itemName {
+    color: #666;
+    /* font-size: .6rem; */
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    height: 1.2rem;
+    line-height: 1.2rem;
+}
+
+.itemInfo .price {
+    color: #f00;
+    font-size: .65rem;
+}
+
+.groupStatusBar {
+    color: #666;
+    justify-content:space-between;
+}
+.groupStatusBar  .groupStatusTxt {
+    padding-right: .25rem;
+}
+.groupStatusBar .groupStatusTxt.init {
+    color: #f93;
+}
+
+.groupStatusBar .groupStatusTxt.success {
+    color: #19a0f0;
+}
+
+.groupStatusBar .groupStatusTxt.fail {
+    color: #ff1111;
+}
+
+.item-line {
+    border-bottom: 1px solid #eee;
+    width: 96%;
+    margin: .3rem auto 0;
+}
+
+.groupActionBar {
+    padding: .45rem 0 .15rem;
+    overflow: hidden;
+}
+
+.groupActionBar .groupActionBtnBox {
+    float: right;
+}
+
+.groupActionBar .groupTips {
+    float: left;
+    color: #666;
+    height: 1.2rem;
+    line-height: 1.2rem;
+}
+
+.groupActionBar .mainBtn,
+.groupActionBar .linkBtn {
+    display: inline-block;
+    vertical-align: top;
+    border-radius: 3px;
+    background-color: #fa4b62;
+    border: none;
+    color: #fff;
+    height: 1.2rem;
+    line-height: 1.25rem;
+    padding: 0 .35rem;
+    margin: 0 .2rem;
+}
+
+.groupActionBar .linkBtn {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    color: #666;
+}
+
+/*团购确认订单*/
+
+.address-blcok {
+    background-color: #fff;
+    padding: 0 .45rem 0 .25rem;
+}
+
+.address-blcok .icon-xiangyoujiantou {
+    position: absolute;
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    top: 1.5rem;
+    right: .3rem;
+    color: #999;
+}
+
+.orderProductItem .itemTitle {
+    height: 1.6rem;
+    line-height: 1.6rem;
+    font-size: .65rem;
+    color: #333;
+    padding: 0 .55rem;
+    background-color: #ffd8dc;
+}
+
+.orderProductItem .itemBody {
+    padding: .45rem;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.itemBottom {
+    height: 1.6rem;
+    line-height: 1.6rem;
+    background-color: #ffd8dc;
+    padding: 0 .55rem;
+}
+
+.itemBottom .itemTotal {
+    float: right;
+    font-size: .55rem;
+}
+
+.itemBottom .itemTotal .txt {
+    color: #666;
+    font-size: .55rem;
+    margin-right: .2rem;
+}
+
+.itemBottom .itemTotal .price,
+.orderPayMoney .price {
+    color: #f11;
+}
+
+.itemBody .itemImg {
+    width: 4rem;
+    height: 4rem;
+    float: left;
+    margin-right: .55rem;
+}
+
+.itemBody .itemImg img {
+    width: 100%;
+    height: 100%;
+}
+
+.itemBody .itemInfo .itemName {
+    color: #333;
+    font-size: .65rem;
+}
+
+.itemInfo .goodsNum {
+    float: right;
+    font-size: .6rem;
+}
+
+.itemBody .itemLine {
+    font-size: .5rem;
+    color: #666;
+}
+
+.detail-block p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.orderPayMoney {
+    font-size: .65rem;
+    line-height: 2rem;
+    margin-left: .45rem;
+    text-align: left;
+}
+
+.submitOrderBtn {
+    background-color: #ff5190;
+    height: 2rem;
+    width: 100%;
+    line-height: 2rem;
+    color: #fff;
+    text-align: center;
+    border: none;
+    font-size: .65rem;
+}
+
+.orderItems {
+    background-color: #fff;
+    color: #666;
+}
+
+.orderItems .itemLine {
+    height: 1.8rem;
+    line-height: 1.8rem;
+    margin: 0 auto;
+}
+
+.orderItems .itemLine:after {
+    content: '';
+    border-bottom: 1px solid #eee;
+    display: block;
+}
+
+.orderItems .itemLine:last-child:after {
+    border-bottom: 0;
+}
+
+.orderItems .price {
+    color: #f11;
+    font-size: .75rem;
+}
+
+.payMethodBlock {
+    background-color: #fff;
+    padding: .6rem .45rem;
+    color: #666;
+}
+
+.payMethodItem>span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.payMethodItem i.icon-wx {
+    color: #50c646;
+    font-size: 1rem;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: .25rem;
+}
+
+.recommendSign {
+    background-color: #ffd4c7;
+    color: #f11;
+    border-radius: 3px;
+    text-align: center;
+    padding: .1rem .15rem;
+    margin-left: .25rem;
+}
+
+.icon-selected {
+    border-radius: 50%;
+    background-color: #ff5190;
+    width: 1rem;
+    height: 1rem;
+    float: right;
+}
+
+.numSpinnerBox {
+    height: 1rem;
+    line-height: 1rem;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.numSpinnerBox input {
+    font-size: .55rem;
+    border-right: 1px solid #eee;
+    border-left: 1px solid #eee;
+}
+
+.countDownTime {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.timeStyle1 {
+    margin: 0 .1rem;
+}
+
+.timeStyle1 i {
+    display: inline-block;
+    vertical-align: baseline;
+    font-style: normal;
+    background-color: #555;
+    text-align: center;
+    color: #fff;
+    height: .6rem;
+    line-height: .6rem;
+    border-radius: 3px;
+    padding: .2rem .15rem .1rem;
+    margin: 0.1rem;
+}
+
+.footBlock {
+    height: 2rem;
+}
+
+.group-explian {
+    color: #f00;
+    margin-bottom: 0.25rem;
+}
+
+.group-detail-layer {
+    display: none;
+    position: fixed;
+    padding: .45rem;
+    width: 12rem;
+    height: 8rem;
+    top: 30%;
+    left: 50%;
+    margin-left: -6rem;
+    background: white;
+    border-radius: .25rem;
+    z-index: 999
+}
+
+.group-detail-layer .close-group-detail-layer {
+    display: block;
+    position: absolute;
+    right: -.6rem;
+    top: -.5rem;
+    height: 1.2rem;
+    width: 1.2rem;
+    border-radius: 100%;
+    background: #eaeaea;
+    text-align: center;
+    line-height: 1.2rem;
+    color: #999;
+    font-size: .5rem;
+}
+
+.group-detail-layer .group-detail-title {
+    padding: .5rem 0 .25rem;
+    font-size: .65rem;
+    text-align: center;
+    width: 100%;
+}
+
+.group-detail-layer .group-detail-content {
+    display: block;
+    font-size: .5rem;
+    color: #666;
+    width: 100%;
+    text-align: center;
+    line-height: 1.2rem;
+}
+
+.group-detail-layer .group-member-list {
+    text-align: center;
+    line-height: 1.5;
+    padding: .5rem 0 .25rem;
+    width: 100%;
+}
+
+.group-detail-layer .group-member-list span {
+    height: 1.8rem;
+    width: 1.8rem;
+    text-align: center;
+    border-radius: 100%;
+    line-height: 1.8rem;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 .25rem;
+}
+
+.group-detail-layer .group-member-list .has-face {
+    /* overflow: hidden; */
+}
+
+.group-detail-layer .group-member-list .has-face img {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #f1a532fd;
+    border-radius: 100%;
+}
+
+.group-detail-layer .group-member-list .default {
+    border: 1px dashed #ccc;
+    color: #999;
+    font-size: .65rem;
+    font-weight: bolder;
+}
+
+.group-detail-layer .group-member-list .has-face .flag {
+    position: absolute;
+    left: -.65rem;
+    top: -.25rem;
+    width: 1.65rem;
+    height: .7rem;
+    font-size: .4rem;
+    line-height: .7rem;
+    text-align: center;
+    background-color: #ffab33;
+    border: 1px solid #fff;
+    border-radius: .75rem;
+    color: #9f7200;
+    border: 1px solid white;
+}
+
+.group-detail-layer .group-detail-btn {
+    height: 1.6rem;
+    width: 90%;
+    border-radius: .25rem;
+    font-size: .65rem;
+    text-align: center;
+    line-height: 1.6rem;
+    background-color: #e02e24;
+    display: block;
+    margin: 0 auto;
+    color: white;
+    font-weight: bold;
+    margin-top: .5rem;
+}
+
+.group-detail-footer .share-btn {
+    width: 2.5rem;
+    height: 100%;
+    background-color: #d5a95e;
+    display: block;
+    position: relative;
+}
+.group-detail-footer .share-btn .icon-qiandai {
+    font-size: .9rem;
+    display: block;
+    text-align: center;
+    color: white;
+    line-height: 1.2rem;
+    height: 1.1rem;
+}
+.group-detail-footer .share-btn  .share-btn-text {
+    display: block;
+    text-align: center;
+    color: white;
+    height: 1rem;
+    line-height: .8rem;
+    font-size: .45rem;
+}
+.group-detail-footer .share-btn .share-content-box {
+    position: absolute;
+    bottom: 3rem;
+    width: 6rem;
+    left: 50%;
+    margin-left: -3rem;
+    padding: .25rem;
+    border-radius: .3rem;
+    z-index: 19;
+    background: white;
+    box-shadow: 0 0 7px rgba(0, 0, 0, .4);
+    display: none;
+    text-align: left;
+}
+.group-detail-footer .share-btn .share-content-box a {
+    display: block;
+    line-height: 1.35rem;
+    font-size: .6rem;
+    color: #666;
+    border-bottom: 1px solid #eaeaea;
+}
+.group-detail-footer .share-btn .share-content-box a:last-child{
+    border-bottom: none;
+}
+.group-detail-footer .share-btn .share-content-box a.title {
+    font-size: .65rem;
+    color: #d5a95e;
+}
+.group-detail-footer .share-btn .share-content-box a.title i {
+    font-size: .8rem;
+    color: #999;
+    font-weight: bold;
+}

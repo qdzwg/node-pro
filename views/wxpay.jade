@@ -1,0 +1,50 @@
+doctype html
+html(lang="en")
+    head
+        script(src='//statics.lotsmall.cn/wappublic/javascripts/jquery-1.8.3.min.js')
+        script(type="text/javascript").
+            $(document).ready(function () {
+                if (typeof WeixinJSBridge == "undefined") {
+                    if (document.addEventListener) {
+                        document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+                    } else if (document.attachEvent) {
+                        document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+                        document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+                    }
+                } else {
+                    jsApiCall();
+                }
+            });
+            function jsApiCall() {
+                WeixinJSBridge.invoke('getBrandWCPayRequest', {
+                    "appId": "#{item.appId}",
+                    "timeStamp": "#{item.timeStamp}",
+                    "nonceStr": "#{item.nonceStr}",
+                    "package": "#{item.packageStr}",
+                    "signType": "#{item.signType}",
+                    "paySign": "#{item.paySign}"
+                }, function (res) {
+                    if (res.err_msg == "get_brand_wcpay_request:ok") {//-----支付成功
+                        // 使用以上方式判断前端返回,提示：res.err_msg 将在用户支付成功后返回ok，但并不保证它绝对可靠。X
+                        // 跳转至订单支付结果页
+                        //- for (var key in res){
+                        //-     alert(res[key])
+                        //- }
+                        document.location.href = "/payPlat/Notify/1?orderNo="+"#{orderNo}";
+                    } else {//-----支付取消或支付失败
+                        //如果支付失败，则弹出出错信息
+                        //-  alert('开始了错误');
+                         for(var i in res){
+                            //-  if (typeof res[i] === 'string' && res[i].indexOf('URL未注册') !== -1) {
+                            //-      alert('支付失败：当前URL未注册')
+                            //-  }
+                            alert(res[i])
+                         }
+                        //跳转至支付失败
+                        document.location.href = "/payPlat/Notify/0?orderNo="+"#{orderNo}";
+                    }
+                });
+            }
+    body
+
+

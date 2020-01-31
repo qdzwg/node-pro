@@ -1,0 +1,13 @@
+/node_modules/
+# .gitignore
+# app.js
+# /bin/www
+/logs/*
+# Editor directories and files
+.vscode
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+package-lock.json

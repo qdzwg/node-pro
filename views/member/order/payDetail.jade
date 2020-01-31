@@ -1,0 +1,347 @@
+extends ../../layout
+block stylesheets
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/order.css?#{vCode}")
+block javascripts
+    script.
+        var isWx = '#{isWx}',isAli = '#{isAli}', orderCloseTime = '#{orderCloseTime}';
+block content
+    - var datas=data[0].data,currOrderName = datas.orderInfo;
+    include ../../common/index
+    include ../../common/quickLink
+    +flowBtn(userInfo,marketDisAccount,showWholeMarket) 
+    header.myorder-header(data-title=datas.orderInfo)
+        p.myorder-explian
+            span 交易流水号：#{datas.payOrderNo}
+            span 下单日期：#{datas.orderTime}
+            if datas.orderCloseTime
+                span.closeTimeText        
+        h3.myorder-title=datas.orderInfo
+        p.myorder-pay
+            if datas.orderType == 'family'
+            .clearfix(style="margin-bottom:0.15rem; color:#333;") 
+                span(style="font-size:0.6rem; display:inline-block; width:10.5rem; vertical-align:middle")=datas.nickName
+                span(style="font-size:0.6rem; display:inline-block; vertical-align:middle; width: 4rem; text-align: right;")
+                    | 份数：
+                    em=datas.amount
+            .order-sum-box
+                | 订单总金额：
+                span.price
+                    em ￥
+                        | #{datas.paySum}
+                em.pay-mold.payed.fr
+                    +payStatus(datas.payStatus)
+    if datas.deliveryType            
+        .page-line
+        ul.order-list.myorder-list
+            if datas.deliveryType === '快递'
+                li
+                    label.lab-title(for='') 配送方式
+                    .order-item
+                        span 快递
+                li
+                    label.lab-title(for='') 邮费
+                    .order-item
+                        if datas.postage 
+                            span.c-price 
+                                | ￥#{datas.postage}  
+                        else
+                            span 
+                                | 包邮费
+                if datas.linkAddr
+                    li
+                        label.lab-title(for='') 地址
+                        .order-item
+                            span=datas.linkAddr
+            else
+                li
+                    label.lab-title(for='') 配送方式
+                    .order-item
+                        span 自提
+                if datas.linkAddr        
+                    li
+                        label.lab-title(for='') 自提地址
+                        .order-item
+                            span=datas.linkAddr              
+    .page-line
+    ul.order-list.myorder-list.ticket-list
+        - const __idcardType = { id:'身份证',pass:'港澳台<br/>通行证',passport:'护照'};
+        each item, index in datas.orderDetailVoList
+            li
+                - let orderName  = item.orderInfo
+                if item.orderType === 'route'
+                    -let lineType = ['【成人票】','【儿童票】']
+                    - orderName = orderName + lineType[+(item.detailType)]
+                if orderName.length > 22
+                    - orderName = orderName.substring(0,22) +'...'   
+                label.lab-title(for='')=orderName
+                - currOrderName = orderName;
+                .order-item
+            if item.fsStartTime && item.fsEndTime
+                li(style="font-size:0.5rem")
+                    span 预约时间：
+                    span #{item.fsStartTime} - #{item.fsEndTime}
+            //- if item.goodsType == 'hotel' && item.startDate && item.endDate
+            //-     - var _startDate = item.startDate.substring(0,10), _endDate = item.endDate.substring(0,10)                
+            //-     li(style="font-size:0.5rem")
+            //-         span 入住日期：
+            //-         span #{_startDate}
+            //-         span(style="margin-left:0.5rem;") 离店日期：
+            //-         span #{_endDate}
+            //- else
+            li
+                - var _startTime = item.startDate ? item.startDate.substring(0,10) : '',_endTime = item.endDate ? item.endDate.substring(0,10) : ''
+                case item.orderType
+                    when 'park'
+                        span 游玩日期                    
+                        span=_startTime  
+                    when 'hotel'    
+                        span 入住日期                    
+                        span(style='white-space: nowrap')=_startTime + "至" + _endTime  
+                    when 'pms_hotel'    
+                        span 入住日期                    
+                        span(style='white-space: nowrap')=_startTime + "至" + _endTime   
+                    
+            if item.orderDetailModels && item.orderDetailModels.length > 0
+                li
+                    each it,ind in item.orderDetailModels
+                        .real-box(style="font-size:0.5rem")
+                            .real-box-num 游玩人#{ind+1}：
+                            .real-box-name
+                                span(style="width:2rem; display:inline-block; vertical-align:middle") 姓名                                                        
+                                span(style="margin-left:0.5rem; display:inline-block; vertical-align:middle")=it.linkMan
+                            .real-box-card
+                                span(style="width:2rem; display:inline-block; vertical-align:middle")!=__idcardType[it.idcardType || 'id']                                                      
+                                span(style="margin-left:0.5rem; display:inline-block; vertical-align:middle")=it.idcardNo
+                            //- span 游玩人#{ind+1}：
+                            //- span(style="margin-left:0.5rem;")=it.linkMan
+                            //- span(style="margin-left:0.5rem;")=it.idcardNo
+            li
+                label.lab-title(for='') 购买份数
+                .order-item
+                    span.order-time="￥"
+                        span.order-time.product-price=item.price   
+                    span
+                        | * 
+                        em.product-num=item.amount+"份"
+    if datas.orderType === 'ticket'&& datas.linkManDTOList
+        each item in datas.linkManDTOList
+            .page-line
+            ul.order-list.myorder-list
+                if item.telephone
+                    li
+                        label.lab-title(for='') 联系人
+                        .order-item=item.linkName
+                    li
+                        label.lab-title(for='') 手机号
+                        .order-item=item.linkMobile
+                else
+                    li
+                        label.lab-title(for='') 姓&ensp;&ensp;名
+                        .order-item=item.linkName
+                li
+                    label.lab-title(for='') 身份证
+                    .order-item=item.linkIdcard
+
+    else
+        .page-line
+        ul.order-list.myorder-list
+            li
+                label.lab-title(for='') 联系人
+                .order-item=datas.linkName
+            li
+                label.lab-title(for='') 手机号
+                .order-item=datas.linkMobile
+            if datas.linkIdcard
+                li
+                    label.lab-title(for='') 身份证
+                    .order-item=datas.linkIdcard   
+    if typeof datas.orderTips !== 'undefined' &&  datas.orderTips instanceof Array 
+        ul.order-list.myorder-list
+            each item in datas.orderTips 
+                if item.tips 
+                    case item.type
+                        when 'lvPic'
+                            li
+                                label.lab-title(for='')=item.title
+                                .order-item.order-face 
+                                    if item.tips 
+                                        - let imgsArray = item.tips.split(',')
+                                        each imgUrl in imgsArray
+                                            img(src=imgUrl +'?imageMogr2/thumbnail/640x/strip/quality/100', alt="")
+                                    //- img(src=item.tips +'?imageMogr2/thumbnail/640x/strip/quality/100', alt="")
+                        default
+                            li
+                                label.lab-title(for='')=item.title
+                                .order-item
+                                    span #{item.tips}                            
+    .btn-handle
+        if datas.payStatus === "1" && datas.isAudit === '0'
+            a.btn-RP(href='/member/refund/' + datas.orderType + '?orderNo=' + datas.orderNo+'&maxNum='+datas.amount) 申请退款
+        if datas.payStatus === "2" && datas.comment === false
+            a.btn(href='/member/comment/'+ datas.orderType + '?orderNo=' + datas.orderNo+ '&orderId='+ datas.orderId +'&modelCode='+datas.modelCode) 发表评价
+        if datas.payStatus === "0"
+            - var _t=datas.orderDetailVoList[0].goodsType
+            a.btn#orderDetailPay(href="javascript:;") 去支付
+            a.btn.background-base#cancel(href='javascript:;',data-id=datas.payOrderNo, data-ordertype=datas.orderDetailVoList[0].orderType) 取消订单
+    .mask#mask
+        .tips
+            p
+            a(href="javascript:;").queding 确定
+    #pay-mask         
+    .pay-module#payModule(class=(isWx === 'T' )?'wxpay':'alipay')
+        - var allPrice = datas.paySum;
+        //- if typeof datas.postage !== 'undefined'
+            - allPrice += datas.postage
+        .pay-sealPrice
+            span 支付金额：
+            em.price-em ￥     
+            span.price=allPrice
+        ul#pay-mold.order-list.pay-list.pay-type 
+            if isWx === 'T'
+                li.wenxin
+                    a(href='javascript:;')
+                        label.lab-title(for='')
+                            i.xx-icon.icon-iconfont-weixin
+                            | 微信支付
+                        i.select-icon.xx-icon.fr.icon-yuanxingxuanzhongfill
+            else
+                li.zhifubao
+                    a(href='javascript:;')
+                        label.lab-title(for='')
+                            i.xx-icon.icon-iconfont-zhifubao
+                            | 支付宝
+                        i.select-icon.xx-icon.fr.icon-yuanxingxuanzhongfill
+            if merchantInfoId ===  '610'
+              li.longCard
+                  a(href='javascript:;')
+                      label.lab-title(for='')
+                          i.xx-icon.icon-longcard
+                          | 龙支付
+                      i.select-icon.xx-icon.fr.icon-yuanxingweixuanzhong        
+        - var code = '';                
+        if datas.orderDetailVoList instanceof Array 
+            each info in datas.orderDetailVoList
+                - code += info.modelCode             
+        .pay-btn 
+            a#goPayBtn(data-query='?orderNo=' + datas.payOrderNo + '&name=' + currOrderName + '&paySum=' + allPrice + '&code='+ code + '&m_id=' + merchantInfoId,data-chanel="normal", title="title") 去支付           
+    script.
+        $(function () {
+            $("#cancel").click(function (e) {
+                e.preventDefault();
+                var that = $(this);
+                var orderNo = $(this).data('id');
+                var confirmDel = confirm('确认要取消订单吗');
+                var ordertype = $(this).data('ordertype');
+                if (confirmDel) {
+                    $.post('/member/cancle/' + orderNo+'?ordertype='+ordertype)
+                        .success(function (data) {
+                            console.log(data);
+                            $('.mask,.tips').show();
+                            $('.tips p').text(data[0].message);
+
+                            //that.text('删除订单');
+                            //$('.pay-mold').text('已取消')
+
+                            $('.tips a').on('click', function () {
+                                $('.mask,.tips').hide();
+                                window.location.reload();
+                            });
+
+                        })
+                        .error(function (err) {
+                            window.location.href = '/error';
+                        });
+                }
+
+            })
+            var $payModule = $('#payModule');
+            if ($payModule.size() > 0) {
+                $payModule.find('li').on('tap',function(){
+                    var $this = $(this)
+                    $payModule.find('.select-icon').removeClass('icon-yuanxingxuanzhongfill').addClass('icon-yuanxingweixuanzhong')
+                    $this.hasClass('longCard') ? $('#goPayBtn').data('chanel','long') : $('#goPayBtn').data('chanel','normal')
+                    $this.find('.select-icon').removeClass('icon-yuanxingweixuanzhong').addClass('icon-yuanxingxuanzhongfill')
+                })
+
+                $('#goPayBtn').on('tap',function(){
+                    var query = $(this).data('query')
+                    var payChanel = $(this).data('chanel')
+                query += '&chanel='+ payChanel 
+                $.get('/payType/get'+ query).success(function(res){
+                    $("#mask,#cost-dialog").hide();
+                    $('#pay-mask').hide();
+                    $payModule.removeClass('show'); 
+                    if (res.status === 200) {
+                        if (res.data.payType === '2019') {
+                            ap.tradePay({
+                                tradeNO: res.data.tradeNo
+                            }, function(res){
+                                if (res.resultCode == 9000 || res.resultCode === 8000) {
+                                    window.location.href = '/payPlat/Notify/1' + query
+                                } else {
+                                    window.location.href = '/payPlat/Notify/0' + query
+                                }
+                            });
+                        } else {
+                            query += '&payType='+res.data.payType
+                            window.location.href = '/pay/order'  + query
+                        }
+                    } else {
+                        if (typeof res.message !== 'undefined' && res.message.indexOf('重复订单号') === 0) {
+                            res.message = '暂时不支持重新发起支付，请重新下单'
+                        }
+                        $('.tips p').text(res.message || '支付失败，请重试');
+                        $('.mask,.tips').show();
+                    }  
+                })
+                })
+            }
+
+            touch.on('#orderDetailPay','tap',function(){
+                var $this = $(this);
+                $('#pay-mask').show();
+                $('#payModule').addClass('show');
+            }) 
+
+            touch.on('#pay-mask','tap',function(){
+                $('#pay-mask').hide();
+                $('#payModule').removeClass('show');
+            }) 
+            //待支付倒计时
+            var test = orderCloseTime.replace(/-/g, "/");
+            var date = new Date(orderCloseTime.replace(/-/g, "/"));
+            var time = Date.parse(date);
+            var now = new Date();
+            var nowTime = Date.parse(now);
+            var closeTime = time - nowTime;      
+            var hour = '', min = '', seconds = '';
+            console.log("close", orderCloseTime);
+            if (closeTime < 0) {
+                //过期了
+                clearInterval(timeInterval);
+                //订单状态前端换成已经关闭状态                
+                $('.closeTimeText').text("已关闭");
+            } else {
+                closeTime = closeTime / 1000;
+                hour = Math.floor(closeTime / 3600);
+                min = Math.floor((closeTime - hour * 60) / 60);
+                seconds = closeTime - hour * 60 * 60 - min * 60; 
+                $('.closeTimeText').text(hour+"小时"+min+"分"+seconds+"秒后订单自动关闭");              
+            }       
+            var timeInterval = setInterval(function() {            
+                now = new Date();
+                nowTime = Date.parse(now);
+                closeTime = time - nowTime;
+                if (closeTime < 0) {
+                    //过期了
+                    clearInterval(timeInterval);                        
+                    $('.closeTimeText').text("已关闭");
+                } else {
+                    closeTime = closeTime / 1000;
+                    hour = Math.floor(closeTime / 3600);
+                    min = Math.floor((closeTime - hour * 60) / 60);
+                    seconds = closeTime - hour * 60 * 60 - min * 60;  
+                    $('.closeTimeText').text(hour+"小时"+min+"分"+seconds+"秒后订单自动关闭");                              
+                }
+            }, 1000);
+        });       

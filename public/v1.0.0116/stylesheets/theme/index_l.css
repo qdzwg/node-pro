@@ -1,0 +1,466 @@
+
+/*分割线*/
+.i-line {
+    height: 0.4rem;
+    width: 100%;
+    background: #eeeeee;
+    border-top: 1px solid #e3e3e3;
+    border-bottom: 1px solid #e3e3e3;
+}
+
+i {
+    font-style: normal;
+}
+
+/*banner*/
+.header-banner {
+    width: 100%;
+    height: 7.15rem;
+    position: relative;
+}
+.header-banner .swiper-container {
+    width: 100%;
+    height: 100%;
+}
+.header-banner .swiper-container img {
+    height: 7.15rem;
+    width: 16rem;
+}
+.header-banner .swiper-pagination-bullet {
+    background: #a5a5a5;
+    opacity: 1;
+}
+.header-banner .swiper-pagination-bullet-active {
+    background: #90c656;
+}
+
+.header-banner .banner-logo {
+    width: 5rem;
+    height: 2.05rem;
+    position: absolute;
+    top: 2.1rem;
+    left: 50%;
+    margin-left: -2.5rem;
+    z-index: 1;
+}
+.header-banner .banner-logo img {
+    height: 100%;
+    width: 100%;
+}
+
+/*nav*/
+nav {
+    background: #eeeeee;
+    width: 95%;
+    padding: 0 2.5%;
+}
+
+.nav-search {
+    margin-top: 0.3rem;
+    height: 2rem;
+    line-height: 2rem;
+    width: 100%;
+    background: white;
+    border-radius: 0.2rem;
+    text-align: center
+}
+.nav-search .nav-logo {
+    width: 4.65rem;
+    height: 1.825rem;
+    text-align: center;
+    background: url("../../images/index/search_logo_03.jpg") no-repeat center;
+    background-size: 3.6rem 1.125rem;
+}
+.nav-search .nav-logo img {
+    width: 3.6rem;
+    height: 1.125rem;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.nav-box {
+    width: 100%;
+    padding-top: 0.4rem;
+}
+.nav-box>div{
+    height: 3.5rem;
+    padding-bottom: 0.4rem;
+}
+.nav-box a {
+    height: 100%;
+    display: block;
+    border-radius: 0.1rem;
+    color: white;
+    line-height: 3.5rem;
+}
+.nav-box a img {
+    height: 1.5rem;
+    display: inline-block;
+    margin-left: 1.5rem;
+}
+.nav-box a span {
+    line-height: 1;
+    height: 1.5rem;
+    display: inline-block;
+    margin-left: 0.5rem;
+    color: white;
+    vertical-align: middle;
+}
+.nav-box a span em {
+    height: 1rem;
+    display: block;
+    font-size: 0.65rem;
+}
+.nav-box a span i {
+    display: block;
+    font-size: 0.45rem;
+}
+.nav-box .ticket-tab {
+    width: 62.5%;
+    height: 100%;
+    background: #27ae60;
+}
+.nav-box .hotel-tab {
+    width: 35%;
+    height: 100%;
+    background: #0099ff;
+}
+.nav-box>div:nth-of-type(2) a img {
+    height: 1.2rem;
+    margin-left: 0.6rem;
+}
+.nav-box>div:nth-of-type(2) a span {
+    margin-left: 0.2rem;
+}
+.nav-box .hotel-tab img {
+    margin-left: 0.8rem;
+}
+.nav-box .hotel-tab span {
+    margin-left: 0.25rem;
+}
+.nav-box a.food-tab {
+    background: #16a085;
+}
+.nav-box a.goods-tab {
+    background: #a340cb;
+}
+.nav-box a.raiders-tab {
+    width: 48.75%;
+    float: right;
+    background: #782899;
+}
+.nav-box a.news-tab {
+    width: 48.75%;
+    float: left;
+    background: #3498db;
+}
+
+/*news*/
+.lgh-news {
+    border-top: 1px solid #e3e3e3;
+}
+.news-top {
+    height: 1.6rem;
+    width: 14rem;
+    padding: 0 1rem;
+    line-height: 1.6rem;
+    background: white;
+}
+.news-top>img {
+    display: inline-block;
+    vertical-align: middle;
+    width: 0.6rem;
+    height: 0.8rem;
+}
+.news-top .loop-news {
+    display: inline-block;
+    width: 12.1rem;
+    height: 1.6rem;
+    vertical-align: middle;
+}
+.news-top .loop-news .swiper-slide {
+    padding-left: 5%;
+    height: 95%;
+    width: 100%;
+    overflow: hidden;
+    line-height: 1.7rem;
+    font-size: 0.5rem;
+}
+.news-top .loop-news .swiper-slide a {
+    display: block;
+    width: 95%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -webkit-text-overflow: ellipsis;
+}
+.news-bottom {
+    background: white;
+    padding-bottom: 0.5rem;
+}
+.news-bottom a {
+    display: block;
+    width: 47.5%;
+    float: left;
+    height: 3.65rem;
+    padding-left: 2.5%;
+}
+.news-bottom a img {
+    height: 100%;
+    display: inline-block;
+    width: 3.65rem;
+    vertical-align: middle;
+}
+.news-bottom a span {
+    width: 3.25rem;
+    display: inline-block;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    vertical-align: middle;
+}
+.news-bottom a span em {
+    padding-top: 0.25rem;
+    display: block;
+    font-size: 0.5rem;
+    color: #333333;
+    line-height: 1.5;
+    height: 2.15rem;
+    overflow: hidden;
+}
+.news-bottom a span strong {
+    color: #ff5400;
+    font-size: 0.7rem;
+    line-height: 1;
+    position: absolute;
+    bottom: 0.5rem;
+}
+.news-bottom a span strong i {
+    font-size: 0.5rem;
+    font-style: normal;
+}
+
+/*精品推荐*/
+.lgh-re {
+    width: 95%;
+    padding: 0 2.5%;
+    background: white;
+}
+.re-title  {
+    height: 1.8rem;
+    width: 100%;
+    text-align: center;
+    line-height: 1.8rem;
+}
+.re-title  i {
+    width: 1.8rem;
+    height: 2px;
+    background-color: #90c656;
+    display: inline-block;
+    vertical-align: middle;
+}
+.re-title  p {
+    font-size: 0.7rem;
+    padding: 0 0.45rem;
+    display: inline-block;
+    vertical-align: middle;
+}
+.lgh-re .swiper-container {
+    width: 100%;
+    min-height: 8.75rem;
+    background: white;
+}
+
+.lgh-re .swiper-container img {
+    width: 100%;
+    height: 6.25rem;
+}
+.lgh-re .swiper-container .swiper-slide>div {
+    width: 95%;
+    padding: 0.4rem 2.5%;
+    min-height: 1.7rem;
+    overflow: hidden;
+}
+.lgh-re .re-ticket-title{
+    display: block;
+    width: 70%;
+    float: left;
+}
+.lgh-re .re-ticket-title .title {
+    display: block;
+    width: 100%;
+    font-size: 0.6rem;
+    color: #333333;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    max-height: 2rem;
+    overflow: hidden;
+}
+.lgh-re .re-ticket-title .detail {
+    display: block;
+    width: 100%;
+    font-size: 0.45rem;
+    color: #999;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.lgh-re  .re-price {
+    width: 25%;
+    float: right;
+    font-size: 0.45rem;
+    color: #999999;
+}
+.lgh-re  .re-price span {
+    display: block;
+}
+.lgh-re  .re-price i {
+    color: #ff5400;
+}
+.lgh-re  .re-price em {
+    font-size: 0.8rem;
+    color: #ff5400;
+}
+.lgh-re  .swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction {
+    top: 5.5rem;
+    text-align: right;
+    left: -0.25rem;
+}
+.lgh-re .swiper-pagination-bullet {
+    background: #a5a5a5;
+    width: 0.3rem;
+    height: 0.3rem;
+    border-radius: 50%;
+    opacity: 1;
+}
+.lgh-re .swiper-pagination-bullet-active {
+    background: #90c656;
+}
+.lgh-re .flog-type {
+    position: absolute;
+    width: 1.95rem;
+    height: 0.8rem;
+    border: 1px solid white;
+    background: #90c656;
+    color: white;
+    text-align: center;
+    line-height: 0.8rem;
+    border-radius: 0.8rem;
+    top: 0.5rem;
+    left: 0.5rem;
+    font-size: 0.4rem;
+}
+/*分区推荐*/
+.fq-slide-box {
+    background: white;
+}
+.fq-slide-box  .img-list {
+    padding: 0 2.5% 0.5rem;
+    width: 95%;
+}
+.fq-slide-box  .img-list  .swiper-container {
+    width: 100%;
+}
+.fq-recommend-nav {
+    width: 100%;
+    border-bottom: 1px solid #eaeaea;
+}
+.fq-recommend-nav li {
+    width: 33.33%;
+    height: 1.875rem;
+    display: block;
+    float: left;
+    color: black;
+    font-size: 0.7rem;
+    text-align: center;
+    line-height: 1.875rem;
+    background: white;
+}
+.fq-recommend-nav li.on {
+    border-bottom: 3px solid #95bc56;
+    color: #95bc56;
+}
+
+.fq-img-list  ul {
+    padding-top: 0.5rem;
+    /*min-height: 5.25rem;*/
+    width: 100%;
+    height: auto!important;
+    /*transition: width 0.5s;*/
+    /*-webkit-transition: width 0.5s;*/
+}
+.fq-img-list  ul li {
+    display: block;
+    float: left;
+    width: 45%;
+    padding: 0 2.5%;
+}
+.fq-img-list  ul li img {
+    width: 100%;
+    height: 4.25rem;
+    display: block;
+}
+.fq-img-list  ul li p {
+    display: block;
+    height: 1rem;
+    text-align: left;
+    font-size: 0.6rem;
+    color: black;
+    line-height: 1rem;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.fq-img-list  ul li span {
+    display: block;
+    height: 1rem
+}
+.fq-img-list  ul li span em {
+    display: block;
+    font-size: 0.7rem;
+    color: #ff6600;
+    float: left;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: center;
+}
+.fq-img-list  ul li span em>i {
+    font-size: 0.45rem;
+    font-style: normal;
+}
+.fq-img-list  ul li span strong {
+    font-size: 0.45rem;
+    color: #999999;
+    float: right;
+}
+.search-box {
+    margin: auto;
+    display: block;
+    width: 14rem;
+    height: 1.2rem;
+    display: inline-block;
+    vertical-align: middle;
+    border: 1px solid #90c656;
+    border-radius: 0.1rem;
+}
+
+.search-con { -webkit-border-radius: 0.1rem; -moz-border-radius: 0.1rem; border-radius: 0.1rem; height: 1.2rem; background: #ffffff; position: relative; box-sizing: border-box; }
+
+.sch-lab { width: 2.75rem; float: left; text-align: center; line-height: 1.2rem; margin-top: -1px; border-right: 1px solid #ddd; position: relative; }
+.sch-lab .keyword { display: block; }
+.sch-lab .keyword span { display: inline-block; color: #999 }
+.sch-lab .icon-back { display:inline-block;-webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg); -o-transform: rotate(-90deg); transform: rotate(-90deg); font-size: .6rem;}
+.sch-lab ul { display: none; position: absolute; left: 0; top: 105%; background: rgba(0, 0, 0, 0.8); -webkit-border-radius: 0.1rem; -moz-border-radius: 0.1rem; border-radius: 0.1rem; width: 100%; }
+.sch-lab ul.show { display: block; }
+.sch-lab ul:after { content: ""; display: block; width: 0; height: 0; border-right: 0.2rem solid transparent; border-top: 0.2rem solid transparent; border-bottom: 0.2rem solid rgba(0, 0, 0, 0.8); border-left: 0.2rem solid transparent; position: absolute; left: 50%; margin-left: -0.2rem; top: -0.35rem; }
+.sch-lab ul li { color: #ffffff; border-bottom: 1px solid #999; margin: 0 0.3rem; line-height: 0.8rem; padding: 0.35rem 0; }
+.sch-lab ul li:last-child { border-bottom: 0; }
+
+.search-inp { border: 0; height: 0.6rem; padding: 0.3rem 0.5rem;  background: none; width: 9.7rem; font-size: 0.5rem; line-height: 0.6rem; box-sizing: content-box; color: #999; float: left;}
+
+.search-btn { position: absolute; right: 0; top:0;width: 1.4rem; height: 1.2rem; border: 0; color: #ffffff; font-size: 0.8rem; text-align: center; -webkit-border-radius: 0 0.1rem 0.1rem 0; -moz-border-radius: 0 0.1rem 0.1rem 0; border-radius: 0 0.1rem 0.1rem 0; cursor: pointer; background: #90c656 no-repeat center center; -webkit-background-size: 0.7rem 0.7rem; background-size: 0.7rem 0.7rem; }
+.search-btn .font-icon { display: none; line-height: 1.15rem; }

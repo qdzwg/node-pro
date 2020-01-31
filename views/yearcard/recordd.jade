@@ -1,0 +1,39 @@
+extends ../layout
+
+block stylesheets
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/yearCard.css?#{vCode}")
+block javascripts
+    script(type="text/javascript", src="#{baseUrl}/javascripts/yearCard.js?#{vCode}")
+block content
+    include ../common/index
+
+    -const datas = data[0].data;
+    .recordd
+        -if(datas)        
+            ul.recordd-ul
+                li
+                    p 交易流水号：#{datas.payOrderNo}
+                    p 交易时间：#{datas.createTime}
+                    p 交易金额：¥ #{datas.paySum}
+                    if datas.payType
+                        p 交易方式：
+                            +yctradefs(datas.payType)
+                    p 交易类型：
+                        +yctradeType(datas.orderType)
+                    p 交易状态：
+                        span(class=datas.orderStatus=='order_init'?"cred":'')
+                            +ycpayStatus(datas.orderStatus)
+                    p 卡名称：#{datas.yearCardName}
+                    p 姓名：#{datas.secretAccName}
+                    p 身份证：#{datas.secretCardNo}
+        -if(datas.payStatus == 'wait_pay')
+            .bfix-btn.clearfix
+                a.continue-pay(href='/yearcard/recharges?payOrderNo='+datas.payOrderNo+'&paySum='+datas.paySum) 继续支付
+                a.backBtn(href='/yearcard/record/#{datas.cardId}?m_id=' + merchantInfoId) 返回
+        -else if(datas.orderStatus=='recharge_success' && datas.activeStatus != 'active_success')
+            .bfix-btn.clearfix
+                a.continue-pay(href='/yearcard/refund/#{datas.orderNo}?payOrderNo='+datas.payOrderNo+'&m_id='+merchantInfoId) 退款
+                a.backBtn(href='/yearcard/record/#{datas.cardId}?m_id=' + merchantInfoId) 返回
+        -else
+            .bfix-btn
+                a.backBtn.fmb0.w100(href='/yearcard/record/#{datas.cardId}?m_id=' + merchantInfoId) 返回

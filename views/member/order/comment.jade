@@ -1,0 +1,42 @@
+extends ../../layout
+
+block stylesheets
+  link(rel="stylesheet", href="#{baseUrl}/stylesheets/order.css?#{vCode}")
+block javascripts 
+
+  script.
+    var orderNo='#{orderNo}', orderId = '#{orderId}', modelCode = '#{modelCode}',productCode='#{productCode}',module = '#{module}',payOrderNo= '#{payOrderNo}';
+  script(type='text/javascript', src='#{baseUrl}/javascripts/validate/jquery.validate.min.js')
+  script(type='text/javascript', src='#{baseUrl}/javascripts/validate/messages_zh.min.js')
+  script(type='text/javascript', src='#{baseUrl}/javascripts/validate/additional-methods.js')
+  script(type='text/javascript', src='#{baseUrl}/javascripts/member/comment.js?#{vCode}')
+block content
+  include ../../common/quickLink
+  +flowBtn(userInfo,marketDisAccount,showWholeMarket) 
+  form#form
+    .comment-panel
+      p
+        textarea#comment.order-textarea(name='content', rows='10', placeholder='请写下您对我们的感受吧')
+    .common-num-box
+      p
+        strong 满意度评分
+        span.pfxtFen
+          i.xx-icon.icon-iconfont-aixin
+          i.xx-icon.icon-iconfont-aixin
+          i.xx-icon.icon-iconfont-aixin
+          i.xx-icon.icon-iconfont-aixin
+          i.xx-icon.icon-iconfont-aixin
+      p
+        label.weui-agree(for='weuiAgree')
+          input#weuiAgree.weui-agree__checkbox(type='checkbox',name='isAnonymous')
+          span.weui-agree__text
+            | 匿名评论
+        //- label
+          input(type='checkbox', name='isAnonymous', value='F',hidden)
+          span 匿名评论
+    .btn-handle
+      a#sub.btn.comment-submit(href='javascript:;') 发表评论
+  .mask#mask
+  .tips
+    p
+    a(href="javascript:;")#okBtn.queding 确定

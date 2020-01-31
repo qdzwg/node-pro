@@ -1,0 +1,33 @@
+extends ../layout
+
+block stylesheets
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/coupons.css?#{vCode}")
+    style.
+        body {background-color: #b12725}
+block javascripts
+    script(type='text/javascript', src='#{baseUrl}/javascripts/getCoupon.js?#{vCode}')
+block content
+    - const info = data[0].data.rows[0];
+    .coupons_bg
+        .coupons-details
+            .coupons_ticket
+                .coupons_ticket_box
+                    span.ctbg.coupons_ticket_l
+                        img(src='#{baseUrl}/images/coupons/bg_hongbao_nums_l.png')
+                    span.ctbg.coupons_ticket_c
+                            h5 ￥#{info.amount}
+                        i.poupons_ticket_bgc
+                            img(src='#{baseUrl}/images/coupons/bg_hongbao_nums_c.png')
+                    span.ctbg.coupons_ticket_r
+                        img(src='#{baseUrl}/images/coupons/bg_hongbao_nums_r.png')
+                i.coupons_bg
+                    img(src='#{baseUrl}/images/coupons/bg_hongbao.png')
+            h3.coupons_tit
+                i.success
+                    img(src='#{baseUrl}/images/coupons/get_hb.png')   
+            p.coupons_get_info 
+                | 已成功领取#{info.name}优惠券
+            a.view_btn(href='/coupons/member?m_id='+merchantInfoId) 查看
+            //.coupons_tips!=info.content
+
+

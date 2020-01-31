@@ -1,0 +1,22 @@
+extends ../layout
+
+block stylesheets
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/yearCard.css?#{vCode}")
+block javascripts
+    script(type="text/javascript", src="#{baseUrl}/javascripts/yearCard.js?#{vCode}")
+block content
+  form#form
+    ul.order-list.myorder-list
+      li(style="margin-left:0; padding-left:0.75rem;")
+          label.lab-title(for="") 退款说明
+          .order-item
+            input(type="hidden" value=orderNo)#orderNo
+            input(type="hidden" value=m_id)#merchantInfoId
+            input(type="hidden" value=payOrderNo)#payOrderNo
+            textarea.order-txtarea#reason(placeholder='请输入退款说明', name='reason' maxlength="50")
+    .btn-handle
+      a.btn#submitForm(href='javascript:;') 提交申请
+    .mask#mask
+    .tips
+      p
+      a(href="javascript:;").queding 确定

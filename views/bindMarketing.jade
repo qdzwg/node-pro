@@ -1,0 +1,58 @@
+extends layout
+block stylesheets
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/binding.css?#{vCode}")
+block javascripts
+    script(type='text/javascript', src='#{baseUrl}/javascripts/validate/jquery.validate.min.js')
+    script(type='text/javascript', src='#{baseUrl}/javascripts/validate/messages_zh.min.js')
+    script(type='text/javascript', src='#{baseUrl}/javascripts/validate/additional-methods.js')
+block content
+    .bmark-head
+        img(src='#{baseUrl}/images/login/marketing_head.png', alt='')
+    form#bmark_form.bmark-from
+        .bform-item
+            label.item-lab 用户名
+            input(type='text', placeholder='请输入用户名', name='name')#bind_name
+        .bform-item
+            label.item-lab 密码
+            input(type='password', placeholder='请输入密码', name='pwd')#bind_pwd
+    .bmark-btn-box
+        button#bind_btn 绑定
+
+
+
+    script.
+
+        var bmarkValidate = $('#bmark_form').validate({
+            rules: {
+                name: {
+                    required: true
+                },
+                pwd: {
+                    required: true,
+                    rangelength: [6, 20]
+                }
+            }
+        });
+
+        var $bindbtn= $('#bind_btn'), cture= true;
+        $(function () {
+            // $bindbtn.unbind('click').bind('click',posBind);
+            $bindbtn.click(posBind);
+        });
+        function posBind() {
+            if (bmarkValidate.form() && cture) {
+                cture=false;
+                $.post('/bindUserAuth', {accName: $('#bind_name').val(), accPwd: $('#bind_pwd').val()}, function (data, status, xhr) {
+                    if (status === 'success' && data[0].status === 200) {
+                        alert('绑定成功');
+                        //成功
+                        window.location.href = '/member/salesPromotion?m_id=' + merchantInfoId
+                    } else {
+                        //失败，错误
+                        Msg.open(data[0].message || '出错了');
+                    }
+                    cture= true;
+                })
+            }
+        }
+

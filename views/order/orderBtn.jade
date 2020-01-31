@@ -1,0 +1,25 @@
+mixin orderBtn(data,module,page)
+  .order-footer
+    .order-total.float-layer
+      if page==='detail'
+        if data.isAble==0
+          a.formBtn.fr.btn-order.background-gray(javascript="javascript:;") 立即预订
+        else
+          if module === 'combo' || module === 'shop'
+            a.formBtn.fr.btn-order.background-base(href='/order/'+module+'/'+data.id+'?rateCode='+data.rateCode) 立即预订
+          else
+            a.formBtn.fr.btn-order.background-base(href='/order/'+module+'/'+data.id) 立即预订
+      else
+        a.formBtn.fr.btn-order.background-base(href='javascript:;',data-flag=false) 去支付
+        //- span.formBtn.fr.btn-order.background-cat(href='javascript:;') 加入购物车
+        p.total-price(style='#{merchantInfoId === specialPark ? "display:none" : ""}')
+          | 总计:
+          span.price
+            em ￥
+            if module === 'theater'
+              strong#totalprice(data-c=cacheInfo) #{seatsData.price || 0.00}
+            else
+              strong#totalprice(data-c=cacheInfo) #{cacheInfo.totalPrice || 0.00}
+            em.c-999.couponHandlePrice
+            em#payPrice.c-price.payPrice
+           

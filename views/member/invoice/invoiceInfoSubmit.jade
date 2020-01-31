@@ -1,0 +1,125 @@
+extends ../../layout
+block stylesheets
+    link(href="#{baseUrl}/stylesheets/order.css?#{vCode}", rel="stylesheet")
+    style.
+        .order-text {color:#413838}
+block javascripts
+    script(src='#{baseUrl}/javascripts/validate/jquery.validate.min.js', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/validate/messages_zh.min.js', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/validate/additional-methods.js?#{vCode}', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/invoice.js', type='text/javascript')    
+block content   
+    .goodsOrderList 
+        .page-line
+        ul.order-list.myorder-list
+            li
+                label.lab-title(for='') 发票类型
+                .order-item
+                    span.order-text
+                        | 普通发票（电子）
+            li
+                label.lab-title(for='') 抬头类型
+                .order-item.order-item__invoiceType#invoiceType
+                    span.order-radio
+                        //- input(type="radio",name='buyBankNo')
+                        i.xx-icon.icon-yuanxingxuanzhongfill(data-index=0)
+                        em 公司  
+                    span.order-radio   
+                        //- input(name='buyBankNo',type="radio")   
+                        i.xx-icon.icon-yuanxingweixuanzhong(data-index=1)   
+                        em 个人/其他   
+        ul.order-list.myorder-list#persionInfo(style='display:none') 
+            form(action="")#persionform                         
+                li
+                    label.lab-title(for='') 发票抬头
+                    .order-item
+                        input.order-text(name='buyDutyName', type='text', value='', placeholder='请填写姓名')
+                        i.xx-icon.fr.icon-iconfont-xie                               
+                li
+                    label.lab-title(for='') 手机号码
+                    .order-item
+                        input.order-text(name='receiveMobile', type='tel', value='', placeholder='请输入手机号')
+                        i.xx-icon.fr.icon-iconfont-xie                                    
+                li
+                    label.lab-title(for='') 邮箱地址
+                    .order-item
+                        input.order-text(name='receiveEmail', type='email', value='', placeholder='请输入邮箱')
+                        i.xx-icon.fr.icon-iconfont-xie 
+        ul.order-list.myorder-list#componyInfo
+            form(action="")#componyform
+                li
+                    label.lab-title(for='') 发票抬头
+                    .order-item
+                        input.order-text(name='buyDutyName', type='text', value='', placeholder='请输入企业名称或单位名称')
+                        i.xx-icon.fr.icon-iconfont-xie  
+                li
+                    label.lab-title(for='') 企业税号
+                    .order-item
+                        input.order-text(name='buyDutyNo', type='text', value='', placeholder='请输入企业税号')
+                        i.xx-icon.fr.icon-iconfont-xie  
+                li
+                    label.lab-title(for='') 手机号码
+                    .order-item
+                        input.order-text(name='receiveMobile', type='tel', value='', placeholder='请输入手机号码')
+                        i.xx-icon.fr.icon-iconfont-xie                                            
+                li
+                    label.lab-title(for='') 邮箱地址
+                    .order-item
+                        input.order-text(name='receiveEmail', type='text', value='', placeholder='请输入邮箱')
+                        i.xx-icon.fr.icon-iconfont-xie 
+                li
+                    label.lab-title(for='') 单位地址
+                    .order-item
+                        input.order-text(name='buyAddress', type='text', value='', placeholder='单位地址信息')
+                        i.xx-icon.fr.icon-iconfont-xie 
+                li
+                    label.lab-title(for='') 电话号码
+                    .order-item
+                        input.order-text(name='buyTel', type='tel', value='', placeholder='单位电话号码')
+                        i.xx-icon.fr.icon-iconfont-xie   
+                //li
+                    label.lab-title(for='') 开户银行
+                    .order-item
+                        input.order-text(name='buyBankNo', type='text', value='', placeholder='开户银行名称')
+                        i.xx-icon.fr.icon-iconfont-xie                                                                          
+                li
+                    label.lab-title(for='') 银行账号
+                    .order-item
+                        input.order-text(name='buyBankNo', type='number', value='', placeholder='银行账户号码')
+                        i.xx-icon.fr.icon-iconfont-xie  
+        if typeof invoiceRate.status !== 'undefined' && invoiceRate.status === 200
+            .page-line                                                         
+            .order-list.myorder-list.inovice-other
+                .inovice-other-li.inovice-other-title
+                    .inovice-other-item
+                        | 消费内容/规格型号
+                    .inovice-other-item
+                        | 金额（元）
+                    .inovice-other-item
+                        | 税率
+                if invoiceRate.data instanceof Array && invoiceRate.data.length > 0
+                    each item in invoiceRate.data
+                        .inovice-other-li.inovice-other-detail
+                            .inovice-other-item 
+                                p.inovice-other-item__name
+                                    =item.orderInfo
+                            .inovice-other-item
+                                =item.paySum
+                            .inovice-other-item
+                                =item.rate
+    .invoice-other-text#invoiceOtherText
+        | 根据税务总局要求，除企业之外的所有个人消费者、个体工商户
+        | 以及行政机关、事业单位、社会团体等非企业性单位均无需提供
+        | 纳税人识别号。
+    .order-footer
+        .order-total.float-layer    
+            a.formBtn.fr.btn-order.background-base#formBtn(href='javascript:;',data-code=payOrderNo) 提交申请
+    .mask#mask     
+
+
+
+
+
+
+
+

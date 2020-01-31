@@ -1,0 +1,29 @@
+extends layout
+block stylesheets
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/login.css?#{vCode}")
+block javascripts
+    script(type='text/javascript', src='#{baseUrl}/javascripts/validate/jquery.validate.min.js')
+    script(type='text/javascript', src='#{baseUrl}/javascripts/validate/messages_zh.min.js')
+    script(type='text/javascript', src='#{baseUrl}/javascripts/validate/additional-methods.js')
+    script(type='text/javascript', src='#{baseUrl}/javascripts/login.js?#{vCode}')
+block content
+    .login-main.register-main
+        form#submitForm
+          .login-list
+            .input-box.text
+                input(type='tel',name='loginName' placeholder='请输入手机号码')
+            .quick-login#showImgCode
+              .input-box.code.clearfix
+                .code-img.fr#reloadImageCode(data-type='pwd',data-base=axiosUrl) 
+                  img(src="", alt="")
+                input.input-code(type='text', name='imgCode', placeholder='图片验证码',value=checkCode)     
+            .quick-login
+              .input-box.code.clearfix
+                input.fr#getCodeBtn(type='button', value='获取验证码',data-type='pwd')
+                input.input-code(type='tel', name='checkCode', placeholder='请输入验证码',value=checkCode)
+            .input-box.input-button
+              input#checkCode(type='button', value='提交')
+    .mask#mask
+        .tips
+            p
+            a(href="javascript:;").queding 确定

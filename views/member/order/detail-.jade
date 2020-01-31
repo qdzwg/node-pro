@@ -1,0 +1,140 @@
+extends ../../layout
+block stylesheets
+    link(href="#{baseUrl}/stylesheets/order.css?#{vCode}", rel="stylesheet")
+block content
+    -var datas = data[0].data
+    include ../../common/index
+    include ../../common/quickLink
+    +flowBtn(userInfo,marketDisAccount,showWholeMarket) 
+    header.myorder-header
+        p.myorder-explian
+            span 订单号：#{datas.orderNo}
+            span 下单日期：#{datas.createTime}
+        h3.myorder-title=datas.orderInfo
+        p.myorder-pay
+            | 订单总金额：
+            span.price
+                em ￥
+                    | #{datas.paySum}
+            em.pay-mold.payed.fr
+                +payStatus(datas.orderStatus)
+    .page-line
+    ul.order-list.myorder-list
+        if datas.orderType === "eatery" && datas.orderStatus != "4" && datas.orderStatus != "5"
+            li
+                label.lab-title(for='') 有效期
+                .order-item
+                    span=datas.repastCheckDate?datas.repastCheckDate:""
+        if datas.orderType !== 'mdse'
+            li
+                - var _startTime = datas.startTime ? datas.startTime.substring(0,10) : '',_endTime = datas.endTime ? datas.endTime.substring(0,10) : ''
+                if datas.orderType === 'hotel'
+                    label.lab-title(for='') 入住日期
+                    .order-item
+                        span=_startTime + "至" + _endTime
+                else
+                    label.lab-title(for='')=datas.orderType==="eatery"?"使用星期":"使用日期"
+                    .order-item
+                        span=datas.orderType==='eatery' ? datas.repastUseDate : _startTime
+        li
+            label.lab-title(for='') 下单日期
+            .order-item
+                span=datas.createTime
+        li
+            label.lab-title(for='') 购买份数
+            .order-item
+                span #{datas.amount}份   
+        li
+            label.lab-title(for='') 已消费
+            .order-item
+                span #{datas.orderDetail[0].checkAmount}份               
+        li
+            label.lab-title(for='') 已退款
+            .order-item
+                span #{datas.orderDetail[0].refundAmount}份 
+                if datas.orderDetail[0].refundAmount > 0
+                    span.order-item-reminder (实际到账存在一定时差) 
+
+    if datas.orderType === 'ticket'&& datas.linkManDTOList
+        each item in datas.linkManDTOList
+            .page-line
+            ul.order-list.myorder-list
+                if item.telephone
+                    li
+                        label.lab-title(for='') 联系人
+                        .order-item=item.linkMan
+                    li
+                        label.lab-title(for='') 手机号
+                        .order-item=item.telephone
+                else
+                    li
+                        label.lab-title(for='') 姓&ensp;&ensp;名
+                        .order-item=item.linkMan
+                li
+                    label.lab-title(for='') 身份证
+                    .order-item=item.idNo
+
+    else
+        .page-line
+        ul.order-list.myorder-list
+            li
+                label.lab-title(for='') 联系人
+                .order-item=datas.linkName
+            li
+                label.lab-title(for='') 手机号
+                .order-item=datas.linkMobile
+            if datas.linkIdcard
+                li
+                    label.lab-title(for='') 身份证
+                    .order-item=datas.linkIdcard
+    .btn-handle
+        if datas.orderStatus === "3" || (datas.orderStatus === "6" || datas.orderStatus === "4") && datas.orderType === 'park'
+            a.btn(href='/member/myTicket?id='+datas.id+'&m_id='+merchantInfoId) 查看二维码
+        if (datas.orderStatus === "3" || datas.orderStatus === "8" || datas.orderStatus === "9")&&datas.ableToRefund
+            if datas.orderType === 'route'
+                a.btn-RP(href='/member/refund/' + datas.orderType + '?refParams='+urlParams+'&orderId='+datas.id+'&m_id='+merchantInfoId) 申请退款
+            else       
+                a.btn-RP(href='/member/refund/' + datas.orderType + '?orderDetailId=' + datas.orderDetail[0].id+'&orderId='+datas.id+'&maxNum='+datas.orderDetail[0].leftAmount+'&m_id='+merchantInfoId) 申请退款
+        if datas.orderStatus === "4"&&datas.isCheckOver=="T"&&data[1].data.userIfEvaluate=="T"
+            a.btn(href='/member/comment/'+ datas.orderType + '?orderId=' + datas.id+'&modelCode='+datas.orderDetail[0].modelCode+'&m_id='+merchantInfoId) 发表评价
+        if datas.orderStatus === "0"
+            - var _t=datas.orderType
+            a.btn(href='/pay/' + _t + '/' + datas.orderNo) 去支付
+            a.btn#cancel(data-id=datas.orderNo,href='javascript:;') 取消订单
+    .mask#mask
+    .tips
+        p   
+        a(href="javascript:;").queding 确定
+    script.
+        $(function () {
+            $("#cancel").click(function (e) {
+                e.preventDefault();
+                var that = $(this);
+                var orderNo = $(this).data('id');
+                var confirmDel = confirm('确认要取消订单吗');
+                if (confirmDel) {
+                    $.post('/member/cancle/' + orderNo)
+                            .success(function (data) {
+                                console.log(data);
+                                $('.mask,.tips').show();
+                                $('.tips p').text(data[0].message);
+
+                                //that.text('删除订单');
+                                //$('.pay-mold').text('已取消')
+
+                                $('.tips a').on('click', function () {
+                                    $('.mask,.tips').hide();
+                                    window.location.reload();
+                                });
+
+                            })
+                            .error(function (err) {
+                                window.location.href = '/error';
+                            });
+                }
+            });
+            var checkNo = $(this).data('checkno')
+            if (checkNo) {
+                $(this).qrcode(checkNo)
+            }            
+        });

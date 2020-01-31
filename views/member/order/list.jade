@@ -1,0 +1,55 @@
+extends ../../layout
+
+block stylesheets
+  link(rel="stylesheet", href="#{baseUrl}/stylesheets/list.css?#{vCode}")
+block javascripts
+  script(type='text/javascript', src='#{baseUrl}/javascripts/lib/dropload.min.js')
+  script(type='text/javascript', src='#{baseUrl}/javascripts/member/order.js?#{vCode}')
+  script(type='text/javascript', src='#{baseUrl}/javascripts/list.js?#{vCode}')
+block content
+  include ../../list/common
+  
+  .member-search-box#search-h
+    +filter('member',orderStatus,merchantInfoId)
+  .page-line.page-line2
+  .myorder-item
+    .myorder-header
+      span.order-info
+        i.xx-icon.icon-iconfont-jiudian
+        em 酒店
+        | |
+        em.payed 已支付
+      span  下单日期：2015-5-25
+      span.price.fr
+        em ￥
+        | 1350.4
+    a(href='/member/order/12')
+      h3.myorder-item-title 梵净山酒店
+      p 2015-05-25 至 2015-05-26
+      p
+        i.xx-icon.fr.icon-iconfont-jiantou
+        | 1晚/1间
+  .page-line
+  ul#all.tab-search-panel
+    li
+      a.c-base(href='#') 全部订单
+    li
+      a(href='#') 已支付
+    li
+      a(href='#') 待支付
+    li
+      a(href='#') 已完成
+  ul#default.tab-search-panel
+    li
+      a.c-base(href='#') 全部类型
+    li
+      a(href='#') 门票订单
+    li
+      a(href='#') 酒店订单
+    li
+      a(href='#') 自由行订单
+    li
+      a(href='#') 商品订单
+    li
+      a(href='#') 美食订单
+  #mask.mask

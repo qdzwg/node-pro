@@ -1,0 +1,53 @@
+
+li
+    .pro-info
+        .pro-img 
+            - var imgurl = list[len].linkMobileImg + '?imageMogr2/thumbnail/640x/strip/quality/100' || 'http://statics.lotsmall.cn/wappublic/images/demo/room-list.jpg';
+            img(src=imgurl, alt='')
+        .hotel-info
+            h4.pro-info-title #{list[len].nickName || list[len].modelName}
+            .pro-info-explian
+                a.show-cost-detail.c-price(href='javascript:;') 房费明细>
+                .cost-dialog.dialog
+                    h3.cost-dialog-title 房费明细
+                    a.close-take.xx-icon.icon-iconfont-pxchaxian(href='javascript:;')
+                    ul.cost-dialog-list
+                        li
+                            | 2018-08-03
+                            span.fr.price
+                                em ￥
+                                strong 2
+                    p.cost-dialog-explian
+                        | 单人房费小计：
+                        span.price
+                            em ￥
+                            strong.unit-price 2.00
+                            em.c-price.payPrice
+            p.pro-info-explian
+                a.showDetail(href='javascript:;') 房型介绍>
+    .pro-price
+        span.price
+            em ￥
+            strong 2.00
+        .numSpinnerBox
+            a.sub(href='javascript:void(0);')
+                i.xx-icon.icon-jianhao
+            input.numbernum(type='text', value='0', data-min='0', data-max='999', data-hotelid='601')
+            a.add(href='javascript:void(0);')
+                i.xx-icon.icon-jiahao1
+    .ticket-layer
+        a.close-ticket.xx-icon.icon-iconfont-pxchaxian(href='javascript:;')
+        h3.notice-tit 测试
+        .article-info.bgf
+            .article-main
+                ul.order-list.myorder-list
+                    li
+                        label.lab-title(for='') 床型
+                        .order-item 双床
+                    li
+                        label.lab-title(for='') 建筑面积
+                        .order-item
+                            span 50㎡
+                    li
+                        label.lab-title(for='') 房型描述
+                        .order-item 房型说明

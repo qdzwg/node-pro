@@ -1,0 +1,179 @@
+mixin formatDate(date)
+  -var year=date.getFullYear()
+  -var month=date.getMonth()+1
+  -var day=date.getDate()
+  =year+'-'+(month<10?'0'+month:month)+'-'+(day<10?'0'+day:day)
+
+mixin getModule(m)
+  -var _m='景区'
+  -var _c='icon-iconfont-menpiao'
+  case m
+    when 'hotel'
+      -_m='酒店'
+      -_c='icon-iconfont-jiudian'
+    when 'amuse'
+      -_m='娱乐'
+      -_c='icon-iconfont-amuse'
+    when 'combo'
+      -_m='自由行'
+      -_c='icon-iconfont-ziyouxing'
+    when 'goods'
+      -_m='商品'
+      -_c='icon-iconfont-shouji3'
+    when 'repast'
+      -_m='餐饮'
+      -_c='icon-iconfont-canting'
+    when 'route'
+      -_m='交通'
+      -_c='icon-iconfont-gongjiao'
+  i(class='xx-icon mold-type '+_c)
+  =_m
+
+mixin payStatus(m,model)
+  -var _m='其他',s = typeof m === 'string' ? parseInt(m) : s
+  case s
+    when 0
+      -_m='待支付'
+    when 1
+      -_m='待发货'
+    when 2
+      -_m='待收货'
+    when 3
+      -_m= model === 'mdse'?'待发货':'待消费'
+    when 4
+      -_m='已完成'
+    when 5
+      -_m='已关闭'
+    when 6
+      -_m='退款中'
+    when 7
+      -_m='已退款'
+    when 8
+      -_m='订单异常'
+    when 9
+      -_m='订单待确认'
+    when 10
+      -_m='部分入住'
+    when 11
+      -_m='部分退房'  
+    when 12
+      -_m='已取消'  
+    when 13
+      -_m='Noshow'  
+    when 14
+      -_m='预订成功'  
+    when 15
+      -_m='已拒绝'  
+    when 16
+      -_m='全部入住'  
+    when 17
+      -_m='待接单'  
+    when 18
+      -_m='已接单'  
+    when 19
+      -_m='已拒接'  
+    when 20
+      -_m='退款中'  
+    when 22
+      -_m='交易成功'  
+    when 23
+      -_m='交易失败'  
+    when 24
+      -_m='服务中'  
+  =_m
+
+//- 售后状态
+mixin auditStatus(m)
+  -var _m='其他',s = typeof m === 'string' ? parseInt(m) : s
+  case s
+    when 0
+      -_m='等待审核'
+    when 1
+      -_m='审核成功'
+    when 2
+      -_m='审核驳回'
+    when 3
+      -_m='等待供应商审核'
+  =_m
+
+
+//- sku去掉特殊字符
+mixin replaceStr(str)
+  =str.replace(/{/g,"[").replace(/}/g,"]").replace(/'/g,"").replace(/"/g,"")
+
+//- 年卡交易状态判断
+mixin ycpayStatus(paystr)
+  -var _m=''
+  case paystr
+    when 'order_rechargeing'
+      -_m = '充值中'
+    when 'order_close'
+      -_m = '订单已关闭'
+    when 'recharge_success'
+      -_m = '充值成功'
+    when 'order_init'
+      -_m = '待支付'
+    when 'recharge_failure'
+      -_m = '充值失败'
+    when 'order_refund'
+      -_m = '订单已退款'
+  =_m
+
+mixin yctradeType(paystr)
+  -var _m=''
+  case paystr
+    when 'recharge'
+      -_m = '充值'
+  =_m
+
+mixin yctradefs(paystr)
+  -var _m=''
+  case paystr
+    when '22'
+      -_m = '支付宝支付'
+    when '34'
+      -_m = '微信支付'
+    when '36'
+      -_m = '支付宝支付'
+  =_m
+
+//-非全员用户，弹出框注册
+mixin marketingRegLayer()
+    .marketing-mask
+    .marketing-com
+        i.xx-icon.icon-guanbi1.mkt-close
+        h4.mkt-title 推广员招募令
+        .mkt-main
+            .mkt-tips 邀请好友购买产品并核销完成后，即可赚取对应推广佣金！多推多赚，上不封顶！
+            a.mkt-item.m-item-new(href='javascript:;')#becomePromoter
+                i.m-ico-txt NEW
+                i.xx-icon.icon-xiangyoujiantou
+                h6 一键成为推广员
+                p 自动生成推广账号，降低门槛
+            a.mkt-item.m-item-bind(href='/marketing?m_id='+merchantInfoId)
+                i.m-ico-txt VIP
+                i.xx-icon.icon-xiangyoujiantou
+                h6 绑定全员营销账号
+                p 绑定已有账号，同步推广数据
+
+mixin marketInfoLayer()
+    .markinfo-mask
+    .markinfo-con
+        i.xx-icon.icon-guanbi1.mkf-close
+        h4.mkf-title 奖励说明
+        .mkf-price
+            p 推广奖励:
+                span#mkf_p1 - 元
+            p 邀请奖励:
+                span#mkf_p2 - 元
+        ul.mkf-main
+            li
+                h4 推广奖励
+                p 游客通过你分享的海报或链接地址访问指定产品详情页进行购买，核销完成后，你可以获得奖励
+            li
+                h4 邀请奖励
+                p 邀请好友成为推广员后，当他推广指定产品成功时，他可以获得推广奖励，你可以获得邀请奖励
+            li
+                h4 奖励提现
+                p 奖励的佣金在游客核销后到账，具体金额以最后结算为准，次日可进行提现。
+

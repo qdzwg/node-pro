@@ -1,0 +1,65 @@
+extends ../../layout
+block stylesheets
+    link(href="#{baseUrl}/stylesheets/cropper.css?#{vCode}", rel="stylesheet")
+    link(href="#{baseUrl}/stylesheets/order.css?#{vCode}", rel="stylesheet")
+    link(href="#{baseUrl}/stylesheets/newOrder.css?#{vCode}", rel="stylesheet")
+    link(href="#{baseUrl}/stylesheets/face.css?#{vCode}", rel="stylesheet")
+block javascripts
+    if isAli === 'T' 
+        script(src='//gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.min.js', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/validate/jquery.validate.min.js', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/validate/messages_zh.min.js', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/validate/additional-methods.js?#{vCode}', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/lib/exif.js?#{vCode}', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/lib/jquery.crop.js?#{vCode}', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/newOrder.js?#{vCode}', type='text/javascript')   
+    script(src='#{baseUrl}/javascripts/member/links.js?#{vCode}', type='text/javascript') 
+    script.
+        var isWx = '#{isWx}';
+        var isAli = '#{isAli}';
+block content
+    include ../../common/replaceNum
+    - var member = {};
+    if linksUserInfo && linksUserInfo.data 
+        - member = linksUserInfo.data;
+    .page-line
+    .order-warp  
+        form#userInfoform 
+            input(name='id',type="text",hidden,value=id) 
+            ul.order-list.myorder-list.order-input-list
+                li
+                    label.lab-title.order-input-list-title(for='') 联系人信息        
+                li
+                    label.lab-title(for='') 姓名
+                    .order-item
+                        input.order-text(name='name', type='text', value=(member.name || ''), placeholder='请填写姓名')
+                        i.xx-icon.fr.icon-iconfont-xie
+                li
+                    label.lab-title(for='') 手机号
+                    .order-item 
+                        input(name="phone", type="tel", placeholder="请填写手机号", value=member.phone || '').order-text
+                        i.xx-icon.fr.icon-iconfont-xie
+                li
+                    label.lab-title(for='') 身份证号
+                    .order-item    
+                        input(name="certNo", type="text", placeholder="请填写身份证号", value=member.certNo || '').order-text
+                        i.xx-icon.fr.icon-iconfont-xie
+                li
+                    label.lab-title(for='') 人脸照
+                    .order-item.order-face#view
+                        if member.faceUrl
+                            img(src=member.faceUrl, alt="")
+                        else    
+                            .order-face-icon
+                                i.xx-icon.icon-camera
+                            span 人脸图片用于入园对比                              
+                    input#imagePath(name='faceUrl',type="text",hidden,value=member.faceUrl || '')
+    #userAuth
+    .del X
+    #clipArea
+    #videoArea
+    .footer
+        .footer-btn
+            a(data-orderid=orderId, data-url=url, href="javascript:void(0)", title="title").footer-btn__link#submitUserInfoForm  
+                | 确认添加 
+

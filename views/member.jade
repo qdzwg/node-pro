@@ -1,0 +1,201 @@
+extends layout
+
+block stylesheets
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/member.css?#{vCode}")
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/newtheme.css?#{vCode}")
+block javascripts
+block content
+    include common/index
+    include common/footer
+    include ./allcomponents/controller
+    
+    .memberpage-box(style="background-color:"+(customMemberData?customMemberData.pageSetData.color:'#fff'))
+        - var bg = baseUrl+'/images/member/header.jpg';
+        if customMemberData&&customMemberData.contentData && customMemberData.contentData.imgUrl!=""
+            - bg = customMemberData.contentData.imgUrl;
+        else if data[1].data && data[1].data.personCenterBg && data[1].data.personCenterBg[0].picAddr!=''
+            -bg = data[1].data.personCenterBg[0].picAddr
+        header.member-header
+            img.member-header-pg(src=bg,style="width:100%")
+            .member-header-content
+                if data[0].data instanceof Object
+                    h3.user-name.c-333.user-name-edit(style="text-align:"+(customMemberData?customMemberData.contentData.position:'center'))=(data[0].data.realName || data[0].data.nickName || '手机用户')
+                //- p.header-explian.c-666(style="text-align:"+(customMemberData?customMemberData.contentData.position:'center')) welcome
+                a.user-logo(href='javascript:;' style="text-align:"+(customMemberData?customMemberData.contentData.position:'center'))
+                    if data[0].data && data[0].data.headImg
+                        img(src=data[0].data.headImg)
+                    else
+                        img(src='#{baseUrl}/images/member/defaultFace.jpg')
+        if typeof data[0].data !== 'undefined' && data[0].data.leaguserServiceAvailable           
+            ul.member-info  
+                li.member-info-item 
+                    a(href="/vue/personal/balance?m_id="+merchantInfoId)   
+                        .title
+                            | 余额
+                        .value=(+data[0].data.balance).toFixed(2)
+                li.member-info-item 
+                    - let pubsHomeUrl = data.length > 8 && typeof data[9] === 'object' && data[9].status === 200 ? `${pubsUrl}/wap/#/member/integral?corpCode=${data[9].data.corpCode}&token=${data[9].data.token}&sendinfoId=${data[9].data.sendinfoId}`:"javascript:;"
+                    a(href=pubsHomeUrl)  
+                        .title
+                            | 积分
+                        .value=(+data[0].data.bonus).toFixed(2)
+                li.member-info-item 
+                    - let pubsMemberUrl = data.length > 8 && typeof data[9] === 'object' && data[9].status === 200 ? `${pubsUrl}/wap/#/member?corpCode=${data[9].data.corpCode}&token=${data[9].data.token}&sendinfoId=${data[9].data.sendinfoId}`:"javascript:;"
+                    a(href=pubsMemberUrl)   
+                        .title
+                            | 会员等级
+                        .value=data[0].data.leaguerLevelName
+        .member-line
+        ul.tab.clearfix.member-tab
+            li
+                a(href='/list/order?orderStatus=0&m_id='+merchantInfoId)
+                    i.xx-icon.icon-iconfont-daizhifu.dingdan-unpay
+                    | 待支付
+            li
+                a(href='/list/order?orderStatus=3,14&m_id='+merchantInfoId)
+                    i.xx-icon.icon-iconfont-yizhifu1.dingdan-pay
+                    | 待消费
+            li
+                a(href='/list/order?orderStatus=4,22&m_id='+merchantInfoId)
+                    i.xx-icon.icon-wancheng.dingdan-complent
+                    | 已完成
+            li
+                a(href='/list/order?orderStatus=6&m_id='+merchantInfoId)
+                    i.xx-icon.icon-iconfont-tuikuan.dingdan-refund
+                    | 退款
+        ul.order-list.member-list
+            li
+                a(href='/list/order?m_id='+merchantInfoId)
+                    label.lab-title
+                        i.xx-icon.icon-iconfont-dingdan
+                        | 全部订单
+                    i.xx-icon.fr.icon-iconfont-jiantou
+            li
+                a(href='/group/orderList?m_id='+merchantInfoId)
+                    label.lab-title
+                        i.xx-icon.icon-iconfont-dingdan
+                        | 我的拼团
+                    i.xx-icon.fr.icon-iconfont-jiantou
+        //.member-line
+        //ul.order-list.member-list
+            li
+                label.lab-title(for='')
+                    i.xx-icon.icon-iconfont-zhanghu
+                    | 姓名
+                | #{data.realname}
+            li
+                label.lab-title(for='')
+                    i.xx-icon.icon-iconfont-shouji
+                    | 手机
+                | #{data.mobile}
+            li
+                label.lab-title(for='')
+                    i.xx-icon.icon-iconfont-shenfenyanzheng
+                    | 身份证
+                | #{data.idCard}
+        .member-line
+        ul.order-list.member-list
+            li
+                a(href='/member/user?m_id='+merchantInfoId)
+                    label.lab-title(for='')
+                        i.xx-icon.icon-iconfont-suo
+                        | 账户中心
+                    i.xx-icon.fr.icon-iconfont-jiantou 
+            li
+                a(href='/member/links/lists?m_id='+merchantInfoId)
+                    label.lab-title(for='')
+                        i.xx-icon.icon-iconfont-suo
+                        | 常用联系人
+                    i.xx-icon.fr.icon-iconfont-jiantou         
+        .member-line
+        ul.order-list.member-list
+            li
+                a(href='/coupons/member?m_id='+merchantInfoId)
+                    label.lab-title(for='')
+                        i.xx-icon.icon-iconfont-hongbao
+                        | 我的优惠券
+                    i.xx-icon.fr.icon-iconfont-jiantou
+            li
+                a(href='/coupons/list?m_id='+merchantInfoId)
+                    label.lab-title(for='')
+                        i.xx-icon.icon-iconfont-hongbao
+                        | 领取优惠券
+                    i.xx-icon.fr.icon-iconfont-jiantou
+        
+        if typeof data[4].data !== 'undefined' && data[4].status === 200 && data[4].data.flag === 1
+            .member-line
+            ul.order-list.member-list
+                li
+                    a(href='/invoice/list?m_id='+merchantInfoId)
+                        label.lab-title(for='')
+                            i.xx-icon.icon-iconfont-dingdan
+                            | 电子发票
+                        i.xx-icon.fr.icon-iconfont-jiantou            
+        if data instanceof Array && data.length > 8 && data[8].status === 200 
+            if data[8].message !== 'not_show'        
+                ul.order-list.member-list
+                    li  
+                        if  data[8].message === 'bind_promoter'
+                            a(href='/member/bindPromoter?m_id='+ merchantInfoId)
+                                label.lab-title(for='')
+                                    i.xx-icon.icon-pengyou
+                                    | 绑定推广员账户
+                                i.xx-icon.fr.icon-iconfont-jiantou  
+                        else 
+                            a#becomeSales(href='javascript:;',data-isqy=data[0].data.qyyxFlag)
+                                label.lab-title(for='')
+                                    i.xx-icon.icon-pengyou
+                                    if data[8].message === 'promote_product'
+                                        | 去推广
+                                    else if data[8].message === 'become_promoter'
+                                        | 成为推广员
+                                i.xx-icon.fr.icon-iconfont-jiantou
+
+
+        
+        if data[5].data && data[5].data.gynk == true
+            .member-line
+            ul.order-list.member-list
+                li
+                    a(href='/vue/yearcard?m_id='+merchantInfoId)
+                        label.lab-title(for='')
+                            i.xx-icon.icon-nianqia
+                            | 公园年卡
+                        i.xx-icon.fr.icon-iconfont-jiantou
+        
+        if data[0].data.regChannel === 'WAP' || data[0].data.regChannel === 'wap'
+            .member-line
+            ul.order-list.member-list
+                li
+                    a#loginOut(href='javascript:;')
+                        label.lab-title(for='')
+                            i.xx-icon.icon-iconfont-tuichu
+                            | 退出登录
+    .mask#mask
+    .tips
+      p
+      a(href="javascript:;").queding 确定
+    //- if footerDatas&& footerDatas.data
+    //-     +diyFooter(footerDatas)
+    //- else 
+    //-     +footer(templateCode)
+    if ifshowFoot&&footerData.list&&footerData.list.length>0
+        +newfooter(footerData, module)
+    +marketingRegLayer()
+    script.
+        $(function () {
+            $('#loginOut').click(function () {
+                var confirmDel = confirm('确认要退出登录');
+                if (confirmDel) {
+                    $.get('/loginOut?m_id='+merchantInfoId)
+                        .success(function () {
+                            alert('退出成功');
+                            localStorage.removeItem('xjsc_login_access_token_2019_3_7');
+                            window.location.href = '/login?m_id='+merchantInfoId
+                        })
+                        .error(function (err) {
+                            window.location.href = '/error?m_id='+merchantInfoId;
+                        });
+                }
+            })
+        })

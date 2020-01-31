@@ -1,0 +1,210 @@
+extends layout
+
+block stylesheets
+  link(href="#{baseUrl}/stylesheets/face.css?#{vCode}", rel="stylesheet")
+  link(href="#{baseUrl}/stylesheets/order.css?#{vCode}", rel="stylesheet")
+block javascripts
+  script.
+     var curPage = 'payResult',isWx = '#{isWx}',isAli = '#{isAli}';
+  if isAli === 'T' 
+    script(src='//gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.js', type='text/javascript') }  
+  script(src='//res.wx.qq.com/open/js/jweixin-1.4.0.js', type='text/javascript')
+  script(src='#{baseUrl}/javascripts/lib/exif.js?#{vCode}', type='text/javascript')
+  script(src='#{baseUrl}/javascripts/lib/jquery.crop.js?#{vCode}', type='text/javascript')
+  script(src='#{baseUrl}/javascripts/addFaceUrl.js?#{vCode}', type='text/javascript')
+  script(src='#{baseUrl}/javascripts/getCoupon.js?#{vCode}', type='text/javascript')
+  script(src='#{baseUrl}/javascripts/addWxCard.js?#{vCode}', type='text/javascript')
+block content
+  .page-line
+  - var orderInfo =  JSON.parse(data[0].data.orderInfoJson);
+  if data[0].data.payStatus!="1"
+    .pay-results.pay-results-new.fail
+      i.xx-icon.icon-jinxingzhong
+      p 订单支付处理中
+    .results-info(style='background-color:white') 
+  else
+    .pay-results.pay-results-new.success
+      i.xx-icon.icon-yuanxingxuanzhongfill
+      if merchantInfoId === specialPark
+        p 预约成功
+      else
+        p 订单支付成功
+    .results-info(style='background-color:white')
+      p #{data[0].data.orderDescription}
+      p
+        if data[0].data.message
+          |#{data[0].data.message}
+        else
+          if data[0].data.orderInfoJson
+            if orderInfo[0].orderType === 'mdse'
+              | 已成功提交
+            else
+              | 已成功提交，请查收您的
+              em.c-base 短信
+              | ！  
+  //- 按钮区域                    
+  .btn-bottom.pay-result-btn
+    if data[0].data.realNameFaceUrl === 'T' || data[0].data.needFaceUrl === 'T'
+      .btn-handle
+          em.btn-handle-message
+            | 提前录入人脸，到景区可刷脸入园；进行人脸录入，请确保本人操作
+      .btn-handle
+        span.btn.btn-wx#view(data-id=id,data-no=payOrderNo,data-realnameface=data[0].data.realNameFaceUrl,data-allface=data[0].data.allNeedFaceUrl)
+          | 开始录入人脸
+        input#imagePath(name='faceUrl',type="text",hidden)  
+    if isWeixn && data instanceof Array && data.length > 4 &&  data[4].message
+      .btn-handle
+        span(data-checkData=data[4].message).btn.btn-wx#addWxCardPack
+          | 添加到微信卡包   
+    if data[0].data.payStatus!="1"
+      - var _t=data[0].data.orderInfoJson[0].orderType
+      //- .btn-handle
+        //- a.btn(href='/pay/' + _t + '/' + data[0].data.payOrderNo)
+        //-   | 重新支付
+      .btn-handle
+        a.btn-RP(href='/list/order?orderStatus=0&m_id='+merchantInfoId)
+          | 查看订单   
+    else if data[0].data.marketingType == 2
+      .btn-handle
+        a.btn(href='/group/orderList?m_id=' + merchantInfoId)
+          | 查看我的拼团
+    else
+      .btn-handle
+        if orderInfo[0].orderType === 'park' && (typeof data[0].data.isShowCheckNo === 'undefined' || data[0].data.isShowCheckNo === 'T')
+          a.btn.goqr(href='/member/myTicket?id='+id+'&from=pay&m_id='+merchantInfoId)
+            | 查看二维码
+        else 
+          a.btn(href='/list/order?m_id='+merchantInfoId)
+            | 查看订单
+    if backDetailUrl    
+      .btn-handle
+        //a.btn-RP(href='/list/'+rePage) 继续购买
+        a.btn-RP(href=backDetailUrl) 继续购买 
+  //- 领取优惠券      
+  if data instanceof Array && data[1].data instanceof Array && data[1].data.length > 0
+        .pay-title  
+          .pay-title__line.left-line   
+          .pay-title__conetent
+            i.xx-icon.icon-youhuiquan1
+            em 本次消费获得 
+          .pay-title__line.right-line   
+        .coupons_list
+          ul
+            each item in data[1].data
+              li.coupons-item
+                .coupons-item-head
+                  .price
+                    span="￥"
+                    strong=item.amount
+                  .coupons-item-info=item.name
+                  .coupons-item-btn
+                    a(data-code=item.code,data-get="mjs",data-no=payOrderNo,href='javascript:;')#getCouponBtn='立即领取'
+                .coupons-item-bottom
+                  p
+                    if item.validStartDate
+                      ="有效日期：" +item.validStartDate+"至"+item.validEndDate
+                    else
+                      ="领取后"+item.relativeDay+"天有效"
+                  if item.useExplain
+                    p="使用说明：" + item.useExplain 
+  if typeof data[2].data !== 'undefined' 
+    .pay-title  
+      .pay-title__line.left-line   
+      .pay-title__conetent
+        i.xx-icon.icon-aixin
+        em 你可能还喜欢        
+      .pay-title__line.right-line             
+    .pay-ad
+      a(href=data[2].data.picLink || 'javascript:;')
+        img(src=data[2].data.picAddr + '?imageMogr2/thumbnail/640x/strip/quality/100')
+  //- 精准推荐信息        
+  if typeof data[3].data !== 'undefined' && data[3].data instanceof Array && data[3].data.length > 0 
+    .pay-title  
+      .pay-title__line.left-line   
+      .pay-title__conetent
+        i.xx-icon.icon-aixin
+        em 你可能还喜欢        
+      .pay-title__line.right-line     
+    .pay-recommend  
+      ul.pay-recommend-lists
+        each item in data[3].data
+          - let moduleName = '',_module;
+          case item.productType
+            when 'park'
+              - moduleName = '【景区】',_module = 'ticket'; 
+            when 'hotel' 
+              - moduleName = '【酒店】',_module = 'hotel';  
+            when 'mdse' 
+              - moduleName = '【商品】',_module = 'shop'; 
+          li.pay-recommend-item.clearfix
+            a(href="/detail/"+_module+"/"+item.merchantProductId+"/"+item.productCode+"?m_id="+merchantInfoId+"&payOrderNo="+payOrderNo+"&recommendFlag=T", title="title")
+              .pay-recommend-item__image  
+                img(src=item.linkMobileImg+'?imageMogr2/thumbnail/640x/strip/quality/100', alt="") 
+              .pay-recommend-content
+                .pay-recommend-content__title 
+                  em=moduleName
+                  em=item.nickName
+                .pay-recommend-content__other
+                  .pay-recommend-content__number #{item.virtualSale}人购买
+                  .pay-recommend-content__price 
+                    em ￥
+                    strong #{item.priceShow} 
+                    | 起
+  
+  #mask.mask
+  if data instanceof Array && data.length > 5 && data[5].data instanceof Array
+    - var realNameInfo = data[5].data
+    .user-editer.realname-add-face#realNameAddFace
+      ul.user-info-lists#userInfolists
+          if data[0].data.allNeedFaceUrl === 'T'
+            li.user-info-item(data-payorderno=payOrderNo,data-allface="T")
+                  .user-info-content
+                      .user-info-detail
+                          p.user-info-detail__name 订单联系人人脸补录
+                      .user-info-btns
+                          .add-face-btn.able 开始录入   
+          each item in realNameInfo
+              li.user-info-item(data-idcard=item.idcardNo,data-orderno=item.orderNo,data-allface="F")
+                  .user-info-content
+                      .user-info-detail
+                          p.user-info-detail__name #{item.linkMan}
+                          //- p.user-info-detail__phone
+                              i.xx-icon.icon-shouji
+                              em(readonly) #{item.phone}
+                          p.user-info-detail__idcard
+                              i.xx-icon.icon-shenfenzheng1
+                              em(readonly) #{item.idcardNo}    
+                      .user-info-btns
+                          .add-face-btn.able 开始录入     
+      .user-editer-close#userEditerClose
+          i.xx-icon.icon-guanbi2
+      .page-line    
+      .user-editer-btn
+          | 暂不录入  
+  #videoArea
+  #clipArea
+  .face-module#showFace
+    .face-module-content
+      .show-face-image
+          img(src="https://statics.lotsmall.cn/image/20180608/20180608101453hn696f.jpg?imageMogr2/thumbnail/640x/strip/quality/100", alt="")
+      .show-face-status
+        i.xx-icon.icon-wancheng
+        strong 人脸录入成功
+      //- .show-face-message
+        .message-item
+          .message-item-cell.title 姓名：
+          .message-item-cell.content 陈小帅
+        .message-item
+          .message-item-cell.title 身份证：
+          .message-item-cell.content 342523199309094336
+    .show-face-btn.clearfix
+      span.show-face-cancel#faceCancel 返回
+      span.show-order-detail#goDetail 查看订单
+  .mask#mask
+    .tips
+      p
+      a(href="javascript:;").queding 确定
+
+
+
+

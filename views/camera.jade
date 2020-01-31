@@ -1,0 +1,20 @@
+extends layout
+block stylesheets 
+    style.
+         #canvas,#video {
+                float: left;
+                margin-right: 10px;
+                background: #fff;
+            }
+            .box {
+                overflow: hidden;
+                margin-bottom: 10px;
+            }
+block content            
+    .box.clearfix
+        video#video(width='400', height='300')
+    button#live 直播
+    button#snap 截图
+
+block javascripts
+    script(src='#{baseUrl}/javascripts/camera.js?#{vCode}', type='text/javascript')

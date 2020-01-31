@@ -1,0 +1,69 @@
+.detail-module-content {
+    padding: 0.5rem 0.75rem;
+    background: white;
+    margin-bottom: 0.25rem;
+}
+ .commit-list .commit-list-item {
+  margin-bottom: 0.4rem;
+}
+ .commit-list .commit-list-item .user-face-img {
+  height: 1.4rem;
+}
+.commit-list .commit-list-item .user-face-img img {
+  height: 1rem;
+  width: 1rem;
+  border-radius: 50%;
+  display: block;
+  margin-top: 0.2rem;
+}
+ .commit-list .commit-list-item .user-name {
+  font-size: 0.6rem;
+  color: #5c5c5c;
+  display: block;
+  line-height: 1.4rem;
+  margin-left: 0.3rem;
+}
+ .commit-list .commit-list-item .commit-time {
+  line-height: 1.4rem;
+  color: #999999;
+}
+.commit-list .commit-list-item .commit-list-item-content {
+  font-size: 0.56rem;
+  color: #413838;
+}
+.detail-flow .flow-submit-btn {
+  width: 9.25rem;
+  background-color: #f05b47;
+}
+
+.addressLayer {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    background-color: #fff;
+    top: 0;
+    left: 100%;
+    transition: left 0.4s;
+}
+
+.addressLayer.show {
+    left: 0;
+}
+
+.addressLayer-colse {
+    float: right;
+    margin-right: .55rem;
+    color: #fff;
+}
+
+.addressLayer-handle {
+    height: 1.6rem;
+    line-height: 1.6rem;
+}
+.userEditer-close {
+    float: right;
+    margin-right: .55rem;
+    color: #fff;
+    font-size: 0.8rem;
+}

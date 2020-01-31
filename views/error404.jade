@@ -1,0 +1,16 @@
+//
+   Created by lxp on 2017/4/21
+extends layout
+block stylesheets
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/order.css")
+block content
+    .pay-results
+        img.xx-icon(src='#{baseUrl}/images/member/404.png', alt='')
+        p 找不到页面！
+    .results-info
+        - var _msg = message || '呃...您访问的页面失联了'
+        p #{_msg}
+    .btn-box1
+        .btn-bottom
+            .btn-handle
+                a.btn(href='/?m_id='+merchantInfoId) 返回首页

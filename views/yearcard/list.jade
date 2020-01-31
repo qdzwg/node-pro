@@ -1,0 +1,32 @@
+extends ../layout
+
+block stylesheets
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/yearCard.css?#{vCode}")
+block javascripts
+    script(type="text/javascript", src="#{baseUrl}/javascripts/yearCard.js?#{vCode}")
+block content
+    ul.yearcard-list
+        li
+            a(href="/yearcard/detail/123")
+                img.yearcard-img(src="/images/demo/list-yearcasd-img1.jpg", alt="")
+                span.avatar
+                    img(src="/images/demo/avatar-img1.jpg", alt="")
+                span.yearcard-name 杭州西湖公园·灵韵卡
+        li
+            a(href="/yearcard/detail/123")
+                img.yearcard-img(src="/images/demo/list-yearcasd-img2.jpg", alt="")
+                span.avatar
+                    img(src="/images/demo/avatar-img1.jpg", alt="")
+                span.yearcard-name 杭州西湖公园·春分卡
+        li
+            a(href="/yearcard/detail/123")
+                img.yearcard-img(src="/images/demo/list-yearcasd-img3.jpg", alt="")
+                span.avatar
+                    img(src="/images/demo/avatar-img1.jpg", alt="")
+                span.yearcard-name 杭州西湖公园·夏至卡
+        li
+            a(href="/yearcard/detail/123")
+                img.yearcard-img(src="/images/demo/list-yearcasd-img4.jpg", alt="")
+                span.avatar
+                    img(src="/images/demo/avatar-img1.jpg", alt="")
+                span.yearcard-name 杭州西湖公园·立秋卡

@@ -1,0 +1,319 @@
+{
+  "main": {
+    "findPicInfo": "/merchant/api/merchantAdvManage/findPicInfo",
+    "face": "/admin/api/aibeeFace/getQuality",
+    "img":{
+      "upload":"/admin/api/ui/uplode",
+      "uploadBase64":"/admin/api/ui/uplodeBase64",
+      "url2qrcode":"/admin/api/ui/url2QrCode"
+    },
+    "merchant": {
+      "updateMerchantInfo": "/merchant/api/merchantInfo/doUpdateMerchantInfo",
+      "listMerchantPushInfo": "/merchant/api/merchantInfo/listMerchantPushInfo",
+      "getMerchantInfoByCode": "/merchant/api/merchantInfo/getMerchantInfoByCode",
+      "getMerchantInfoByUserInfoId": "/merchant/api/merchantInfo/getMerchantInfoByUserInfoId",
+      "getCorpCode": "/merchant/api/merchantWholeMarket/getMerchantWholeMarket",
+      "getMerchantTemplateCode": "/merchant/api/merchantInfo/getMerchantTemplateCode",
+      "getMerchantTemplateCustom": "/merchant/api/merchantInfo/getMerchantTemplateCustom",
+      "getPreViewTemplate": "/merchant/api/merchantInfo/getPreViewTemplate",
+      "getMerchantInfo": "/merchant/api/merchantInfo/getMerchantInfo",
+      "listMerchantProduct": "/merchant/api/merchantInfo/listMerchantProduct",
+      "findPayPageAd": "/merchant/api/merchantAdvManage/findPayPageAd",
+      "getQyyxPromoteBar": "/merchant/api/merchantWholeMarket/getQyyxPromoteBar",
+      "getQyyxPromoteCode": "/merchant/api/merchantWholeMarket/getQyyxPromoteCode",
+      "getMerchantPayType": "/merchant/api/merchantPayType/getMerchantPayType",
+      "getSelfDomainUrl": "/merchant/api/userlogin/getSelfDomainUrl",
+      "getUsePage": "/merchant/api/merchantRenovationToc/getUsePage",
+      "getRenovationById": "/merchant/api/merchantRenovationToc/getRenovationById",
+      "showWholeMarket": "/merchant/api/merchantInfo/showWholeMarket",
+      "showQyBindTab":"/merchant/api/merchantInfo/showQyBindTab",
+      "showQyTab":"/merchant/api/merchantInfo/showQyTab",
+      "test":"/merchant/api/test/test",
+      "getWxSignature":"/merchant/api/merchantInfo/getWxSignature",
+      "getMerchantInfoById":"/merchant/api/merchantInfo/getMerchantInfoById",
+      "validateZeroRateTicket":"/merchant/api/validateZeroRateTicket",
+      "getCorpConfig": "/leaguer/api/promoter/getCorpConfig",
+      "getOpenSingle": "/merchant/api/merchantWholeMarket/getOpenSingle",
+      "checkUserPromoter": "/leaguer/api/promoter/checkUserPromoter",
+      "createUserAuth": "/leaguer/api/promoter/createUserAuth",
+      "bindUserAuth": "/leaguer/api/promoter/bindUserAuth",
+
+      "pmsKeys": "/pmsproduct/api/pmsHotel/listKeys"
+    },
+    "detailimgs": "/product/api/product/getPicturesByModelCode",
+    "ratecode": {
+      "ruleBuy": "/product/api/product/ruleBuy",
+      "stockprices": "/product/api/product/getDailyStock"
+    },
+    "comment": {
+      "upData": "/merchant/api/merchantProdComments/updateComment",
+      "list": "/merchant/api/merchantProdComments/getComment",
+      "newList": "/merchant/api/merchantProdComments/getMerchantProdCommentsNew",
+      "add": "/merchant/api/merchantProdComments/saveComment",
+      "iscomment": "/merchant/api/merchantProdComments/allowComment"
+    },
+    "marketing": {
+      "couponsList": "/marketing/api/marketingCoupon/listCouponTempletVoPage",
+      "getCoupon": "/marketing/api/marketingCoupon/getCouponDetailVo",
+      "myCoupons": "/marketing/api/marketingCoupon/listCouponDetailVoPage",
+      "useCoupons": "/marketing/api/marketingCoupon/listUseCouponDetailVo",
+      "getCouponDetailVoOneKey": "/marketing/api/marketingCoupon/getCouponDetailVoOneKey",
+      "listCouponTemplet4New": "/marketing/api/marketingCoupon/listCouponTemplet4New",
+      "findBuySendRule": "/marketing/api/marketBuySend/findBuySendRule",
+      "getByMerchantId":"/marketing/api/wxAttractFansToc/getByMerchantId",
+      "getWxPublicUrl":"/marketing/api/wxAttractFansToc/getWxPublicUrl",
+      "userFollowCheck":"/marketing/api/wxAttractFansToc/userFollowCheck",
+      "idCardDentificate":"/marketing/api/marketBaiduService/idCardDentificate",
+      "idCardServiceEnable":"/marketing/api/marketBaiduService/idCardServiceEnable"
+    },
+    "pay": {
+      "getPayInfo": "/pay/api/getPayInfo",
+      "goPay": "/order/orderPay/toPay",
+      "doRefund": "/pay/api/leaguer/manage/doRefund",
+      "result": "/pay/api/leaguer/manage/getPayOrder",
+      "notify": "/pay/api/toAliPay/notify_url",
+      "alipayZybPayResult": "/pay/api/toZybAliPay/alipayZybPayResult"
+    },
+    "wechat": {
+      "Authorization": "https://open.weixin.qq.com/connect/oauth2/authorize",
+      "accessToken": "https://api.weixin.qq.com/sns/oauth2/access_token",
+      "token": "https://api.weixin.qq.com/cgi-bin/token",
+      "getTicket": "https://api.weixin.qq.com/cgi-bin/ticket/getticket",
+      "wxUserInfo": "https://api.weixin.qq.com/sns/userinfo",
+      "getToken":"/merchant/api/merchantInfo/getWxToken",
+      "toWxpay": "/pay/api/toWxpay/webPay",
+      "tozybwxpay": "/pay/api/toWxpay/zybWebPay",
+      "wxPayResult": "/pay/api/toWxpay/payResult"
+    },
+    "cart": {
+      "add": "/cart/api/leaguer/manage/addCartItem",
+      "list": "/cart/api/leaguer/manage/getCart",
+      "delete": "/cart/api/leaguer/manage/removeCartItem",
+      "removeCart": "/cart/api/leaguer/manage/delCart"
+    },
+    "address": {
+      "list": "/leaguer/api/userLeaguerAddress/manage/leaguerAddressPage",
+      "detail": "/leaguer/api/userLeaguerAddress/manage/leaguerAddressInfo",
+      "delete": "/leaguer/api/userLeaguerAddress/manage/delLeaguerAddress",
+      "save": "/leaguer/api/userLeaguerAddress/manage/saveLeaguerAddress"
+    },
+    "express": "/leaguer/api/order/manage/express",
+    "changeList":"/admin/api/sysParam/changeList",
+    "getSysParamByKey": "/admin/api/sysParam/getSysParamByKey",
+    "gotoPublic": "/merchant/api/merchantInfo/getUserNameByMerchantId"
+  },
+  "order": {
+    "saveOrder": "/order/api/saveOrder",
+    "detail": "/order/api/getPayOrder",
+    "timeReserveList": "/order/api/timeReserveList",
+    "getDistinctOrderDetaiModel":"/order/api/getDistinctOrderDetaiModel",
+    "orderDetaiModelAddFaceUrl":"/order/api/orderDetaiModelAddFaceUrl"
+  },
+  "ticket": {
+    "list": {
+      "pagelist": "/merchant/api/merchantParkInfo/merchantParkInfoGrid"
+    },
+    "detail": {
+      "main": "/merchant/api/merchantParkInfo/merchantParkInfo",
+      "productItems": "/merchant/api/merchantParkTicketGridNew",
+      "validateTicketStockPrice": "/merchant/api/validateTicketStockPrice"
+    },
+    "order": {
+      "main": "/merchant/api/leaguer/manage/merchantParkTicket",
+      "getPriceStockCalendar": "/merchant/api/merchantProductPriceApi/getPriceStockCalendar"
+    }
+  },
+  "hotel": {
+    "list": {
+      "pagelist": "/merchant/api/merchantHotelInfo/merchantHotelInfoGrid",
+      "sourchType":"/merchant/api/merchantHotelInfo/getSearchHotelType"
+    },
+    "detail": {
+      "main": "/merchant/api/merchantHotelInfo/merchantHotelInfo",
+      "oldProductItems": "/merchant/api/merchantHotelRoom/merchantHotelRoomGrid",
+      "productItems":"/merchant/api/merchantHotelRoom/merchantHotelRoomGridNew",
+      "listFamilyTicketByDetailShow": "/merchant/api/merchantFamilyInfo/listFamilyTicketByDetailShow"
+    },
+    "order": {
+      "main": "/merchant/api/merchantHotelRoom/merchantHotelRoom",
+      "getPriceStockCalendar": "/merchant/api/merchantProductPriceApi/getPriceStockCalendar"
+    }
+  },
+  "repast": {
+    "list": {
+      "pagelist": "/merchant/api/merchantRepastEatery/merchantRepastEateryGrid"
+    },
+    "detail": {
+      "main": "/merchant/api/merchantRepastEatery/getRepastEateryVoById",
+      "mealCoupon": "/merchant/api/merchantRepastEatery/getRepastCouponVoById"
+    }
+  },
+  "shop": {
+    "list": {
+      "pagelist": "/merchant/api/merchantMsdeInfo/listMerchantMsdeInfo"
+    },
+    "detail": {
+      "main": "/merchant/api/merchantMsdeInfo/getMerchantMsdeInfo",
+      "sku": "/merchant/api/merchantMsdeInfo/getMerchantMsdeSKu"
+    },
+    "order": {
+      "main": "/merchant/api/merchantMsdeInfo/getMerchantMsdeSKu",
+      "listPoint": "/product/api/shop/listPoint",
+      "address": "/merchant/api/merchantMsdeInfo/getArea",
+      "getPostage": "/merchant/api/merchantMsdeInfo/getPostagePrice",
+      "getStock": "/product/api/shop/getStock",
+      "selfPlace": "/leaguer/api/order/manage/selfPlace"
+    }
+  },
+  "route": {
+    "list": {
+      "pagelist": "/merchant/api/merchantRouteInfo/merchantRouteInfoGrid",
+      "searchLabel":"/merchant/api/merchantRouteInfo/getSerchByMerchantId"
+    },
+    "detail": {
+      "main": "/merchant/api/merchantRouteInfo/getMerchantRouteInfoById",
+      "listCalendarPriceMap": "/merchant/api/merchantRouteInfo/listCalendarPriceMap",
+      "getRouteByMerchantParkInfoId": "/merchant/api/merchantRouteInfo/getRouteByMerchantParkInfoId",
+      "validateroute": "/order/api/checkRuleBuy"
+    }
+  },
+  "strategy": {
+    "list": {
+      "pagelist": "/merchant/api/merchantStrategy/merchantStrategyGrid"
+    },
+    "detail": {
+      "main": "/merchant/api/merchantStrategy/getMerchantStrategyById"
+    }
+  },
+  "yearcard": {
+    "list": {
+      "pagelist": "/marketing/api/yearCardToc/selectList"
+    },
+    "detail": {
+      "main": "/marketing/api/yearCardTob/selectById"
+    },
+    "order": {
+      "main": "/yearcard/api/saveOrder",
+      "refund": "/yearcard/api/orderRefund"
+    }
+  },
+  "wxCardPack": {
+    "getCardIdByCheckNo": "/order/api/wxCardApi/getCardIdByCheckNo",
+    "getWxCardOrderListByPayOrderNo": "/order/api/wxCardApi/getWxCardOrderListByPayOrderNo"
+  },
+  "theater": {
+    "list": {
+      "pagelist": "/merchant/api/theater/merchantTheaterShowGrid"
+    },
+    "detail": {
+      "main": "/merchant/api/theater/merchantTheaterShow",
+      "theaterPlaceByCode": "/merchant/api/theater/merchantTheaterPlaceByCode",
+      "placeByPlayDate": "/merchant/api/theater/getZybPlaceByPlayDate",
+      "getShowArea": "/merchant/api/theater/getShowArea",
+      "seats": "/merchant/api/theater/getSeat",
+      "ableMonth":"/merchant/api/theater/getAvailableMonth",
+      "theaterCalendar":"/merchant/api/theater/merchantTheaterShowCalendar"
+    },
+    "order": {
+      "lockStock": "/order/api/lockTtStock"
+    },
+    "theaterPlaceByCode": "/merchant/api/theater/merchantTheaterPlaceByCode",
+    "theaterShow": "/merchant/api/theater/merchantTheaterShow",
+    "theaterShowGrid": "/merchant/api/theater/merchantTheaterShowGrid"
+  },
+  "coupons": {
+    "list": {
+      "main": "/leaguer/api/coupon/couponPage",
+      "member": "/leaguer/api/coupon/manage/myCoupon",
+      "usableCoupons": "/leaguer/api/coupon/manage/listAbleCoupon"
+    },
+    "detail": {
+      "main": "/leaguer/api/coupon/manage/queryCouponInfo"
+    },
+    "getCoupons": {
+      "main": "/leaguer/api/coupon/manage/receiveCoupon"
+    }
+  },
+  "member": {
+    "login": {
+      "main": "/leaguer/api/userLeaguer/leaguerLogin",
+      "otherLogin": "/leaguer/api/userLeaguer/thirdLogin",
+      "authApi": "/leaguer/api/authApi/auth",
+      "accountId": "/leaguer/api/other/getUserInfoId",
+      "sendCheckCode": "/leaguer/api/userLeaguer/sendCheckCode",
+      "checkPhoneCode": "/leaguer/api/userLeaguer/checkPhoneCode",
+      "leaguerMobileLogin": "/leaguer/api/userLeaguer/leaguerMobileLogin",
+      "resetPwd": "/leaguer/api/userLeaguer/resetPwd",
+      "fastregByAccount": "/leaguer/api/userLeaguer/fastregByAccount",
+      "setImageCode":"/leaguer/api/userLeaguer/createImgCode"
+    },
+    "register": "/leaguer/api/userLeaguer/leaguerRegister",
+    "logout": "/leaguer/api/userLeaguer/manage/leaguerLogout",
+    "info": "/leaguer/api/userLeaguer/manage/leaguerInfo",
+    "modify": "/leaguer/api/userLeaguer/manage/leaguerUpdate",
+    "leaguerFixPwd": "/leaguer/api/userLeaguer/manage/leaguerFixPwd",
+    "totalPerson": "/leaguer/api/other/manage/saveVisitRecord",
+    "qyyxOper": "/leaguer/api/userLeaguer/manage/qyyxOper",
+    "saveVisitRecord": "/leaguer/api/other/manage/saveVisitRecord",
+    "newUser": "/marketing/api/marketingCoupon/listCouponTemplet4New",
+    "discount":"/leaguer/api/leaguer/pubs/product/discount",
+    "enterPromote": {
+      "main": "/wap/enterPromote.htm",
+      "loginWapAuthor": "/wap/loginWapAuthor.htm",
+      "bindPronoter": "/wap/bindPronoter.htm"
+    },
+    "order": {
+      "pagelist": "/leaguer/api/order/manage/orderPage",
+      "detail": "/leaguer/api/order/manage/orderQuery",
+      "refund": "/leaguer/api/order/manage/retreat",
+      "cancel": "/order/api/cancelOrder",
+      "payorder": "/order/api/getPayOrderList",
+      "getPayOrder": "/order/api/getPayOrder",
+      "orderQueryByOrderId": "/leaguer/api/order/manage/orderQueryByOrderId",
+      "refundDetail": "/leaguer/api/order/manage/retreatDetail",
+      "warnsendgoods": "/leaguer/api/order/manage/warnSendGoods",
+      "cancelRetreat": "/leaguer/api/order/manage/cancelRetreat",
+      "retreatSendGoods": "/leaguer/api/order/manage/retreatSendGoods",
+      "confirmGoods": "/leaguer/api/order/manage/confirmGoods",
+      "getMerchantMdseDetailByCode": "/merchant/api/merchantMsdeInfo/getMerchantMdseDetailByCode",
+      "getRecommentProduct": "/leaguer/api/leaguerRecommend/getRecommentProduct",
+      "addFaceUrl": "/order/api/addFaceUrl",
+      "pmsDetail":"/pmsorder/api/order/getOrderDetail",
+      "pmsRefund":"/pmsorder/api/order/pmsRefund",
+      "repastDetail": "/leaguer/api/order/manage/orderRepastDetail",
+      "repastRefund": "/rmsrepast/order/refundOrder",
+      "repastCancle": "/rmsrepast/order/cancelOrder",
+      "getCheckNoListByOrderNo":"/leaguer/api/order/manage/getCheckNoListByOrderNo"
+    },
+    "yearcard": {
+      "selectOrderList": "/leaguer/api/yearCardOrder/selectOrderList",
+      "selectOrderDetil": "/leaguer/api/yearCardOrder/selectOrderDetil"
+    },
+    "invoices": {
+      "pageList": "/marketing/api/marketElectronicInvoices/pageInvoiceReq",
+      "saveInvoiceInfo": "/marketing/api/marketElectronicInvoices/createInvoiceReq",
+      "detail": "/marketing/api/marketElectronicInvoices/detailInvoiceReq",
+      "rate": "/marketing/api/marketElectronicInvoices/rateInvoiceReq",
+      "enabled": "/marketing/api/marketElectronicInvoices/enabledInvoiceReq",
+      "selectServiceUse": "/marketing/api/market/selectServiceUse"
+    },
+    "user": {
+      "delete": "/leaguer/api/leaguerContacts/deleteContacts",
+      "getInfoLists": "/leaguer/api/leaguerContacts/getContactsList",
+      "save": "/leaguer/api/leaguerContacts/saveContacts",
+      "getInfo": "/leaguer/api/leaguerContacts/selectContactsById"
+    },
+    "pubs":{
+      "help":"/leaguer/api/userLeaguer/pubs/login/help"
+    }
+  },
+  "group": {
+    "selectByStatus": "/marketing/api/selectByStatus",
+    "list": "/leaguer/api/order/manage/teamPage",
+    "detail": "/leaguer/api/order/manage/teamQuery"
+  },
+  "csearch": {
+    "getSearchType": "/merchant/api/merchantInfo/getSearchType",
+    "getSearchResult": "/merchant/api/merchantInfo/getSearchResult"
+  }
+}

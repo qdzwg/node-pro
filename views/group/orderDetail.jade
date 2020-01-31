@@ -1,0 +1,147 @@
+extends ../layout
+
+block stylesheets
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/calendar.css?#{vCode}")
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/swiper-3.4.1.min.css")
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/detail.css?#{vCode}")
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/group.css?#{vCode}")
+block javascripts
+    script(src='https://res.wx.qq.com/open/js/jweixin-1.0.0.js')
+    script(type='text/javascript', src='#{baseUrl}/javascripts/swiper-3.4.1.jquery.min.js')
+    script.
+        var merchantMdseInfoId = '#{groupDetail.data.marketLptVo.merchantMdseInfoId}';
+        var goodsCode = '#{groupDetail.data.marketLptVo.goodsCode}';
+        var lptId = '#{groupDetail.data.marketLptVo.id}';
+
+    script(type='text/javascript', src='#{baseUrl}/javascripts/group.js')
+block content
+    include ../common/quickLink
+    +flowBtn(userInfo,marketDisAccount,showWholeMarket) 
+    - var lptDetailVo =  groupDetail.data.marketLptDetailVo;
+    - var lptVo = groupDetail.data.marketLptVo;
+    .detail-block
+        - var statusClass = 'groupFail'
+        case lptVo.ptStatus
+            when 'init'
+                - statusClass = 'waitSuccess';  
+            when 'success' 
+                - statusClass = 'groupSuccess';
+            when 'failure'
+                - statusClass = 'groupFail'; 
+            default 
+                - statusClass = 'waitSuccess';  
+        .groupStatus#goodsInfo(class=statusClass)  
+            .orderStatusSign
+                case lptVo.ptStatus 
+                    when 'init'
+                        span
+                            |等待
+                            br
+                            |成功
+                    when 'confirm'
+                        span
+                            |等待
+                            br
+                            |成功        
+                    when 'success'
+                        span
+                            |拼团
+                            br
+                            |成功        
+                    when 'failure'
+                        span
+                            |拼团
+                            br
+                            |失败 
+                    default
+                        span
+                            |等待
+                            br
+                            |成功  
+            .itemImg
+                img(src=lptVo.productAddress)
+            .itemInfo
+                h3.itemName.ellipsis #{lptVo.name}
+                .itemLine.price ￥#{lptVo.ptPrice || ''}
+                .itemLine.groupType #{lptVo.personQuantity}人团
+    .groupStatusBlock
+        .groupNumText
+            case lptVo.ptStatus 
+                when 'init'
+                    | 还差
+                    - var num = (+lptVo.personQuantity) - (+lptVo.personCount)
+                    span.highlight #{num}
+                    | 人，快喊小伙伴一起拼团吧~    
+                when 'success'
+                    span.highlight #{lptVo.personQuantity}
+                    | 人已成团，棒棒哒~ 
+                when 'failure' 
+                    span.highlight #{lptVo.personQuantity}
+                    | 人团拼团失败了，继续加油哦~  
+                default
+                    | 还差
+                    - var num = (+lptVo.personQuantity) - (+lptVo.personCount)
+                    span.highlight #{num}
+                    | 人，快喊小伙伴一起拼团吧~ 
+        .groupMemberList
+            each item in lptDetailVo
+                .groupMemberItem
+                    img.memberImg(src=(item.headImg || '#{baseUrl}/images/member/defaultFace.jpg'))
+                    if item.isFirst === "T"
+                        .groupLeaderSign 团长
+        //.lastGroupNum
+            p 还差
+                span.highlight #{lptVo.personQuantity - lptVo.personCount}
+                | 人，盼你如南方人盼暖气
+        .groupInfoTitle
+            span.line
+            case lptVo.ptStatus 
+                when 'init'
+                    span.titleName 剩余
+                        - var nowTime = Date.parse(new Date(lptVo.newTiem));
+                        - var  time = Date.parse(new Date(lptVo.validPeriodEnd))
+                        .countDownTime(data-styleType='1', data-time=time,data-now=nowTime)
+                        | 结束
+                when 'confirm'
+                    span.titleName 剩余
+                        - var nowTime = Date.parse(new Date(lptVo.newTiem));
+                        - var  time = Date.parse(new Date(lptVo.validPeriodEnd))
+                        .countDownTime(data-styleType='1', data-time=time,data-now=nowTime)
+                        | 结束    
+                default
+                    span.titleName 拼团信息
+            span.line
+        .groupMemberDetailInfo
+            i.icon-arr-up
+            each item,i in lptDetailVo
+                .groupMemberDetailItem(class= i === 0 ? 'on':'')
+                    img.memberAvator(src=(item.headImg || '#{baseUrl}/images/member/defaultFace.jpg'))
+                    //if item.isFirst
+                        span.memberLeader 团长
+                    span.memberName.ellipsis #{item.nickName}
+                    span.joinGroupTime #{item.createTime}
+                    span.groupActive 
+                        if item.isFirst
+                            | 开团
+                        else 
+                            | 参团    
+
+    //分享弹框
+    .sharetip#sharetip
+    div(style="height:2.5rem")
+    .group-detail-footer
+        if lptVo.ptStatus === 'success'
+            .footerItem(style="width:100%;")
+                a.mainBtn(href="/member/order/" + lptVo.orderInfoId + "?m_id=" + merchantInfoId) 查看订单
+        if  lptVo.ptStatus === 'failure'
+            .footerItem(style="width:100%;")
+                a.mainBtn(href="/list/shop?m_id=" + merchantInfoId) 再拼一团
+        if  lptVo.ptStatus === 'init' || lptVo.ptStatus === 'confirm'
+            if !iswx
+                .footerItem(style="width:100%;")
+                    a.mainBtn(href="/group/orderList?ptStatus=init&m_id="+merchantInfoId) 更多拼团
+            else
+                .footerItem(style="width:50%;")
+                    a.cancelBtn(href="/group/orderList?ptStatus=init&m_id="+merchantInfoId) 更多拼团
+                .footerItem(style="width:50%;")
+                    a.mainBtn#shareMyFriends(href="javascript:;",data-flag="success") 邀请好友

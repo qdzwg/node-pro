@@ -1,0 +1,170 @@
+mixin themeTwo(datas,merchantInfoId)
+    //- // banner end
+    .search-theme2
+        .search-box
+            .search-con
+                //- .sch-lab 
+                //-     strong.keyword
+                //-         span#keyname 景区
+                //-         i.xx-icon.icon-back
+                //-     ul.sch-list
+                //-         li 景区
+                //-         li 酒店
+                //-         li 商品
+                button.search-btn#searchBtn
+                    i.xx-icon.icon-ico-search
+                input.search-inp(type='text', placeholder="请输入您要搜索的产品")
+    nav#nav_banner.nav-swiper
+        .swiper-wrapper
+            .swiper-slide
+                a(href='/list/ticket?m_id='+merchantInfoId)
+                    strong.nav-bg1
+                        i.xx-icon.icon-nav-ticket
+                    span 门票预订
+                a(href='/list/hotel?m_id='+merchantInfoId)
+                    strong.nav-bg5
+                        i.xx-icon.icon-nav-hotel
+                    span 酒店住宿
+                a(href='/list/shop?m_id='+merchantInfoId)
+                    strong.nav-bg4
+                        i.xx-icon.icon-nav-goods
+                    span 商品购物                  
+                a(href='/vue/list/strategy?m_id='+merchantInfoId)
+                    strong.nav-bg6
+                        i.xx-icon.icon-nav-raiders
+                    span 游记攻略
+                .cb
+        .nav-pagination  
+    if  datas[1].data.fine
+        .page-line 
+        .page-title.clearfix
+            span 精品推荐
+            //- // a(href='/list/ticket?m_id='+merchantInfoId) 
+                | 更多
+                i.xx-icon.icon-iconfont-jiantou        
+        .rec-box
+            if data[1].data.fine
+                - var fineList = data[1].data.fine
+                .swiper-container.clearfix(id=fineList.length>1?'ticket_swiper':'')
+                    .swiper-wrapper
+                        if fineList.length>0
+                            each item in fineList
+                                - let _type = item.businessType
+                                - if(item.businessType === 'room') _type = 'hotel';
+                                - if(item.businessType === 'mdse') _type = 'shop';
+                                a.swiper-slide(href='/detail/'+_type+'/'+item.merchantProdcutId+'/'+item.productCode+'?m_id='+merchantInfoId)
+                                    .rec-img
+                                        if item.businessType === 'mdse'
+                                           span.rec-price
+                                                | ￥
+                                                em #{item.priceShow} 起
+                                        else if (item.parkPriceShow)
+                                            span.rec-price
+                                                | ￥
+                                                em #{item.parkPriceShow} 起
+                                        if item.linkMobileImg
+                                            img(src=item.linkMobileImg+'?imageMogr2/thumbnail/640x/strip/quality/100', title='', alt='')
+                                        else
+                                            img(src='#{baseUrl}/images/demo/foods-details1.jpg?imageMogr2/thumbnail/640x/strip/quality/100', title='', alt='')
+                                    .rec-info
+                                        if item.businessType === 'repast'
+                                            h3 #{item.subtitle}
+                                        else
+                                            h3 #{(item.businessType === 'mdse') ? item.nickName : item.parkNickName}
+                                        - var msg = '';
+                                        if item && typeof item.content === 'string'   
+                                            - var msg = item.content.replace(/<\/?[^>]*>/g, ''); //去除HTML Tag
+                                            - msg = msg.replace(/[|]*\n/, '') //去除行尾空格
+                                            - msg = msg.replace(/&nbsp;/ig, ''); //去掉npsp
+                                        p #{msg}
+                    //- // 分页器
+                    .swiper-pagination
+    .page-line          
+    //- // 产品展示 start
+    .wrap.pro-show
+        ul.tabs
+            li.active
+                a(href='javascript:;') 景区门票
+            li
+                a(href='javascript:;') 酒店住宿
+            li
+                a(href='javascript:;') 特色商品
+        - let sellWellList = datas[1].data.sellWell;
+        - let parkList = [],hotelList = [],msdeList = []; 
+        each  item in sellWellList
+            case item.businessType
+                when 'ticket'
+                    - parkList.push(item);
+                when 'room'   
+                    - hotelList.push(item); 
+                when 'mdse'   
+                    - msdeList.push(item);   
+
+        #swiper_pro.swiper-pro
+            .swiper-wrapper
+                //- // 门票box
+                .swiper-slide
+                    if parkList
+                        ul
+                            each item in parkList                          
+                                //- // 列表模块 start
+                                li
+                                    a(href='detail/ticket/'+item.merchantProdcutId+'/'+item.productCode+'?m_id='+merchantInfoId)
+                                        img(src=item.linkMobileImg+'?imageMogr2/thumbnail/640x/strip/quality/100', alt='')
+                                        h4 #{item.nickName || name}
+                                        - let showPrice = item.businessType === 'route' ? item.parkPriceShow : item.priceShow;
+                                        p.con-lab
+                                            span.price
+                                                strong
+                                                    em ￥
+                                                    | #{showPrice}
+                                                | /人
+                                            span.sold #{item.sellNum}人已买
+                    else     
+                        .no-data.n-nbm 
+                            i.xx-icon.icon-iconfont-gantanhaom  
+                            p 暂无数据       
+                    //- a.pro-more(href='ticket.html') 查看更多 >
+                // 酒店box
+                .swiper-slide
+                    if hotelList
+                        ul
+                            // 列表模块 start
+                            each item in hotelList                 
+                                li
+                                    a(href='detail/hotel/'+item.merchantProdcutId+'/'+item.productCode+'?m_id='+merchantInfoId)
+                                        img(src=item.linkMobileImg+'?imageMogr2/thumbnail/640x/strip/quality/100', alt='')
+                                        h4 【#{item.parkNickName}】#{item.nickName}
+                                        - let showPrice = item.businessType === 'route' ? item.parkPriceShow : item.priceShow;                                        
+                                        p.con-lab
+                                            span.price
+                                                strong
+                                                    em ￥
+                                                    | #{showPrice}
+                                                | /人
+                                            span.sold #{item.sellNum}人已买
+                    else
+                        .no-data.n-nbm 
+                            i.xx-icon.icon-iconfont-gantanhaom  
+                            p 暂无数据                    
+                // 商品box
+                .swiper-slide
+                    if msdeList
+                        ul
+                            // 列表模块 start
+                            each item in msdeList                
+                                li
+                                    a(href='detail/shop/'+item.merchantProdcutId+'/'+item.productCode+'?m_id='+merchantInfoId)
+                                        img(src=item.linkMobileImg+'?imageMogr2/thumbnail/640x/strip/quality/100', alt='')
+                                        h4 #{item.nickName || name}
+                                        - let showPrice = item.businessType === 'route' ? item.parkPriceShow : item.priceShow;                                                                                
+                                        p.con-lab
+                                            span.price
+                                                strong
+                                                    em ￥
+                                                    | #{showPrice}
+                                            span.sold #{item.virtualSale}人已买
+                    else
+                        .no-data.n-nbm 
+                            i.xx-icon.icon-iconfont-gantanhaom  
+                            p 暂无数据                    

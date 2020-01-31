@@ -1,0 +1,36 @@
+extends layout
+block stylesheets
+  link(rel="stylesheet", href="#{baseUrl}/stylesheets/login1.css?#{vCode}")
+block javascripts
+  script(type='text/javascript', src='#{baseUrl}/javascripts/validate/jquery.validate.min.js')
+  script(type='text/javascript', src='#{baseUrl}/javascripts/validate/messages_zh.min.js')
+  script(type='text/javascript', src='#{baseUrl}/javascripts/validate/additional-methods.js')
+  script(type='text/javascript', src='#{baseUrl}/javascripts/login.js?#{vCode}')
+block content
+  .login-logo
+    img(src='#{baseUrl}/images/login/login-header.jpg', alt='sendinfo')
+  .login-panel
+    form#submitForm
+      ul.order-list-big.order-list
+        li
+          i.xx-icon.icon-user.icon-txt
+          input#loginName(type='text', name='loginName', value='', placeholder='请输入您的手机号码')
+        li
+          i.xx-icon.icon-pwd.icon-txt
+          input(type='password', name='loginPass', value='', placeholder='请输入密码')
+      .login-handle.btn-handle
+        a#submitBtn.btn.c-base(href='javascript:;',data-url=redir)
+          | 登录
+      p.login-explian
+        a(href='/register?m_id='+merchantInfoId)
+          i.xx-icon.icon-iconfont-zhanghu
+          | 注册账号
+        a(href='/forgetPassword?m_id='+merchantInfoId)
+          i.xx-icon.icon-iconfont-suo
+          | 忘记密码
+  
+  .login-bg
+  .mask#mask
+    .tips
+      p
+      a(href="javascript:;").queding 确定

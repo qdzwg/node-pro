@@ -1,0 +1,43 @@
+extends ../../layout
+block stylesheets
+    link(href="#{baseUrl}/stylesheets/order.css?#{vCode}", rel="stylesheet")
+    link(href="#{baseUrl}/stylesheets/newOrder.css?#{vCode}", rel="stylesheet")
+    style.
+        .user-editer {position: initial;}
+        .user-editer .user-info-lists {padding: 0;margin:0}
+        .user-editer .user-info-lists {max-height:none;}
+block javascripts
+    script(src='#{baseUrl}/javascripts/member/links.js?#{vCode}', type='text/javascript')
+      
+block content
+    .user-editer
+        .user-info-lists#userInfolists
+            if typeof userInfoLists.data !== 'undefined' && userInfoLists.data.length > 0
+                each item in userInfoLists.data                         
+                    .page-line
+                    .user-info-item
+                        .user-info-content
+                            .user-info-detail
+                                p.user-info-detail__name #{item.name}
+                                p.user-info-detail__phone
+                                    i.xx-icon.icon-shouji
+                                    em #{item.phone}
+                                p.user-info-detail__idcard
+                                    if item.certNo
+                                        i.xx-icon.icon-shenfenzheng1
+                                        em #{item.certNo}
+                                    else 
+                                        strong 信息不全,点击补充            
+                            .user-info-btns
+                                a(href="/member/links/detail?m_id="+merchantInfoId+"&id="+item.id, title="title").xx-icon.icon-yijianfankui
+                                span.xx-icon.icon-shanchu(data-id=item.id)
+                        .user-info-delete(data-id=item.id)
+                            | 删除           
+            else 
+                .no-data.n-nbm
+                    i.xx-icon.icon-tishifill
+                    p #{'暂无数据'}                
+    .footer
+        .footer-btn
+            a(href="/member/links/detail", title="title").footer-btn__link  
+                | 添加联系人               

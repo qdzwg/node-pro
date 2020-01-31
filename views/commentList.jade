@@ -1,0 +1,75 @@
+extends layout
+
+block stylesheets
+    link(href="#{baseUrl}/stylesheets/comment.css?#{vCode}", rel="stylesheet")
+block javascripts
+    script(src='#{baseUrl}/javascripts/validate/jquery.validate.min.js', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/validate/messages_zh.min.js', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/validate/additional-methods.js', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/member/comment.js?#{vCode}', type='text/javascript')
+    //- script(src="#{baseUrl}/javascripts/yearCard.js?#{vCode}", type="text/javascript")
+
+block content
+    - var commentsData = data;
+    .detail-module-content
+        .commit-list
+            each item in commentsData 
+                - let fDate = typeof item.createTime === 'string' ? item.createTime.substring(0, 10) :  '';
+                - let name=item.userName,len = name.length;
+                if item.isAnonymous === 'T'    
+                    //- if len > 2
+                    //-     - name = name[0] + '***' + name[len - 1] ;
+                    //- else
+                    //-     - name = name[0] + '***';  
+                    - name = '匿名用户'            
+                .commit-list-item
+                    .commit-list-item-info.clearfix
+                        if item.top === 'T'
+                            .user-commit-top.fl 置顶
+                        .user-face-img.fl
+                            img(src=item.headImg, alt='')
+                        .user-name.fl 
+                            span.user-name__name #{name} 
+                            | &emsp;
+                            span.score.c-base= item.score || 0
+                                | 分         
+                        .commit-time.fr
+                            span #{fDate}
+                    .commit-list-item-content
+                        p #{item.content}
+                    if item.beUpdate === 'T'    
+                        .commit-list-item-editer.changeMyCommit(data-id=item.id,data-name=item.userName) 
+                            span 修改评论 
+                            i.xx-icon.icon-iconfont-xie     
+                    if item.replyContent   
+                        .commit-list-item-reply
+                            span 【商家回复】  
+                            span #{item.replyContent} 
+
+
+    .addressLayer#userEditerInput
+        .addressLayer-handle.background-base
+            a.userEditer-close#addUserEditerClose(href='javascript:;')
+                i.xx-icon.icon-guanbi1
+        .layerContent.newAddress(style='display:block;')
+            form#form
+                .comment-panel
+                    p
+                        textarea#comment.order-textarea(name='content', rows='10', placeholder='请写下您对我们的感受吧')
+                .common-num-box
+                    p
+                        strong 满意度评分
+                        span.pfxtFen
+                            i.xx-icon.icon-iconfont-aixin
+                            i.xx-icon.icon-iconfont-aixin
+                            i.xx-icon.icon-iconfont-aixin
+                            i.xx-icon.icon-iconfont-aixin
+                            i.xx-icon.icon-iconfont-aixin
+                    p
+                        label.weui-agree(for='weuiAgree')
+                            input#weuiAgree.weui-agree__checkbox(name='isAnonymous',type='checkbox')
+                            span.weui-agree__text
+                                | 匿名评论
+                .btn-handle
+                    a#subComment.btn.comment-submit(href='javascript:;') 发表评论      
+                             

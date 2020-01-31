@@ -1,0 +1,88 @@
+extends ../layout
+
+block stylesheets
+    link(href="#{baseUrl}/stylesheets/swiper-3.4.1.min.css", rel="stylesheet")
+    link(href="#{baseUrl}/stylesheets/detail.css?#{vCode}", rel="stylesheet")
+    link(href="#{baseUrl}/stylesheets/newDetail.css?#{vCode}", rel="stylesheet")
+    link(href="#{baseUrl}/stylesheets/theater.css?#{vCode}", rel="stylesheet")
+block javascripts
+    script.
+        var module = '#{module}';
+    if seatsInfo.data && seatsInfo.status === 200
+        script.
+            var seatsInfo = !{JSON.stringify(seatsInfo.data)};
+    script(src='#{baseUrl}/javascripts/swiper-3.4.1.jquery.min.js', type='text/javascript')        
+    script(src='#{baseUrl}/javascripts/lib/jquery.seats.js?#{vCode}', type='text/javascript')     
+    script(src='#{baseUrl}/javascripts/newDetail.js?#{vCode}', type='text/javascript')  
+    script(src='#{baseUrl}/javascripts/seat.js?#{vCode}', type='text/javascript')  
+block content
+    include ../common/quickLink
+    include ../common/footer
+    .detail-header.clearfix(style="height:auto;display:block;width:100%")
+        .detail-header-info(style="width:100%")
+            if seatsInfo.data && seatsInfo.status === 200
+                p.detail-header-info-subtitle.detail-header-show-info 演出名称：#{sessionName}
+                p.detail-header-info-subtitle.detail-header-show-info 座位区域：#{seatsData.areaName}
+            p.detail-header-info-subtitle.detail-header-show-info 演出时间：#{seatsData.playDate} #{seatsData.startTime}
+
+            //- .detail-header-ticket-select
+                .ticket-select-wrapper#seatTicketSelect 
+                    if seatsInfo.status === 200 && seatsInfo.data.tickets.length > 0
+                        span.ticket-select-name.active #{seatsInfo.data.tickets[0].name}
+                        i.xx-icon.icon-jiantoushang 
+                    else 
+                       span.ticket-select-name 没有票型可选   
+                .ticket-select-list#seatTicketList
+                     if seatsInfo.status === 200
+                        each item in seatsInfo.data.tickets 
+                            .ticket-select-list-item(data-item=item)    
+                                 p #{item.name}   
+        .detail-header-ticket-select
+            if seatsInfo.status === 200 && seatsInfo.data.tickets.length > 0
+                - let ticketArray = seatsInfo.data.tickets
+                - let defaultTicketIndex = ticketArray.findIndex((item,index) => {return item.isAutoTicket === 'T'})  
+                - let dafaultTicket = ticketArray.splice(defaultTicketIndex,1)
+                - ticketArray.unshift(...dafaultTicket)
+                .ticket-select-wrapper.swiper-container#seatTicketSelect 
+                    .tickets-list.swiper-wrapper
+                        each item,index in seatsInfo.data.tickets
+                            .tickets-list-item.swiper-slide(class=(item.isAutoTicket==="T"?"active":""),data-item=item) 
+                                .tickets-list-item__name #{item.name}
+                                .tickets-list-item__price 
+                                    em ￥
+                                    span #{item.price}
+            else 
+                .ticket-select-wrapper
+                    span.ticket-select-name 没有票型可选   
+
+
+            .detail-header-ticket-types
+                i.icon-type-zuo
+                span 可选
+                i.icon-type-selected
+                span 已售
+
+    .wrapper#wrapper
+        .stage-tit
+            img(src="#{baseUrl}/images/theater/stage_tit.png", alt="舞台")
+        #seatPanel.seat-panel
+            #seats.scroller
+        #side.side
+            ol
+
+    .order-footer
+        .selected-ticket-list
+            .swiper-container#selectedSeats
+                .swiper-wrapper.ticket-list         
+         .order-total.float-layer 
+                div.order-total__price 
+                    p    
+                        span="已选："
+                        em#num=0
+                        ="张"
+                    p    
+                        span="总额："
+                        strong.detail-total-price="￥"
+                        em#totalPrice=0
+                a(data-mold=module, href="javascript:;").detail-order.disabled-btn#detail-order=merchantInfoId === specialPark ? "立即预约" : "立即预订"                
+    #mask 

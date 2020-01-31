@@ -1,0 +1,124 @@
+mixin footer(code)
+    .footBlock
+    case code
+        when "MTI20180316172401"
+            .footer#footerBox
+                .footer_box
+                    a.footer-li(href=!closeLink ? '/?m_id='+merchantInfoId :'javascript:;')
+                        i.xx-icon.icon-shouye11
+                        p 首页
+                    a.footer-li(href=!closeLink ? '/list/order?m_id='+merchantInfoId :'javascript:;')
+                        i.xx-icon.icon-nav-orders
+                        p 订单
+                    //- a(href='/car?m_id='+merchantInfoId)
+                    //-       i.xx-icon.icon-shopping-car
+                    //-       p 购物车
+                    a.footer-li(href=!closeLink ? '/member?m_id='+merchantInfoId : 'javascript:;')
+                        i.xx-icon.icon-nav-my
+                        p 个人中心
+        when "MTI20180316172801"
+            .footer-box#footerBox
+                footer
+                    a.footer-li(href='/?m_id='+merchantInfoId)
+                        i.xx-icon.icon-nav-home
+                        span 首页
+                    a.footer-li(href='/list/order?m_id='+merchantInfoId)
+                        i.xx-icon.icon-nav-orders
+                        span 我的订单
+                    //- a(href='/car?m_id='+merchantInfoId)
+                    //-     i.xx-icon.icon-shopping-car
+                    //-     span 购物车
+                    a.footer-li(href='/member?m_id='+merchantInfoId)
+                        i.xx-icon.icon-nav-my
+                        span 会员中心
+        when "MTI20180316173101"
+            footer
+                ul.clearfix#footerBox
+                    li.footer-li
+                        a(href='/?m_id='+merchantInfoId)
+                            i.xx-icon.icon-shouye11
+                            p 首页
+                    li.footer-li
+                        a(href='/list/order?m_id='+merchantInfoId)
+                            i.xx-icon.icon-nav-orders
+                            p 订单
+                    li.footer-li
+                        a(href='/member?m_id='+merchantInfoId)
+                            i.xx-icon.icon-nav-my
+                            p 个人中心
+        when 'MTI18062213232769'
+            .h3rem
+            .foot-nav#footerBox
+                ul.main
+                    li.footer-li
+                        a(href='/?m_id='+merchantInfoId)
+                            i.xx-icon.icon-shouye11
+                            em 首页
+                    li.footer-li
+                        a(href='/list/order?m_id='+merchantInfoId)
+                            i.xx-icon.icon-nav-orders
+                            em 订单
+                    li.footer-li
+                        a(href='/member?m_id='+merchantInfoId)
+                            i.xx-icon.icon-nav-my
+                            em 我的  
+        default                                 
+            .footer-box#footerBox
+                footer
+                    a.footer-li(href=!closeLink ? '/?m_id='+merchantInfoId :'javascript:;')
+                        i.xx-icon.icon-nav-home
+                        span 首页
+                    a.footer-li(href= !closeLink ?'/list/order?m_id='+merchantInfoId:'javascript:;')
+                        i.xx-icon.icon-nav-orders
+                        span 我的订单
+                    //- a(href='/car?m_id='+merchantInfoId)
+                    //-     i.xx-icon.icon-shopping-car
+                    //-     span 购物车
+                    a.footer-li(href=!closeLink ? '/member?m_id='+merchantInfoId:'javascript:;')
+                        i.xx-icon.icon-nav-my
+                        span 会员中心
+
+mixin detailFooter()
+    .group-detail-footer
+        .footerItem(style="width:12%")
+            a.linkIconBtn(href="")
+                i.xx-icon.icon-home
+                .iconTxt 首页
+        .footerItem(style="width:12%")
+            a.linkIconBtn(href="")
+                i.xx-icon.icon-gouwuche1
+                .iconTxt 购物车
+        .footerItem.showGroupLayer(style="width:38%")
+            .buyBtn
+                div 加入购物车
+        .footerItem.showGroupLayer(style="width:38%")
+            .groupBuy
+                div 立即购买  
+
+mixin diyFooter(datas)
+    case datas.type
+        when 'Footer__normal'
+            +footer_normal(datas.data)  
+
+
+mixin footer_normal(datas)
+    #footerNormal.footer__normal
+        .footer__normal-footer(style="background:#{datas.bgColor}",)
+            each item,index in datas.list
+                - var orPath = item.linkType+'?m_id='+merchantInfoId,cuPath = curPath+'?';
+                if orPath.indexOf(cuPath) !== -1
+                    a.footer-li(style="background:#{datas.selectColor}",href=!closeLink ? orPath : 'javacript:;')
+                        if item.picAddr
+                            img(src=item.picAddr+'?imageMogr2/thumbnail/640x/strip/quality/100', alt="")
+                        else 
+                            i.xx-icon(class="#{item.icon}")
+                        span= item.name
+                else 
+                    a.footer-li(href=!closeLink ? orPath : 'javascript:;')
+                        if item.picAddr
+                            img(src=item.picAddr+'?imageMogr2/thumbnail/640x/strip/quality/100', alt="")
+                        else 
+                            i.xx-icon(class="#{item.icon}")
+                        span= item.name        
+
+

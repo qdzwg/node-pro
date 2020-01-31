@@ -1,0 +1,108 @@
+extends ../layout
+
+block stylesheets
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/detail.css?#{vCode}")
+    link(href="#{baseUrl}/stylesheets/swiper-3.4.1.min.css", rel="stylesheet")
+block javascripts
+    script(src='#{baseUrl}/javascripts/swiper-3.4.1.jquery.min.js', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/lib/clipboard.min.js', type='text/javascript')
+    if !inWx
+        script(src='#{baseUrl}/javascripts/lib/clipboard.min.js', type='text/javascript')
+        script(src='#{baseUrl}/javascripts/groupShare.js?#{vCode}', type='text/javascript')
+block content
+    include ../common/quickLink
+    include ../common/index
+    .mealcoupon-img
+        img(src=data[0].data.thumbnail)
+    .details-info.noBg
+        h3.details-title=data[0].data.enteryName
+        .details-mealInfo.clearfix
+            span.repast-combo-name.fl
+              | #{data[0].data.alias}
+            strong.details-mealcoupon-advPrice.fr
+              span 门市价：#{data[0].data.rackPrice}
+              em ¥ #{data[0].data.priceSettle}
+    //ul.order-list.myorder-list
+    //    li.repast-list
+    //        label.lab-title(for='')
+    //            i.xx-icon.icon-clock
+    //            span 营业时间：
+    //        .order-item
+    //            em=data[0].data.businessHours
+    //    li.repast-list-location
+    //        label.lab-title(for='')
+    //            i.xx-icon.icon-shouhuodizhi
+    //        .order-item
+    //            a(href='/detail/location')
+    //                span.address-txt=data[0].data.enteryAddr
+    //                span.detail-location
+    //                    i.xx-icon.icon-uniE
+    .page-line
+    .detail-mealcoupon-main
+        .blockTitle 预订须知
+        .mealcoupon-ordernotice
+            !=data[0].data.bookingNotice
+    .page-line
+    .detail-mealcoupon-main
+        .blockTitle 图文详情
+        .mealcoupon-ordernotice
+            !=data[0].data.introduction
+    .page-line
+    .mealcoupon-footer.zindex10
+        .mealcoupon-footer-box.order-total
+            .mealcoupon-order-price.clearfix
+                span.fl
+                    em ¥
+                    strong=data[0].data.priceSettle
+                    del ¥ #{data[0].data.rackPrice}
+                a(href="/order/mealCoupon/" + data[0].data.merchantRepastEateryId + '?couponId=' + data[0].data.id + "&m_id="+merchantInfoId)#mealcoupon-btn.fr 立即抢购
+                //if data[0].data.isBindQyyx === 'T' && showWholeMarket === 'T'
+                if openSingle === 'T' && showWholeMarket === 'T'
+                    .share-btn.fr#shareBtn(data-newid=data[0].data.id, data-id=data[0].data.repastCouponId, data-iswx=userFrom, data-mold='repast-info')
+                        i.icon-qiandai.icon-img
+                        .share-btn-text 去赚钱
+                    .share-mask
+                    .share-content-box#shareContentBox
+                        a(href='javascript:;').title
+                            | 选择推广方式
+                            i.fr.xx-icon.icon-guanbi1#closeContentBox
+                        a(data-url='',href='javascript:;').showBillUrl
+                            | 生成海报
+                        a(data-url='', href='javascript:;', data-title=data[0].data.alias||data[0].data.name).showTextUrl
+                            | 生成文案
+                        a(data-description=data[0].data.enteryName, data-img='', data-title=data[0].data.alias||data[0].data.name, href='javascript:;').shareUrl
+                            | 链接推广
+    .mask#mask
+    //分享弹框1
+    .billmask
+    .show-bill#showBill
+        h5.bill-tips 长按海报保存相册
+        i.close-show-bill.xx-icon.icon-guanbi1#closeShowBill
+        .show-bill-image
+            .swiper-container#billSwiper
+                .swiper-wrapper
+                    //-.swiper-slide
+                    //-    .ss-con
+                    //-        img(src='http://qyyxstatics.zhiyoubao.com/attached/image/20190819/20190819094856wtqjb7.jpg')
+                    //-.swiper-slide
+                    //-    .ss-con
+                    //-        img( style='height:700px;', src='http://qyyxstatics.zhiyoubao.com/attached/image/20190924/20190924150230hnc7rw.jpg')
+                //-.swiper-button-prev
+                //-.swiper-button-next
+    .textmask
+    .show-bill.show-bill-text#showText
+        i.close-show-bill.xx-icon.icon-guanbi1#closeShowText
+        .show-bill-com
+            .showbill-tit 生成文案
+            .showbill-txt
+                textarea#bill_text
+            a.showbiil-btn(href='javascript:;')#showTextBtn 复制文案
+
+    +flowBtn(userInfo,marketDisAccount,showWholeMarket)
+    //分享弹框
+    .sharetip#sharetip
+    +marketingRegLayer()
+    +marketInfoLayer()
+    .tips
+        p
+        a(href="javascript:;").queding 确定

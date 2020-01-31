@@ -1,0 +1,75 @@
+.member-header{ max-height: 11rem;min-height: 6rem; position: relative;overflow: hidden;}
+.user-name{ font-size: 0.8rem; padding: 0 2.5%; text-align: center; overflow: hidden;white-space: nowrap;text-overflow: ellipsis; width: 90%;}
+.header-explian{ font-size: 0.4rem; padding: 0.25rem 2.5% 0;}
+.user-face{overflow: hidden; width: 3rem; height: 3rem; display: block; margin: 0.5rem auto 0; border-radius: 100%; background-color: rgba(255,255,255,0.6); text-align: center; line-height: 3rem; color: #333;}
+.user-face img {width: 100%;height: 100%;}
+.user-face i {font-size:1.2rem}
+.member-tab {
+    /* position: absolute; */
+    width: 100%;
+    background-color: white;
+    /* bottom: 0; */
+    /* opacity: .92; */
+}
+.member-tab li{ width: 25%; position: relative;}
+.member-tab li a i{ display: block; margin: 0 auto 0.25rem; font-size: 1rem;}
+.dingdan-pay{ color: #3c9;}
+.dingdan-unpay{ color: #f66;}
+.member-tab li a i.dingdan-complent{ color: #3c9; font-size: 1.05rem;margin-bottom: .175rem}
+.dingdan-refund{ color: #f66;}
+.member-tab li em{ position: absolute; display: block; width: 0.75rem; height: 0.75rem; border-radius: 100%; background-color: #f66; color: #fff; text-align: center; line-height: 0.75rem; top:0; right:1rem; font-size: 0.6rem;}
+
+
+.member-list{ border-top: none;}
+.member-list li{ text-align: right;}
+.vantages,.bonus{ font-size: 0.5rem; color: #666; margin-right: 0.5rem;}
+.vantages em,.bonus em{ font-size: 0.7rem; margin-right: 0.25rem; }
+.bonus{ color: #f00;}
+
+.member-handle .btn i{ font-size: 0.6rem;}
+
+.user-logo{ padding: 0.35rem 2.5% 0; display: block;}
+.user-logo img{ width: 3rem; height: 3rem; display: inline-block; border-radius: 100%; background-color: rgba(255,255,255,0.6); text-align: center; line-height: 3rem; color: #333;}
+.user-name-edit{ width: auto;}
+
+.member-line {
+    height: 0.35rem;
+    clear: both;
+}
+
+/* 2019-11-22 新增会员中心栏 by LiXuePeng */
+.member-header-content {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.member-info {
+    display: flex;
+    display: -webkit-flex;
+    background: white;
+    padding: 0.25rem 0;
+}
+.member-info-item {
+    width: 33.33%;
+}
+.member-info-item a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+.member-info-item .title {
+    font-size: 0.55rem;
+    color: #333;
+}
+.member-info-item .value {
+    font-size: 0.65rem;
+    color: #0086F6;
+    font-weight: 600;
+}

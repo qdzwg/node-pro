@@ -1,0 +1,31 @@
+extends ../layout
+
+block stylesheets
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/yearCard.css?#{vCode}")
+block javascripts
+    script.
+        var merchantInfoId = '#{merchantInfoId}'
+    script(type="text/javascript", src="#{baseUrl}/javascripts/yearCard.js?#{vCode}")
+block content
+    - const datas= data[0].data;
+    ul.yearcard-list.pd0
+        li            
+            img.yearcard-img(src=datas.cardCover+'?imageMogr2/thumbnail/640x/strip/quality/100', alt="")
+            p.list-card-con
+                span.avatar
+                    img(src=datas.cardLogo+'?imageMogr2/thumbnail/640x/strip/quality/100', alt="")
+                span.yearcard-name=datas.cardName
+            .card-mask
+    .recharge        
+        a.toRecharge(href="/yearcard/recharge/#{datas.id}?m_id=" + merchantInfoId) 年卡充值
+    ul.order-list.member-list
+        li
+            a(href='/yearcard/record/#{datas.id}?m_id=' + merchantInfoId)
+                label.lab-title(for='')                   
+                    | 交易记录
+                i.xx-icon.fr.icon-iconfont-jiantou
+        li
+            a(href='/detail/useIntro?m_id=' + merchantInfoId)
+                label.lab-title(for='')                   
+                    | 使用说明
+                i.xx-icon.fr.icon-iconfont-jiantou

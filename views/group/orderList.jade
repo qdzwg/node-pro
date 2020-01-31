@@ -1,0 +1,56 @@
+extends ../layout
+
+block stylesheets
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/calendar.css?#{vCode}")
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/swiper-3.4.1.min.css")
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/dropload.css?#{vCode}")
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/order.css?#{vCode}")
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/group.css?#{vCode}")
+block javascripts
+    script(src='https://res.wx.qq.com/open/js/jweixin-1.0.0.js')
+    script.
+        var merchantInfoId = '#{merchantInfoId}';
+    script(type='text/javascript', src='#{baseUrl}/javascripts/swiper-3.4.1.jquery.min.js')
+    script(type='text/javascript', src='#{baseUrl}/javascripts/lib/dropload.min.js')
+    script(type='text/javascript', src='#{baseUrl}/javascripts/list.js?#{vCode}')
+
+block content
+    include ../common/quickLink
+    +flowBtn(userInfo,marketDisAccount,showWholeMarket) 
+    header.orderListHeader
+        ul.tab.group-tab.clearfix
+            if ptStatus === ''
+                li.on
+                    a.c-base(href="/group/orderList?m_id="+merchantInfoId) 全部拼团
+            else
+                li
+                    a(href="/group/orderList?m_id="+merchantInfoId) 全部拼团 
+
+            if ptStatus === 'init' 
+                li.on
+                    a.c-base(href="/group/orderList?ptStatus=init&m_id="+merchantInfoId) 待成团
+            else
+                li
+                    a(href="/group/orderList?ptStatus=init&m_id="+merchantInfoId) 待成团
+
+            if ptStatus === 'success' 
+                li.on
+                   a.c-base(href="/group/orderList?ptStatus=success&m_id="+merchantInfoId) 已成团
+            else
+                li
+                   a(href="/group/orderList?ptStatus=success&m_id="+merchantInfoId) 已成团
+
+            if ptStatus === 'failure' 
+                li.on
+                    a.c-base(href="/group/orderList?ptStatus=failure&m_id="+merchantInfoId) 拼团失败
+            else 
+                li
+                    a(href="/group/orderList?ptStatus=failure&m_id="+merchantInfoId) 拼团失败             
+                      
+    .orderListHeaderBox
+    .page-line
+    .inner.page-list.drop-box(data-module=module)
+        ul(style="display:block")
+    //分享弹框
+    .sharetip#sharetip
+        

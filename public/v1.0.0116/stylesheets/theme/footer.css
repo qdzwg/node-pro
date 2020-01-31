@@ -1,0 +1,70 @@
+/************************************************************************************
+ * | footer |
+ ***********************************************************************************/
+
+.footer__normal {
+    width: 100%;
+    height: 2.45rem;
+}
+
+.footer__normal .footer__normal-footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    box-sizing: border-box;
+    background: #2366c9;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    height: 2.45rem;
+}
+
+.footer__normal .footer__normal-footer a {
+    justify-content: center;
+    width: 100%;
+    flex: 1;
+    font-size: .6rem;
+    color: #fff;
+    text-align: center;
+    height: 100%;
+    padding-top: .25rem;
+    box-sizing: border-box;
+}
+
+.footer__normal .footer__normal-footer a:active {
+    background: #2ea5c4;
+}
+
+.footer__normal .footer__normal-footer a span {
+    display: block;
+    line-height: 1rem;
+}
+
+.footer__normal .footer__normal-footer a i.xx-icon {
+    display: inline-block;
+    color: #fff;
+    vertical-align: top;
+    line-height: 1rem;
+    font-size: 1rem;
+}
+
+.footer__normal .footer__normal-footer a img {
+    display: inline-block;
+    height: 1rem;
+    max-width: 70%;
+}
+
+.footer__normal .footer__normal-footer a.on {
+    color: #fff;
+    background: #3f98f6;
+    border-bottom: .1rem solid #abcdff;
+}
+
+.footer__normal .footer__normal-footer a.on {
+    color: #fff;
+    background: #3f98f6;
+    border-bottom: .1rem solid #abcdff;
+    box-sizing: border-box;
+}

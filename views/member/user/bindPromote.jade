@@ -1,0 +1,49 @@
+extends ../../layout
+block stylesheets
+    link(href="#{baseUrl}/stylesheets/cropper.css?#{vCode}", rel="stylesheet")
+    link(href="#{baseUrl}/stylesheets/order.css?#{vCode}", rel="stylesheet")
+    link(href="#{baseUrl}/stylesheets/newOrder.css?#{vCode}", rel="stylesheet")
+    style.
+        .footer .footer-btn.disabled {
+            background-color:#ccc;
+        }
+        .footer .footer-btn.unClick {
+            background-color:#f39e92
+        }
+
+block javascripts
+    script(src='#{baseUrl}/javascripts/validate/jquery.validate.min.js', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/validate/messages_zh.min.js', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/validate/additional-methods.js?#{vCode}', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/member.js?#{vCode}', type='text/javascript') 
+    script.
+        var isWx = '#{isWx}';
+        var isAli = '#{isAli}';
+block content
+    include ../../common/replaceNum
+    .page-line
+    .order-warp  
+        form#promoteform 
+            ul.order-list.myorder-list.order-input-list
+                li
+                    label.lab-title.order-input-list-title(for='') 绑定推广员账号  
+                li
+                    label.lab-title(for='') 真实姓名
+                    .order-item
+                        input.order-text(name='realName', type='text', placeholder='请输入真实姓名')
+                        i.xx-icon.fr.icon-iconfont-xie
+                li
+                    label.lab-title(for='') 账户号
+                    .order-item 
+                        input(name="accName", type="text", placeholder="请输入账户号").order-text
+                        i.xx-icon.fr.icon-iconfont-xie
+                li
+                    label.lab-title(for='') 手机号
+                    .order-item    
+                        input(name="phone", type="tel", placeholder="请输入手机号").order-text
+                        i.xx-icon.fr.icon-iconfont-xie         
+    .footer
+        .footer-btn#submitBindPromoter
+            a.footer-btn__link(data-orderid=orderId, data-url=url, title="title")
+                | 绑定账号 
+

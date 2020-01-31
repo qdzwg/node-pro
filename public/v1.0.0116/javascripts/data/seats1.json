@@ -1,0 +1,2190 @@
+﻿{
+    "rowCounts": "9",
+    "colCounts": "38",
+    "areaCode": "1006",
+    "areaName": "A3",
+    "retdata": {
+        "totalCount": "242",
+        "sellCount": "230",
+        "data": [
+            {
+                "status": "2",
+                "seatname": "三等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "1",
+                "srow": "25",
+                "gcol": "4"
+            },
+            {
+                "status": "2",
+                "seatname": "三等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "2",
+                "srow": "25",
+                "gcol": "5"
+            },
+            {
+                "status": "2",
+                "seatname": "三等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "3",
+                "srow": "25",
+                "gcol": "6"
+            },
+            {
+                "status": "2",
+                "seatname": "三等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "4",
+                "srow": "25",
+                "gcol": "7"
+            },
+            {
+                "status": "2",
+                "seatname": "三等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "5",
+                "srow": "25",
+                "gcol": "8"
+            },
+            {
+                "status": "2",
+                "seatname": "三等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "6",
+                "srow": "25",
+                "gcol": "9"
+            },
+            {
+                "status": "2",
+                "seatname": "三等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "7",
+                "srow": "25",
+                "gcol": "18"
+            },
+            {
+                "status": "2",
+                "seatname": "三等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "8",
+                "srow": "25",
+                "gcol": "19"
+            },
+            {
+                "status": "2",
+                "seatname": "三等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "9",
+                "srow": "25",
+                "gcol": "20"
+            },
+            {
+                "status": "2",
+                "seatname": "三等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "10",
+                "srow": "25",
+                "gcol": "21"
+            },
+            {
+                "status": "2",
+                "seatname": "三等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "11",
+                "srow": "25",
+                "gcol": "22"
+            },
+            {
+                "status": "2",
+                "seatname": "三等座",
+                "seatid": "",
+                "grow": "6",
+                "scol": "12",
+                "srow": "25",
+                "gcol": "23"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "222",
+                "grow": "7",
+                "scol": "28",
+                "srow": "7",
+                "gcol": "28"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "223",
+                "grow": "7",
+                "scol": "29",
+                "srow": "7",
+                "gcol": "29"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "224",
+                "grow": "7",
+                "scol": "30",
+                "srow": "7",
+                "gcol": "30"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "225",
+                "grow": "7",
+                "scol": "31",
+                "srow": "7",
+                "gcol": "31"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "226",
+                "grow": "7",
+                "scol": "32",
+                "srow": "7",
+                "gcol": "32"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "227",
+                "grow": "7",
+                "scol": "33",
+                "srow": "7",
+                "gcol": "33"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "228",
+                "grow": "7",
+                "scol": "34",
+                "srow": "7",
+                "gcol": "34"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "229",
+                "grow": "7",
+                "scol": "35",
+                "srow": "7",
+                "gcol": "35"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "230",
+                "grow": "7",
+                "scol": "36",
+                "srow": "7",
+                "gcol": "36"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "1",
+                "grow": "1",
+                "scol": "1",
+                "srow": "1",
+                "gcol": "1"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "2",
+                "grow": "1",
+                "scol": "2",
+                "srow": "1",
+                "gcol": "2"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "3",
+                "grow": "1",
+                "scol": "3",
+                "srow": "1",
+                "gcol": "3"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "4",
+                "grow": "1",
+                "scol": "4",
+                "srow": "1",
+                "gcol": "4"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "5",
+                "grow": "1",
+                "scol": "5",
+                "srow": "1",
+                "gcol": "5"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "6",
+                "grow": "1",
+                "scol": "6",
+                "srow": "1",
+                "gcol": "6"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "7",
+                "grow": "1",
+                "scol": "7",
+                "srow": "1",
+                "gcol": "7"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "8",
+                "grow": "1",
+                "scol": "8",
+                "srow": "1",
+                "gcol": "8"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "9",
+                "grow": "1",
+                "scol": "9",
+                "srow": "1",
+                "gcol": "9"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "10",
+                "grow": "1",
+                "scol": "10",
+                "srow": "1",
+                "gcol": "10"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "11",
+                "grow": "1",
+                "scol": "11",
+                "srow": "1",
+                "gcol": "11"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "12",
+                "grow": "1",
+                "scol": "12",
+                "srow": "1",
+                "gcol": "12"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "13",
+                "grow": "1",
+                "scol": "13",
+                "srow": "1",
+                "gcol": "13"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "14",
+                "grow": "1",
+                "scol": "14",
+                "srow": "1",
+                "gcol": "14"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "15",
+                "grow": "1",
+                "scol": "15",
+                "srow": "1",
+                "gcol": "15"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "16",
+                "grow": "1",
+                "scol": "16",
+                "srow": "1",
+                "gcol": "16"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "17",
+                "grow": "1",
+                "scol": "17",
+                "srow": "1",
+                "gcol": "17"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "18",
+                "grow": "1",
+                "scol": "18",
+                "srow": "1",
+                "gcol": "18"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "19",
+                "grow": "1",
+                "scol": "19",
+                "srow": "1",
+                "gcol": "19"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "20",
+                "grow": "1",
+                "scol": "20",
+                "srow": "1",
+                "gcol": "20"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "21",
+                "grow": "1",
+                "scol": "21",
+                "srow": "1",
+                "gcol": "21"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "22",
+                "grow": "1",
+                "scol": "22",
+                "srow": "1",
+                "gcol": "22"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "23",
+                "grow": "1",
+                "scol": "23",
+                "srow": "1",
+                "gcol": "23"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "24",
+                "grow": "1",
+                "scol": "24",
+                "srow": "1",
+                "gcol": "24"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "25",
+                "grow": "1",
+                "scol": "25",
+                "srow": "1",
+                "gcol": "25"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "26",
+                "grow": "1",
+                "scol": "26",
+                "srow": "1",
+                "gcol": "26"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "27",
+                "grow": "1",
+                "scol": "27",
+                "srow": "1",
+                "gcol": "27"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "28",
+                "grow": "1",
+                "scol": "28",
+                "srow": "1",
+                "gcol": "28"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "29",
+                "grow": "1",
+                "scol": "29",
+                "srow": "1",
+                "gcol": "29"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "30",
+                "grow": "1",
+                "scol": "30",
+                "srow": "1",
+                "gcol": "30"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "31",
+                "grow": "1",
+                "scol": "31",
+                "srow": "1",
+                "gcol": "31"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "32",
+                "grow": "1",
+                "scol": "32",
+                "srow": "1",
+                "gcol": "32"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "33",
+                "grow": "1",
+                "scol": "33",
+                "srow": "1",
+                "gcol": "33"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "34",
+                "grow": "1",
+                "scol": "34",
+                "srow": "1",
+                "gcol": "34"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "35",
+                "grow": "2",
+                "scol": "1",
+                "srow": "2",
+                "gcol": "1"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "36",
+                "grow": "2",
+                "scol": "2",
+                "srow": "2",
+                "gcol": "2"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "37",
+                "grow": "2",
+                "scol": "3",
+                "srow": "2",
+                "gcol": "3"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "38",
+                "grow": "2",
+                "scol": "4",
+                "srow": "2",
+                "gcol": "4"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "39",
+                "grow": "2",
+                "scol": "5",
+                "srow": "2",
+                "gcol": "5"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "40",
+                "grow": "2",
+                "scol": "6",
+                "srow": "2",
+                "gcol": "6"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "41",
+                "grow": "2",
+                "scol": "7",
+                "srow": "2",
+                "gcol": "7"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "42",
+                "grow": "2",
+                "scol": "8",
+                "srow": "2",
+                "gcol": "8"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "43",
+                "grow": "2",
+                "scol": "9",
+                "srow": "2",
+                "gcol": "9"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "44",
+                "grow": "2",
+                "scol": "10",
+                "srow": "2",
+                "gcol": "10"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "45",
+                "grow": "2",
+                "scol": "11",
+                "srow": "2",
+                "gcol": "11"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "46",
+                "grow": "2",
+                "scol": "12",
+                "srow": "2",
+                "gcol": "12"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "47",
+                "grow": "2",
+                "scol": "13",
+                "srow": "2",
+                "gcol": "13"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "48",
+                "grow": "2",
+                "scol": "14",
+                "srow": "2",
+                "gcol": "14"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "49",
+                "grow": "2",
+                "scol": "15",
+                "srow": "2",
+                "gcol": "15"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "50",
+                "grow": "2",
+                "scol": "16",
+                "srow": "2",
+                "gcol": "16"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "51",
+                "grow": "2",
+                "scol": "17",
+                "srow": "2",
+                "gcol": "17"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "52",
+                "grow": "2",
+                "scol": "18",
+                "srow": "2",
+                "gcol": "18"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "53",
+                "grow": "2",
+                "scol": "19",
+                "srow": "2",
+                "gcol": "19"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "54",
+                "grow": "2",
+                "scol": "20",
+                "srow": "2",
+                "gcol": "20"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "55",
+                "grow": "2",
+                "scol": "21",
+                "srow": "2",
+                "gcol": "21"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "56",
+                "grow": "2",
+                "scol": "22",
+                "srow": "2",
+                "gcol": "22"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "57",
+                "grow": "2",
+                "scol": "23",
+                "srow": "2",
+                "gcol": "23"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "58",
+                "grow": "2",
+                "scol": "24",
+                "srow": "2",
+                "gcol": "24"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "59",
+                "grow": "2",
+                "scol": "25",
+                "srow": "2",
+                "gcol": "25"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "60",
+                "grow": "2",
+                "scol": "26",
+                "srow": "2",
+                "gcol": "26"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "61",
+                "grow": "2",
+                "scol": "27",
+                "srow": "2",
+                "gcol": "27"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "62",
+                "grow": "2",
+                "scol": "28",
+                "srow": "2",
+                "gcol": "28"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "63",
+                "grow": "2",
+                "scol": "29",
+                "srow": "2",
+                "gcol": "29"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "64",
+                "grow": "2",
+                "scol": "30",
+                "srow": "2",
+                "gcol": "30"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "65",
+                "grow": "3",
+                "scol": "1",
+                "srow": "3",
+                "gcol": "1"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "66",
+                "grow": "3",
+                "scol": "2",
+                "srow": "3",
+                "gcol": "2"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "67",
+                "grow": "3",
+                "scol": "3",
+                "srow": "3",
+                "gcol": "3"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "68",
+                "grow": "3",
+                "scol": "4",
+                "srow": "3",
+                "gcol": "4"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "69",
+                "grow": "3",
+                "scol": "5",
+                "srow": "3",
+                "gcol": "5"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "70",
+                "grow": "3",
+                "scol": "6",
+                "srow": "3",
+                "gcol": "6"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "71",
+                "grow": "3",
+                "scol": "7",
+                "srow": "3",
+                "gcol": "7"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "72",
+                "grow": "3",
+                "scol": "8",
+                "srow": "3",
+                "gcol": "8"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "73",
+                "grow": "3",
+                "scol": "9",
+                "srow": "3",
+                "gcol": "9"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "74",
+                "grow": "3",
+                "scol": "10",
+                "srow": "3",
+                "gcol": "10"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "75",
+                "grow": "3",
+                "scol": "11",
+                "srow": "3",
+                "gcol": "11"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "76",
+                "grow": "3",
+                "scol": "12",
+                "srow": "3",
+                "gcol": "12"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "77",
+                "grow": "3",
+                "scol": "13",
+                "srow": "3",
+                "gcol": "13"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "78",
+                "grow": "3",
+                "scol": "14",
+                "srow": "3",
+                "gcol": "14"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "79",
+                "grow": "3",
+                "scol": "15",
+                "srow": "3",
+                "gcol": "15"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "80",
+                "grow": "3",
+                "scol": "16",
+                "srow": "3",
+                "gcol": "16"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "81",
+                "grow": "3",
+                "scol": "17",
+                "srow": "3",
+                "gcol": "17"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "82",
+                "grow": "3",
+                "scol": "18",
+                "srow": "3",
+                "gcol": "18"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "83",
+                "grow": "3",
+                "scol": "19",
+                "srow": "3",
+                "gcol": "19"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "84",
+                "grow": "3",
+                "scol": "20",
+                "srow": "3",
+                "gcol": "20"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "85",
+                "grow": "3",
+                "scol": "21",
+                "srow": "3",
+                "gcol": "21"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "86",
+                "grow": "3",
+                "scol": "22",
+                "srow": "3",
+                "gcol": "22"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "87",
+                "grow": "3",
+                "scol": "23",
+                "srow": "3",
+                "gcol": "23"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "88",
+                "grow": "3",
+                "scol": "24",
+                "srow": "3",
+                "gcol": "24"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "89",
+                "grow": "3",
+                "scol": "25",
+                "srow": "3",
+                "gcol": "25"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "90",
+                "grow": "3",
+                "scol": "26",
+                "srow": "3",
+                "gcol": "26"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "91",
+                "grow": "3",
+                "scol": "27",
+                "srow": "3",
+                "gcol": "27"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "92",
+                "grow": "3",
+                "scol": "28",
+                "srow": "3",
+                "gcol": "28"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "93",
+                "grow": "3",
+                "scol": "29",
+                "srow": "3",
+                "gcol": "29"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "94",
+                "grow": "3",
+                "scol": "30",
+                "srow": "3",
+                "gcol": "30"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "95",
+                "grow": "3",
+                "scol": "31",
+                "srow": "3",
+                "gcol": "31"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "96",
+                "grow": "3",
+                "scol": "32",
+                "srow": "3",
+                "gcol": "32"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "97",
+                "grow": "3",
+                "scol": "33",
+                "srow": "3",
+                "gcol": "33"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "98",
+                "grow": "3",
+                "scol": "34",
+                "srow": "3",
+                "gcol": "34"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "99",
+                "grow": "3",
+                "scol": "35",
+                "srow": "3",
+                "gcol": "35"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "100",
+                "grow": "3",
+                "scol": "36",
+                "srow": "3",
+                "gcol": "36"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "101",
+                "grow": "4",
+                "scol": "1",
+                "srow": "4",
+                "gcol": "1"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "102",
+                "grow": "4",
+                "scol": "2",
+                "srow": "4",
+                "gcol": "2"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "103",
+                "grow": "4",
+                "scol": "3",
+                "srow": "4",
+                "gcol": "3"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "104",
+                "grow": "4",
+                "scol": "4",
+                "srow": "4",
+                "gcol": "4"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "105",
+                "grow": "4",
+                "scol": "5",
+                "srow": "4",
+                "gcol": "5"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "106",
+                "grow": "4",
+                "scol": "6",
+                "srow": "4",
+                "gcol": "6"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "107",
+                "grow": "4",
+                "scol": "7",
+                "srow": "4",
+                "gcol": "7"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "108",
+                "grow": "4",
+                "scol": "8",
+                "srow": "4",
+                "gcol": "8"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "109",
+                "grow": "4",
+                "scol": "9",
+                "srow": "4",
+                "gcol": "9"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "110",
+                "grow": "4",
+                "scol": "10",
+                "srow": "4",
+                "gcol": "10"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "111",
+                "grow": "4",
+                "scol": "11",
+                "srow": "4",
+                "gcol": "11"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "112",
+                "grow": "4",
+                "scol": "12",
+                "srow": "4",
+                "gcol": "12"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "113",
+                "grow": "4",
+                "scol": "13",
+                "srow": "4",
+                "gcol": "13"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "114",
+                "grow": "4",
+                "scol": "14",
+                "srow": "4",
+                "gcol": "14"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "115",
+                "grow": "4",
+                "scol": "15",
+                "srow": "4",
+                "gcol": "15"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "116",
+                "grow": "4",
+                "scol": "16",
+                "srow": "4",
+                "gcol": "16"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "117",
+                "grow": "4",
+                "scol": "17",
+                "srow": "4",
+                "gcol": "17"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "118",
+                "grow": "4",
+                "scol": "18",
+                "srow": "4",
+                "gcol": "18"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "119",
+                "grow": "4",
+                "scol": "19",
+                "srow": "4",
+                "gcol": "19"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "120",
+                "grow": "4",
+                "scol": "20",
+                "srow": "4",
+                "gcol": "20"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "121",
+                "grow": "4",
+                "scol": "21",
+                "srow": "4",
+                "gcol": "21"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "122",
+                "grow": "4",
+                "scol": "22",
+                "srow": "4",
+                "gcol": "22"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "123",
+                "grow": "4",
+                "scol": "23",
+                "srow": "4",
+                "gcol": "23"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "124",
+                "grow": "4",
+                "scol": "24",
+                "srow": "4",
+                "gcol": "24"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "125",
+                "grow": "4",
+                "scol": "25",
+                "srow": "4",
+                "gcol": "25"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "126",
+                "grow": "4",
+                "scol": "26",
+                "srow": "4",
+                "gcol": "26"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "127",
+                "grow": "4",
+                "scol": "27",
+                "srow": "4",
+                "gcol": "27"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "128",
+                "grow": "4",
+                "scol": "28",
+                "srow": "4",
+                "gcol": "28"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "129",
+                "grow": "4",
+                "scol": "29",
+                "srow": "4",
+                "gcol": "29"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "130",
+                "grow": "4",
+                "scol": "30",
+                "srow": "4",
+                "gcol": "30"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "131",
+                "grow": "5",
+                "scol": "1",
+                "srow": "5",
+                "gcol": "1"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "132",
+                "grow": "5",
+                "scol": "2",
+                "srow": "5",
+                "gcol": "2"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "133",
+                "grow": "5",
+                "scol": "3",
+                "srow": "5",
+                "gcol": "3"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "134",
+                "grow": "5",
+                "scol": "4",
+                "srow": "5",
+                "gcol": "4"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "135",
+                "grow": "5",
+                "scol": "5",
+                "srow": "5",
+                "gcol": "5"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "136",
+                "grow": "5",
+                "scol": "6",
+                "srow": "5",
+                "gcol": "6"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "137",
+                "grow": "5",
+                "scol": "7",
+                "srow": "5",
+                "gcol": "7"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "138",
+                "grow": "5",
+                "scol": "8",
+                "srow": "5",
+                "gcol": "8"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "139",
+                "grow": "5",
+                "scol": "9",
+                "srow": "5",
+                "gcol": "9"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "140",
+                "grow": "5",
+                "scol": "10",
+                "srow": "5",
+                "gcol": "10"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "141",
+                "grow": "5",
+                "scol": "11",
+                "srow": "5",
+                "gcol": "11"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "142",
+                "grow": "5",
+                "scol": "12",
+                "srow": "5",
+                "gcol": "12"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "143",
+                "grow": "5",
+                "scol": "13",
+                "srow": "5",
+                "gcol": "13"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "144",
+                "grow": "5",
+                "scol": "14",
+                "srow": "5",
+                "gcol": "14"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "145",
+                "grow": "5",
+                "scol": "15",
+                "srow": "5",
+                "gcol": "15"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "146",
+                "grow": "5",
+                "scol": "16",
+                "srow": "5",
+                "gcol": "16"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "147",
+                "grow": "5",
+                "scol": "17",
+                "srow": "5",
+                "gcol": "17"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "148",
+                "grow": "5",
+                "scol": "18",
+                "srow": "5",
+                "gcol": "18"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "149",
+                "grow": "5",
+                "scol": "19",
+                "srow": "5",
+                "gcol": "19"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "150",
+                "grow": "5",
+                "scol": "20",
+                "srow": "5",
+                "gcol": "20"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "151",
+                "grow": "5",
+                "scol": "21",
+                "srow": "5",
+                "gcol": "21"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "152",
+                "grow": "5",
+                "scol": "22",
+                "srow": "5",
+                "gcol": "22"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "153",
+                "grow": "5",
+                "scol": "23",
+                "srow": "5",
+                "gcol": "23"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "154",
+                "grow": "5",
+                "scol": "24",
+                "srow": "5",
+                "gcol": "24"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "155",
+                "grow": "5",
+                "scol": "25",
+                "srow": "5",
+                "gcol": "25"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "156",
+                "grow": "5",
+                "scol": "26",
+                "srow": "5",
+                "gcol": "26"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "157",
+                "grow": "5",
+                "scol": "27",
+                "srow": "5",
+                "gcol": "27"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "158",
+                "grow": "5",
+                "scol": "28",
+                "srow": "5",
+                "gcol": "28"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "159",
+                "grow": "5",
+                "scol": "29",
+                "srow": "5",
+                "gcol": "29"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "160",
+                "grow": "5",
+                "scol": "30",
+                "srow": "5",
+                "gcol": "30"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "161",
+                "grow": "5",
+                "scol": "31",
+                "srow": "5",
+                "gcol": "31"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "162",
+                "grow": "5",
+                "scol": "32",
+                "srow": "5",
+                "gcol": "32"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "163",
+                "grow": "5",
+                "scol": "33",
+                "srow": "5",
+                "gcol": "33"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "164",
+                "grow": "5",
+                "scol": "34",
+                "srow": "5",
+                "gcol": "34"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "165",
+                "grow": "6",
+                "scol": "1",
+                "srow": "6",
+                "gcol": "1"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "166",
+                "grow": "6",
+                "scol": "2",
+                "srow": "6",
+                "gcol": "2"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "167",
+                "grow": "6",
+                "scol": "3",
+                "srow": "6",
+                "gcol": "3"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "168",
+                "grow": "6",
+                "scol": "4",
+                "srow": "6",
+                "gcol": "4"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "169",
+                "grow": "6",
+                "scol": "5",
+                "srow": "6",
+                "gcol": "5"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "170",
+                "grow": "6",
+                "scol": "6",
+                "srow": "6",
+                "gcol": "6"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "171",
+                "grow": "6",
+                "scol": "7",
+                "srow": "6",
+                "gcol": "7"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "172",
+                "grow": "6",
+                "scol": "8",
+                "srow": "6",
+                "gcol": "8"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "173",
+                "grow": "6",
+                "scol": "9",
+                "srow": "6",
+                "gcol": "9"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "174",
+                "grow": "6",
+                "scol": "10",
+                "srow": "6",
+                "gcol": "10"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "175",
+                "grow": "6",
+                "scol": "11",
+                "srow": "6",
+                "gcol": "11"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "176",
+                "grow": "6",
+                "scol": "12",
+                "srow": "6",
+                "gcol": "12"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "177",
+                "grow": "6",
+                "scol": "13",
+                "srow": "6",
+                "gcol": "13"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "178",
+                "grow": "6",
+                "scol": "14",
+                "srow": "6",
+                "gcol": "14"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "179",
+                "grow": "6",
+                "scol": "15",
+                "srow": "6",
+                "gcol": "15"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "180",
+                "grow": "6",
+                "scol": "16",
+                "srow": "6",
+                "gcol": "16"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "181",
+                "grow": "6",
+                "scol": "17",
+                "srow": "6",
+                "gcol": "17"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "182",
+                "grow": "6",
+                "scol": "18",
+                "srow": "6",
+                "gcol": "18"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "183",
+                "grow": "6",
+                "scol": "19",
+                "srow": "6",
+                "gcol": "19"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "184",
+                "grow": "6",
+                "scol": "20",
+                "srow": "6",
+                "gcol": "20"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "185",
+                "grow": "6",
+                "scol": "21",
+                "srow": "6",
+                "gcol": "21"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "186",
+                "grow": "6",
+                "scol": "22",
+                "srow": "6",
+                "gcol": "22"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "187",
+                "grow": "6",
+                "scol": "23",
+                "srow": "6",
+                "gcol": "23"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "188",
+                "grow": "6",
+                "scol": "24",
+                "srow": "6",
+                "gcol": "24"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "189",
+                "grow": "6",
+                "scol": "25",
+                "srow": "6",
+                "gcol": "25"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "190",
+                "grow": "6",
+                "scol": "26",
+                "srow": "6",
+                "gcol": "26"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "191",
+                "grow": "6",
+                "scol": "27",
+                "srow": "6",
+                "gcol": "27"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "192",
+                "grow": "6",
+                "scol": "28",
+                "srow": "6",
+                "gcol": "28"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "193",
+                "grow": "6",
+                "scol": "29",
+                "srow": "6",
+                "gcol": "29"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "194",
+                "grow": "6",
+                "scol": "30",
+                "srow": "6",
+                "gcol": "30"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "195",
+                "grow": "7",
+                "scol": "1",
+                "srow": "7",
+                "gcol": "1"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "196",
+                "grow": "7",
+                "scol": "2",
+                "srow": "7",
+                "gcol": "2"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "197",
+                "grow": "7",
+                "scol": "3",
+                "srow": "7",
+                "gcol": "3"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "198",
+                "grow": "7",
+                "scol": "4",
+                "srow": "7",
+                "gcol": "4"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "199",
+                "grow": "7",
+                "scol": "5",
+                "srow": "7",
+                "gcol": "5"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "200",
+                "grow": "7",
+                "scol": "6",
+                "srow": "7",
+                "gcol": "6"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "201",
+                "grow": "7",
+                "scol": "7",
+                "srow": "7",
+                "gcol": "7"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "202",
+                "grow": "7",
+                "scol": "8",
+                "srow": "7",
+                "gcol": "8"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "203",
+                "grow": "7",
+                "scol": "9",
+                "srow": "7",
+                "gcol": "9"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "204",
+                "grow": "7",
+                "scol": "10",
+                "srow": "7",
+                "gcol": "10"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "205",
+                "grow": "7",
+                "scol": "11",
+                "srow": "7",
+                "gcol": "11"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "206",
+                "grow": "7",
+                "scol": "12",
+                "srow": "7",
+                "gcol": "12"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "207",
+                "grow": "7",
+                "scol": "13",
+                "srow": "7",
+                "gcol": "13"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "208",
+                "grow": "7",
+                "scol": "14",
+                "srow": "7",
+                "gcol": "14"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "209",
+                "grow": "7",
+                "scol": "15",
+                "srow": "7",
+                "gcol": "15"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "210",
+                "grow": "7",
+                "scol": "16",
+                "srow": "7",
+                "gcol": "16"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "211",
+                "grow": "7",
+                "scol": "17",
+                "srow": "7",
+                "gcol": "17"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "212",
+                "grow": "7",
+                "scol": "18",
+                "srow": "7",
+                "gcol": "18"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "213",
+                "grow": "7",
+                "scol": "19",
+                "srow": "7",
+                "gcol": "19"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "214",
+                "grow": "7",
+                "scol": "20",
+                "srow": "7",
+                "gcol": "20"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "215",
+                "grow": "7",
+                "scol": "21",
+                "srow": "7",
+                "gcol": "21"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "216",
+                "grow": "7",
+                "scol": "22",
+                "srow": "7",
+                "gcol": "22"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "217",
+                "grow": "7",
+                "scol": "23",
+                "srow": "7",
+                "gcol": "23"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "218",
+                "grow": "7",
+                "scol": "24",
+                "srow": "7",
+                "gcol": "24"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "219",
+                "grow": "7",
+                "scol": "25",
+                "srow": "7",
+                "gcol": "25"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "220",
+                "grow": "7",
+                "scol": "26",
+                "srow": "7",
+                "gcol": "26"
+            },
+            {
+                "status": "1",
+                "seatname": "A3",
+                "seatid": "221",
+                "grow": "7",
+                "scol": "27",
+                "srow": "7",
+                "gcol": "27"
+            }
+        ]
+    }
+}

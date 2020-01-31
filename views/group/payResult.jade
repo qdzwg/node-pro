@@ -1,0 +1,38 @@
+extends ../layout
+
+block stylesheets
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/coupons.css?#{vCode}")
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/order.css?#{vCode}")
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/calendar.css?#{vCode}")
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/group.css?#{vCode}")
+block javascripts
+    script(type='text/javascript', src='#{baseUrl}/javascripts/jquery.calendar.js')
+    script(type='text/javascript', src='#{baseUrl}/javascripts/validate/jquery.validate.min.js')
+    script(type='text/javascript', src='#{baseUrl}/javascripts/validate/messages_zh.min.js')
+    script(type='text/javascript', src='#{baseUrl}/javascripts/validate/additional-methods.js')
+    script(type='text/javascript', src='#{baseUrl}/javascripts/pageItem.js?#{vCode}')
+    script(type='text/javascript', src='#{baseUrl}/javascripts/order.js?#{vCode}')
+block content
+    .detail-block
+        .payResult
+            .resultTit
+                i.icon-success
+                i.icon-fail
+                h3 支付成功！
+            .orderResultBtn
+                a.linkBtn(href="") 查看订单
+                a.linkBtn(href="") 返回首页
+            p 请在1小时内完成支付，订单超时将自动关闭！
+            p 订单总计:
+                span.price ￥26.9
+    .page-line
+    .payMethodBlock
+        .payMethodItem
+            i.icon-wx
+            span.payMethodName 微信支付
+            span.recommendSign 推荐
+            span.icon-selected.selected
+
+    .group-detail-footer
+        .footerItem(style="width:100%;")
+            button.submitOrderBtn(type="button") 继续支付

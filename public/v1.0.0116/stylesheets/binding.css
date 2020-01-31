@@ -1,0 +1,73 @@
+
+body{
+  background: #fff;
+}
+.bmark-head{
+  width: 100%;
+}
+.bmark-head img{
+  width: 100%;
+  height: 9rem;
+  object-fit: cover;
+}
+
+.bmark-from{
+  margin: 0 1.25rem;
+  padding-top: 0.4rem;
+}
+.bform-item{
+  padding-top: 1.1rem;
+  position: relative;
+}
+.bform-item label.item-lab{
+  font-size: 0.75rem;
+  font-weight: bold;
+  line-height: 1.2rem;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+.bform-item input{
+  width: 100%;
+  font-size: 0.6rem;
+  line-height: 0.8rem;
+  height: 0.8rem;
+  padding:0.3rem 0;
+  border: 0;
+  border-bottom: 1px solid #e1e1e1;
+}
+.bform-item label.error{
+  color: #f00;
+  position: absolute;
+  bottom: 1px;
+  right: 0;
+  font-size: 0.5rem;
+  line-height: 1.5rem;
+}
+
+.bmark-btn-box{
+  padding-top: 1.9rem;
+  padding-bottom: 2rem;
+  margin: 0 1.25rem;
+}
+.bmark-btn-box button,
+.bmark-btn-box a
+{
+  display: block;
+  width: 100%;
+  height: 2.1rem;
+  line-height: 2.1rem;
+  font-size: 0.75rem;
+  color: #ffffff;
+  background: -webkit-linear-gradient(left,#007fe9,#7041c7);
+  background: -moz-linear-gradient(left,#007fe9,#7041c7);
+  background: -o-linear-gradient(left,#007fe9,#7041c7);
+  background: -ms-linear-gradient(left,#007fe9,#7041c7);
+  background: linear-gradient(left,#007fe9,#7041c7);
+  border: 0;
+  -webkit-border-radius: 0.1rem;
+  -moz-border-radius: 0.1rem;
+  border-radius: 0.1rem;
+  cursor: pointer;
+  font-weight: bold;
+  letter-spacing: 2px;
+}

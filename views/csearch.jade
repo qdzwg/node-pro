@@ -1,0 +1,54 @@
+extends layout
+
+block stylesheets  
+  link(rel="stylesheet", href="#{baseUrl}/stylesheets/dropload.css?#{vCode}")
+  link(rel="stylesheet", href="#{baseUrl}/stylesheets/csearch.css?#{vCode}")  
+block javascripts   
+  script(type='text/javascript', src='//api.map.baidu.com/api?ak=DE62ca2a357ccffe40770cf87cb63195&v=2.0')
+  script(type='text/javascript', src='#{baseUrl}/javascripts/lib/dropload.js')  
+  script(type='text/javascript', src='#{baseUrl}/javascripts/csearch.js?#{vCode}')  
+block content
+  include common/footer     
+  //- 搜索框
+  .csearch-s
+    .csearch-box.clearfix
+      i.xx-icon.icon-ico-search
+      input#listSearchInput(type='search' placeholder='请输入您要搜索的产品' value='#{modelName||""}')
+      a#quxiao(data-url=redir,href="javascript:;") 取消
+  //- 聚合搜索tabs
+  .csearch-t
+    .csearch-tabs
+      ul.clearfix
+        if searchTabs.length > 1
+          li(data-module='all')
+            a(href='javascript:;') 全部
+        each item in searchTabs
+          li(data-module=item)
+            a(href='javascript:;') 
+              +moduleName(item)
+  //- 聚合搜索数据
+  div(class='drop-box')
+    ul(class="page-list list-main")  
+
+  //- if footerDatas&& footerDatas.data.list.length > 0
+  //-   +diyFooter(footerDatas)
+  //- else 
+  //-   +footer(templateCode)
+  
+//- 聚合搜索业态名称  
+mixin moduleName(str)
+  -var _m=''
+  case str
+    when 'park'
+      -_m = '景区'
+    when 'hotel'
+      -_m = '酒店'
+    when 'mdse'
+      -_m = '商品'
+    when 'repast'
+      -_m = '餐饮'
+    when 'route'
+      -_m = '跟团游'
+    when 'strategy'
+      -_m = '攻略'
+  =_m

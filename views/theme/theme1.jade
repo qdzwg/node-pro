@@ -1,0 +1,86 @@
+mixin themeOne(datas,merchantInfoId)
+    // 菜单 start
+    .index_box
+        .index_list
+            .clearfix
+                .menu_l.fl
+                    .ticket.mt25
+                        a(href='/list/ticket?m_id='+merchantInfoId)
+                            i.i_ticket
+                            em SCENIC TICKET
+                            span 门 票 预 订
+                .menu_r.fr
+                    .hotel.mt25
+                        a(href='/list/hotel?m_id='+merchantInfoId)
+                            .mou
+                                i.i_hotel
+                                em Hotel
+                                span 酒店预订
+                    .package.mt25
+                        a(href='/list/shop?m_id='+merchantInfoId)
+                            .mou
+                                i.i_goods
+                                em STRATEGY
+                                span 特色商品
+            .menu_b
+                .gold.mt25
+                    a(href='/vue/list/strategy?m_id='+merchantInfoId)
+                        .mou
+                            i.i_tour
+                            em STRATEGY
+                            span 游玩攻略
+        // 菜单 end
+        .xian
+        .box-tit
+            img(src='#{baseUrl}/images/index/jp.png', alt='')
+            em RECOMMENDED
+        // 精品推荐 start
+        - const findList = datas[1].data.fine;
+        ul.recommended.clearfix
+            each item in findList
+                li
+                    - let _type = item.businessType
+                    - if(item.businessType === 'room') _type = 'hotel';
+                    - if(item.businessType === 'mdse') _type = 'shop';
+                    - let showPrice = item.businessType === 'route' ? item.parkPriceShow : item.priceShow;
+                    a(href='/detail/'+_type+'/'+item.merchantProdcutId+'/'+item.productCode+'?m_id='+merchantInfoId)
+                        img(src=item.linkMobileImg+'?imageMogr2/thumbnail/640x/strip/quality/100', alt='')
+                        if _type === 'hotel'
+                            h4 【#{item.parkNickName}】#{item.nickName}
+                        else 
+                            h4 #{item.nickName || item.name}    
+                        span
+                            | ￥#{showPrice}
+                    
+
+        // 精品推荐 end
+        .xian
+        .box-tit
+            img(src='#{baseUrl}/images/index/rx.png', alt='')
+            em HOT PRODUCTS
+        ul.hot.clearfix
+            - const sellWellList = datas[1].data.sellWell;
+            each item in sellWellList
+                li
+                    - let _type = item.businessType
+                    - if(item.businessType === 'room') _type = 'hotel';
+                    - if(item.businessType === 'mdse') _type = 'shop';
+                    - let showPrice = item.businessType === 'route' ? item.parkPriceShow : item.priceShow;
+                     a(href='/detail/'+ _type +'/'+item.merchantProdcutId+'/'+item.productCode+'?m_id='+merchantInfoId)
+                        img(src=item.linkMobileImg+'?imageMogr2/thumbnail/640x/strip/quality/100')
+                        .hot_con
+                            if _type === 'hotel'
+                                h4 【#{item.parkNickName}】#{item.nickName}
+                            else 
+                                h4 #{item.nickName || item.name}    
+                            p #{item.subtitle}
+                            .info
+                                span.fl
+                                    | ￥#{showPrice}
+                                if item.businessType === 'ticket' || item.businessType === 'room'
+                                    em.fr 已售：#{item.sellNum}
+                                else 
+                                    em.fr 已售：#{item.virtualSale}    
+         
+    
+    

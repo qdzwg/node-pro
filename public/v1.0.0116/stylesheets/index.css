@@ -1,0 +1,8 @@
+/*banner*/
+.index-slider{width: 100%;height: 7.75rem;position: relative;overflow: hidden;}
+.index-slider .swiper-wrapper{height: 100%;width: 100%;box-sizing: content-box;position: relative;z-index: 1;transition-property: transform;    display: flex;}
+.index-slider .swiper-wrapper .swiper-slide{height: 7.75rem;width: 100%;position: relative;    flex-shrink: 0;}
+.index-pagination{position: absolute;text-align: center;-webkit-transition: .3s;-moz-transition: .3s;-o-transition: .3s;transition: .3s;-webkit-transform: translate3d(0,0,0);-ms-transform: translate3d(0,0,0);-o-transform: translate3d(0,0,0);transform: translate3d(0,0,0);z-index: 10;bottom: 10px;left: 0;width: 100%;}
+.swiper-pagination-bullets .swiper-pagination-bullet{margin: 0 5px;}
+.index-slider .swiper-pagination-bullet-active{background: #fff;width: 16px;border-radius: 8px;}
+

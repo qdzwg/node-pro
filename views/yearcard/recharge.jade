@@ -1,0 +1,49 @@
+extends ../layout
+
+block stylesheets
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/yearCard.css?#{vCode}")
+block javascripts
+    script(type="text/javascript", src="#{baseUrl}/javascripts/yearCard.js?#{vCode}")
+block content
+    .yearcard-title
+        | #{data[1].data.cardName}
+    .yearcard-type
+        if finalType.length > 0
+            #chooseType
+                span.mnSelect
+                    em.input_select=finalType[0].name
+                    i.xx-icon.icon-xiangyoujiantou
+                    input#typeName(type="hidden" value=finalType[0].type)
+                ul 
+                    each item in finalType
+                        li(data-name=item.name data-ct=item.type)=item.name
+                //- li 卡片ID
+        //- select.chooseType(name="")
+        //-     option(value="身份证号") 身份证号
+        //-     option(value="卡片ID") 卡片ID
+        input#idCardNo(type='hidden' value=data[0].data.idcard?data[0].data.idcard:'')
+        input#cardNum(type="text", placeholder='请输入身份证号')
+    .yearcard-type
+        input#accName(type="text", placeholder='请输入姓名' name="accName" maxlength="10").yearcard-text
+        input(type="hidden" value=data[1].data.cardTypeChoice)#cardTypeChoice
+    .yearcard-price
+        label 价格
+        span
+            | ¥ 
+            em#cardPrice=data[1].data.cardPrice
+    .h21
+    input#cardName(type="hidden" value=data[1].data.cardName)
+    input#tradeType(type="hidden" value=data[1].data.tradeType)
+    input#nextProductCode(type="hidden" value=data[1].data.nextProductCode)
+    .goRecharge
+        a#toRecharge(href="javascript:;" data-id=data[1].data.id) 立即充值
+        //- a#toRecharge(href="/yearcard/recharges" data-id=data[1].data.id) 立即充值
+    .mask#mask
+    .tips
+        p
+        a(href="javascript:;").queding 确定
+    //- 充值加载中弹框
+    .loading-box
+        | 加载中......
+
+    

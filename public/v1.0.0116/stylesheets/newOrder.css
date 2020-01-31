@@ -1,0 +1,562 @@
+.page-line {
+  border: none;
+}
+
+.order-warp {
+  width: 100%;
+}
+
+.order-warp .order-module {
+  background: #f4f4f4;
+}
+
+.order-warp .persion-info-warp {
+  width: 100%;
+  box-sizing: border-box;
+  /* border-top: 1px solid #eeeeee; */
+  color: #5c5c5c;
+  padding-bottom: 0.45rem;
+}
+
+.order-warp .persion-info-warp__name {
+  padding: 0.45rem 0 0.15rem;
+}
+
+.order-warp .order-realname-title {
+  display: table-cell;
+  width: 3.25rem;
+}
+
+.order-warp .order-camera__icon {
+  color: #19a0f0;
+  font-size: 0.5rem;
+}
+
+.order-warp .order-camera__icon .icon-camera {
+  font-size: 0.95rem;
+  color: #f05b47;
+  line-height: 1;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.15rem;
+}
+
+.order-warp .persion-info-warp__name p {
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  color: #333333;
+  font-size: 0.6rem;
+  line-height: 1rem;
+}
+
+.order-warp .persion-info-warp__number {
+  width: 10%;
+  text-align: right;
+}
+
+.order-warp .icon-shenfenzheng {
+  font-size: 0.8rem;
+  vertical-align: middle;
+  margin-left: 0.5rem;
+}
+
+.order-warp .persion-info-warp__price {
+  width: 25%;
+  color: #413838;
+  font-weight: bold;
+}
+
+.order-warp .persion-info-warp__price em {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.5rem;
+}
+
+.order-warp .order-calendar .lab-title {
+  width: 60%;
+  color: #413838;
+}
+
+.order-warp .order-calendar__time {
+  display: table-cell;
+  width: 40%;
+  text-align: right;
+}
+
+.order-warp .order-calendar__time i {
+  color: #f05b47;
+}
+
+.order-warp .order-calendar__icon {
+  display: table-cell;
+  width: 20%;
+  text-align: right;
+}
+
+.order-warp .order-calendar__icon a {
+  display: block;
+}
+
+.order-warp .order-calendar__icon .order-calendar-icon {
+  color: #f05b47;
+  font-size: 0.8rem;
+  vertical-align: middle;
+}
+
+.order-warp .order-calendar__icon span {
+  font-size: 0.5rem;
+  margin-left: 0.15rem;
+  color: #19a0f0;
+}
+
+.order-warp .order-input-list-title {
+  font-size: 0.65rem;
+  color: #333;
+  font-weight: bold;
+}
+
+.order-warp .order-input-list .order-face {
+  text-align: left;
+}
+
+.order-warp .order-input-list .order-face .order-face-icon {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 1.25rem;
+  color: #f05b47;
+  line-height: 1;
+  width: 1.2rem;
+  margin-right: 0.25rem;
+}
+
+.order-warp .order-input-list .order-face img {
+  /* height: 2rem; */
+  width: 2rem;
+}
+
+.order-warp .order-list .persion-order-item .xx-icon {
+  color: #f05b47;
+}
+
+.order-warp .show-order-item {
+  padding: 0.5rem 0.75rem;
+  background: white;
+  position: relative;
+}
+
+.order-warp .show-info-warp {
+  width: 100%;
+}
+
+.order-warp .show-info-warp_name {
+  color: #413838;
+  font-size: 0.6rem;
+  line-height: 0.9rem;
+  padding: 0.15rem 0;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.order-warp .show-info-warp_table {
+  display: table;
+  padding: 0.1rem 0;
+  font-size: 0.55rem;
+  color: #999;
+}
+
+.order-warp .show-info-warp_table .title {
+  display: table-cell;
+}
+
+.order-warp .show-info-warp_table .content {
+  display: table-cell;
+}
+
+.order-warp .show-info-warp_table .content span {
+  margin-right: 0.2rem;
+}
+
+.order-warp .show-refund-btn {
+  display: block;
+  position: absolute;
+  bottom: 0.8rem;
+  right: .5rem;
+  height: 1.2rem;
+  line-height: 1.2rem;
+  width: 3.2rem;
+  background: #19a0f0;
+  font-size: 0.6rem;
+  color: white;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.user-editer {
+  position: fixed;
+  bottom: -20rem;
+  background: white;
+  border-radius: 0.15rem 0.15rem 0 0;
+  width: 100%;
+  z-index: 100;
+  transition: all 0.5s;
+}
+
+.user-editer .user-info-lists {
+  /* padding: 0 0.75rem 1.75rem; */
+  box-sizing: border-box;
+  width: 100%;
+  display: block;
+  max-height: 13rem;
+  overflow-y: scroll;
+  margin: 1.75rem 0 0.5rem;
+}
+
+.user-editer .user-info-lists .user-info-item {
+  /* margin-bottom: 0.45rem; */
+  box-sizing: border-box;
+  padding: 0.5rem 0.75rem 0.45rem;
+  width: 100%;
+  position: relative;
+  height: 4rem;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.user-editer .user-info-lists .user-info-item .user-info-content {
+  display: table;
+  width: 100%;
+  line-height: 1.5;
+}
+
+.user-editer .user-info-lists .user-info-item .user-info-content .user-info-detail {
+  display: table-cell;
+  width: 70%;
+  font-size: .55rem;
+  color: #666;
+}
+
+.user-editer .user-info-lists .user-info-item .user-info-content .user-info-detail i {
+  color: #f05b47;
+  font-size: 0.65rem;
+  display: inline-block;
+  vertical-align: middle;
+  width: 1rem;
+}
+
+.user-editer .user-info-lists .user-info-item .user-info-content .user-info-detail em {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.user-editer .user-info-lists .user-info-item .user-info-content .user-info-detail__name {
+  font-size: 0.65rem;
+  color: #3c3c3c;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user-editer .user-info-lists .user-info-item .user-info-content .user-info-detail__idcard i {
+  font-size: 0.75rem;
+}
+
+.user-editer .user-info-lists .user-info-item .user-info-content .user-info-detail__idcard strong {
+  color: #f05b47;
+}
+
+.user-editer .user-info-lists .user-info-item .user-info-content .user-info-btns {
+  display: table-cell;
+  width: 30%;
+  vertical-align: middle;
+  text-align: right;
+  font-size: 0.85rem;
+  color: #666666;
+}
+
+.user-editer .user-info-lists .user-info-item.nodata {
+  text-align: center;
+  height: 2rem;
+}
+
+.user-editer .user-info-lists .user-info-item .user-info-content .user-info-btns span {
+  margin-left: 0.45rem;
+}
+
+.user-editer .user-info-lists .user-info-item i.icon-tishifill {
+  font-size: 0.75rem;
+  color: #999;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 0.5rem;
+}
+
+.user-editer .user-info-lists .user-info-item .nodata-text {
+  font-size: 0.55rem;
+  color: #999;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.user-editer .user-editer-close {
+  padding: 0.5rem;
+  position: absolute;
+  right: 0;
+  line-height: 1;
+  top: -0.25rem;
+}
+
+.user-editer .user-editer-close .xx-icon {
+  font-size: 0.95rem;
+  color: #999;
+}
+
+.user-editer .user-editer-btn {
+  font-size: 0.65rem;
+  height: 2.2rem;
+  width: 100%;
+  background-color: #f05b47;
+  text-align: center;
+  line-height: 2.2rem;
+  color: white;
+}
+
+.footer {
+  height: 2.2rem;
+  width: 100%;
+}
+
+.footer .footer-btn {
+  height: 2.2rem;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  background-color: #f05b47;
+  text-align: center;
+  line-height: 2.2rem;
+}
+
+.footer .footer-btn a {
+  color: white;
+  font-size: 0.7rem;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.user-info-item .user-info-delete {
+  position: absolute;
+  height: 4.025rem;
+  width: 5rem;
+  background-color: #f05b47;
+  color: white;
+  font-size: .75rem;
+  text-align: center;
+  line-height: 4rem;
+  right: -5rem;
+  top: 0;
+  z-index: 10;
+  transition: all 0.5s;
+}
+
+.user-info-item .user-info-delete.show {
+  right: 0;
+}
+
+.persion-info .order-list li {
+  border-top: none;
+  border-bottom: 1px solid #eee;
+  padding: 0.5rem 0;
+}
+
+.persion-info .order-list li:last-child {
+  border-bottom: none;
+}
+
+.persion-info .order-list li.title {
+  padding: 0.75rem 0 .25rem;
+}
+
+.persion-info .persion-order-item {
+  padding: 0 0.75rem;
+  background-color: #f4f4f4;
+}
+
+.persion-info .order-input-list {
+  padding: 0 0.75rem;
+}
+
+.order-warp .order-list .order-ticket-status {
+  width: 50%;
+  display: table-cell;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 0.35rem 0;
+}
+
+.order-warp .order-list .order-has-checked {
+  border-right: 1px solid #eaeaea;
+}
+
+.order-warp .order-checked-number {
+  border-top: 1px solid #eaeaea !important;
+}
+
+.order-warp .order-list .order-ticket-status em {
+  margin-right: 0.45rem;
+}
+
+.order-item .realNameTip {
+  height: .8rem;
+  line-height: .8rem;
+  color: #fff;
+  text-align: center;
+  margin: 0 .2rem;
+  font-size: .5rem;
+  padding: .1rem .25rem;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.order-item .realNameTip.refuned {
+  background-color: #f66;
+}
+
+.order-item .realNameTip.refunding {
+  background-color: #f63;
+}
+
+.order-item .realNameTip.checked {
+  background-color: #19a0f0;
+}
+
+.order-header .order-header-detail {
+  padding: 0.5rem 0.5rem;
+  background: white;
+}
+
+.order-header-table {
+  width: 100%;
+  font-size: 0.6rem;
+  line-height: 1.2;
+  color: #413838;
+}
+
+.header-table-tr {
+  display: table;
+  width: 100%;
+  padding: 0.25rem 0;
+}
+
+.header-table-td {
+  display: table-cell;
+  vertical-align: top;
+}
+
+.header-table-title {
+  text-align: left;
+  width: 3.5rem;
+}
+
+.header-table-content {
+  text-align: left
+}
+
+#select_btn {
+  cursor: pointer;
+}
+
+/* .header-table-content span {
+  margin-right: 0.25rem;
+} */
+
+.userEditer-close {
+  float: right;
+  margin-right: .55rem;
+  color: #fff;
+  font-size: 0.8rem;
+}
+
+.itemVal .order-face {
+  text-align: left;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.itemVal .order-face .order-face-icon {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 0.95rem;
+  color: #f05b47;
+  line-height: 1;
+  width: 1.2rem;
+}
+
+.itemVal .order-face img {
+  /* height: 2rem; */
+  width: 2rem;
+}
+
+.newAddress .itemLine:last-child {
+  border-bottom: 1px solid #eee;
+}
+
+/* .order-warp .order-list .persion-order-item .xx-icon {
+  color: #f05b47;
+} */
+
+/* 身份证识别 */
+.order-list .order-input-list {
+  position: relative;
+}
+
+.persion-info .order-list li.order-item-card {
+  position: absolute;
+  width: 4.25rem;
+  top: 2.4rem;
+  min-height: 4rem;
+  height: 44%;
+  right: 0.25rem;
+  text-align: center;
+  background: white;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.persion-info .order-list li.order-item-card .xx-icon {
+  font-size: 0.95rem;
+  color: #f05b47;
+  line-height: 1;
+  display: block;
+  margin: 0 auto;
+  /* margin-right: 0.15rem; */
+  text-align: center;
+}
+
+.persion-info .order-list li.order-item-card span {
+  line-height: 0.8rem;
+  font-size: 0.45rem;
+  display: block;
+}
+
+.persion-info .order-list li.order-item-card span:last-child {
+  margin-top: -0.15rem;
+}
+
+.order-warp .show-refund-btn-disable {
+  background: #ccc;
+  color: #a0a0a0;
+}
+.header-table-content p{
+  margin-bottom: 0.25rem;
+  line-height: 140%;
+}

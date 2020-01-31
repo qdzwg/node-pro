@@ -1,0 +1,33 @@
+extends ../layout
+
+block stylesheets
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/swiper-3.4.1.min.css")
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/yearCard.css?#{vCode}")
+block javascripts
+    script(type='text/javascript', src='#{baseUrl}/javascripts/swiper-3.4.1.jquery.min.js')
+    script(type='text/javascript', src='#{baseUrl}/javascripts/touch-0.2.14.min.js')
+    script(type="text/javascript", src="#{baseUrl}/javascripts/yearCard.js?#{vCode}")    
+block content    
+    .productList__swiper1
+        .productListSwiper1.fq-slide-box
+            .hd.fq-recommend-nav
+                ul.clearfix
+                    li(class='' data-status='all') 全部记录
+                    li(class='' data-status='success') 交易成功
+                    li(class='' data-status='failure') 交易失败
+            .img-list
+                .fq_swiper.swiper-container
+                    .swiper-wrapper.fq-img-list
+                        ul#recordUl.swiper-slide.clearfix
+                            //- -if(datas.data && datas.data.length>0)
+                            //-     each item in datas.data
+                            //-         li
+                            //-             a(href="/yearcard/recordd/#{item.payOrderNo}"+"?m_id=" + merchantInfoId)
+                            //-                 span 交易流水号：#{item.payOrderNo}
+                            //-                 span 交易时间：#{item.createTime}
+                            //-                 span 交易金额：¥ #{item.paySum}
+                            //-                 span 交易方式：微信支付
+    input#cardId(type='hidden' value=cardId)
+    .h21
+    .bfix-btn
+        a.backBtn.fmb0.w100(href='/detail/yearcard/#{cardId}?m_id=' + merchantInfoId) 返回

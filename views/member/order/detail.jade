@@ -1,0 +1,468 @@
+extends ../../layout
+block stylesheets
+    link(href="#{baseUrl}/stylesheets/order.css?#{vCode}", rel="stylesheet")
+    link(href="#{baseUrl}/stylesheets/newOrder.css?#{vCode}", rel="stylesheet")
+    link(href="#{baseUrl}/stylesheets/face.css?#{vCode}", rel="stylesheet")
+block javascripts    
+    if isAli === 'T' 
+        script(src='//gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.min.js', type='text/javascript')
+    script.
+        var isAli = '#{isAli}'
+    if isWeixn    
+        script(src='//res.wx.qq.com/open/js/jweixin-1.4.0.js', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/lib/exif.js?#{vCode}', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/lib/jquery.crop.js?#{vCode}', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/addWxCard.js?#{vCode}', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/addFaceUrl.js?#{vCode}', type='text/javascript')
+block content
+    -var datas = data[0].data,orderItems = datas.orderDetail;
+    include ../../common/index
+    include ../../common/quickLink
+    +flowBtn(userInfo,marketDisAccount,showWholeMarket) 
+    header.myorder-header(data-desc=datas.desc,data-img=datas.img,data-title=datas.orderInfo)
+        p.myorder-explian
+            span 订单号：#{datas.orderNo}
+            span 下单日期：#{datas.createTime}
+            if module === 'theater_ticket'
+                span 节目名称：#{datas.orderInfo}
+        //- h3.myorder-title=datas.orderInfo
+        p.myorder-pay
+            | 订单总金额：
+            span.price
+                em ￥
+                    | #{datas.paySum}
+            em.pay-mold.payed.fr
+                +payStatus(datas.orderStatus)   
+    .order-warp
+        .page-line
+        if module !== 'theater_ticket'
+            ul.order-list.account-list.order-calendar
+                if datas.orderType === 'eatery'
+                    li
+                        label.lab-title(for='') 有效期
+                        .order-item
+                            span(style='white-space: nowrap')=datas.repastCheckDate 
+                li  
+                    - var _startTime = datas.startTime ? datas.startTime.substring(0,10) : '',_endTime = datas.endTime ? datas.endTime.substring(0,10) : ''
+                    case datas.orderType
+                        when 'park'
+                            label.lab-title(for='') 游玩日期
+                            .order-calendar__time
+                                span=_startTime
+                        when 'hotel'    
+                            label.lab-title(for='') 入住日期
+                            .order-item
+                                span(style='white-space: nowrap')=_startTime + "至" + _endTime   
+                        when 'pms_hotel'    
+                            label.lab-title(for='') 入住日期
+                            .order-item
+                                span(style='white-space: nowrap')=_startTime + "至" + _endTime   
+                        when 'eatery'  
+                            label.lab-title(for='') 使用星期
+                            .order-item
+                                span=datas.repastUseDate           
+        .order-module.persion-info
+            .order-list.persion-info-list
+                each item, index in orderItems
+                    if datas.orderType === 'theater_ticket'
+                        - var showInfo = datas.orderTheatreExtend || {};
+                        .show-order-item
+                            .show-info-warp
+                                .show-info-warp_name=item.orderInfo
+                                .show-info-warp_table
+                                    .title 演出场所：
+                                    .content=showInfo.seatArea
+                                .show-info-warp_table
+                                    .title 时间：
+                                    .content #{showInfo.showTime}&ensp;#{showInfo.playTime}
+                                .show-info-warp_table
+                                    .title 预订人数：
+                                    .content=item.amount
+                                if item.isRetreat=='reject'
+                                  .show-info-warp_table
+                                      .title 驳回理由：
+                                      .content(style="width:80%;padding-right:3rem;")=item.rejectRason
+                                //- if datas.seatVoList && datas.seatVoList.length > 0  
+                                    .show-info-warp_table
+                                        .title 座位：
+                                        .content
+                                            each _item in datas.seatVoList   
+                                                if _item.orderDetailId === item.id
+                                                    span #{_item.snRow}排#{_item.seatName}座
+                            if (datas.orderStatus === "3" || datas.orderStatus === "8" || datas.orderStatus === "9")&&datas.ableToRefund&&item.leftAmount > 0
+                              case item.isRetreat
+                                when 'ok'  
+                                default                       
+                                  a(href='/member/refund/' + datas.orderType + '?orderDetailId=' + item.id+'&orderId='+datas.id+'&maxNum='+item.leftAmount+'&m_id='+merchantInfoId, title="title").show-refund-btn 申请退款
+                                when 'not'
+                                  a(href='javascript:;').show-refund-btn.show-refund-btn-disable 不支持退款
+                                when 'reject'
+                                  a(href='javascript:;').show-refund-btn.show-refund-btn-disable 退款已驳回
+
+                    if datas.orderType === 'family'
+                        .persion-order-item
+                            .persion-info-warp.clearfix
+                                .persion-info-warp__name
+                                    p 
+                                        | #{item.orderInfo}
+                                        if item.isRealName === 'T'
+                                            i.xx-icon.icon-shenfenzheng
+                                .persion-info-warp__number.fr
+                                    | ×
+                                    em.product-num #{item.amount}                                
+                                .persion-info-warp__price.fl
+                                    em ￥
+                                    strong.product-price=item.price                                
+                                
+                                if item.fsStartTime && item.fsEndTime
+                                    .persion-info-warp__time.fl
+                                        em 预约时间：#{item.fsStartTime} - #{item.fsEndTime}
+                            if item.orderType == 'hotel' && item.startDate && item.endDate
+                                - var _startDate = item.startDate.substring(0,10), _endDate = item.endDate.substring(0,10)
+                                .persion-info-warp__time(style="margin-bottom:0.5rem;")
+                                    em 入住日期：#{_startDate}
+                                    em(style="margin-left:0.5rem;") 离店日期：#{_endDate}
+                    else    
+                        .persion-order-item
+                            .persion-info-warp.clearfix
+                                .persion-info-warp__name
+                                    p 
+                                        | #{item.orderInfo}
+                                        if item.isRealName === 'T'
+                                            i.xx-icon.icon-shenfenzheng
+                                .persion-info-warp__number.fr
+                                    | ×
+                                    em.product-num #{item.amount}                                
+                                .persion-info-warp__price.fl
+                                    em ￥
+                                    strong.product-price=item.price   
+                                if datas.fsStartTime && datas.fsEndTime
+                                    .persion-info-warp__time.fl
+                                        em 预约时间：#{datas.fsStartTime} - #{datas.fsEndTime}
+                        if datas.orderType === 'traffic'
+                            .triffic.persion-info-warp(style="padding: 0 0.75rem; background-color: #f4f4f4;")
+                                .triffic-time(style="padding-bottom:0.25rem;") 
+                                    span 发车时间：
+                                    span=item.orderTrafficExtend.playTime
+                                .triffic-site(style="padding-bottom:0.25rem;") 
+                                    span 始发站点：
+                                    span=item.orderTrafficExtend.bgSiteName                                   
+                                .triffic-site(style="padding-bottom:0.25rem;")                                    
+                                    span 截止站点：
+                                    span=item.orderTrafficExtend.edSiteName
+                                .triffic-site(style="padding-bottom:0.25rem;")
+                                    span 车牌号：
+                                    span=item.orderTrafficExtend.carNumber
+                                
+                    if datas.odmList && datas.odmList.length > 0 && module !== 'family' 
+                        - const __idcardType = { id:'身份证',pass:'港澳台<br/>通行证',passport:'护照'};       
+                        .order-module.persion-info
+                            .order-list.persion-info-list
+                                if datas.odmList.length > 1
+                                    each _item,_index in datas.odmList                        
+                                        ul.order-list.myorder-list.order-input-list#realNameFace(data-realnameface=datas.realNameFaceUrl)
+                                            li.title      
+                                                .order-item 
+                                                    | 游玩人#{_index+1} 
+                                                    if _item.refunded === 'T'   
+                                                        span.realNameTip.refuned 已退 
+                                                    if _item.refunding === 'T'   
+                                                        span.realNameTip.refuned 退款中 
+                                                    if _item.checked === 'T' 
+                                                        span.realNameTip.checked 已检 
+                                            li
+                                                label.lab-title(for='') 姓名
+                                                .order-item 
+                                                    span #{_item.linkMan}
+                                            li
+                                                label.lab-title(for='')!=__idcardType[_item.idcardType || 'id']
+                                                .order-item
+                                                    span #{_item.idcardNo}
+                                            if  _item.idcardType !== 'passport'
+                                                if  _item.faceUrl 
+                                                    li
+                                                        label.lab-title(for='') 人脸照
+                                                        .order-item.order-face  
+                                                            img(src=_item.faceUrl, alt="")  
+                                                else if  datas.realNameFaceUrl === 'T'
+                                                    li(data-orderno=datas.orderNo,data-idcard=_item.idcardNo)
+                                                        label.lab-title(for='') 人脸照
+                                                        .order-item.order-face.add-face(data-no=datas.orderNo)
+                                                            .order-face-icon
+                                                                i.xx-icon.icon-camera
+                                                            span 点此补录人脸信息
+                                                        input.imagePath(name='faceUrl',type="text",hidden)                     
+                                else
+                                    ul.order-list.myorder-list.order-input-list#realNameFace(data-realnameface=datas.realNameFaceUrl)
+                                        li.title      
+                                            .order-item 
+                                                | 游玩人 
+                                                if datas.odmList[0].refunded === 'T'   
+                                                    span.realNameTip.refuned 已退 
+                                                if datas.odmList[0].refunding === 'T'   
+                                                    span.realNameTip.refuned 退票中 
+                                                if datas.odmList[0].checked === 'T' 
+                                                    span.realNameTip.checked 已检                
+                                        li
+                                            label.lab-title(for='') 姓名
+                                            .order-item 
+                                                span #{datas.odmList[0].linkMan}
+                                        li
+                                            label.lab-title(for='')!= __idcardType[datas.odmList[0].idcardType]
+                                            .order-item
+                                                span #{datas.odmList[0].idcardNo}
+                                        if datas.odmList[0].idcardType !== 'passport'
+                                            if datas.odmList[0].faceUrl 
+                                                li
+                                                    label.lab-title(for='') 人脸照
+                                                    .order-item.order-face  
+                                                        img(src=datas.odmList[0].faceUrl, alt="")  
+                                            else if datas.realNameFaceUrl === 'T'
+                                                li(data-orderno=datas.orderNo,data-idcard=datas.odmList[0].idcardNo)
+                                                    label.lab-title(for='') 人脸照
+                                                    .order-item.order-face.add-face(data-no=datas.orderNo)
+                                                        .order-face-icon
+                                                            i.xx-icon.icon-camera
+                                                        span 点此补录人脸信息
+                                                    input.imagePath(name='faceUrl',type="text",hidden)
+                    if module === 'family' 
+                        - const __idcardType = { id:'身份证',pass:'港澳台<br/>通行证',passport:'护照'};       
+                        .order-module.persion-info
+                            .order-list.persion-info-list
+                                if item.orderDetailModels.length > 0
+                                    each _item,_index in item.orderDetailModels                      
+                                        ul.order-list.myorder-list.order-input-list#realNameFace(data-realnameface=datas.realNameFaceUrl)
+                                            li.title      
+                                                .order-item 
+                                                    | 游玩人#{_index+1} 
+                                                    if _item.refunded === 'T'   
+                                                        span.realNameTip.refuned 已退 
+                                                    if _item.refunding === 'T'   
+                                                        span.realNameTip.refuned 退款中 
+                                                    if _item.checked === 'T' 
+                                                        span.realNameTip.checked 已检 
+                                            li
+                                                label.lab-title(for='') 姓名
+                                                .order-item 
+                                                    span #{_item.linkMan}
+                                            li
+                                                label.lab-title(for='')!=__idcardType[_item.idcardType || 'id']
+                                                .order-item
+                                                    span #{_item.idcardNo}
+                                            if  _item.idcardType !== 'passport'
+                                                if  _item.faceUrl 
+                                                    li
+                                                        label.lab-title(for='') 人脸照
+                                                        .order-item.order-face  
+                                                            img(src=_item.faceUrl, alt="")  
+                                                else if  datas.realNameFaceUrl === 'T'
+                                                    li(data-orderno=datas.orderNo,data-idcard=_item.idcardNo)
+                                                        label.lab-title(for='') 人脸照
+                                                        .order-item.order-face.add-face(data-no=datas.orderNo)
+                                                            .order-face-icon
+                                                                i.xx-icon.icon-camera
+                                                            span 点此补录人脸信息
+                                                        input.imagePath(name='faceUrl',type="text",hidden)                     
+                                //- else
+                                //-     ul.order-list.myorder-list.order-input-list#realNameFace(data-realnameface=datas.realNameFaceUrl)
+                                //-         li.title      
+                                //-             .order-item 
+                                //-                 | 游玩人 
+                                //-                 if datas.odmList[0].refunded === 'T'   
+                                //-                     span.realNameTip.refuned 已退 
+                                //-                 if datas.odmList[0].refunding === 'T'   
+                                //-                     span.realNameTip.refuned 退票中 
+                                //-                 if datas.odmList[0].checked === 'T' 
+                                //-                     span.realNameTip.checked 已检                
+                                //-         li
+                                //-             label.lab-title(for='') 姓名
+                                //-             .order-item 
+                                //-                 span #{datas.odmList[0].linkMan}
+                                //-         li
+                                //-             label.lab-title(for='')!= __idcardType[datas.odmList[0].idcardType]
+                                //-             .order-item
+                                //-                 span #{datas.odmList[0].idcardNo}
+                                //-         if datas.odmList[0].idcardType !== 'passport'
+                                //-             if datas.odmList[0].faceUrl 
+                                //-                 li
+                                //-                     label.lab-title(for='') 人脸照
+                                //-                     .order-item.order-face  
+                                //-                         img(src=datas.odmList[0].faceUrl, alt="")  
+                                //-             else if datas.realNameFaceUrl === 'T'
+                                //-                 li(data-orderno=datas.orderNo,data-idcard=datas.odmList[0].idcardNo)
+                                //-                     label.lab-title(for='') 人脸照
+                                //-                     .order-item.order-face.add-face(data-no=datas.orderNo)
+                                //-                         .order-face-icon
+                                //-                             i.xx-icon.icon-camera
+                                //-                         span 点此补录人脸信息
+                                //-                     input.imagePath(name='faceUrl',type="text",hidden) 
+                    //- if datas.orderStatus === '3'
+                    ul.order-list.account-list.order-calendar
+                        li.order-checked-number
+                            .order-ticket-status.order-has-checked
+                                em 已检票
+                                strong #{item.checkAmount}
+                            .order-ticket-status.order-has-refuned
+                                em 已退票
+                                strong #{item.refundAmount}                                    
+                    .page-line
+        if  datas.orderType === 'theater_ticket'          
+            ul.order-list.myorder-list.order-input-list
+                li
+                    label.lab-title.order-input-list-title(for='')  座位信息     
+                li
+                    .order-item
+                        each item in datas.seatVoList   
+                            span 【#{item.snRow}排#{item.seatName}座】 
+            .page-line                    
+        ul.order-list.myorder-list.order-input-list
+            li
+                label.lab-title.order-input-list-title(for='') 联系人信息     
+            li
+                label.lab-title(for='') 姓名
+                .order-item
+                    span #{datas.linkName}
+            li
+                label.lab-title(for='') 手机号
+                .order-item
+                    span #{datas.linkMobile}
+            //- 校验是否有身份证        
+            if  datas.linkIdcard       
+                li
+                    label.lab-title(for='') 身份证号
+                    .order-item
+                        span #{datas.linkIdcard}
+            if !(datas.odmList && datas.odmList.length > 0)             
+                if  datas.faceUrl        
+                    li
+                        label.lab-title(for='') 人脸照
+                        .order-item.order-face  
+                            img(src=datas.faceUrl, alt="")
+                else if datas.needFaceUrl === 'T' 
+                    li
+                        label.lab-title(for='') 人脸照
+                        .order-item.order-face#view(data-no=datas.payOrderNo)
+                            .order-face-icon
+                                i.xx-icon.icon-camera
+                            span 点此补录人脸信息
+                        input#imagePath(name='faceUrl',type="text",hidden)   
+            if typeof datas.orderTips !== 'undefined' &&  datas.orderTips instanceof Array 
+                each item in datas.orderTips  
+                    case item.type
+                        when 'lvPic'
+                            li
+                                label.lab-title(for='')=item.title
+                                .order-item.order-face 
+                                    if item.tips 
+                                        - let imgsArray = item.tips.split(',')
+                                        each imgUrl in imgsArray
+                                            img(src=imgUrl +'?imageMogr2/thumbnail/640x/strip/quality/100', alt="")
+                                    
+                        default
+                            li
+                                label.lab-title(for='')=item.title
+                                .order-item
+                                    span #{item.tips}                       
+        .page-line
+        ul.order-list.account-list.order-input-list
+            li
+                label.lab-title(for='') 商品金额
+                .order-item
+                    span.c-333 ￥#{datas.orderSum}
+            li
+                label.lab-title(for='') 优惠券金额
+                .order-item
+                    span.c-333 ￥#{datas.couponSum}   
+            li
+                label.lab-title(for='') 实付金额
+                .order-item
+                    span.c-price ￥#{datas.paySum}    
+            if datas.refundSum        
+                li
+                    label.lab-title(for='') 退款金额
+                    .order-item
+                        span.c-price ￥#{datas.refundSum}                    
+            if datas.refundfee        
+                li
+                    label.lab-title(for='') 退款手续费
+                    .order-item
+                        span.c-price ￥#{datas.refundfee}                    
+    .btn-handle
+        if getCardInfo && getCardInfo.status === 200 && isWeixn
+            //- - const cardId = getCardInfo.data instanceof  Array ? getCardInfo.data[0].card_id : '';
+            - const cardId = getCardInfo.data instanceof  Array ? getCardInfo.data[0].card_id : '';
+            if cardId
+                .btn-handle
+                    span(data-checkdata=getCardInfo.data[0].checkNo,data-pack=getCardInfo.data).btn.btn-wx#addWxCardPack
+                        | 添加到微信卡包 
+        if datas.orderType !== 'pms_hotel' && datas.orderStatus === "3" && (typeof datas.isShowCheckNo === 'undefined' || datas.isShowCheckNo === 'T') || (datas.orderStatus === "6" || datas.orderStatus === "4" || datas.orderStatus === "24") && ((datas.orderType === 'park' && (typeof datas.isShowCheckNo === 'undefined' || datas.isShowCheckNo === 'T')) || datas.orderType === 'family' || datas.orderType === 'traffic' || datas.orderType === 'guide' || datas.orderType === 'theater_ticket') 
+            if datas.orderType === 'theater_ticket' && datas.theaterOneCode !== 'F'
+                a.btn(href='/member/myTheater?id='+datas.id+'&orderNo='+datas.orderNo+'&m_id='+merchantInfoId) 查看二维码
+            else 
+                a.btn(href='/member/myTicket?id='+datas.id+'&m_id='+merchantInfoId) 查看二维码 
+
+        if (datas.orderStatus === "3" || datas.orderStatus === "8" || datas.orderStatus === "9")&&datas.ableToRefund && datas.orderType !== 'theater_ticket' && datas.orderType !== 'pms_hotel'
+            if datas.orderType === 'route'
+                a.btn-RP(href='/member/refund/' + datas.orderType + '?refParams='+urlParams+'&orderId='+datas.id+'&m_id='+merchantInfoId) 申请退款
+            if datas.orderType === 'family'
+                - var zipTotalLeft = 0, realFlag = false
+                - each item in datas.orderDetail
+                    - zipTotalLeft+=item.leftAmount
+                    if item.orderDetailModels && item.orderDetailModels.length>0
+                        - realFlag = true
+                if realFlag
+                    if zipTotalLeft > 0 && datas.isChildRefund=='T'
+                        a.btn-RP(href='/member/refund/' + datas.orderType + '?orderDetailId=' + datas.orderDetail[0].id+'&orderId='+datas.id+'&maxNum='+datas.canRefundNum+'&m_id='+merchantInfoId) 申请退款
+                else
+                    if (datas.canRefundNum > 0 && datas.isRetreat=='T') || (zipTotalLeft > 0&&datas.isChildRefund=='T')
+                        a.btn-RP(href='/member/refund/' + datas.orderType + '?orderDetailId=' + datas.orderDetail[0].id+'&orderId='+datas.id+'&maxNum='+datas.canRefundNum+'&m_id='+merchantInfoId) 申请退款
+            else       
+                a.btn-RP(href='/member/refund/' + datas.orderType + '?orderDetailId=' + datas.orderDetail[0].id+'&orderId='+datas.id+'&maxNum='+datas.orderDetail[0].leftAmount+'&m_id='+merchantInfoId) 申请退款
+        if datas.orderType !== 'pms_hotel' && datas.orderType !== 'traffic' && datas.orderStatus === "4"&&datas.isCheckOver=="T"&&data[1].message ==="T"
+            if datas.orderType === 'family'
+                a.btn(href='/member/comment/'+ datas.orderType + '?orderNo=' + datas.orderNo+'&orderId='+ datas.id +'&modelCode='+datas.modelCode+'&m_id='+merchantInfoId) 发表评价
+            else
+                a.btn(href='/member/comment/'+ datas.orderType + '?orderNo=' + datas.orderNo+'&orderId='+ datas.id +'&modelCode='+datas.orderDetail[0].modelCode+'&m_id='+merchantInfoId) 发表评价
+        if datas.orderStatus === "0"
+            - var _t=datas.orderType
+            a.btn(href='/pay/' + _t + '/' + datas.orderNo) 去支付
+            a.btn#cancel(data-id=datas.orderNo,href='javascript:;') 取消订单
+    .mask#mask
+    #clipArea
+    #videoArea
+    .tips
+        p   
+        a(href="javascript:;").queding 确定
+    script.
+        $(function () {
+            $("#cancel").click(function (e) {
+                e.preventDefault();
+                var that = $(this);
+                var orderNo = $(this).data('id');
+                var confirmDel = confirm('确认要取消订单吗');
+                if (confirmDel) {
+                    $.post('/member/cancle/' + orderNo)
+                            .success(function (data) {
+                                console.log(data);
+                                $('.mask,.tips').show();
+                                $('.tips p').text(data[0].message);
+
+                                //that.text('删除订单');
+                                //$('.pay-mold').text('已取消');
+
+                                $('.tips a').on('click', function () {
+                                    $('.mask,.tips').hide();
+                                    window.location.reload();
+                                });
+
+                            })
+                            .error(function (err) {
+                                window.location.href = '/error';
+                            });
+                }
+            });
+            var checkNo = $(this).data('checkno')
+            if (checkNo) {
+                $(this).qrcode(checkNo)
+            }            
+        });

@@ -1,0 +1,40 @@
+extends ../../layout
+
+block stylesheets
+  link(rel="stylesheet", href="#{baseUrl}/stylesheets/order.css?#{vCode}")
+block javascripts
+  script(type='text/javascript', src='#{baseUrl}/javascripts/validate/jquery.validate.min.js')
+  script(type='text/javascript', src='#{baseUrl}/javascripts/validate/messages_zh.min.js')
+  script(type='text/javascript', src='#{baseUrl}/javascripts/validate/additional-methods.js')
+  script(type='text/javascript', src='#{baseUrl}/javascripts/pageItem.js?#{vCode}')
+  script(type='text/javascript', src='#{baseUrl}/javascripts/member/express.js?#{vCode}')
+block content
+  include ../../common/quickLink
+  +flowBtn(userInfo,marketDisAccount,showWholeMarket) 
+  input(type="hidden" name='orderCode' value=orderCode)#orderCode
+  input(type="hidden" name='id' value=id)#idcode
+  input(type="hidden" name='merchantInfoId' value=merchantInfoId)#merchantInfoId
+  form#form
+    input(type="hidden" name='orderRefundNo' value=orderRefundNo)
+    ul.order-list.myorder-list
+      li
+        label.lab-title(for="") 物流公司
+        .order-item
+           select(name="expressType")
+            each item in expressInfo.data
+              option(value=item.key)=item.value
+      li
+        label.lab-title(for="") 物流单号
+        .order-item
+          span.refund-panel
+            input(name='expressCode',type="text").order-text
+      li
+        label.lab-title(for='') 退货说明
+        .order-item
+          textarea.order-txtarea(placeholder='请输入退货说明', name='remark')
+    .btn-handle
+      a.btn(href='javascript:;') 提交申请
+  .mask#mask
+  .tips
+    p
+    a(href="javascript:;").queding 确定

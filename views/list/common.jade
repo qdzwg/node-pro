@@ -1,0 +1,131 @@
+//- 关键字搜索
+mixin search(name)
+    .search-bar#searchBar
+        input#listSearchInput.list-search-input(type='search', placeholder='搜索关键字',value=name)
+        button.search-btn.font-icon.icon-
+            i.xx-icon.icon-sousuo1
+
+//- 条件筛选
+mixin filter(module,orderStatus,merchantInfoId)
+    if module === 'order'
+        section(class='header-tab has-search member-search',data='#{orderStatus}')
+            ul#myOrderTab.tab.clearfix.myorder-tab
+                li
+                    if !orderStatus
+                        a(href="/list/order?m_id="+merchantInfoId).c-base 全部订单
+                    else
+                        a(href="/list/order?m_id="+merchantInfoId) 全部订单
+                li
+                    if orderStatus == "0"
+                        a(href="/list/order?orderStatus=0&m_id="+merchantInfoId).c-base 待付款
+                    else
+                        a(href="/list/order?orderStatus=0&m_id="+merchantInfoId) 待付款
+                li
+                    if orderStatus == "3"
+                        a(href="/list/order?orderStatus=3,14&m_id="+merchantInfoId).c-base 待消费
+                    else
+                        a(href="/list/order?orderStatus=3,14&m_id="+merchantInfoId) 待消费
+                li
+                    if orderStatus == "4"
+                        a(href="/list/order?orderStatus=4,22&m_id="+merchantInfoId).c-base 已完成
+                    else
+                        a(href="/list/order?orderStatus=4,22&m_id="+merchantInfoId) 已完成
+                li
+                    if orderStatus == "6"
+                        a(href="/list/order?orderStatus=6&m_id="+merchantInfoId).c-base 售后
+                    else
+                        a(href="/list/order?orderStatus=6&m_id="+merchantInfoId) 售后
+    else
+        section(class='header-tab has-search')
+            ul#searchtab.tab.clearfix.ticket-tab
+                li
+                    a(href='javascript:;')='全部筛选'
+                li
+                    a(href='javascript:;')='默认排序'
+
+//- 筛选条件
+mixin panel(module,hotelLevel,hotelType)
+    if module === 'order'
+        dl.tab-search-panel.filterList
+            dt(data-filter='orderStatus')
+            dd(data-filter='0') 待支付
+            dd(data-filter='1') 已支付
+            dd(data-filter='3') 已过期
+        dl.tab-search-panel.filterList
+            dt(data-filter='orderType')
+            dd(data-filter='ticket') 景区
+            dd(data-filter='hotel') 酒店
+            dd(data-filter='combo') 自由行
+            dd(data-filter='goods') 购物
+            dd(data-filter='repast') 美食
+            dd(data-filter='amuse') 娱乐
+            dd(data-filter='traffic') 交通
+        .page-line.page-line2    
+    if module === 'hotel' 
+        .tab-search-panel.filterTab
+            if hotelType && hotelType.status === 200 
+                dl
+                    dt.c-base(data-filter='hotelType') 
+                        | 酒店类型
+                    dd.all.c-base(data-filter='')
+                        | 全部
+                    each item in hotelType.data
+                        dd(data-labelid=item.key)=item.value
+            if hotelLevel && hotelLevel.status === 200    
+                dl
+                    dt.c-base(data-filter='hotelLevel')
+                        | 酒店星级
+                    dd.all.c-base(data-filter='')
+                        | 全部
+                    each item in hotelLevel.data
+                        dd(data-labelid=item.key)=item.value
+            .filter-handle
+                a(href="javascript:;").c-base 确认  
+    else
+        .tab-search-panel.filterTab
+            each item in data[0].data
+                dl
+                    dt.c-base(data-filter='labelId')=item.name
+                    dd.c-base(data-filter='')
+                        | 全部
+                    each ite in item.list
+                        dd(data-labelid=ite.id)=item.name
+            .filter-handle
+                a(href="javascript:;").c-base 确认
+        dl.tab-search-panel.filterList
+            dd.c-base 默认排序
+            each item in data[1].data
+                dd(data-filter=item.key)=item.value
+        .page-line.page-line2
+
+
+mixin routePanel(module,searchLabel)
+    .tab-search-panel.filterTab
+        if searchLabel && searchLabel.status === 200 
+            - let serchUseDay = JSON.parse(searchLabel.data.serchUseDay)
+            - let serchEndAddr = searchLabel.data.serchEndAddr
+            - let serchBegAddr= searchLabel.data.serchBegAddr
+            dl
+                dt.c-base(data-filter='begAddress') 
+                    | 出发地
+                dd.all.c-base(data-f=searchLabel.data.searchLabel)
+                    | 全部 
+                each item in serchBegAddr
+                    dd(data-labelid=item )=item 
+            dl
+                dt.c-base(data-filter='endAddress') 
+                    | 目的地
+                dd.all.c-base(data-filter='')
+                    | 全部
+                each item in serchEndAddr
+                    dd(data-labelid=item )=item 
+
+            dl
+                dt.c-base(data-filter='useDay') 
+                    | 天数
+                dd.all.c-base(data-filter='')
+                    | 全部
+                each item,key in serchUseDay 
+                    dd(data-labelid=key)=serchUseDay[key]
+        .filter-handle
+            a(href="javascript:;").c-base 确认                     

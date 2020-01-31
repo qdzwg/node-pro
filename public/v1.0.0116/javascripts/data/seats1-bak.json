@@ -1,0 +1,642 @@
+﻿{
+    "retcode": "1",
+    "ROWCOUNTS":"10",
+    "COLCOUNTS":"20",
+     "AREACODE":"1019",
+    "AREANAME":"VIP席座",
+    "retdata": {
+        "totalCount": 70,
+        "data": [
+            {
+                "SEATID":"1",
+                "SEATNAME": "一等座",
+                "GROW": "2",
+                "GCOL": "3",
+                "SROW": "1",
+                "SCOL": "13",
+                "status":0
+            },
+            {
+                "SEATID":"2",
+                "SEATNAME": "一等座",
+                "GROW": "2",
+                "GCOL": "4",
+                "SROW": "1",
+                "SCOL": "11",
+                "status":0
+            },
+            {
+                "SEATID":"3",
+                "SEATNAME": "一等座",
+                "GROW": "2",
+                "GCOL": "5",
+                "SROW": "1",
+                "SCOL": "9",
+                "status":0
+            },
+            {
+                "SEATID":"4",
+                "SEATNAME": "一等座",
+                "GROW": "2",
+                "GCOL": "6",
+                "SROW": "1",
+                "SCOL": "7",
+                "status":0
+            },
+            {
+                "SEATID":"5",
+                "SEATNAME": "一等座",
+                "GROW": "2",
+                "GCOL": "7",
+                "SROW": "1",
+                "SCOL": "5",
+                "status":0
+            },
+            {
+                "SEATID":"6",
+                "SEATNAME": "一等座",
+                "GROW": "2",
+                "GCOL": "8",
+                "SROW": "1",
+                "SCOL": "3",
+                "status":0
+            },
+            {
+                "SEATID":"7",
+                "SEATNAME": "一等座",
+                "GROW": "2",
+                "GCOL": "9",
+                "SROW": "1",
+                "SCOL": "1",
+                "status":0
+            },
+            {
+                "SEATID":"8",
+                "SEATNAME": "一等座",
+                "GROW": "2",
+                "GCOL": "10",
+                "SROW": "1",
+                "SCOL": "2",
+                "status":0
+            },
+            {
+                "SEATID":"9",
+                "SEATNAME": "一等座",
+                "GROW": "2",
+                "GCOL": "11",
+                "SROW": "1",
+                "SCOL": "4",
+                "status":0
+            },
+            {
+                "SEATID":"10",
+                "SEATNAME": "一等座",
+                "GROW": "2",
+                "GCOL": "12",
+                "SROW": "1",
+                "SCOL": "6",
+                "status":0
+            },
+            {
+                "SEATID":"11",
+                "SEATNAME": "一等座",
+                "GROW": "2",
+                "GCOL": "13",
+                "SROW": "1",
+                "SCOL": "8",
+                "status":0
+            },
+            {
+                "SEATID":"12",
+                "SEATNAME": "一等座",
+                "GROW": "2",
+                "GCOL": "14",
+                "SROW": "1",
+                "SCOL": "10",
+                "status":0
+            },
+            {
+                "SEATID":"13",
+                "SEATNAME": "一等座",
+                "GROW": "2",
+                "GCOL": "15",
+                "SROW": "1",
+                "SCOL": "12",
+                "status":0
+            },
+            {
+                "SEATID":"14",
+                "SEATNAME": "一等座",
+                "GROW": "2",
+                "GCOL": "16",
+                "SROW": "1",
+                "SCOL": "14",
+                "status":0
+            },
+            {
+                "SEATID":"15",
+                "SEATNAME": "一等座",
+                "GROW": "3",
+                "GCOL": "3",
+                "SROW": "2",
+                "SCOL": "13",
+                "status":0
+            },
+            {
+                "SEATID":"16",
+                "SEATNAME": "一等座",
+                "GROW": "3",
+                "GCOL": "4",
+                "SROW": "2",
+                "SCOL": "11",
+                "status":0
+            },
+            {
+                "SEATID":"17",
+                "SEATNAME": "一等座",
+                "GROW": "3",
+                "GCOL": "5",
+                "SROW": "2",
+                "SCOL": "9",
+                "status":0
+            },
+            {
+                "SEATID":"18",
+                "SEATNAME": "一等座",
+                "GROW": "3",
+                "GCOL": "6",
+                "SROW": "2",
+                "SCOL": "7",
+                "status":0
+            },
+            {
+                "SEATID":"19",
+                "SEATNAME": "一等座",
+                "GROW": "3",
+                "GCOL": "7",
+                "SROW": "2",
+                "SCOL": "5",
+                "status":0
+            },
+            {
+                "SEATID":"20",
+                "SEATNAME": "一等座",
+                "GROW": "3",
+                "GCOL": "8",
+                "SROW": "2",
+                "SCOL": "3",
+                "status":0
+            },
+            {
+                "SEATID":"21",
+                "SEATNAME": "一等座",
+                "GROW": "3",
+                "GCOL": "9",
+                "SROW": "2",
+                "SCOL": "1",
+                "status":0
+            },
+            {
+                "SEATID":"22",
+                "SEATNAME": "一等座",
+                "GROW": "3",
+                "GCOL": "10",
+                "SROW": "2",
+                "SCOL": "2",
+                "status":0
+            },
+            {
+                "SEATID":"23",
+                "SEATNAME": "一等座",
+                "GROW": "3",
+                "GCOL": "11",
+                "SROW": "2",
+                "SCOL": "4",
+                "status":0
+            },
+            {
+                "SEATID":"24",
+                "SEATNAME": "一等座",
+                "GROW": "3",
+                "GCOL": "12",
+                "SROW": "2",
+                "SCOL": "6",
+                "status":0
+            },
+            {
+                "SEATID":"25",
+                "SEATNAME": "一等座",
+                "GROW": "3",
+                "GCOL": "13",
+                "SROW": "2",
+                "SCOL": "8",
+                "status":0
+            },
+            {
+                "SEATID":"26",
+                "SEATNAME": "一等座",
+                "GROW": "3",
+                "GCOL": "14",
+                "SROW": "2",
+                "SCOL": "10",
+                "status":0
+            },
+            {
+                "SEATID":"27",
+                "SEATNAME": "一等座",
+                "GROW": "3",
+                "GCOL": "15",
+                "SROW": "2",
+                "SCOL": "12",
+                "status":0
+            },
+            {
+                "SEATID":"28",
+                "SEATNAME": "一等座",
+                "GROW": "3",
+                "GCOL": "16",
+                "SROW": "2",
+                "SCOL": "14",
+                "status":0
+            },
+            {
+                "SEATID":"29",
+                "SEATNAME": "一等座",
+                "GROW": "4",
+                "GCOL": "3",
+                "SROW": "3",
+                "SCOL": "13",
+                "status":0
+            },
+            {
+                "SEATID":"30",
+                "SEATNAME": "一等座",
+                "GROW": "4",
+                "GCOL": "4",
+                "SROW": "3",
+                "SCOL": "11",
+                "status":0
+            },
+            {
+                "SEATID":"31",
+                "SEATNAME": "一等座",
+                "GROW": "4",
+                "GCOL": "5",
+                "SROW": "3",
+                "SCOL": "9",
+                "status":0
+            },
+            {
+                "SEATID":"32",
+                "SEATNAME": "一等座",
+                "GROW": "4",
+                "GCOL": "6",
+                "SROW": "3",
+                "SCOL": "7",
+                "status":0
+            },
+            {
+                "SEATID":"33",
+                "SEATNAME": "一等座",
+                "GROW": "4",
+                "GCOL": "7",
+                "SROW": "3",
+                "SCOL": "5",
+                "status":0
+            },
+            {
+                "SEATID":"34",
+                "SEATNAME": "一等座",
+                "GROW": "4",
+                "GCOL": "8",
+                "SROW": "3",
+                "SCOL": "3",
+                "status":0
+            },
+            {
+                "SEATID":"35",
+                "SEATNAME": "一等座",
+                "GROW": "4",
+                "GCOL": "9",
+                "SROW": "3",
+                "SCOL": "1",
+                "status":0
+            },
+            {
+                "SEATID":"36",
+                "SEATNAME": "一等座",
+                "GROW": "4",
+                "GCOL": "10",
+                "SROW": "3",
+                "SCOL": "2",
+                "status":0
+            },
+            {
+                "SEATID":"37",
+                "SEATNAME": "一等座",
+                "GROW": "4",
+                "GCOL": "11",
+                "SROW": "3",
+                "SCOL": "4",
+                "status":0
+            },
+            {
+                "SEATID":"38",
+                "SEATNAME": "一等座",
+                "GROW": "4",
+                "GCOL": "12",
+                "SROW": "3",
+                "SCOL": "6",
+                "status":0
+            },
+            {
+                "SEATID":"39",
+                "SEATNAME": "一等座",
+                "GROW": "4",
+                "GCOL": "13",
+                "SROW": "3",
+                "SCOL": "8",
+                "status":0
+            },
+            {
+                "SEATID":"40",
+                "SEATNAME": "一等座",
+                "GROW": "4",
+                "GCOL": "14",
+                "SROW": "3",
+                "SCOL": "10",
+                "status":0
+            },
+            {
+                "SEATID":"41",
+                "SEATNAME": "一等座",
+                "GROW": "4",
+                "GCOL": "15",
+                "SROW": "3",
+                "SCOL": "12",
+                "status":0
+            },
+            {
+                "SEATID":"42",
+                "SEATNAME": "一等座",
+                "GROW": "4",
+                "GCOL": "16",
+                "SROW": "3",
+                "SCOL": "14",
+                "status":0
+            },
+            {
+                "SEATID":"43",
+                "SEATNAME": "一等座",
+                "GROW": "5",
+                "GCOL": "3",
+                "SROW": "4",
+                "SCOL": "13",
+                "status":0
+            },
+            {
+                "SEATID":"44",
+                "SEATNAME": "一等座",
+                "GROW": "5",
+                "GCOL": "4",
+                "SROW": "4",
+                "SCOL": "11",
+                "status":0
+            },
+            {
+                "SEATID":"45",
+                "SEATNAME": "一等座",
+                "GROW": "5",
+                "GCOL": "5",
+                "SROW": "4",
+                "SCOL": "9",
+                "status":0
+            },
+            {
+                "SEATID":"46",
+                "SEATNAME": "一等座",
+                "GROW": "5",
+                "GCOL": "6",
+                "SROW": "4",
+                "SCOL": "7",
+                "status":0
+            },
+            {
+                "SEATID":"47",
+                "SEATNAME": "一等座",
+                "GROW": "5",
+                "GCOL": "7",
+                "SROW": "4",
+                "SCOL": "5",
+                "status":0
+            },
+            {
+                "SEATID":"48",
+                "SEATNAME": "一等座",
+                "GROW": "5",
+                "GCOL": "8",
+                "SROW": "4",
+                "SCOL": "3",
+                "status":0
+            },
+            {
+                "SEATID":"49",
+                "SEATNAME": "一等座",
+                "GROW": "5",
+                "GCOL": "9",
+                "SROW": "4",
+                "SCOL": "1",
+                "status":0
+            },
+            {
+                "SEATID":"50",
+                "SEATNAME": "一等座",
+                "GROW": "5",
+                "GCOL": "10",
+                "SROW": "4",
+                "SCOL": "2",
+                "status":0
+            },
+            {
+                "SEATID":"51",
+                "SEATNAME": "一等座",
+                "GROW": "5",
+                "GCOL": "11",
+                "SROW": "4",
+                "SCOL": "4",
+                "status":0
+            },
+            {
+                "SEATID":"52",
+                "SEATNAME": "一等座",
+                "GROW": "5",
+                "GCOL": "12",
+                "SROW": "4",
+                "SCOL": "6",
+                "status":0
+            },
+            {
+                "SEATID":"53",
+                "SEATNAME": "一等座",
+                "GROW": "5",
+                "GCOL": "13",
+                "SROW": "4",
+                "SCOL": "8",
+                "status":0
+            },
+            {
+                "SEATID":"54",
+                "SEATNAME": "一等座",
+                "GROW": "5",
+                "GCOL": "14",
+                "SROW": "4",
+                "SCOL": "10",
+                "status":0
+            },
+            {
+                "SEATID":"55",
+                "SEATNAME": "一等座",
+                "GROW": "5",
+                "GCOL": "15",
+                "SROW": "4",
+                "SCOL": "12",
+                "status":0
+            },
+            {
+                "SEATID":"56",
+                "SEATNAME": "一等座",
+                "GROW": "5",
+                "GCOL": "16",
+                "SROW": "4",
+                "SCOL": "14",
+                "status":0
+            },
+            {
+                "SEATID":"57",
+                "SEATNAME": "一等座",
+                "GROW": "6",
+                "GCOL": "3",
+                "SROW": "5",
+                "SCOL": "13",
+                "status":0
+            },
+            {
+                "SEATID":"58",
+                "SEATNAME": "一等座",
+                "GROW": "6",
+                "GCOL": "4",
+                "SROW": "5",
+                "SCOL": "11",
+                "status":0
+            },
+            {
+                "SEATID":"59",
+                "SEATNAME": "一等座",
+                "GROW": "6",
+                "GCOL": "5",
+                "SROW": "5",
+                "SCOL": "9",
+                "status":0
+            },
+            {
+                "SEATID":"60",
+                "SEATNAME": "一等座",
+                "GROW": "6",
+                "GCOL": "6",
+                "SROW": "5",
+                "SCOL": "7",
+                "status":0
+            },
+            {
+                "SEATID":"61",
+                "SEATNAME": "一等座",
+                "GROW": "6",
+                "GCOL": "7",
+                "SROW": "5",
+                "SCOL": "5",
+                "status":0
+            },
+            {
+                "SEATID":"62",
+                "SEATNAME": "一等座",
+                "GROW": "6",
+                "GCOL": "8",
+                "SROW": "5",
+                "SCOL": "3",
+                "status":0
+            },
+            {
+                "SEATID":"63",
+                "SEATNAME": "一等座",
+                "GROW": "6",
+                "GCOL": "9",
+                "SROW": "5",
+                "SCOL": "1",
+                "status":0
+            },
+            {
+                "SEATID":"64",
+                "SEATNAME": "一等座",
+                "GROW": "6",
+                "GCOL": "10",
+                "SROW": "5",
+                "SCOL": "2",
+                "status":0
+            },
+            {
+                "SEATID":"65",
+                "SEATNAME": "一等座",
+                "GROW": "6",
+                "GCOL": "11",
+                "SROW": "5",
+                "SCOL": "4",
+                "status":0
+            },
+            {
+                "SEATID":"66",
+                "SEATNAME": "一等座",
+                "GROW": "6",
+                "GCOL": "12",
+                "SROW": "5",
+                "SCOL": "6",
+                "status":0
+            },
+            {
+                "SEATID":"67",
+                "SEATNAME": "一等座",
+                "GROW": "6",
+                "GCOL": "13",
+                "SROW": "5",
+                "SCOL": "8",
+                "status":0
+            },
+            {
+                "SEATID":"68",
+                "SEATNAME": "一等座",
+                "GROW": "6",
+                "GCOL": "14",
+                "SROW": "5",
+                "SCOL": "10",
+                "status":0
+            },
+            {
+                "SEATID":"69",
+                "SEATNAME": "一等座",
+                "GROW": "6",
+                "GCOL": "15",
+                "SROW": "5",
+                "SCOL": "12",
+                "status":0
+            },
+            {
+                "SEATID":"70",
+                "SEATNAME": "一等座",
+                "GROW": "6",
+                "GCOL": "16",
+                "SROW": "5",
+                "SCOL": "14",
+                "status":0
+            }
+        ]
+    }
+}

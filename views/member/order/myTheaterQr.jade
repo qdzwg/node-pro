@@ -1,0 +1,44 @@
+mixin QR(orderItem)
+    .theater-qr-warp
+      .qr-box
+        .qr-image.qrcodeImg(data-checkNo= orderItem.shortCheckNo,data-used= (orderItem.checked === 'T'||orderItem.refunded === 'T' ) ? 'T' : 'F')
+        .qr-help-code  
+          span.qr-help-code-lf 辅助码
+          span.qr-help-code-rg #{orderItem.checkNo}
+        .qr-theater-number #{orderItem.seatMsg}
+        .qr-order-detail
+          p.qr-order-line.title 
+            span 节目名称：#{orderItem.orderInfo}
+            //- if orderItem.checked === 'F'
+            //-   span.order-status.uncheck 未使用
+            //- if orderItem.refunding === 'T'  
+            //-   span.order-status.refunding 退款中
+            //- if orderItem.refunded === 'T'  
+            //-   span.order-status 已全退
+          p.qr-order-line
+            span 节目场次：#{orderItem.playTime}  
+          p.qr-order-line
+            span 购买票型: #{orderItem.goodsName}
+          p.qr-order-line
+            span 订单编号: #{orderItem.orderNo} 
+        .qr-status-flag
+          if  orderItem.refunding === 'T'   
+            .flag-warp.refunding
+              .flag-bg  
+              .flag-text 退款中   
+          else if orderItem.refunded === 'T' 
+            .flag-warp.refunded  
+              .flag-bg  
+              .flag-text 已退票    
+          else if orderItem.checked === 'F'
+            .flag-warp.unused
+              .flag-bg  
+              .flag-text 未使用
+          else if orderItem.checked === 'T'
+            .flag-warp.refunded 
+              .flag-bg  
+              .flag-text 已使用    
+
+      //- img(src="#{baseUrl}//images/member/qr_box.png", alt="")
+
+

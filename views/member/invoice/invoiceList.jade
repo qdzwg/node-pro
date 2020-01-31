@@ -1,0 +1,33 @@
+extends ../../layout
+
+block stylesheets
+    link(href="#{baseUrl}/stylesheets/dropload.css?#{vCode}", rel="stylesheet")
+    link(href="#{baseUrl}/stylesheets/list.css?#{vCode}", rel="stylesheet")
+    link(href="#{baseUrl}/stylesheets/inovice.css?#{vCode}", rel="stylesheet")
+block javascripts
+    script(src='#{baseUrl}/javascripts/lib/dropload.min.js', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/invoice.js', type='text/javascript')
+block content
+    include ../../common/footer
+    section.header-tab.goods-header.inovice-header
+        ul#search_tab.tab.clearfix.ticket-tab.goods-tab
+            li(data-type='0',class=!flag ? 'on' : '')
+                a(href='javascript:;') 未开票
+            li(data-type='1',class=!flag ? '' : 'on')
+                a(href='javascript:;') 已开票 
+        .page-line            
+    .inovice-details
+        .invoice-list.drop-box#dropBox
+            ul.page-list.list-main  
+    .invoice-layer#inoiveLayer    
+        .invoice-layer-title#inoiveLayerShow  
+            | 开票说明    
+            span.invoice-layer__cancel#inoiveLayerCancel  
+                i.xx-icon.icon-guanbi2 
+        .invoice-layer-info
+            ul
+                li 部分商品或不支持开具发票，如有特殊需求，请向商家客服咨询。
+                li 开票金额为用户实际支付的金额（不含订单内不支持开具发票的商品实付金额）
+                li 单笔支付订单只支持开具一种类型的发票且不可重复开（订单明细全部核销完成才可开票）
+                li 暂不支持补开纸质发票、增值税专用发票 
+    .whiteMask#whiteMask

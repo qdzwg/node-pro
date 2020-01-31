@@ -1,0 +1,40 @@
+mixin orderInputList(rows)
+    ul.selectedAddrBox.order-list.myorder-list
+        if rows.length > 0 
+            li
+                label.lab-title(for='') 联系人
+                .order-item
+                    input(type="text",readonly, value=data[0].data.rows[0].linName, name='buyerName')
+            li
+                label.lab-title(for='') 手机号码
+                .order-item
+                    input(type="text",readonly, value=data[0].data.rows[0].likPhone, name='buyerMobile')
+            li
+                label.lab-title(for='') 收货地址
+                .order-item
+                    span#addressDetail #{data[0].data.rows[0].areaName + data[0].data.rows[0].addressDetail}
+                    i.xx-icon.fr.icon-iconfont-jiantou
+                    input(type="hidden",readonly, value=(data[0].data.rows[0].areaName + data[0].data.rows[0].addressDetail), name='buyerAddr')
+            li
+                label.lab-title(for='') 邮费
+                .order-item
+                    span#express_price
+        else
+            li.hidden-space
+                label.lab-title(for='') 联系人
+                .order-item
+                    input(type="text",readonly, name='buyerName')
+            li.hidden-space
+                label.lab-title(for='') 手机号码
+                .order-item
+                    input(type="text",readonly, name='buyerMobile')
+            li
+                label.lab-title(for='') 收货地址
+                .order-item
+                    span#addressDetail 点击新增收货地址
+                    i.xx-icon.fr.icon-iconfont-jiantou
+            li.hidden-space
+                label.lab-title(for='') 邮费
+                .order-item
+                    span#express_price
+                    input(type="hidden",readonly, name='buyerAddr')

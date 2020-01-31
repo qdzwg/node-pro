@@ -1,0 +1,73 @@
+include ./component
+ 
+mixin choiceComponent(type,datas,merchantInfoId) 
+    case type
+        when 'navigation'
+            case datas.type
+                when 'navigation1'
+                    +navigation1(datas)
+                when 'navigation2'
+                    +navigation2(datas)              
+        when 'search'
+            case datas.type
+                when 'search1'
+                    +search1(datas)
+                when 'search2'
+                    +search2(datas)
+        when 'notice'
+            +notice(datas)
+        when 'text'
+            +text(datas)
+        when 'subline'
+            case datas.style
+                when 'solid'
+                    +subline1(datas)
+                when 'dashed'
+                    +subline2(datas)
+        when 'subBlank'
+            +subBlank(datas)
+        when 'product'
+            case datas.listType
+                when 'type1'
+                    +product1(datas)
+                when 'type2'
+                    +product2(datas)
+                when 'type3'
+                    +product3(datas)
+        when 'productGroup'
+            case datas.type
+                when 'productGroup1'
+                    +productGroup1(datas)
+                when 'productGroup2'
+                    +productGroup2(datas)
+        
+        when 'richText'
+            +richText(datas)
+        when 'title'
+            +title(datas)
+        when 'shopinfo'  
+            +shopInfo(datas)  
+        when 'banner'
+            case datas.type
+                when 'banner1'
+                    +banner1(datas)
+                when 'banner2'
+                    +banner2(datas)
+                when 'banner3'
+                    +banner3(datas)
+        when 'freeLayout'
+            case datas.type
+                when 'freeLayout1'
+                    +freeLayout1(datas)
+                when 'freeLayout2'
+                    +freeLayout2(datas)
+                when 'freeLayout3'
+                    +freeLayout3(datas)
+                when 'freeLayout4'
+                    +freeLayout4(datas)
+                when 'freeLayout5'
+                    +freeLayout5(datas)
+                when 'freeLayout6'
+                    +freeLayout6(datas)  
+        when 'weather' 
+            +weather(datas)                       

@@ -1,0 +1,80 @@
+mixin QR(orderItem,nums)
+    .ticketWrap
+        .qrcodeWrap
+            if !nums                  
+                p.orderName
+                    span 订单编号：
+                    span.orderCode=orderItem.orderNo
+                if orderItem.orderType === 'traffic'
+                    p.orderName
+                        span 检票编号：
+                        span.orderCode=orderItem.checkNo
+            .checkStatus(class='checkStatus'+orderItem.checkStatus)
+                case orderItem.checkStatus
+                    when '0'
+                        | 未使用
+                    when '1'
+                        | 检票中
+                    when '2'
+                        | 已使用
+                    when '3'
+                        | 已全退              
+            if typeof orderItem.isShowCheckNo !== 'undefined' && orderItem.isShowCheckNo === 'F'
+                //- 暂时空缺
+            else if orderItem.externalOrderNo || orderItem.productChannel == -1 || orderItem.productChannel == 3
+                if orderItem.checkNo
+                    .qrcodeImg(data-checkNo= orderItem.checkNo,data-show= 'T')
+                else
+                    p(style="font-size:0.65rem; color:#f66;")="发码失败，请联系商家或直接申请退款"
+            else if (orderItem.productChannel != 0)
+                if orderItem.orderType == 'cloud_repast'
+                    .qrcodeImg(data-checkNo= 'conversion'+orderItem.orderNo)
+                else
+                    .qrcodeImg(data-checkNo= orderItem.payOrderNo,data-show= 'T')
+            else
+                 p(style="font-size:0.65rem; color:#f66;")="发码失败，请联系商家或直接申请退款"
+                    
+            if !!orderItem.extendParam && !!orderItem.checkNo
+                - let extengParamInfo = JSON.parse(orderItem.extendParam); 
+                if !!extengParamInfo.zybAssistCheckNo
+                   p.zybAssistCheckNo
+                        span 辅助码：
+                        span.orderCode=extengParamInfo.zybAssistCheckNo                   
+        ul.order-list.myorder-list
+            if !nums 
+                li
+                    h3.ticketTitle= (orderItem.nickName || orderItem.orderInfo)
+            if orderItem.orderType !== "eatery"&&orderItem.orderType !== "cloud_repast"
+                li
+                    label.lab-title 游玩日期
+                    .order-item.fr
+                        span= orderItem.startTime.split(' ')[0]
+            else
+                if orderItem.orderType === "cloud_repast"
+                    li
+                        label.lab-title 有效日期
+                        .order-item.fr
+                            span= orderItem.repastUseDate
+                else
+                    li
+                        label.lab-title 有效日期
+                        .order-item.fr
+                            span= orderItem.repastCheckDate
+            li
+                label.lab-title 购买数量
+                .order-item.fr
+                    span=(nums || orderItem.amount)
+                    | 张
+            //-li
+                label.lab-title 辅助码
+                .order-item.fr
+                    span=orderItem.templateCod
+    if  nums 
+        a.btn(href="/list/order?m_id="+merchantInfoId) 查看详情 
+    else
+        if orderItem.orderType == 'cloud_repast'
+            a.btn(href="/member/order/"+orderItem.id+"?m_id="+merchantInfoId+'&orderType='+orderItem.orderType) 查看详情
+        else
+            a.btn(href="/member/order/"+orderItem.id+"?m_id="+merchantInfoId) 查看详情
+    if !(typeof orderItem.isShowCheckNo !== 'undefined' && orderItem.isShowCheckNo === 'F')        
+        .btn.btn-RP#refreshQr 刷新二维码

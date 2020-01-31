@@ -1,0 +1,162 @@
+
+extends ../../layout
+block stylesheets
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/swiper-3.4.1.min.css")
+    link(rel='stylesheet', href='#{baseUrl}/stylesheets/order.css?#{vCode}')
+    style.
+        body {
+          background:#7B7E7F;
+        }
+        .ticketWrap {
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #fff;
+            margin: .5rem .65rem;
+            box-shadow: 0 0 0.25rem 0.01rem rgba(0, 0, 0, .1);
+        }
+        .qrcodeWrap {
+            margin: 0 auto;
+            text-align: center;
+            background: #fff;
+            padding: 1rem;
+        }
+        .qrcodeWrap canvas {
+            width:50%;
+            height:50%;
+        }
+        .orderName {
+            color: #666;
+            font-size: .65rem;
+            margin-top: .25rem;
+        }
+        .zybAssistCheckNo {
+            color: #666;
+            font-size: .55rem;
+            margin-top: .25rem;
+        }
+        .zybAssistCheckNo .orderCode {
+            font-size:0.85rem;
+            color: #19a0f0
+        }
+        .orderCode {
+            color: #333;
+        }
+        .checkStatus {
+            border-radius: 20px;
+            display: inline-block;
+            height: 1rem;
+            line-height: 1rem;
+            font-size: .55rem;
+            padding: 0 .35rem;
+            margin:.25rem auto 0.45rem;
+        }
+
+        .checkStatus0 {
+            color: #6c0;
+            background-color: #eefae4;
+        }
+
+        .checkStatus1 {
+            color: #f30;
+            background-color: #feebe5;
+        }
+
+        .checkStatus2 {
+            color: #3198ff;
+            background-color: #e9f6ff;
+        }
+
+        .checkStatus3 {
+            color: #999;
+            background-color: #f0f0f0;
+        }
+        .ticket-line {
+            width: 96%;
+            border-top: 1px solid #ddd;
+            margin: 0 auto;
+        }
+        .order-list li {
+            border-bottom: 0;
+            padding: .45rem .75rem;
+        }
+        .ticketTitle {
+            font-size: .75rem;
+            color: #333;
+        }
+        .ticketCodeShowList {
+ 
+        }
+
+        /*Swiper原样式 */
+        .swiper-button-next {max-width: 256px;max-height: 256px;background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDU0IDU0IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1NCA1NDsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSI1MTJweCIgaGVpZ2h0PSI1MTJweCI+CjxnPgoJPGc+CgkJPHBhdGggc3R5bGU9ImZpbGw6IzRGQkE2RjsiIGQ9Ik0yNyw1M0wyNyw1M0MxMi42NDEsNTMsMSw0MS4zNTksMSwyN3YwQzEsMTIuNjQxLDEyLjY0MSwxLDI3LDFoMGMxNC4zNTksMCwyNiwxMS42NDEsMjYsMjZ2MCAgICBDNTMsNDEuMzU5LDQxLjM1OSw1MywyNyw1M3oiLz4KCQk8cGF0aCBzdHlsZT0iZmlsbDojNEZCQTZGOyIgZD0iTTI3LDU0QzEyLjExMiw1NCwwLDQxLjg4OCwwLDI3UzEyLjExMiwwLDI3LDBzMjcsMTIuMTEyLDI3LDI3UzQxLjg4OCw1NCwyNyw1NHogTTI3LDIgICAgQzEzLjIxNSwyLDIsMTMuMjE1LDIsMjdzMTEuMjE1LDI1LDI1LDI1czI1LTExLjIxNSwyNS0yNVM0MC43ODUsMiwyNywyeiIvPgoJPC9nPgoJPHBhdGggc3R5bGU9ImZpbGw6I0ZGRkZGRjsiIGQ9Ik0yMi4yOTQsNDBjLTAuMjU2LDAtMC41MTItMC4wOTgtMC43MDctMC4yOTNjLTAuMzkxLTAuMzkxLTAuMzkxLTEuMDIzLDAtMS40MTRMMzIuODgsMjcgICBMMjEuNTg3LDE1LjcwN2MtMC4zOTEtMC4zOTEtMC4zOTEtMS4wMjMsMC0xLjQxNHMxLjAyMy0wLjM5MSwxLjQxNCwwbDExLjQ5OCwxMS40OThjMC42NjcsMC42NjcsMC42NjcsMS43NTEsMCwyLjQxOCAgIEwyMy4wMDEsMzkuNzA3QzIyLjgwNiwzOS45MDIsMjIuNTUsNDAsMjIuMjk0LDQweiIvPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=)}
+        .swiper-button-prev {max-width: 256px;max-height: 256px;background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDU0IDU0IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1NCA1NDsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSI1MTJweCIgaGVpZ2h0PSI1MTJweCI+CjxnPgoJPGc+CgkJPHBhdGggc3R5bGU9ImZpbGw6IzRGQkE2RjsiIGQ9Ik0yNywxTDI3LDFjMTQuMzU5LDAsMjYsMTEuNjQxLDI2LDI2djBjMCwxNC4zNTktMTEuNjQxLDI2LTI2LDI2aDBDMTIuNjQxLDUzLDEsNDEuMzU5LDEsMjd2MCAgICBDMSwxMi42NDEsMTIuNjQxLDEsMjcsMXoiLz4KCQk8cGF0aCBzdHlsZT0iZmlsbDojNEZCQTZGOyIgZD0iTTI3LDU0QzEyLjExMiw1NCwwLDQxLjg4OCwwLDI3UzEyLjExMiwwLDI3LDBzMjcsMTIuMTEyLDI3LDI3UzQxLjg4OCw1NCwyNyw1NHogTTI3LDIgICAgQzEzLjIxNSwyLDIsMTMuMjE1LDIsMjdzMTEuMjE1LDI1LDI1LDI1czI1LTExLjIxNSwyNS0yNVM0MC43ODUsMiwyNywyeiIvPgoJPC9nPgoJPHBhdGggc3R5bGU9ImZpbGw6I0ZGRkZGRjsiIGQ9Ik0zMS43MDYsNDBjLTAuMjU2LDAtMC41MTItMC4wOTgtMC43MDctMC4yOTNMMTkuNTAxLDI4LjIwOWMtMC42NjctMC42NjctMC42NjctMS43NTEsMC0yLjQxOCAgIGwxMS40OTgtMTEuNDk4YzAuMzkxLTAuMzkxLDEuMDIzLTAuMzkxLDEuNDE0LDBzMC4zOTEsMS4wMjMsMCwxLjQxNEwyMS4xMiwyN2wxMS4yOTMsMTEuMjkzYzAuMzkxLDAuMzkxLDAuMzkxLDEuMDIzLDAsMS40MTQgICBDMzIuMjE4LDM5LjkwMiwzMS45NjIsNDAsMzEuNzA2LDQweiIvPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=)}
+
+
+block javascripts
+    script(type='text/javascript', src='#{baseUrl}/javascripts/swiper-3.4.1.jquery.min.js')
+    script(src="#{baseUrl}/javascripts/jquery.qrcode.min.js", type='text/javascript')
+
+block content
+    include ../../common/index
+    include ../../common/quickLink
+    include ./myTheaterQr
+    +flowBtn(userInfo,marketDisAccount,showWholeMarket)
+    - var orderInfo = data[0].data,ticketsArray = data[1].data; 
+    div(style="height:2rem")
+    if !(ticketsArray instanceof Array)
+        +QR(ticketsArray)
+    else 
+        if ticketsArray instanceof Array && ticketsArray.length === 1
+            +QR(ticketsArray[0])
+        else
+            - var payedLength = 0
+            .swiper-container.ticketCodeShowList
+                .swiper-wrapper
+                    each item,index in ticketsArray
+                        - payedLength++
+                        .swiper-slide
+                            +QR(item)                        
+                .swiper-pagination
+                if payedLength > 1
+                    .swiper-button-prev
+                    .swiper-button-next
+    .to-theater-detail
+      a(href="/member/order/"+orderInfo.id+"?m_id="+merchantInfoId)  查看详情  
+
+    script.
+        $(function(){
+            $('.qrcodeImg').each(function(){
+                var checkNo = $(this).data('checkno').toString();
+                var used = $(this).data('used') || 'F';
+                var color =  '#000';
+                $(this).qrcode({
+                    text: checkNo,
+                    foreground: color
+                })
+            })
+            touch.on('#refreshQr','tap',function(){
+                $.showLoading();
+                $('.qrcodeImg').each(function(){
+                    var checkNo = $(this).data('checkno').toString();
+                    var used = $(this).data('used') || 'F';
+                    var color = '#000';
+                    $(this).empty().qrcode({
+                        text: checkNo,
+                        foreground: color
+                    })
+                    setTimeout(function () {
+                        $.hideLoading();
+                        Msg.open('二维码已刷新')
+                    }, 300); 
+                })
+            })
+            if ($(".ticketCodeShowList").length > 0) {
+                var ticketCodeShowList = new Swiper('.ticketCodeShowList', {
+                    paginationClickable: true,
+                    autoHeight: true,
+                    prevButton: '.swiper-button-prev',
+                    nextButton: '.swiper-button-next'
+                });
+            }
+        });
+

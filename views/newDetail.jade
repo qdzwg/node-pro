@@ -1,0 +1,57 @@
+extends layout
+
+block stylesheets
+    link(href="#{baseUrl}/stylesheets/calendar.css?#{vCode}", rel="stylesheet")
+    link(href="#{baseUrl}/stylesheets/swiper-3.4.1.min.css", rel="stylesheet")
+    link(href="#{baseUrl}/stylesheets/detail.css?#{vCode}", rel="stylesheet")
+block javascripts
+    if data.length > 1
+        script.
+            var goodsCode = '#{data[1].data.goodsCode}' || '';
+    script.
+        var module = '#{module}'
+        if (module === 'hotel') {
+            var beginDate = '#{data[0].data.beginDate}', endDate = '#{data[0].data.endDate}', merchantHotelInfoId = '#{data[0].data.id}',
+                hotelInfoId = '#{data[0].data.hotelInfoId}', numDays = '#{data[0].data.numDays}';
+        }
+        if (module === 'ticket') {
+            var merchantParkInfoId = '#{data[0].data.id}', ticketDate = '#{endDate}',ticketOrderType = '#{data[0].data.orderType}';
+        }
+        if (module === 'shop') {
+            var merchantShopId = "#{data[0].data.id}",productCode="#{data[0].data.productCode}",productName="#{data[0].data.name}",prodFrom="#{data[0].data.prodFrom}"
+        }
+    script(src='https://res.wx.qq.com/open/js/jweixin-1.0.0.js')    
+    script(src='#{baseUrl}/javascripts/jquery.calendar.js?#{vCode}', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/swiper-3.4.1.jquery.min.js', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/lib/clipboard.min.js', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/pageItem.js?#{vCode}', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/detail.js?#{vCode}', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/newDetail.js?#{vCode}', type='text/javascript')
+    if module === 'route'
+        script(src='#{baseUrl}/javascripts/routeDetail.js?#{vCode}', type='text/javascript')
+    if !inWx
+        script(src='#{baseUrl}/javascripts/groupShare.js?#{vCode}', type='text/javascript')   
+block content
+.detail-flow#detailFlower
+        .flow-close#flowClose
+            i.xx-icon.icon-guanbi2
+        .flow-title 时间可选 
+        .flow-timer.clearfix
+            .flot-timer-span.fl#ticketCalendar
+                span.flot-timer-span__title 游玩时间
+                span.flot-timer-span__time 2018-09-19
+                i.xx-icon.icon-rili 
+        .flow-title 票型可选        
+        .flow-lists                        
+        .flow-submit
+            .flow-submit-price.order-total 
+                    p    
+                        span="已选："
+                        em#num=0
+                        ="份"
+                    p    
+                        span="总额："
+                        strong.detail-total-price="￥"
+                        em#totalPrice=0
+            a.flow-submit-btn#submitOrder(href="#", title="title") 下一步 
+                

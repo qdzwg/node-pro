@@ -1,0 +1,58 @@
+extends ../layout
+
+block stylesheets
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/calendar.css?#{vCode}")
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/swiper-3.4.1.min.css")
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/detail.css?#{vCode}")
+    style.
+        #calendar {height:auto}
+        .calendar-contnet {padding-top:0}
+        .monthPrev{ transform:rotate(180deg); -webkit-transform: rotate(180deg);display:inline-block;}
+        .calendar-head ul {text-align:center;clear:both;overflow:hidden;padding:0;}
+        .calendar-head ul li {float:left!important;display:block;width:25%;margin:0;line-height:1.5;}
+        .calendar-head ul li div {padding:10px 0 5px;min-height:30px;}
+        .calendar-head ul li .price {color:#f66;font-family: Arial}
+        .calendar-head ul li .month {color:#19a0f0;}
+        .calendar-head .today-month {border-bottom:2px solid #19a0f0;}
+        .calendar-contnet table td.other .price strong {color:#ccc}
+        .calendar-contnet table td.other .price em{color:#ccc}
+        .calendar-contnet table td .price em {color:#f66}
+        .details-list {width:100%;overflow:hidden;}
+        .details-list .pro-price .price {margin-bottom:0}
+        .pro-price .disabled {vertical-align: top;display: inline-block;text-align: center;width: 4rem;margin-bottom: .25rem;color: #999; font-size:0.55rem;}
+block javascripts
+    script(type='text/javascript', src='#{baseUrl}/javascripts/lib/jquery.route-calendar.js?#{vCode}')
+    script(type='text/javascript', src='#{baseUrl}/javascripts/pageItem.js?#{vCode}')
+    script.
+        var selectedDate = '#{selectedDate || ''}';
+        var calanderDate = !{JSON.stringify(calanderDate)};
+        var monthFloorPrice = !{JSON.stringify(monthFloorPrice)};
+    script(type='text/javascript', src='#{baseUrl}/javascripts/routeDetail.js?#{vCode}')
+block content
+    #calendar
+    .page-line
+    ul.details-list#inputList
+        //- if calanderDate.data
+            each  item in calanderDate.data
+                li
+                    if item.ticketType === '0'
+                        .pro-info
+                            h4.pro-info-title 成人
+                    else if  item.ticketType === '1'
+                        .pro-info
+                            h4.pro-info-title 儿童
+                                span(style='font-size:0.55rem').c-price (2-12岁)
+                    .pro-price.c-base
+                        span.price
+                          em ￥
+                          strong#adPrice(style='margin-right:0') 0.01
+                    .pro-price
+                        input.numbernum(type="text",data-min=0,value=0,data-max=999)
+
+    a.disabled-btn(href='javascript:;',data-id=routeId,data-code=calanderDate.data[0].modelCode).btn#routeSubmit  继续预订
+
+    // 提示框
+    .tips
+        p
+        a(href="javascript:;").queding 确定
+    .mask#mask

@@ -1,0 +1,48 @@
+{
+  "apps": [
+    {
+      "name": "xxwap",
+      "cwd": "./",
+      "max_memory_restart": "1024M",
+      "script": "./bin/www",
+      "min_uptime": "60s",
+      "max_restarts": 30,
+      "exec_mode": "cluster_mode",
+      "instances": 2,
+      "watch": [ // 监控变化的目录，一旦变化，自动重启
+        "bin",
+        "routers",
+        "common_modules"
+      ],
+      "ignore_watch": [ // 从监控目录中排除
+        "node_modules",
+        "logs",
+        "public"
+      ],
+      "watch_options": {
+        "followSymlinks": false,
+        "usePolling": true
+      },
+      "log_date_format": "YYYY-MM-DD HH:mm:ss",
+      "error_file": "./logs/app-err.log", // 错误日志路径
+      "out_file": "./logs/app-out.log", // 普通日志路径
+      "merge_logs": true,
+      "env": {
+        "NODE_ENV": "production", // 环境参数，当前指定为生产环境
+        "UV_THREADPOOL_SIZE": 96
+      },
+      "env_pre": {
+        "NODE_ENV": "pre", // 环境参数，当前指定为生产环境
+        "UV_THREADPOOL_SIZE": 96
+      },
+      "env_test": {
+        "NODE_ENV": "test", // 环境参数，当前指定为测试环境
+        "UV_THREADPOOL_SIZE": 96
+      },
+      "env_development": {
+        "NODE_ENV": "development", // 环境参数，当前指定为开发环境
+        "UV_THREADPOOL_SIZE": 96
+      }
+    }
+  ]
+}

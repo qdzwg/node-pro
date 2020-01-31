@@ -1,0 +1,69 @@
+extends ../../layout
+block stylesheets
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/order.css?#{vCode}")
+block javascripts
+    script(type='text/javascript', src='#{baseUrl}/javascripts/member/order.js?#{vCode}')
+block content
+    include ../../common/index
+    include ../../common/quickLink
+    +flowBtn(userInfo,marketDisAccount,showWholeMarket) 
+    .order-detail-module.p7
+        input(type="hidden",value=data.data.refundNo)#refundNo
+        input(type="hidden",value=id)#backid
+        .order-info
+            p
+                span 售后编号：
+                span#orderNo=data.data.refundNo
+            p
+                span 售后状态：
+                span.order-status
+                    +auditStatus(data.data.auditStatus)
+            if data.data.auditStatus==0
+                p
+                    span.order-btn.c-666#cancelApply 撤销申请   
+            if data.data.auditStatus==1&&data.data.refundType=="1"&&!data.data.isSended
+                p
+                    a(href="/order/logistics?orderRefundNo="+data.data.refundNo+"&orderCode="+data.data.orderNo+"&id="+id+"&m_id="+merchantInfoId).order-btn.pay-btn#sendGoods 发货 
+    if data.data.auditStatus==1&&data.data.refundType=="1"
+        .page-line
+        .order-detail-module
+            .order-address.clearfix
+                .order-address-title="退货地址" 
+                .order-address1
+                    p="联系人："+(mInfo.data.sasContactMan||"暂无信息")
+                    p="联系电话："+(mInfo.data.sasPhone||"暂无信息")
+                    p="联系地址："+(mInfo.data.sasAddrCode||"")+(mInfo.data.sasAddrDetail||"暂无信息")
+    .page-line        
+    .order-detail-module
+        .order-detail-content.clearfix
+            .order-info-image.fl
+                img(src=skuInfo.data[0].linkMobileImg +'?imageMogr2/thumbnail/640x/strip/quality/100' || '#{baseUrl}/images/member/lessimg.jpg', alt='...')
+            .order-info-content.fl
+                p.order-info-name.c-666=skuInfo.data[0].nickName
+                p.order-info-description
+                    +replaceStr(skuInfo.data[0].specParam)
+            .order-info-price-detail.c-666.fl
+                p.order-price
+                    em ￥
+                    strong=skuInfo.data[0].sellPrice
+                p.order-number="x"+data.data.amount
+    .page-line
+    .order-handle-module.bt
+        .order-handle-list.table
+            .cell.c-333.title
+                i.c-price
+                | 退款金额
+            .cell.content
+                span.order-price="￥"+data.data.refundSum
+    .order-handle-module.bt
+        .order-handle-list.table
+            .cell.c-333.title
+                i.c-price
+                | 退款原因
+            .cell.content.refund-type-reason
+                span=data.data.reason
+    .page-line
+    .mask#mask
+    .tips
+        p
+        a(href="javascript:;").queding 确定         

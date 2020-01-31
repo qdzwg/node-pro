@@ -1,0 +1,66 @@
+extends ../../layout
+
+block stylesheets
+  link(rel="stylesheet", href="#{baseUrl}/stylesheets/order.css?#{vCode}")
+block javascripts
+  script(type='text/javascript', src='#{baseUrl}/javascripts/member/user.js?#{vCode}')
+block content
+  - var datas = data[0].data; 
+  ul.order-list.account-list
+    li
+      label.lab-title(for='') 姓名
+      .order-item
+        a(href='/member/user/realName')
+          span=datas.realName
+          i.xx-icon.icon-iconfont-jiantou
+    li
+      label.lab-title(for='') 性别
+      .order-item
+        a#sex(href='javascript:;')
+          if datas.sex && datas.sex!== 'undefined'
+            span=datas.sex =='X'?'男':'女'
+          else 
+             span 未设置 
+          i.xx-icon.icon-iconfont-jiantou
+  .page-line
+  ul.order-list.account-list
+    li
+      label.lab-title(for='') 身份证
+      .order-item
+        a(href='/member/user/idcard')
+          span=datas.idcard
+          i.xx-icon.icon-iconfont-jiantou
+    //- li
+      label.lab-title(for='') 手机号
+      .order-item
+        a(href='/member/user/mobile')
+          span=datas.mobile
+          i.xx-icon.icon-iconfont-jiantou
+    //- li
+      label.lab-title(for='') 地址
+      .order-item
+        a(href='/member/user/userTel')
+          span 未绑定
+          i.xx-icon.icon-iconfont-jiantou
+    li
+      label.lab-title(for='') 邮箱
+      .order-item
+        a(href='/member/user/email')
+          span=datas.email===undefined?'未绑定':datas.email
+          i.xx-icon.icon-iconfont-jiantou
+  .page-line
+  ul.order-list.account-list
+    li
+      label.lab-title(for='') 修改密码
+      .order-item
+        a(href='/member/changePassword')
+          i.xx-icon.icon-iconfont-jiantou
+  #sexDialog.sex-dialog
+    ul
+      li(data-index='X')
+        a.c-333.c-base(href='javascript:;') 男
+      li(data-index='Y')
+        a.c-333(href='javascript:;') 女
+    .sex-handle.btn-handle
+      a#close.btn(href='javascript:;') 取消
+  #mask.mask

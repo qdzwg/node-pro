@@ -1,0 +1,1235 @@
+include ./common
+//导航封装
+-
+    function gotoTarget(item){
+     var _url,_navicon,_nourlclass,_mold;
+     switch (item.linkUrl) {
+         case 'personal':
+             _url = '/member?m_id=' + merchantInfoId
+             _navicon = 'icon-member'
+             _mold = 'member'
+             break;
+         case 'home':
+             _url = '/?m_id=' + merchantInfoId
+             _navicon = 'icon-nav-home'
+             _mold = 'index'
+             break
+         case 'shopcart':
+             _url = '/cart?m_id=' + merchantInfoId
+             _navicon = 'icon-shopping-car'
+             _mold = 'cart'
+             break
+         case 'ai_p':
+             _url = 'javascript:;'
+             _navicon = 'icon-AIpaiyipai'
+             _nourlclass = 'aipyp'
+             break
+         case 'order':
+             _url = '/list/order?m_id=' + merchantInfoId
+             _navicon = 'icon-nav-orders'
+             _mold = 'order'
+             break
+         case 'groupbooking':
+             _url = '/group/orderList?m_id=' + merchantInfoId
+             _mold = 'group'
+             break
+         case 'coupon':
+             _url = '/coupons/member?m_id=' + merchantInfoId
+             _mold = 'coupon'
+             break
+         case 'receivecoupons':
+             _url = '/coupons/list?m_id=' + merchantInfoId
+             _mold = 'receivecoupons'
+             break
+         case 'accountcenter':
+             _url = '/member/user?m_id=' + merchantInfoId
+             _mold = 'accountcenter'
+             break
+         case 'ticket':
+             _url = '/vue/list/ticket?m_id=' + merchantInfoId
+             _navicon = 'icon-nav-ticket'
+             _mold = 'ticket'
+             break
+         case 'hotel':
+             _url = '/list/hotel?m_id=' + merchantInfoId
+             _navicon = 'icon-nav-hotel'
+             _mold = 'hotel'
+             break
+         case 'shop':
+             _url = '/list/shop?m_id=' + merchantInfoId
+             _navicon = 'icon-nav-goods'
+             _mold = 'shop'
+             break
+         case 'repast':
+             _url = '/list/repast?m_id=' + merchantInfoId
+             _navicon = 'icon-nav-foods'
+             _mold = 'repast'
+             break
+         case 'route':
+             _url = '/list/route?m_id=' + merchantInfoId
+             _navicon = 'icon-nav-tours'
+             _mold = 'route'
+             break
+         case 'strategy':
+             _url = '/vue/list/strategy?m_id=' + merchantInfoId
+             _navicon = 'icon-nav-raiders'
+             _mold = 'strategy'
+             break
+         case 'pmsHotel':
+             _url = '/vue/list/pmsHotel?m_id=' + merchantInfoId
+             _navicon = ''
+             _mold = 'pmsHotel'
+             break
+         case 'publicservice':
+             _url = 'javascript:;'
+             _navicon = ''
+             _nourlclass = 'gotoPublic'
+             _mold = 'publicservice'
+             break
+         case 'parkcard':
+             _url = 'javascript:;'
+             _nourlclass = 'gotoyearcard'
+             _navicon = ''
+             _mold = 'yearcard'
+             break
+         case 'custompage':
+             _url = '/custompage?id=' + item.customPageId + '&m_id=' + merchantInfoId
+             _mold = 'custompage'
+             break
+         case 'customlink':
+             _url = item.customLinkurl
+             break
+         case 'theater':
+             _url = 'javascript:;'
+             _nourlclass = 'gototheater'
+             _navicon = ''
+             break;
+         case 'customtel':
+             _url = 'tel:'+item.customTel
+             _navicon = 'icon-bohao'
+             break;
+     }
+     return {
+         _url:_url,
+         _nourlclass:_nourlclass,
+         _navicon:_navicon,
+         _mold:_mold
+     }
+    }
+//- 图文导航
+mixin navigation1(datas)
+    .navigation(class=datas.type style="background-color:"+datas.backgroundColor)
+        ul.clearfix
+            -var tnum = parseInt(datas.lineNum)
+            -var nTotal = parseInt(datas.list.length)
+            -var nLen = Number(1/tnum*100).toFixed(2)+'%'
+            each item,index in datas.list
+                - var gotoObj = gotoTarget(item)
+                - var _url = gotoObj._url
+                - var _navicon = gotoObj._navicon
+                - var _nourlclass = gotoObj._nourlclass
+                // - var _url = ''
+                // - var _navicon = ''
+                // - var _nourlclass = ''
+                // case item.linkUrl
+                //    when 'personal'
+                //        - _url = '/member?m_id='+merchantInfoId
+                //        - _navicon = 'icon-member'
+                //    when 'home'
+                //        - _url = '/?m_id='+merchantInfoId
+                //        - _navicon = 'icon-nav-home'
+                //    when 'shopcart'
+                //        - _url = '/cart?m_id='+merchantInfoId
+                //        - _navicon = 'icon-shopping-car'
+                //    when 'ai_p'
+                //        - _url = 'javascript:;'
+                //        - _navicon = 'icon-AIpaiyipai'
+                //        - _nourlclass = 'aipyp'
+                //    when 'order'
+                //        - _url = '/list/order?m_id='+merchantInfoId
+                //        - _navicon = 'icon-nav-orders'
+                //    when 'groupbooking'
+                //        - _url = '/group/orderList?m_id='+merchantInfoId
+                //    when 'coupon'
+                //        - _url = '/coupons/member?m_id='+merchantInfoId
+                //    when 'receivecoupons'
+                //        - _url = '/coupons/list?m_id='+merchantInfoId
+                //    when 'accountcenter'
+                //        - _url = '/member/user?m_id='+merchantInfoId
+                //    when 'ticket'
+                //        - _url = '/list/ticket?m_id='+merchantInfoId
+                //        - _navicon = 'icon-nav-ticket'
+                //    when 'hotel'
+                //        - _url = '/list/hotel?m_id='+merchantInfoId
+                //        - _navicon = 'icon-nav-hotel'
+                //    when 'shop'
+                //        - _url = '/list/shop?m_id='+merchantInfoId
+                //        - _navicon = 'icon-nav-goods'
+                //    when 'repast'
+                //        - _url = '/list/repast?m_id='+merchantInfoId
+                //        - _navicon = 'icon-nav-foods'
+                //    when 'route'
+                //        - _url = '/list/route?m_id='+merchantInfoId
+                //        - _navicon = 'icon-nav-tours'
+                //    when 'strategy'
+                //        - _url = '/list/strategy?m_id='+merchantInfoId
+                //        - _navicon = 'icon-nav-raiders'
+                //    when 'pmsHotel'
+                //        - _url = '/vue/list/pmsHotel?m_id='+merchantInfoId
+                //        - _navicon = ''
+                //    when 'publicservice'
+                //        - _url = 'javascript:;'
+                //        - _navicon = ''
+                //        - _nourlclass = 'gotoPublic'
+                //    when 'parkcard'
+                //        - _url = 'javascript:;'
+                //        - _nourlclass = 'gotoyearcard'
+                //        - _navicon = ''
+                //    when 'custompage'
+                //        - _url = '/custompage?id='+item.customPageId+'&m_id='+merchantInfoId
+                //    when 'customlink'
+                //        - _url = item.customLinkurl
+                //    when 'theater'
+                //        - _url = 'javascript:;'
+                //        - _nourlclass = 'gototheater'
+                //        - _navicon = ''
+                -var fIndex = index+1
+                -var flineNum = Math.floor(nTotal/tnum)
+                -var intNum = flineNum*tnum
+                -var modeNum = nTotal%tnum
+                li(style="width:"+nLen)
+                    a(href =_url, class=_nourlclass, style="box-sizing:border-box;"+((fIndex%tnum==0)?"border-right:none;":"border-right:2px solid "+(datas.borderColor?datas.borderColor:'transparent'))+(((modeNum==0&&fIndex>(flineNum-1)*tnum)||(modeNum!=0&&fIndex>intNum))?"; border-bottom:none":";border-bottom:2px solid "+(datas.borderColor?datas.borderColor:'transparent')))
+                        if item.picAddr
+                            img(src=item.picAddr+'?imageMogr2/thumbnail/640x/strip/quality/100')
+                        else
+                            i.xx-icon(class=_navicon)
+                        span(style="color:"+datas.textColor)=item.title
+
+mixin navigation2(datas)
+    .navigation(class=datas.type style="background-color:"+datas.backgroundColor)
+        ul.clearfix
+            -var tnum = parseInt(datas.lineNum)
+            -var nTotal = parseInt(datas.list.length)
+            -var nLen = Number(1/tnum*100).toFixed(2)+'%'
+            each item,index in datas.list
+                - var gotoObj = gotoTarget(item)
+                - var _url = gotoObj._url
+                - var  _nourlclass = gotoObj._nourlclass
+                // - var _url = ''
+                // - var _nourlclass = ''
+                // case item.linkUrl
+                //     when 'personal'
+                //         - _url = '/member?m_id='+merchantInfoId
+                //     when 'home'
+                //         - _url = '/?m_id='+merchantInfoId
+                //     when 'shopcart'
+                //         - _url = '/cart?m_id='+merchantInfoId
+                //     when 'ai_p'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'aipyp'
+                //     when 'order'
+                //         - _url = '/list/order?m_id='+merchantInfoId
+                //     when 'groupbooking'
+                //         - _url = '/group/orderList?m_id='+merchantInfoId
+                //     when 'coupon'
+                //         - _url = '/coupons/member?m_id='+merchantInfoId
+                //     when 'receivecoupons'
+                //         - _url = '/coupons/list?m_id='+merchantInfoId
+                //     when 'accountcenter'
+                //         - _url = '/member/user?m_id='+merchantInfoId
+                //     when 'ticket'
+                //         - _url = '/list/ticket?m_id='+merchantInfoId
+                //     when 'hotel'
+                //         - _url = '/list/hotel?m_id='+merchantInfoId
+                //     when 'shop'
+                //         - _url = '/list/shop?m_id='+merchantInfoId
+                //     when 'repast'
+                //         - _url = '/list/repast?m_id='+merchantInfoId
+                //     when 'route'
+                //         - _url = '/list/route?m_id='+merchantInfoId
+                //     when 'strategy'
+                //         - _url = '/list/strategy?m_id='+merchantInfoId
+                //     when 'pmsHotel'
+                //         - _url = '/vue/list/pmsHotel?m_id='+merchantInfoId
+                //         - _navicon = ''
+                //     when 'publicservice'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'gotoPublic'
+                //     when 'parkcard'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'gotoyearcard'
+                //     when 'custompage'
+                //         - _url = '/custompage?id='+item.customPageId+'&m_id='+merchantInfoId
+                //     when 'customlink'
+                //         - _url = item.customLinkurl
+                //     when 'theater'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'gototheater'
+                //         - _navicon = ''
+                -var fIndex = index+1
+                -var flineNum = Math.floor(nTotal/tnum)
+                -var intNum = flineNum*tnum
+                -var modeNum = nTotal%tnum
+                li(style="width:"+nLen)
+                    //- a(href=_url class=_nourlclass)
+                    a(href =_url, class=_nourlclass, style="box-sizing:border-box;"+((fIndex%tnum==0)?"border-right:none;":"border-right:2px solid "+(datas.borderColor?datas.borderColor:'transparent'))+(((modeNum==0&&fIndex>(flineNum-1)*tnum)||(modeNum!=0&&fIndex>intNum))?"; border-bottom:none":";border-bottom:2px solid "+(datas.borderColor?datas.borderColor:'transparent')))
+                        span(style="color:"+datas.textColor)=item.title
+
+//- 搜索框
+mixin search1(datas)
+    -var sepx = parseInt(datas.height)+'px'
+    //- -var sepxtorem = (sepx/40).toFixed(3)+'rem'
+    .search.searchNormal(class=datas.type, style="height:"+sepx+';line-height:'+sepx)
+        input#keyText.search__normal-inp(class=datas.position=='left'?'p05':'', type='text', placeholder=datas.placeholder?datas.placeholder:'请输入您要搜索的产品', style='border:1px solid '+datas.borderColor+'; background-color:' + datas.backgroundColor+';color:'+datas.textColor+';height:'+sepx+';line-height:'+sepx+';text-align:'+datas.position)
+        i.xx-icon.icon-sousuo1(style='line-height:'+sepx)
+
+mixin search2(datas)
+    -var sepx = parseInt(datas.height)+'px'
+    //- -var sepxtorem = (sepx/40).toFixed(3)+'rem'
+    .search.searchNormal(class=datas.type, style="height:"+sepx+';line-height:'+sepx)
+        input#keyText.search__normal-inp(class=datas.position=='left'?'p05':'', type='text', placeholder=datas.placeholder?datas.placeholder:'请输入您要搜索的产品', style='border:1px solid '+datas.borderColor+'; background-color:' + datas.backgroundColor+';color:'+datas.textColor+';height:'+sepx+';line-height:'+sepx+';text-align:'+datas.position+';border-radius:'+sepx)
+        i.xx-icon.icon-sousuo1(style='line-height:'+sepx)
+
+
+//- 公告
+mixin notice(datas)
+    if datas.content
+        .notice.txtMarquee-left(style='background-color:'+datas.backgroundColor)
+            .notice-box
+                i.xx-icon.icon-gonggao1(style='color:'+datas.textColor)
+                span(class='scroll-box', id='scroll-box', style='color:'+datas.textColor)
+                    em #{datas.content}
+
+//- 文本
+mixin text(datas)
+    .text(style='background-color:'+datas.backgroundColor)
+        -var calcfz = (datas.fontSize.split('px')[0]/40).toFixed(2)
+        if datas.linkUrl
+            - var gotoObj = gotoTarget(datas)
+            - var _url = gotoObj._url
+            - var  _nourlclass = gotoObj._nourlclass
+            // - var _url = ''
+            // - var _nourlclass = ''
+            // case datas.linkUrl
+            //     when 'personal'
+            //         - _url = '/member?m_id='+merchantInfoId
+            //     when 'home'
+            //         - _url = '/?m_id='+merchantInfoId
+            //     when 'shopcart'
+            //         - _url = '/cart?m_id='+merchantInfoId
+            //     when 'ai_p'
+            //         - _url = 'javascript:;'
+            //         - _nourlclass = 'aipyp'
+            //     when 'order'
+            //         - _url = '/list/order?m_id='+merchantInfoId
+            //     when 'groupbooking'
+            //         - _url = '/group/orderList?m_id='+merchantInfoId
+            //     when 'coupon'
+            //         - _url = '/coupons/member?m_id='+merchantInfoId
+            //     when 'receivecoupons'
+            //         - _url = '/coupons/list?m_id='+merchantInfoId
+            //     when 'accountcenter'
+            //         - _url = '/member/user?m_id='+merchantInfoId
+            //     when 'ticket'
+            //         - _url = '/list/ticket?m_id='+merchantInfoId
+            //     when 'hotel'
+            //         - _url = '/list/hotel?m_id='+merchantInfoId
+            //     when 'shop'
+            //         - _url = '/list/shop?m_id='+merchantInfoId
+            //     when 'repast'
+            //         - _url = '/list/repast?m_id='+merchantInfoId
+            //     when 'route'
+            //         - _url = '/list/route?m_id='+merchantInfoId
+            //     when 'strategy'
+            //         - _url = '/list/strategy?m_id='+merchantInfoId
+            //     when 'pmsHotel'
+            //         - _url = '/vue/list/pmsHotel?m_id='+merchantInfoId
+            //     when 'publicservice'
+            //         - _url = 'javascript:;'
+            //         - _nourlclass = 'gotoPublic'
+            //     when 'parkcard'
+            //         - _url = 'javascript:;'
+            //         - _nourlclass = 'gotoyearcard'
+            //     when 'custompage'
+            //         - _url = '/custompage?id='+datas.customPageId+'&m_id='+merchantInfoId
+            //     when 'customlink'
+            //         - _url = datas.customLinkurl
+            //     when 'theater'
+            //         - _url = 'javascript:;'
+            //         - _nourlclass = 'gototheater'
+            //         - _navicon = ''
+            a(href=_url, style='color:'+datas.textColor + '; font-size:'+datas.fontSize+'; text-align:'+datas.position, class=datas.position, class=_nourlclass) #{datas.content}
+        else
+            span(class=datas.position, style='color:'+datas.textColor + '; font-size:'+datas.fontSize+'; text-align:'+datas.position) #{datas.content}
+
+//- 店鋪信息
+mixin shopInfo(datas)
+    .shop-info(style=(datas.backUrl ? 'background:url('+datas.backUrl+') no-repeat center;background-size:100% 100%;': ''))
+        .shop-info-content.clearfix
+            .shop-info-content-imgs.fl
+                img(src="#{datas.logoUrl}?imageMogr2/thumbnail/640x/strip/quality/100")
+            .shop-info-content-detail.fl
+                p.shop-info-content-detail-title
+                    span(style='color:#{datas.textColor}')=datas.name
+                    if datas.tel&&datas.tel != ''
+                        a(href="tel:"+datas.tel)
+                            i.xx-icon.icon-dianhua
+                p.shop-info-content-detail-subtitle(style='color:#{datas.textColor}')=datas.introduction
+
+mixin weather(datas)
+    .weather-warpper(style='background: '+ datas.backgroundColor,data-item=datas)
+        .weather-content
+            .weather-content-left
+                //- .xx-icon.icon-303(style="font-size:1.3333rem")
+                div.weather-icon
+                    svg.icon.svg-icon(aria-hidden='true', style='font-size: 1.3333rem;')
+                        use(xlink:href='#icon-duoyun')
+                div( style='margin-left: 0.25rem;')
+                    .weather-left-top
+                        span.weather-name=datas.weather
+                        span.week 周二
+                    .weather-left-bottom
+                        span=datas.province
+                        span=datas.city
+                        span=datas.area
+            .weather-content-right #{datas.temperature}℃
+
+
+
+
+
+//- 辅助线
+mixin subline1(datas)
+    .subline.subline1
+        h1(class=datas.sideWidth, style='border-top:1px '+datas.style+' '+datas.lineColor)
+
+mixin subline2(datas)
+    .subline.subline2
+        h1(class=datas.sideWidth, style='border-top:1px '+datas.style+' '+datas.lineColor)
+
+//- 辅助空白
+mixin subBlank(datas)
+    -var calcheight = (datas.height/40).toFixed(2);
+    .subBlank(style='height:'+calcheight+'rem'+ '; background-color:'+datas.backgroundColor)
+
+//- 产品
+mixin product1(datas)
+    .product(class='product-'+datas.listType)
+        ul
+            each item in datas.list
+                li
+                    if item.businessType == 'room'
+                        - item.businessType = 'hotel'
+                    if item.businessType == 'mdse'
+                        - item.businessType = 'shop'
+                    if item.businessType == 'route' || item.businessType == 'theater'
+                        - item.priceShow = item.parkPriceShow
+                    a(href='/detail/'+item.businessType+'/'+item.merchantProdcutId+'/'+item.productCode+'?m_id='+merchantInfoId)
+                        if datas.productTag == 'type4'
+                            em.proTag(class=datas.productTag, style='background:url(#{datas.tagUrl}?imageMogr2/thumbnail/640x/strip/quality/100) no-repeat; background-size:100%;')
+                        else
+                            em.proTag(class=datas.productTag)
+                        img.pro-img(src=item.linkMobileImg?item.linkMobileImg+'?imageMogr2/thumbnail/640x/strip/quality/100':'/images/newtheme/pro-type1-img.png')
+                        .pro-title
+                            p.pro-name #{item.nickName}
+                            if item.priceShow
+                                p
+                                    i.icon-rmb ¥
+                                    strong.price.c-f63 #{item.priceShow}
+
+
+mixin product2(datas)
+    .product(class='product-'+datas.listType)
+        ul
+            each item in datas.list
+                li
+                    if item.businessType == 'room'
+                        - item.businessType = 'hotel'
+                    if item.businessType == 'mdse'
+                        - item.businessType = 'shop'
+                    if item.businessType == 'route' || item.businessType == 'theater'
+                        - item.priceShow = item.parkPriceShow
+                    a(href='/detail/'+item.businessType+'/'+item.merchantProdcutId+'/'+item.productCode+'?m_id='+merchantInfoId)
+                        if datas.productTag == 'type4'
+                            em.proTag(class=datas.productTag, style='background:url(#{datas.tagUrl}?imageMogr2/thumbnail/640x/strip/quality/100) no-repeat; background-size:100%;')
+                        else
+                            em.proTag(class=datas.productTag)
+                        img.pro-img(src=item.linkMobileImg?item.linkMobileImg+'?imageMogr2/thumbnail/640x/strip/quality/100':'/images/newtheme/pro-type2-img.png')
+                        .pro-title
+                            p.pro-name #{item.nickName}
+                            if item.priceShow
+                                p
+                                    i.icon-rmb ¥
+                                    strong.price.c-f63 #{item.priceShow}
+
+mixin product3(datas)
+    .product(class='product-'+datas.listType)
+        ul
+            each item in datas.list
+                li
+                    if item.businessType == 'room'
+                        - item.businessType = 'hotel'
+                    if item.businessType == 'mdse'
+                        - item.businessType = 'shop'
+                    if item.businessType == 'route' || item.businessType == 'theater'
+                        - item.priceShow = item.parkPriceShow
+                    a(href='/detail/'+item.businessType+'/'+item.merchantProdcutId+'/'+item.productCode+'?m_id='+merchantInfoId)
+                        if datas.productTag == 'type4'
+                            em.proTag(class=datas.productTag, style='background:url(#{datas.tagUrl}?imageMogr2/thumbnail/640x/strip/quality/100) no-repeat; background-size:100%;')
+                        else
+                            em.proTag(class=datas.productTag)
+                        img.pro-img(src=item.linkMobileImg?item.linkMobileImg+'?imageMogr2/thumbnail/640x/strip/quality/100':'/images/newtheme/pro-type3-img.png')
+                        .pro-title
+                            p.pro-name #{item.nickName}
+                            if item.priceShow
+                                p
+                                    i.icon-rmb ¥
+                                    strong.price.c-f63 #{item.priceShow}
+//- 产品分组
+mixin productGroup1(datas)
+    .productGroup1(class="productGroup1-"+datas.menuType class="pageInter-group1-"+datas.pageInteraction)
+        - var grouptabs =  parseInt(datas.list.length)
+        - var pergrouptabsWidth = (1/grouptabs)*100+'%'
+        ul.productGroup1-ul.clearfix(class="group1-"+datas.menuType+"-ul")
+            each item in datas.list
+                li(style='width:'+pergrouptabsWidth)
+                    a(href='javascript:;') #{item.groupName}
+                    if datas.menuType == 'type2'
+                        i(class='icon-arrow-down')
+        if datas.listType == 'type1' || datas.listType == 'type2'|| datas.listType == 'type3'
+            #swiper_pro.swiper-pro(class='productGroup1-list-'+datas.listType)
+                if datas.list&&datas.list.length>0
+                    each item in datas.list
+                        ul.clearfix
+                            each it in item.data
+                                li
+                                    if it.businessType == 'room'
+                                        - it.businessType = 'hotel'
+                                    if it.businessType == 'mdse'
+                                        - it.businessType = 'shop'
+                                    if it.businessType == 'route' || item.businessType == 'theater'
+                                        - it.priceShow = it.parkPriceShow
+                                    a(href='/detail/'+it.businessType+'/'+it.merchantProdcutId+'/'+it.productCode+'?m_id='+merchantInfoId)
+                                        img(src=(it.linkMobileImg?it.linkMobileImg:'/images/common/noPic-img.jpg')+'?imageMogr2/thumbnail/640x/strip/quality/100', alt='')
+                                        h4 #{it.nickName || it.name}
+                                        if it.priceShow
+                                            p.price-p
+                                                i.icon-rmb ¥
+                                                strong.price.c-f63 #{it.priceShow}
+
+
+
+mixin productGroup2(datas)
+    .productGroup-lrbj.clearfix
+        .productGroup2(class="productGroup2-"+datas.menuType)
+            ul.productGroup2-ul
+                each item in datas.list
+                    li
+                        a(href='javascript:;') #{item.groupName}
+        .productGroup2-list
+            if datas.list&&datas.list.length>0
+                each item in datas.list
+                    .productGroup2-list-box(style='border-radius:'+(datas.menuType=='type3'?'0':'0.4rem'))
+                        h1.groupName #{item.groupName}
+                        ul
+                            each itme in item.data
+                                li
+                                    if itme.businessType == 'room'
+                                        - itme.businessType = 'hotel'
+                                    if itme.businessType == 'mdse'
+                                        - itme.businessType = 'shop'
+                                    a(href='/detail/'+itme.businessType+'/'+itme.merchantProdcutId+'/'+itme.productCode+'?m_id='+merchantInfoId).clearfix
+                                        img(src=(itme.linkMobileImg?itme.linkMobileImg:'/images/common/noPic-img.jpg')+'?imageMogr2/thumbnail/640x/strip/quality/100')
+                                        .list-group
+                                            h2.list-group-name=itme.nickName
+
+
+//- 富文本
+mixin richText(datas)
+    .richText
+        .richText-text(style='background-color:'+datas.backgroundColor)!=datas.content
+
+//- 标题
+mixin title(datas)
+    .titless(style='background-color:'+datas.backgroundColor)
+        .title-title
+            -var titleFontSize = parseInt(datas.titleFontSize);
+            -var ftitleFontSize = (titleFontSize/40).toFixed(2)+'rem'
+            -var titlefontpx = datas.titleFontSize + 'px'
+            h1(style='text-align:'+datas.position+'; font-size:'+titlefontpx+'; color:'+datas.titleColor) #{datas.title}
+            if datas.subtitle != ''
+                h2(style="text-align:"+datas.position) #{datas.subtitle}
+        if datas.navigationName
+            if datas.linkUrl&&datas.linkUrl!=''
+                .title-more
+                    - var gotoObj = gotoTarget(datas)
+                    - var _url = gotoObj._url
+                    - var _nourlclass = gotoObj._nourlclass
+
+                    // - var _url = ''
+                    // - var _nourlclass = ''
+                    // case datas.linkUrl
+                    //     when 'personal'
+                    //         - _url = '/member?m_id='+merchantInfoId
+                    //     when 'home'
+                    //         - _url = '/?m_id='+merchantInfoId
+                    //     when 'shopcart'
+                    //         - _url = '/cart?m_id='+merchantInfoId
+                    //     when 'ai_p'
+                    //         - _url = 'javascript:;'
+                    //         - _nourlclass = 'aipyp'
+                    //     when 'order'
+                    //         - _url = '/list/order?m_id='+merchantInfoId
+                    //     when 'groupbooking'
+                    //         - _url = '/group/orderList?m_id='+merchantInfoId
+                    //     when 'coupon'
+                    //         - _url = '/coupons/member?m_id='+merchantInfoId
+                    //     when 'receivecoupons'
+                    //         - _url = '/coupons/list?m_id='+merchantInfoId
+                    //     when 'accountcenter'
+                    //         - _url = '/member/user?m_id='+merchantInfoId
+                    //     when 'ticket'
+                    //         - _url = '/list/ticket?m_id='+merchantInfoId
+                    //     when 'hotel'
+                    //         - _url = '/list/hotel?m_id='+merchantInfoId
+                    //     when 'shop'
+                    //         - _url = '/list/shop?m_id='+merchantInfoId
+                    //     when 'repast'
+                    //         - _url = '/list/repast?m_id='+merchantInfoId
+                    //     when 'route'
+                    //         - _url = '/list/route?m_id='+merchantInfoId
+                    //     when 'strategy'
+                    //         - _url = '/list/strategy?m_id='+merchantInfoId
+                    //     when 'pmsHotel'
+                    //         - _url = '/vue/list/pmsHotel?m_id='+merchantInfoId
+                    //     when 'publicservice'
+                    //         - _url = 'javascript:;'
+                    //         - _nourlclass = 'gotoPublic'
+                    //     when 'parkcard'
+                    //         - _url = 'javascript:;'
+                    //         - _nourlclass = 'gotoyearcard'
+                    //     when 'custompage'
+                    //         - _url = '/custompage?id='+datas.customPageId+'&m_id='+merchantInfoId
+                    //     when 'customlink'
+                    //         - _url = datas.customLinkurl
+                    //     when 'theater'
+                    //         - _url = 'javascript:;'
+                    //         - _nourlclass = 'gototheater'
+                    //         - _navicon = ''
+                    a(href=_url class=_nourlclass)
+                        em #{datas.navigationName}
+                        i.xx-icon.icon-xiangyoujiantou
+            else
+                span.title-more
+                    em #{datas.navigationName}
+                    i.xx-icon.icon-xiangyoujiantou
+
+//- 图文广告（轮播图）
+mixin banner1(datas)
+    - let bannerList = datas.list instanceof Array ? datas.list : [];
+    .banner.banner__swiper1(class=datas.type+' banner-'+datas.imgFill class=bannerList.length > 1 ? 'bannerSwiper': '')
+        ul.swiper-wrapper
+            each item in datas.list
+                - var gotoObj = gotoTarget(item)
+                - var _url = gotoObj._url
+                - var  _nourlclass = gotoObj._nourlclass
+
+                // - var _url = ''
+                // - var _nourlclass = ''
+                // case item.linkUrl
+                //     when 'personal'
+                //         - _url = '/member?m_id='+merchantInfoId
+                //     when 'home'
+                //         - _url = '/?m_id='+merchantInfoId
+                //     when 'shopcart'
+                //         - _url = '/cart?m_id='+merchantInfoId
+                //     when 'ai_p'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'aipyp'
+                //     when 'order'
+                //         - _url = '/list/order?m_id='+merchantInfoId
+                //     when 'groupbooking'
+                //         - _url = '/group/orderList?m_id='+merchantInfoId
+                //     when 'coupon'
+                //         - _url = '/coupons/member?m_id='+merchantInfoId
+                //     when 'receivecoupons'
+                //         - _url = '/coupons/list?m_id='+merchantInfoId
+                //     when 'accountcenter'
+                //         - _url = '/member/user?m_id='+merchantInfoId
+                //     when 'ticket'
+                //         - _url = '/list/ticket?m_id='+merchantInfoId
+                //     when 'hotel'
+                //         - _url = '/list/hotel?m_id='+merchantInfoId
+                //     when 'shop'
+                //         - _url = '/list/shop?m_id='+merchantInfoId
+                //     when 'repast'
+                //         - _url = '/list/repast?m_id='+merchantInfoId
+                //     when 'route'
+                //         - _url = '/list/route?m_id='+merchantInfoId
+                //     when 'strategy'
+                //         - _url = '/list/strategy?m_id='+merchantInfoId
+                //     when 'pmsHotel'
+                //         - _url = '/vue/list/pmsHotel?m_id='+merchantInfoId
+                //     when 'publicservice'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'gotoPublic'
+                //     when 'parkcard'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'gotoyearcard'
+                //     when 'custompage'
+                //         - _url = '/custompage?id='+item.customPageId+'&m_id='+merchantInfoId
+                //     when 'customlink'
+                //         - _url = item.customLinkurl
+                //     when 'theater'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'gototheater'
+                //         - _navicon = ''
+                li.swiper-slide
+                    a(class=_nourlclass href=_url)
+                        img(src=item.picAddr+'?imageMogr2/thumbnail/640x/strip/quality/100')
+                        if datas.hideText == 'F'
+                            span=item.title
+        .banner__swiper1-pagination
+
+mixin banner2(datas)
+    .banner(class=datas.type+' banner-'+datas.imgFill)
+        ul
+            each item in datas.list
+                - var gotoObj = gotoTarget(item)
+                - var _url = gotoObj._url
+                - var _nourlclass = gotoObj._nourlclass
+
+                // - var _url = ''
+                // - var _nourlclass = ''
+                // case item.linkUrl
+                //     when 'personal'
+                //         - _url = '/member?m_id='+merchantInfoId
+                //     when 'home'
+                //         - _url = '/?m_id='+merchantInfoId
+                //     when 'shopcart'
+                //         - _url = '/cart?m_id='+merchantInfoId
+                //     when 'ai_p'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'aipyp'
+                //     when 'order'
+                //         - _url = '/list/order?m_id='+merchantInfoId
+                //     when 'groupbooking'
+                //         - _url = '/group/orderList?m_id='+merchantInfoId
+                //     when 'coupon'
+                //         - _url = '/coupons/member?m_id='+merchantInfoId
+                //     when 'receivecoupons'
+                //         - _url = '/coupons/list?m_id='+merchantInfoId
+                //     when 'accountcenter'
+                //         - _url = '/member/user?m_id='+merchantInfoId
+                //     when 'ticket'
+                //         - _url = '/list/ticket?m_id='+merchantInfoId
+                //     when 'hotel'
+                //         - _url = '/list/hotel?m_id='+merchantInfoId
+                //     when 'shop'
+                //         - _url = '/list/shop?m_id='+merchantInfoId
+                //     when 'repast'
+                //         - _url = '/list/repast?m_id='+merchantInfoId
+                //     when 'route'
+                //         - _url = '/list/route?m_id='+merchantInfoId
+                //     when 'strategy'
+                //         - _url = '/list/strategy?m_id='+merchantInfoId
+                //     when 'pmsHotel'
+                //         - _url = '/vue/list/pmsHotel?m_id='+merchantInfoId
+                //     when 'publicservice'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'gotoPublic'
+                //     when 'parkcard'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'gotoyearcard'
+                //     when 'custompage'
+                //         - _url = '/custompage?id='+item.customPageId+'&m_id='+merchantInfoId
+                //     when 'customlink'
+                //         - _url = item.customLinkurl
+                //     when 'theater'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'gototheater'
+                //         - _navicon = ''
+                li
+                    a(class=_nourlclass href=_url)
+                        img(src=item.picAddr+'?imageMogr2/thumbnail/640x/strip/quality/100' style=datas.imgHeightAuto=='T'?'height:auto':'height:7.4rem')
+                        if datas.hideText == 'F'
+                            span=item.title
+                            //判断是否有热区
+                        if item.hotList && item.hotList.length
+                            each sitem in item.hotList
+                                - var gotoArea = gotoTarget(sitem)
+                                - var href = gotoArea._url
+                                -
+                                    var styleStr = 'width:'+sitem.width*64/75/40+'rem;' +
+                                    'height:'+sitem.height*64/75/40+'rem;'+
+                                    'top:'+sitem.top*64/75/40+'rem;'+
+                                    'left:'+sitem.left*64/75/40+'rem;'
+                                .hot-area-item(style=styleStr data-href=href)
+
+mixin banner3(datas)
+    - let bannerList = datas.list instanceof Array ? datas.list : [];
+    .banner.swiper-container(class=datas.type+' banner-'+datas.imgFill)
+        ul.swiper-wrapper
+            each item in datas.list
+                - var gotoObj = gotoTarget(item)
+                - var _url = gotoObj._url
+                - var _nourlclass = gotoObj._nourlclass
+
+                // - var _url = ''
+                // - var _nourlclass = ''
+                // case item.linkUrl
+                //     when 'personal'
+                //         - _url = '/member?m_id='+merchantInfoId
+                //     when 'home'
+                //         - _url = '/?m_id='+merchantInfoId
+                //     when 'shopcart'
+                //         - _url = '/cart?m_id='+merchantInfoId
+                //     when 'ai_p'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'aipyp'
+                //     when 'order'
+                //         - _url = '/list/order?m_id='+merchantInfoId
+                //     when 'groupbooking'
+                //         - _url = '/group/orderList?m_id='+merchantInfoId
+                //     when 'coupon'
+                //         - _url = '/coupons/member?m_id='+merchantInfoId
+                //     when 'receivecoupons'
+                //         - _url = '/coupons/list?m_id='+merchantInfoId
+                //     when 'accountcenter'
+                //         - _url = '/member/user?m_id='+merchantInfoId
+                //     when 'ticket'
+                //         - _url = '/list/ticket?m_id='+merchantInfoId
+                //     when 'hotel'
+                //         - _url = '/list/hotel?m_id='+merchantInfoId
+                //     when 'shop'
+                //         - _url = '/list/shop?m_id='+merchantInfoId
+                //     when 'repast'
+                //         - _url = '/list/repast?m_id='+merchantInfoId
+                //     when 'route'
+                //         - _url = '/list/route?m_id='+merchantInfoId
+                //     when 'strategy'
+                //         - _url = '/list/strategy?m_id='+merchantInfoId
+                //     when 'pmsHotel'
+                //         - _url = '/vue/list/pmsHotel?m_id='+merchantInfoId
+                //     when 'publicservice'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'gotoPublic'
+                //     when 'parkcard'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'gotoyearcard'
+                //     when 'custompage'
+                //         - _url = '/custompage?id='+item.customPageId+'&m_id='+merchantInfoId
+                //     when 'customlink'
+                //         - _url = item.customLinkurl
+                //     when 'theater'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'gototheater'
+                //         - _navicon = ''
+                li.swiper-slide
+                    a(class=_nourlclass href=_url)
+                        img(src=item.picAddr+'?imageMogr2/thumbnail/640x/strip/quality/100')
+                        if datas.hideText == 'F'
+                            span=item.title
+
+
+//- 自由布局
+mixin freeLayout1(datas)
+    .freeLayout(class=datas.type)
+        ul.clearfix
+            each item in datas.list
+                - var gotoObj = gotoTarget(item)
+                - var _url = gotoObj._url
+                - var _nourlclass = gotoObj._nourlclass
+
+                // - var _url = ''
+                // - var _nourlclass = ''
+                // case item.linkUrl
+                //     when 'personal'
+                //         - _url = '/member?m_id='+merchantInfoId
+                //     when 'home'
+                //         - _url = '/?m_id='+merchantInfoId
+                //     when 'shopcart'
+                //         - _url = '/cart?m_id='+merchantInfoId
+                //     when 'ai_p'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'aipyp'
+                //     when 'order'
+                //         - _url = '/list/order?m_id='+merchantInfoId
+                //     when 'groupbooking'
+                //         - _url = '/group/orderList?m_id='+merchantInfoId
+                //     when 'coupon'
+                //         - _url = '/coupons/member?m_id='+merchantInfoId
+                //     when 'receivecoupons'
+                //         - _url = '/coupons/list?m_id='+merchantInfoId
+                //     when 'accountcenter'
+                //         - _url = '/member/user?m_id='+merchantInfoId
+                //     when 'ticket'
+                //         - _url = '/list/ticket?m_id='+merchantInfoId
+                //     when 'hotel'
+                //         - _url = '/list/hotel?m_id='+merchantInfoId
+                //     when 'shop'
+                //         - _url = '/list/shop?m_id='+merchantInfoId
+                //     when 'repast'
+                //         - _url = '/list/repast?m_id='+merchantInfoId
+                //     when 'route'
+                //         - _url = '/list/route?m_id='+merchantInfoId
+                //     when 'strategy'
+                //         - _url = '/list/strategy?m_id='+merchantInfoId
+                //     when 'pmsHotel'
+                //         - _url = '/vue/list/pmsHotel?m_id='+merchantInfoId
+                //     when 'publicservice'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'gotoPublic'
+                //     when 'parkcard'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'gotoyearcard'
+                //     when 'custompage'
+                //         - _url = '/custompage?id='+item.customPageId+'&m_id='+merchantInfoId
+                //     when 'customlink'
+                //         - _url = item.customLinkurl
+                //     when 'theater'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'gototheater'
+                //         - _navicon = ''
+                li
+                    a(class=_nourlclass href=(item.linkUrl&&item.linkUrl!=''?_url:'javascript:;'))
+                        img(src=item.picAddr?item.picAddr+'?imageMogr2/thumbnail/640x/strip/quality/100':'/images/newtheme/layout-img1.jpg')
+mixin freeLayout2(datas)
+    .freeLayout(class=datas.type)
+        ul.clearfix
+            each item in datas.list
+                - var gotoObj = gotoTarget(item)
+                - var _url = gotoObj._url
+                - var _nourlclass = gotoObj._nourlclass
+
+                // - var _url = ''
+                // - var _nourlclass = ''
+                // case item.linkUrl
+                //     when 'personal'
+                //         - _url = '/member?m_id='+merchantInfoId
+                //     when 'home'
+                //         - _url = '/?m_id='+merchantInfoId
+                //     when 'shopcart'
+                //         - _url = '/cart?m_id='+merchantInfoId
+                //     when 'ai_p'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'aipyp'
+                //     when 'order'
+                //         - _url = '/list/order?m_id='+merchantInfoId
+                //     when 'groupbooking'
+                //         - _url = '/group/orderList?m_id='+merchantInfoId
+                //     when 'coupon'
+                //         - _url = '/coupons/member?m_id='+merchantInfoId
+                //     when 'receivecoupons'
+                //         - _url = '/coupons/list?m_id='+merchantInfoId
+                //     when 'accountcenter'
+                //         - _url = '/member/user?m_id='+merchantInfoId
+                //     when 'ticket'
+                //         - _url = '/list/ticket?m_id='+merchantInfoId
+                //     when 'hotel'
+                //         - _url = '/list/hotel?m_id='+merchantInfoId
+                //     when 'shop'
+                //         - _url = '/list/shop?m_id='+merchantInfoId
+                //     when 'repast'
+                //         - _url = '/list/repast?m_id='+merchantInfoId
+                //     when 'route'
+                //         - _url = '/list/route?m_id='+merchantInfoId
+                //     when 'strategy'
+                //         - _url = '/list/strategy?m_id='+merchantInfoId
+                //     when 'pmsHotel'
+                //         - _url = '/vue/list/pmsHotel?m_id='+merchantInfoId
+                //     when 'publicservice'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'gotoPublic'
+                //     when 'parkcard'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'gotoyearcard'
+                //     when 'custompage'
+                //         - _url = '/custompage?id='+item.customPageId+'&m_id='+merchantInfoId
+                //     when 'customlink'
+                //         - _url = item.customLinkurl
+                //     when 'theater'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'gototheater'
+                //         - _navicon = ''
+                li
+                    a(class=_nourlclass href=(item.linkUrl&&item.linkUrl!=''?_url:'javascript:;'))
+                        img(src=item.picAddr?item.picAddr+'?imageMogr2/thumbnail/640x/strip/quality/100':'/images/newtheme/layout-img1.jpg')
+mixin freeLayout3(datas)
+    .freeLayout(class=datas.type)
+        ul.clearfix
+            each item in datas.list
+                - var gotoObj = gotoTarget(item)
+                - var _url = gotoObj._url
+                - var _nourlclass = gotoObj._nourlclass
+
+                // - var _url = ''
+                // - var _nourlclass = ''
+                // case item.linkUrl
+                //     when 'personal'
+                //         - _url = '/member?m_id='+merchantInfoId
+                //     when 'home'
+                //         - _url = '/?m_id='+merchantInfoId
+                //     when 'shopcart'
+                //         - _url = '/cart?m_id='+merchantInfoId
+                //     when 'ai_p'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'aipyp'
+                //     when 'order'
+                //         - _url = '/list/order?m_id='+merchantInfoId
+                //     when 'groupbooking'
+                //         - _url = '/group/orderList?m_id='+merchantInfoId
+                //     when 'coupon'
+                //         - _url = '/coupons/member?m_id='+merchantInfoId
+                //     when 'receivecoupons'
+                //         - _url = '/coupons/list?m_id='+merchantInfoId
+                //     when 'accountcenter'
+                //         - _url = '/member/user?m_id='+merchantInfoId
+                //     when 'ticket'
+                //         - _url = '/list/ticket?m_id='+merchantInfoId
+                //     when 'hotel'
+                //         - _url = '/list/hotel?m_id='+merchantInfoId
+                //     when 'shop'
+                //         - _url = '/list/shop?m_id='+merchantInfoId
+                //     when 'repast'
+                //         - _url = '/list/repast?m_id='+merchantInfoId
+                //     when 'route'
+                //         - _url = '/list/route?m_id='+merchantInfoId
+                //     when 'strategy'
+                //         - _url = '/list/strategy?m_id='+merchantInfoId
+                //     when 'pmsHotel'
+                //         - _url = '/vue/list/pmsHotel?m_id='+merchantInfoId
+                //     when 'publicservice'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'gotoPublic'
+                //     when 'parkcard'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'gotoyearcard'
+                //     when 'custompage'
+                //         - _url = '/custompage?id='+item.customPageId+'&m_id='+merchantInfoId
+                //     when 'customlink'
+                //         - _url = item.customLinkurl
+                //     when 'theater'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'gototheater'
+                //         - _navicon = ''
+                li
+                    a(class=_nourlclass href=(item.linkUrl&&item.linkUrl!=''?_url:'javascript:;'))
+                        img(src=item.picAddr?item.picAddr+'?imageMogr2/thumbnail/640x/strip/quality/100':'/images/newtheme/layout-img1.jpg')
+mixin freeLayout4(datas)
+    .freeLayout(class=datas.type)
+        ul.clearfix
+            each item,i in datas.list
+                - var gotoObj = gotoTarget(item)
+                - var _url = gotoObj._url
+                - var _nourlclass = gotoObj._nourlclass
+
+                // - var _url = ''
+                // - var _nourlclass = ''
+                // case item.linkUrl
+                //     when 'personal'
+                //         - _url = '/member?m_id='+merchantInfoId
+                //     when 'home'
+                //         - _url = '/?m_id='+merchantInfoId
+                //     when 'shopcart'
+                //         - _url = '/cart?m_id='+merchantInfoId
+                //     when 'ai_p'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'aipyp'
+                //     when 'order'
+                //         - _url = '/list/order?m_id='+merchantInfoId
+                //     when 'groupbooking'
+                //         - _url = '/group/orderList?m_id='+merchantInfoId
+                //     when 'coupon'
+                //         - _url = '/coupons/member?m_id='+merchantInfoId
+                //     when 'receivecoupons'
+                //         - _url = '/coupons/list?m_id='+merchantInfoId
+                //     when 'accountcenter'
+                //         - _url = '/member/user?m_id='+merchantInfoId
+                //     when 'ticket'
+                //         - _url = '/list/ticket?m_id='+merchantInfoId
+                //     when 'hotel'
+                //         - _url = '/list/hotel?m_id='+merchantInfoId
+                //     when 'shop'
+                //         - _url = '/list/shop?m_id='+merchantInfoId
+                //     when 'repast'
+                //         - _url = '/list/repast?m_id='+merchantInfoId
+                //     when 'route'
+                //         - _url = '/list/route?m_id='+merchantInfoId
+                //     when 'strategy'
+                //         - _url = '/list/strategy?m_id='+merchantInfoId
+                //     when 'pmsHotel'
+                //         - _url = '/vue/list/pmsHotel?m_id='+merchantInfoId
+                //     when 'publicservice'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'gotoPublic'
+                //     when 'parkcard'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'gotoyearcard'
+                //     when 'custompage'
+                //         - _url = '/custompage?id='+item.customPageId+'&m_id='+merchantInfoId
+                //     when 'customlink'
+                //         - _url = item.customLinkurl
+                //     when 'theater'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'gototheater'
+                //         - _navicon = ''
+                li(class=i==0?'w980':'w485' class=_nourlclass)
+                    a(href=(item.linkUrl&&item.linkUrl!=''?_url:'javascript:;'))
+                        img(src=item.picAddr?item.picAddr+'?imageMogr2/thumbnail/640x/strip/quality/100':'/images/newtheme/layout-img1.jpg')
+mixin freeLayout5(datas)
+    .freeLayout(class=datas.type)
+        ul.clearfix
+            each item,i in datas.list
+                - var gotoObj = gotoTarget(item)
+                - var _url = gotoObj._url
+                - var _nourlclass = gotoObj._nourlclass
+
+                // - var _url = ''
+                // - var _nourlclass = ''
+                // case item.linkUrl
+                //     when 'personal'
+                //         - _url = '/member?m_id='+merchantInfoId
+                //     when 'home'
+                //         - _url = '/?m_id='+merchantInfoId
+                //     when 'shopcart'
+                //         - _url = '/cart?m_id='+merchantInfoId
+                //     when 'ai_p'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'aipyp'
+                //     when 'order'
+                //         - _url = '/list/order?m_id='+merchantInfoId
+                //     when 'groupbooking'
+                //         - _url = '/group/orderList?m_id='+merchantInfoId
+                //     when 'coupon'
+                //         - _url = '/coupons/member?m_id='+merchantInfoId
+                //     when 'receivecoupons'
+                //         - _url = '/coupons/list?m_id='+merchantInfoId
+                //     when 'accountcenter'
+                //         - _url = '/member/user?m_id='+merchantInfoId
+                //     when 'ticket'
+                //         - _url = '/list/ticket?m_id='+merchantInfoId
+                //     when 'hotel'
+                //         - _url = '/list/hotel?m_id='+merchantInfoId
+                //     when 'shop'
+                //         - _url = '/list/shop?m_id='+merchantInfoId
+                //     when 'repast'
+                //         - _url = '/list/repast?m_id='+merchantInfoId
+                //     when 'route'
+                //         - _url = '/list/route?m_id='+merchantInfoId
+                //     when 'strategy'
+                //         - _url = '/list/strategy?m_id='+merchantInfoId
+                //     when 'pmsHotel'
+                //         - _url = '/vue/list/pmsHotel?m_id='+merchantInfoId
+                //     when 'publicservice'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'gotoPublic'
+                //     when 'parkcard'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'gotoyearcard'
+                //     when 'custompage'
+                //         - _url = '/custompage?id='+item.customPageId+'&m_id='+merchantInfoId
+                //     when 'customlink'
+                //         - _url = item.customLinkurl
+                //     when 'theater'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'gototheater'
+                //         - _navicon = ''
+                li(class=i==0?'w64':'w32' class=_nourlclass)
+                    a(href=(item.linkUrl&&item.linkUrl!=''?_url:'javascript:;'))
+                        img(src=item.picAddr?item.picAddr+'?imageMogr2/thumbnail/640x/strip/quality/100':'/images/newtheme/layout-img1.jpg')
+mixin freeLayout6(datas)
+    .freeLayout(class=datas.type)
+        ul.clearfix
+            each item,i in datas.list
+                - var gotoObj = gotoTarget(item)
+                - var _url = gotoObj._url
+                - var _nourlclass = gotoObj._nourlclass
+
+                // - var _url = ''
+                // - var _nourlclass = ''
+                // case item.linkUrl
+                //     when 'personal'
+                //         - _url = '/member?m_id='+merchantInfoId
+                //     when 'home'
+                //         - _url = '/?m_id='+merchantInfoId
+                //     when 'shopcart'
+                //         - _url = '/cart?m_id='+merchantInfoId
+                //     when 'ai_p'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'aipyp'
+                //     when 'order'
+                //         - _url = '/list/order?m_id='+merchantInfoId
+                //     when 'groupbooking'
+                //         - _url = '/group/orderList?m_id='+merchantInfoId
+                //     when 'coupon'
+                //         - _url = '/coupons/member?m_id='+merchantInfoId
+                //     when 'receivecoupons'
+                //         - _url = '/coupons/list?m_id='+merchantInfoId
+                //     when 'accountcenter'
+                //         - _url = '/member/user?m_id='+merchantInfoId
+                //     when 'ticket'
+                //         - _url = '/list/ticket?m_id='+merchantInfoId
+                //     when 'hotel'
+                //         - _url = '/list/hotel?m_id='+merchantInfoId
+                //     when 'shop'
+                //         - _url = '/list/shop?m_id='+merchantInfoId
+                //     when 'repast'
+                //         - _url = '/list/repast?m_id='+merchantInfoId
+                //     when 'route'
+                //         - _url = '/list/route?m_id='+merchantInfoId
+                //     when 'strategy'
+                //         - _url = '/list/strategy?m_id='+merchantInfoId
+                //     when 'pmsHotel'
+                //         - _url = '/vue/list/pmsHotel?m_id='+merchantInfoId
+                //     when 'publicservice'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'gotoPublic'
+                //     when 'parkcard'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'gotoyearcard'
+                //     when 'custompage'
+                //         - _url = '/custompage?id='+item.customPageId+'&m_id='+merchantInfoId
+                //     when 'customlink'
+                //         - _url = item.customLinkurl
+                //     when 'theater'
+                //         - _url = 'javascript:;'
+                //         - _nourlclass = 'gototheater'
+                //         - _navicon = ''
+                li(class=i==0?'w64':'w32' class=_nourlclass)
+                    a(href=(item.linkUrl&&item.linkUrl!=''?_url:'javascript:;'))
+                        img(src=item.picAddr?item.picAddr+'?imageMogr2/thumbnail/640x/strip/quality/100':'/images/newtheme/layout-img1.jpg')
+
+//-底部导航
+mixin newfooter(footerData, module)
+    .footBlock
+    .newfooter
+        ul.clearfix(style='background-color:'+footerData.backgroundColor+'; border-top:1px solid '+footerData.backgroundLineColor)
+            - var footNmu = parseInt(footerData.list.length);
+            - var footNmuPerW = (1/footNmu)*100+'%';
+            - var textColor = footerData.textColor, selectTextColor = footerData.selectTextColor;
+            - var iconArr = {'personal':'icon-member','home':'icon-nav-home','order':'icon-nav-orders','shopcart':'icon-shopping-car','ticket': 'icon-nav-ticket','hotel': 'icon-nav-ticket','shop': 'icon-nav-goods','strategy': 'icon-nav-raiders','route': 'icon-nav-tours','repast': 'icon-nav-foods','ai_p': 'icon-AIpaiyipai','customtel':'icon-bohao'};
+
+            each item in footerData.list
+                li(style='width:'+footNmuPerW)
+                    - var gotoObj = gotoTarget(item)
+                    - var _url = gotoObj._url
+                    - var _mold = gotoObj._mold
+                    - var _nourlclass = gotoObj._nourlclass
+                    a(href=_url, class=_nourlclass, style='color:'+(module==_mold?selectTextColor:textColor))
+
+                        if module!=_mold && item.defaultImgUrl!='' 
+                            img(src=item.defaultImgUrl)
+                        else if module==_mold && item.selectImgUrl !=''
+                            img(src=item.selectImgUrl)
+                        else
+                            i(class='xx-icon '+iconArr[item.linkUrl])
+                        span=item.title
+script.
+    $(function () {
+        $("body").on("click",".hot-area-item",function (e) {
+            e.stopPropagation()
+            var href = $(this).data("href")
+            window.location.href=href
+        })
+    })

@@ -1,0 +1,16 @@
+- var rows = data[0].data.rows
+if rows.length > 0
+    .addressList
+        each item in rows
+            .addressItem(data-itemobj= item)
+                .linkName.ellipsis= item.title
+                .linkInfo
+                    .linkPhone= item.linName +' '+ item.likPhone
+                    .linkAddress= item.areaName + item.addressDetail
+                    //- span.moren 设为默认地址
+                .editIcon
+                    i.xx-icon.icon-edit                   
+                .deleteIcon
+                    i.xx-icon.icon-shanchu
+else
+    .no-data 暂无数据

@@ -1,0 +1,20 @@
+extends ../layout
+
+block stylesheets
+  link(rel="stylesheet", href="#{baseUrl}/stylesheets/details.css?#{vCode}")
+block javascripts
+  script(type='text/javascript', src='#{baseUrl}/javascripts/lib/dropload.min.js')
+  script(type='text/javascript', src='#{baseUrl}/javascripts/list.js?#{vCode}')
+block content
+  .comment-toptips
+      span.fr.nums
+        i.xx-icon.icon-star-full
+        i.xx-icon.icon-star-full
+        i.xx-icon.icon-star-full
+        i.xx-icon.icon-star-full
+        em
+          | 5分
+      span.fr
+        | 客户体验满意度
+  .drop-box
+    ul.comment-list

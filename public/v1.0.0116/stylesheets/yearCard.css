@@ -1,0 +1,409 @@
+body{
+    background-color: #f7f7f7;
+}
+/*年卡列表*/
+.yearcard-list{
+    padding: 0.5rem 0.4rem;
+    background-color: transparent;    
+}
+.yearcard-list li{
+    margin-bottom: 1rem;
+    width: 100%;
+    height: 5.3rem;   
+    padding: 0;
+    border-bottom: none;
+    position: relative;
+}
+.yearcard-list li a{
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 5.3rem;        
+}
+
+.yearcard-img{
+    position: relative;
+    width: 100%;
+    height: 5.3rem;
+    z-index: 1;
+    border-radius: 0.1rem;
+}
+.card-mask{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.26);
+    z-index: 2;
+    left: 0;
+    top: 0;
+}
+.list-card-con{
+    position: absolute;
+    top: 0.6rem;
+    left: 0.75rem;
+    z-index: 3;
+    height: 4.7rem;
+    width: 13.7rem;
+}
+.avatar{
+    display: inline-block;
+    vertical-align: middle;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: #fff;
+    border-radius: 100%;
+    /* position: absolute;
+    top: 0.6rem;
+    left: 0.75rem; */    
+}
+.avatar img{
+    display: block;
+    width: 2.35rem;
+    height: 2.35rem;
+    border-radius: 100%;
+    margin: 0.075rem auto 0;
+}
+.yearcard-name{
+    /* position: absolute;
+    top: 1.2rem;
+    left: 4rem; */
+    color: #fff;
+    font-size: 0.9rem;
+    margin-left: 0.4rem;
+    width: 10rem;
+    display: inline-block;
+    vertical-align: middle;
+    /* z-index: 2; */
+}
+/*年卡详情*/
+.pd0{
+    padding-bottom: 0;
+}
+.recharge{
+    width: 100%;
+}
+.toRecharge{
+    width: 92%;
+    height: 1.9rem;
+    line-height: 1.9rem;
+    background-color: #009ded;
+    display: block;
+    margin: 0 auto;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 0.7rem;
+    border-radius: 0.1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+.member-list {
+    border-top: none;
+}
+.order-list {
+    background-color: #fff;
+}
+.member-list li {
+    text-align: right;
+}
+.order-list li{
+    padding: 0.5rem 0;
+    margin-left: 0.75rem;
+}
+.order-list li .icon-iconfont-jiantou{
+    margin-right: 0.65rem;
+}
+/*交易记录*/
+.productList__swiper1 .fq-slide-box {
+    background: white;
+}
+.productList__swiper1 .fq-recommend-nav {
+    width: 100%;
+    border-bottom: 1px solid #eaeaea;
+}
+.productList__swiper1 .fq-recommend-nav ul {
+    display: block;
+    /* width: 100%; */
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin: 0 0.75rem;
+}
+.productList__swiper1 .fq-recommend-nav ul li {
+    flex: 1;
+    height: 1.8rem;
+    justify-content: center;
+    display: block;
+    color: #5c5c5c;
+    font-size: 0.6rem;
+    text-align: center;
+    line-height: 1.8rem;
+    background: white;
+    border-bottom: 4px solid #fff;
+    
+}
+.productList__swiper1 .fq-recommend-nav ul li.on {
+    border-bottom: 4px solid #f05b47;
+    color: #f05b47;
+}
+.productList__swiper1 .fq-slide-box .img-list {
+    /* padding: 0 2.5% 0.5rem; */
+    width: 100%;
+    background-color: #f7f7f7;
+}
+.productList__swiper1 .fq-slide-box .img-list .swiper-container {
+    width: 100%;
+}
+.productList__swiper1 .fq-img-list ul{
+    /* padding-top: 0.5rem; */
+    height: auto !important;
+}
+.productList__swiper1 .fq-img-list ul li{
+    margin-top: 0.4rem;
+    background-color: #fff;
+    padding: 0.65rem;
+}
+.swiper-slide li span{
+    display: block;
+    height: 1.2rem;
+    line-height: 1.2rem;
+    color: #413838;
+    font-size: 0.6rem;
+}
+
+/*交易详情*/
+.recordd{
+    position: relative;
+    width: 100%;    
+}
+.recordd-ul{
+    width: 100%;
+    background-color: #fff;
+    padding: 0.5rem 0;
+}
+.bfix-btn{
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+}
+.continue-pay{
+    display: block;
+    width: 49%;
+    float: left;
+    background-color: #009ded;
+    color: #fff;
+    text-align: center;
+    height: 2.1rem;
+    line-height: 2.1rem;
+    font-size: 0.7rem;
+}
+.recordd-ul li{
+    padding: 0 0.65rem;
+}
+.recordd-ul li p{
+    color: #413838;
+    font-size: 0.6rem;
+    height: 1.2rem;
+    line-height: 1.2rem;
+    
+}
+.recordd-ul li p .cred{
+    color: #f05b47;
+}
+
+.intro{
+    padding: 0.5rem;
+}
+.intro p{
+    color:#5c5c5c;
+    font-size: 0.5rem;    
+    line-height: 1rem;
+}
+
+/*年卡充值*/
+.yearcard-title{
+    background-color: #fff; 
+    font-size: 0.7rem;
+    height: 2.25rem;
+    line-height: 2.25rem;
+    text-align: center;
+    /* -moz-box-shadow:0px -5px 5px #fafafa; 
+    -webkit-box-shadow:0px -5px 5px #fafafa;  */
+    box-shadow:0px -5px 5px #fafafa;
+    border-bottom: 1px solid #fbfbfb;
+}
+.yearcard-type{
+    background-color: #fff;
+    height: 2.25rem;
+    margin-top: 0.4rem;
+    border-top: 1px solid #fbfbfb;
+}
+#chooseType{
+    height: 2.25rem;
+    line-height: 2.25rem;
+    margin-left: 0.6rem;
+    border: none;
+    outline: none;
+    font-size: 0.6rem;
+    color: #413838;
+    width: 3.5rem;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    /* overflow: hidden; */
+}
+.input_select{
+    width: 2.8rem;
+    border: none;
+    outline: none;
+    color: #413838;
+    font-size: 0.6rem;
+    display: inline-block;
+    vertical-align: middle;
+}
+.icon-xiangyoujiantou{
+    font-size: 0.4rem;
+    color: #1f1f1f;
+    display: inline-block;
+    vertical-align: middle;
+}
+.trans90{
+    transform:rotate(90deg);
+    -ms-transform:rotate(90deg);
+    -moz-transform:rotate(90deg);
+    -webkit-transform:rotate(90deg);
+    -o-transform:rotate(90deg);
+}
+#chooseType ul{
+    width:90%;    
+    background:#fff; 
+    position:absolute; 
+    top: 2.45rem;
+    left: -0.4rem;
+    display:none;    
+    border-radius: 4px;
+    -webkit-box-shadow:0 0 3px 3px #f1f1f1;
+    -moz-box-shadow:0 0 3px 3px #f1f1f1;
+    box-shadow:0 0 3px 3px #f1f1f1;
+}
+#chooseType ul li{
+    height: 1.4rem;
+    line-height: 1.4rem;
+    text-align: center;
+    color: #413838;
+    font-size: 0.6rem;
+    border-bottom: 1px solid #eeeee7
+}
+#cardNum,.yearcard-text{
+    width: 11rem;
+    margin-left: 0.6rem;
+    color: #413838;
+    font-size: 0.6rem;
+    height: 2.25rem;
+    line-height: 2.25rem;
+    border: none;
+    outline: none;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0
+}
+.yearcard-price{
+    height: 2.65rem;
+    line-height: 2.65rem;
+    background-color: #fff;
+    margin-top: 0.5rem;
+}
+.yearcard-price label{
+    color: #413838;
+    font-size: 0.6rem;
+    margin-left: 0.6rem;
+    width: 3.5rem;
+    display: inline-block;
+    vertical-align: middle;    
+}
+.yearcard-price span{
+    color: #fc4150;
+    font-size: 0.6rem;
+    font-family: PingFangSC-Medium, sans-serif;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 0.6rem;
+}
+.goRecharge{
+    width: 100%;
+    height: 2.1rem;
+    line-height: 2.1rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+}
+#toRecharge{
+    display: block;
+    width: 100%;
+    height: 2.1rem;
+    line-height: 2.1rem;
+    background-color: #009ded;
+    font-size: 0.7rem;
+    color: #fff;
+    text-align: center;
+}
+.h21{
+    height: 2.1rem;
+}
+
+/*返回按钮样式*/
+.backBtn{
+    display: block;
+    width: 49%;
+    float: right;
+    /* position: fixed; */
+    /* bottom: 3rem; */
+    /* left: 0;
+    z-index: 1; */
+    background-color: #009ded;
+    color: #fff;
+    text-align: center;
+    height: 2.1rem;
+    line-height: 2.1rem;
+    font-size: 0.7rem;
+}
+.fmb3{
+    bottom: 3rem; 
+}
+.fmb0{
+    bottom: 0;
+}
+.w100{
+    width: 100%;
+}
+
+/*去充值加载效果*/
+.loading-box{
+    padding: 0.15rem 0;
+    line-height: 2.5rem;
+    text-align: center;
+    position: fixed;
+    left: 15%;
+    width: 70%;
+    top: 35%;
+    font-size: .6rem;
+    z-index: 101;
+    background: #fff;
+    box-shadow: 0 0 0.3rem #666;
+    border-radius: .2rem;
+    overflow: hidden;
+    -moz-border-radius: .2rem;
+    -webkit-border-radius: .2rem;
+    -moz-box-shadow: 0 0 .3rem #666;
+    -webkit-box-shadow: 0 0 0.3rem #666;
+    display: none;
+}
+
+.swiper-slide li .cred{
+    color: #f05b47;
+}
+.btn-disabled{ background-color: #a0a0a0;}

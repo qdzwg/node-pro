@@ -1,0 +1,11 @@
+mixin replacePhone(num)
+    - var newnum = num.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2');
+    = newnum
+
+mixin replaceCertNo(cardNumber)
+    - var CertNo = cardNumber.replace(/^(.{6})(?:\d+)(.{4})$/, "$1****$2");
+    = CertNo
+
+mixin replaceName(name)
+    - var name = name.length > 2 ? name.replace(/^(.).+(.)$/g, "$1*$2"):name.replace(/^(.)(.)$/g, "$1*")
+    = name

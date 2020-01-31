@@ -1,0 +1,512 @@
+extends layout
+
+block stylesheets
+    link(href="#{baseUrl}/stylesheets/coupons.css?#{vCode}", rel="stylesheet")
+    link(href="#{baseUrl}/stylesheets/order.css?#{vCode}", rel="stylesheet")
+    link(href="#{baseUrl}/stylesheets/calendar.css?#{vCode}", rel="stylesheet")
+block javascripts
+    script.
+        var module = '#{module}',validator;
+        if ('#{cacheInfo}' != 'undefined') {
+            if (module === 'hotel') {
+                var beginDate = '#{cacheInfo?cacheInfo.beginDate:""}',
+                    endDate = '#{cacheInfo?cacheInfo.endDate:""}'
+            }
+            var cacheInfo = !{JSON.stringify(cacheInfo)},productsInfo = !{JSON.stringify(data[1].data)};
+        }
+    - var isNeedIdCard = 'F';      
+    if seatsData && seatsData.ttlist    
+        each item in seatsData.ttlist
+            if item.isNeedIdCard === 'T' 
+                - isNeedIdCard = 'T'      
+    script.
+        var isNeedIdCard = '#{isNeedIdCard}'; 
+        var isWx = '#{isWx}';
+        var isAli = '#{isAli}';  
+    if isAli === 'T' 
+        script(src='//gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.inc.min.js', type='text/javascript')      
+    script(src='#{baseUrl}/javascripts/jquery.calendar.js?#{vCode}', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/validate/jquery.validate.min.js', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/validate/messages_zh.min.js', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/validate/additional-methods.js?#{vCode}', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/pageItem.js?#{vCode}', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/lib/exif.js?#{vCode}', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/getCoupon.js?#{vCode}', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/formComponent.js?#{vCode}', type='text/javascript')
+    if module=="shop"
+        script(src='#{baseUrl}/javascripts/adressChoice.js?#{vCode}', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/order.js?#{vCode}', type='text/javascript')
+block content
+    include order/orderBtn
+    include order/orderList
+    include order/formComponents
+    include common/index
+    include common/quickLink
+    include common/replaceNum
+
+    form(action="")#form
+        if module === 'shop'
+            input(name="orderflag",type="hidden",value=flag)
+            if orderMold === 'group'
+                input(name="marketLptInfoId",type="hidden",value=lptId)
+            if data.length > 2 && data[2].status === 200 && data[2].data.length > 0
+                .selectGetGoodsType
+                    div(style='height:.8rem;')
+                    ul.selectTypeTab#selectTypeTab
+                        if cacheInfo.byMySelf && cacheInfo.byMySelf === 'T'
+                            li(data-index="0") 到店自提
+                        else 
+                            li.on(data-index="0") 商家配送
+                            li(data-index="1") 到店自提   
+                    .getGoodsTypeBox
+                        if cacheInfo.byMySelf && cacheInfo.byMySelf === 'T'
+                            .getGoodsTypeList.addressForm#getByMyself
+                                from#getByMySelfFrom(action="")
+                                    ul.selectedAddrBox.order-list.myorder-list
+                                        li
+                                            label.lab-title(for='')  提货人
+                                            .order-item
+                                                input(name="buyerName", type="text", value=(member.realName || member.nickName || ''), placeholder='请填写提货人姓名')
+                                        li
+                                            label.lab-title(for='') 手机号码
+                                            .order-item
+                                                //- input(value=(member.mobile || ''), type="text", name="buyerMobile", placeholder='请填写提货人手机号')
+                                                if member.mobile
+                                                    span.changeInput                            
+                                                        +replacePhone(member.mobile)
+                                                    input.hide(name="buyerMobile", type="tel", placeholder="请填写提货人手机号", value=member.mobile || '').order-text
+                                                else 
+                                                    span.changeInput(style="display:none")
+                                                    input(name="buyerMobile", type="tel", placeholder="请填写提货人手机号", value=member.mobile || '').order-text                                                       
+                                                i.xx-icon.fr.icon-iconfont-xie    
+                                        li  
+                                            label.lab-title(for='') 提货地址   
+                                            .order-item#get_self
+                                                input#get_self_place(name="buyerAddr", type="text", value="", readonly, placeholder='请选择商家提货地址')
+                                                i.xx-icon.fr.icon-iconfont-jiantou
+                        else                         
+                            .getGoodsTypeList.address-select
+                                from#expressfrom1
+                                    +orderInputList(data[0].data.rows)
+                                    input#areaCode(name='areaCode', type="hidden", value=data[0].data.rows.length > 0 ? data[0].data.rows[0].areaCode:'')                     
+                            .getGoodsTypeList.addressForm#getByMyself(style="display:none;")
+                                from#getByMySelfFrom(action="")
+                                    ul.selectedAddrBox.order-list.myorder-list
+                                        li
+                                            label.lab-title(for='')  提货人
+                                            .order-item
+                                                input(name="buyerName", type="text", value=(member.realName || member.nickName || ''), placeholder='请填写提货人姓名')
+                                        li
+                                            label.lab-title(for='') 手机号码
+                                            .order-item
+                                                //- input(value=(member.mobile || ''), type="text", name="buyerMobile", placeholder='请填写提货人手机号')
+                                                if member.mobile
+                                                    span.changeInput                            
+                                                        +replacePhone(member.mobile)
+                                                    input.hide(name="buyerMobile", type="tel", placeholder="请填写提货人手机号", value=member.mobile || '').order-text
+                                                else 
+                                                    span.changeInput(style="display:none")
+                                                    input(name="buyerMobile", type="tel", placeholder="请填写提货人手机号", value=member.mobile || '').order-text                                                       
+                                                i.xx-icon.fr.icon-iconfont-xie    
+                                        li  
+                                            label.lab-title(for='') 提货地址   
+                                            .order-item#get_self
+                                                input#get_self_place(name="buyerAddr", type="text", value="", readonly, placeholder='请选择商家提货地址')
+                                                i.xx-icon.fr.icon-iconfont-jiantou
+            else
+                .page-line
+                .address-select
+                    from#expressfrom2
+                        +orderInputList(data[0].data.rows)
+                        input#areaCode(name='areaCode', type="hidden", value=data[0].data.rows.length > 0 ? data[0].data.rows[0].areaCode:'')                   
+            .page-line
+            .goodsOrderList
+                ul.goodsItemList.ticket-list#orderList(data-cacheInfo=cacheInfo)   
+                    if  data[1].data && cacheInfo
+                        - let goodsInfo = data[1].data ;
+                        each item,index in goodsInfo
+                            li.goodsItemx.clearfix    
+                                input(name='modelCodes', type='hidden', value=cacheInfo.item[index].modelCode)
+                                input(name='amounts', type='hidden', value=cacheInfo.item[index].num)
+                                input(name='msdeDetailIds', type='hidden', value=cacheInfo.item[index].mdseDetailId)
+                                img.goodsItemImg(src=(item.linkMobileImg+"?imageMogr2/thumbnail/640x/strip/quality/100"))
+                                .goodsItemName.ellipsis=(item.nickName || item.name)
+                                .itemLine
+                                    .itemLine-price-box
+                                        if cacheInfo.item[index].isMember
+                                            del.del-price ￥#{item.sellPrice}
+                                            span.price ￥
+                                                i.product-price#goodsPrice= cacheInfo.item[index].memberPrice 
+                                            .member-price-flag 会员专享    
+                                        else
+                                            span.price ￥
+                                                if orderMold === 'group'
+                                                    i.product-price#goodsPrice= item.lptPrice  
+                                                else    
+                                                    i.product-price#goodsPrice= item.sellPrice                                       
+                                .itemLine
+                                    span.skuName.ellipsis
+                                        +replaceStr(item.specParam)
+                                    span.fr.goodsNum#goodsNum x
+                                        span.product-num= cacheInfo.item[index].num
+
+            .page-line
+        else if module === "mealCoupon"
+            header.myorder-header.pro-header
+                h3.myorder-title.clearfix
+                    span.fl=data[0].data.name + "*" + data[1].data.name
+                    strong.fr
+                        em#mealCouponPrice=data[1].data.priceSettle
+                        | 元
+            input(name="modelCodes", type="hidden", value=data[1].data.productCode)
+            input(name="amounts", type="hidden", value)
+            .pro-input-box.mealCoupon-input-box.clearfix
+                label() 数量
+                .mealCoupon-num-box.fr
+                    input.numbernum(data-max='999', data-mealCouponid=data[1].data.id, data-min='0', type='text', value='0')
+            .pro-input-box.mealCoupon-input-box.clearfix
+                label() 小计
+                .mealCoupon-num-box.fr
+                   strong.subtotal
+                        em ¥
+                        span#mealTotal 0
+            .page-line
+            ul.order-list.myorder-list
+                li
+                    label.lab-title(for='')="联系人"
+                    .order-item
+                        input.order-text(name='buyerName', type='text', value=(member.realName || member.nickName || ''), placeholder='请填写姓名')
+                        i.xx-icon.fr.icon-iconfont-xie
+                li
+                    label.lab-title(for='') 手机号
+                    .order-item
+                        if member.mobile
+                            span.changeInput
+                                +replacePhone(member.mobile)
+                            input.hide(name="buyerMobile", type="tel", placeholder="请填写手机号（必填）", value=member.mobile || '').order-text
+                        else
+                            span.changeInput(style="display:none")
+                            input(name="buyerMobile", type="tel", placeholder="请填写手机号（必填）", value=member.mobile || '').order-text
+                        i.xx-icon.fr.icon-iconfont-xie
+            .page-line
+            
+        else
+            header.myorder-header.pro-header
+                h3.myorder-title=(data[0].data.nickName || data[0].data.name)
+                if module === 'route'
+                    - let totalNums = 0;
+                    - let routeParams = {};
+                    p.details-explian
+                        each item in cacheInfo.item
+                            span #{item.ticketName}：
+                            span(style="margin-right:0.5rem;color:#333") #{item.num}
+                            - totalNums += (+(item.num || 0))
+                            - routeParams[item.ticketType] = item.num
+                    -   routeParams = JSON.stringify(routeParams)     
+                    input(name="amounts", type="hidden", value=totalNums)
+                    input(name="routeParams", type="hidden", value=routeParams)
+            if module === 'route' && data[0].data.peopleConfirm === 'F'
+                ul.order-list.myorder-list
+                    li
+                        label.lab-title(for='').order-time
+                            .icon-ensure
+                        .order-item
+                            | 预订产品后可立即确认订单，无需等待
+            .page-line
+            ul.order-list.myorder-list
+                case module
+                    when "ticket"
+                        li
+                            label.lab-title(for='') 游玩日期
+                            .order-item
+                                span.order-time=cacheInfo.playDate
+                                input(name="startTime",type="hidden",value=cacheInfo.playDate)
+                    when "hotel"
+                        li
+                            label.lab-title(for='') 入住日期
+                            .order-item
+                                a.c-base#calendarTogg
+                                    | #{cacheInfo.beginDate} 至 #{cacheInfo.endDate} #{cacheInfo.numDays}晚
+                                input(name="startTime",type="hidden",value=cacheInfo.beginDate)
+                                input(name="endTime",type="hidden",value=cacheInfo.endDate)
+                    when  "route"
+                        li
+                            label.lab-title(for='') 游玩日期
+                            .order-item
+                                span.order-time=cacheInfo.playDate
+                                input(name="startTime",type="hidden",value=cacheInfo.playDate)
+            .page-line
+            -var len=0,n=0
+            each item in cacheInfo.item
+                if item.isRealName
+                    -len=item.num
+            if len>0
+                h3.block-title="实名信息"
+                ul.order-list.myorder-list
+                    while n<len
+                        -var i=n++
+                        li
+                            label.lab-title(for='')="姓名"+(i+1)
+                            .order-item
+                                input.order-text(name='realNames', type='tel', placeholder='请填写真实姓名')
+                                i.xx-icon.fr.icon-iconfont-xie
+                        li
+                            label.lab-title(for='')="身份证"+(i+1)
+                            .order-item
+                                input.order-text.card_box(name='realIds', type='text', placeholder='请填写身份证')
+                                i.xx-icon.fr.icon-iconfont-xie
+                .page-line
+            if merchantInfoId === specialPark
+                h3.block-title="预约信息"
+            else    
+                h3.block-title="买家信息"
+            if module === 'route'   
+                +formComponent(data[0].data.orderCustomPlugins,member)  
+            else 
+                ul.order-list.myorder-list
+                    li
+                        label.lab-title(for='')="联系人"
+                        .order-item
+                            input.order-text(name='buyerName', type='text', value=(member.realName || member.nickName || ''), placeholder='请填写姓名')
+                            i.xx-icon.fr.icon-iconfont-xie
+                    li
+                        label.lab-title(for='') 手机号
+                        .order-item
+                            if member.mobile
+                                span.changeInput
+                                    +replacePhone(member.mobile)
+                                input.hide(name="buyerMobile", type="tel", placeholder="请填写手机号（必填）", value=member.mobile || '').order-text
+                            else
+                                span.changeInput(style="display:none")
+                                input(name="buyerMobile", type="tel", placeholder="请填写手机号（必填）", value=member.mobile || '').order-text
+                            i.xx-icon.fr.icon-iconfont-xie
+                    if module !== 'repast' &&  module !== 'shop' &&  module !== 'mealCoupon'
+                        li
+                            label.lab-title(for='') 身份证
+                            .order-item
+                                if member.idcard
+                                    span.changeInput
+                                        +replaceCertNo(member.idcard)
+                                    input.hide(name="buyerIdNo", type="text", placeholder="请填写身份证号", value=member.idcard || '').order-text
+                                else
+                                    span.changeInput(style="display:none")
+                                    input(name="buyerIdNo", type="text", placeholder="请填写身份证号", value=member.idcard || '').order-text
+                                i.xx-icon.fr.icon-iconfont-xie                       
+            
+            if module === 'route'
+                input(name="modelCodes", type='text', hidden, value=cacheInfo.moduleCode)
+            else
+                .page-line
+                case module
+                    when 'ticket'
+                        h3.block-title="票型信息"
+                    when 'hotel'
+                        h3.block-title="房型信息"
+                - var modelCodes = '';
+                ul.order-list.myorder-list.ticket-list#orderList(data-cacheInfo=cacheInfo)
+                    if data instanceof Array && data[1].data instanceof Array
+                        each item, index in data[1].data
+                            li
+                                label.lab-title(for='')=item.nickName
+                                - modelCodes += item.modelCode + ','
+                                input(name="modelCodes", type="hidden", value=item.modelCode)
+                            li
+                                label.lab-title(for='') 购买份数
+                                .order-item
+                                    span.order-time="￥"
+                                    case module
+                                        when 'hotel'
+                                            span.order-time.product-price=cacheInfo.item[index].prices
+                                        default
+                                            span.order-time.product-price=item.priceSettle
+                                    span
+                                        | *
+                                        em.product-num=cacheInfo.item[index].num
+                                        ="份"
+                                    input(name="amounts", type="hidden", value=cacheInfo.item[index].num)
+        if orderMold!="group"
+            .page-line
+            ul.order-list.myorder-list
+                li
+                    label.lab-title(for='') 优惠券
+                    if module === "mealCoupon"
+                        .order-item
+                            a(data-code=(data[1].data.productCode), data-init=0, href='javascript:;').c-666#choiceCoupons
+                                span 优惠券选择
+                                i.xx-icon.fr.icon-iconfont-jiantou
+                    else if module === "route"  
+                        .order-item
+                            a(data-code=(cacheInfo.moduleCode), data-init=0, href='javascript:;').c-666#choiceCoupons
+                                span 优惠券选择
+                                i.xx-icon.fr.icon-iconfont-jiantou
+                    else
+                        .order-item
+                            -var shopModelCodes=""
+                            each item in cacheInfo.item
+                                -shopModelCodes=shopModelCodes+item.productCode+","
+                            - modelCodes = module === 'shop' ? shopModelCodes : modelCodes
+                            a(data-code=(modelCodes || ''), data-init=0, href='javascript:;').c-666#choiceCoupons
+                                span 优惠券选择
+                                i.xx-icon.fr.icon-iconfont-jiantou
+                    input(name='couponCode', type="hidden", value='')
+                li
+                    label.lab-title(for='') 优惠活动
+                    .order-item
+                        a(href='javascript:;').c-666
+                            span#couponInfo(data-cut=0) 优惠活动信息    
+                if module === "mealCoupon"
+                    li.mealCoupon-li
+                        label.lab-title(for='') 订单总额
+                        .order-item.fr
+                            span (
+                            em#mealCouponNum
+                            span 张)
+                            strong
+                                em ¥
+                                em#totalprice
+        else
+            input(name='groupCode', type="hidden", value='2')
+
+        input(name="paySum", type="hidden", value=cacheInfo.totalPrice || 0)#paySum
+        +orderBtn(data[0].datas,module)
+    .mask#mask
+    +flowBtn(userInfo,marketDisAccount,showWholeMarket)
+    #wxQrMask
+    #wxQr
+        p.wx-qr.title
+            em 公众号：
+            em#wxTitle
+        img(src="", alt="微信二维码")
+        p.wx-qr 请长按二维码关注公众号后预订
+        .reload-qr#reloadQr 刷新
+    //- form(action="")#cartForm
+    //-     input(type="text", name="totalPrice", value="").totalprice
+    //-     input(type="text", name='bnsType', value=reObj.module)
+    //-     input(type="text", name='name', value=data[0].data.rateName || data[0].data.ticketType)
+    .tips
+        p
+        a(href="javascript:;").queding 确定
+    if module === 'hotel'
+        #cost-dialog.cost-dialog.dialog
+            h3.cost-dialog-title 费用明细
+            ul.cost-dialog-list#costList
+            p.cost-dialog-explian
+                | 订单总额：
+                span.price
+                    em ￥
+                    strong
+                    em.c-999.couponHandlePrice
+                    em.c-price.payPrice   
+
+    if module === 'shop' && data.length > 2 &&data[2].status === 200
+        #take_layer.take-layer
+            a.close-take(href='javascript:;') X
+            h3.notice-tit 自提地点
+            ul
+                each address in data[2].data
+                    li
+                        .take-tit
+                            a.fr.btn(href='javascript:;') 选择
+                            h3=address.name
+                        .take-add
+                            p= address.areaAddr + '-' + address.addr
+    //-优惠券弹框
+    .couponListLayer#couponListLayer
+        .couponTit 使用优惠券
+        i.xx-icon.icon-guanbi1.layer-close#layer_close
+        .couponBody
+            .couponBodyTab(style="display:block")
+                .couponList.inner.coupons_list
+                    ul.page-list#couponList
+                    span.btn.cancle-coupon-choice#cancleCouponChoice  不使用优惠券  
+
+    //-使用优惠券提醒登录
+    .ticket-layer#goLogin(style="display:none")
+        h3.notice-tit
+            | 优惠券使用提醒
+        .article-info.bgf
+            .article-main
+                | 登录后才可使用优惠券
+        .room-handle.clearfix
+            a.fr(href="/login?m_id="+merchantInfoId) 去登录
+            a.fl#cancleLayer(href="javascript:;") 不使用
+
+
+    //- 地址弹层
+    .addressLayer#addressLayer
+        .addressLayer-handle.background-base
+            a.addressLayer-colse(href='javascript:;')
+                i.xx-icon.icon-guanbi1
+        .layerContent.newAddress#newAddress(style='display:none;')
+            form.formBox#addressForm
+                .itemLine
+                    .itemLabel 备注
+                    .itemVal
+                        //- textarea(name='title', placeholder='请填写标记（选填）', class='addr-beizhu')
+                        input.order-text(name='title', type='text', value='', placeholder='请填写备注（选填）')
+                .itemLine
+                    .itemLabel 联系人
+                    .itemVal
+                        input.order-text(name='linName', type='text', value='', placeholder='请填写联系人姓名')
+                .itemLine
+                    .itemLabel 联系电话
+                    .itemVal
+                        input.order-text(name='likPhone', type='tel', value='', placeholder='请填写联系电话')
+                .itemLine   
+                    .itemLabel 选择地址
+                    .itemVal#areaName  
+                        select(name='province')
+                        select(name='city')
+                        select(name='area') 
+                        input(name='areaName',type="text",hidden)
+
+                .itemLine
+                    .itemLabel 详细地址
+                    .itemVal
+                        input.order-text(name='addressDetail', type='text', value='', placeholder='请填写详细地址', maxlength=128)
+                .itemLine
+                    .itemLabel 邮编
+                    .itemVal
+                        input.order-text(name='zipCode', type='tel', value='', placeholder='请填写邮编号码')
+                //- div(style="height:25rem")        
+            .btnBox.clearfix
+                span.cancelBtn.background-base 取消
+                span.saveBtn.background-base#saveAddress 保存
+        .layerContent#layerContent
+            .listWrap
+            .addNewItem
+                button.button.addrNews + 新建地址
+    #calendar-box.calendar-box
+        #lvcalendar              
+    #pay-mask
+    .pay-module#payModule(class=(isWx === 'T' )?'wxpay':'alipay')
+        .pay-sealPrice
+            span 支付金额：
+            em.price-em  ￥
+            span.price 0.00
+        ul#pay-mold.order-list.pay-list.pay-type 
+            if isWx === 'T'
+                li.wenxin
+                    a(href='javascript:;')
+                        label.lab-title(for='')
+                            i.xx-icon.icon-iconfont-weixin
+                            | 微信支付
+                        i.select-icon.xx-icon.fr.icon-yuanxingxuanzhongfill
+            else
+                li.zhifubao
+                    a(href='javascript:;')
+                        label.lab-title(for='')
+                            i.xx-icon.icon-iconfont-zhifubao
+                            | 支付宝
+                        i.select-icon.xx-icon.fr.icon-yuanxingxuanzhongfill
+            if merchantInfoId ===  '610'
+              li.longCard
+                  a(href='javascript:;')
+                      label.lab-title(for='')
+                          i.xx-icon.icon-longcard
+                          | 龙支付
+                      i.select-icon.xx-icon.fr.icon-yuanxingweixuanzhong                
+        .pay-btn 
+            a#goPayBtn(data-href="", data-chanel='normal',title="title")  去支付
+
+

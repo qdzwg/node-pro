@@ -1,0 +1,258 @@
+
+extends ../../layout
+
+block stylesheets
+  link(rel="stylesheet", href="#{baseUrl}/stylesheets/order.css?#{vCode}")
+block javascripts
+  script.
+    var module='#{module}',orderNo='#{orderId}',maxNum = '#{maxNum}',payOrderNo = '#{payOrderNo}',merchantInfoId='#{merchantInfoId}';
+    var urlParams = !{JSON.stringify(urlParams)};
+  script(type='text/javascript', src='#{baseUrl}/javascripts/validate/jquery.validate.min.js')
+  script(type='text/javascript', src='#{baseUrl}/javascripts/validate/messages_zh.min.js')
+  script(type='text/javascript', src='#{baseUrl}/javascripts/validate/additional-methods.js')
+  script(type='text/javascript', src='#{baseUrl}/javascripts/pageItem.js?#{vCode}')
+  script(type='text/javascript', src='#{baseUrl}/javascripts/member/refund.js?#{vCode}')
+block content
+  include ../../common/quickLink
+  +flowBtn(userInfo,marketDisAccount,showWholeMarket) 
+  form#form
+    input(type="hidden" name='orderDetailId' value=orderDetailId)
+    input(type="hidden" name='orderId' value=orderId)
+    -var realNameList = data.orderDetail && data.orderDetail[0].orderDetailModels
+    if module === 'pmsHotel'
+      input(type="hidden" name='handleRefundMoney' value=data.paySum)
+    .page-line
+    if module === 'family'
+      .tuikuan-type.clearfix
+        .tuikuan-title
+          span 退款类型
+        ul.tuikuan-choose.clearfix 
+          -var zipTotalLeft = 0, realFlag = false
+          - each item in data.orderDetail
+              - zipTotalLeft+=item.leftAmount
+              if item.orderDetailModels && item.orderDetailModels.length>0
+                - realFlag = true
+          if realFlag
+            if zipTotalLeft>0 && data.isChildRefund=='T'
+              li 
+                input(type="radio" name="tKtype" checked="checked" id="part" value="2")
+              span 部分退
+          else
+            if data.canRefundNum > 0 && data.isRetreat == 'T'
+              li 
+                input(type="radio" name="tKtype" checked="checked" id="whole" value="1")
+                span 整单退
+
+            if zipTotalLeft>0 && data.isChildRefund=='T'
+              if data.canRefundNum > 0 && data.isRetreat == 'T'
+                li 
+                  input(type="radio" name="tKtype" id="part" value="2")
+                span 部分退
+              else
+                li 
+                  input(type="radio" name="tKtype" checked="checked" id="part" value="2")
+                span 部分退
+    if module !== 'theater_ticket'
+      ul.order-list.myorder-list
+        if module==="mdse"
+          li
+            label.lab-title(for="") 退款类型
+            .order-item
+              select(name="type") 
+                option(value="0") 仅退款
+                if fh==1
+                  option(value="1") 退款并退货
+          li
+            label.lab-title(for="") 退款金额
+            .order-item
+              span.refund-panel
+                input(name='handleRefundMoney',type="text").order-text
+                input(type="hidden" name='refundAmount' value=maxNum)
+        else if module === "route"
+          if typeof urlParams[0] !== 'undefined'
+            li
+              label.lab-title(for="") 成人票
+              .order-item
+                span.refund-panel
+                  input#adultNum(name='adultAmount',max=urlParams[0].maxNum, type="tel", value=urlParams[0].maxNum)   
+                  input(name='adultId',hidden,value=urlParams[0].id, type="tel")   
+          if typeof urlParams[1] !== 'undefined'            
+            li
+              label.lab-title(for="") 儿童票
+              .order-item
+                span.refund-panel
+                  input#childNum(name='childAmount', type="tel", max=urlParams[1].maxNum, value=urlParams[1].maxNum) 
+                  input(name='childId',hidden,value=urlParams[1].id, type="tel")     
+        else if module === 'traffic'
+          if realNameList && realNameList.length
+            h4.realNameTitle="请选择退票游客"
+            p.realName-all#realName
+              span.all
+                i.xx-icon.icon-yuanxingweixuanzhong
+              span.user 全部  
+            each item in realNameList
+              if item.refunded == 'F' && item.checked == 'F'
+                p.realName-list
+                  span
+                    i.xx-icon.icon-yuanxingweixuanzhong
+                  span.user=item.linkMan
+                  span=item.idcardNo.substring(0,7)+"********"+item.idcardNo.substring(14,18)
+                  input(type="hidden" value=item.id)
+            input(type="hidden", name="orderDetaimModelId")
+            input(type="hidden", name='refundAmount')
+        else
+          if realNameList && realNameList.length && module!=='family'
+            h4.realNameTitle="请选择退票游客"
+            p.realName-all#realName
+              span.all
+                i.xx-icon.icon-yuanxingweixuanzhong
+              span.user 全部  
+            each item in realNameList
+              p.realName-list
+                span
+                  i.xx-icon.icon-yuanxingweixuanzhong
+                span.user=item.linkMan
+                span=item.idcardNo.substring(0,7)+"********"+item.idcardNo.substring(14,18)
+                input(type="hidden" value=item.id)
+            input(type="hidden", name="orderDetaimModelId")
+            input(type="hidden", name='refundAmount')
+          else
+            if module !== 'family'
+              li
+                label.lab-title(for="") 退订份数
+                .order-item
+                  span.refund-panel
+                    if data.payType == 12 || data.orderType === 'guide'
+                      input(name='refundAmount',readonly,type="tel", value=maxNum)
+                    else 
+                      input.refundNum(name='refundAmount',type="tel", value=maxNum)            
+            else
+              if realFlag
+                li.combo-partTk
+                  each item,index in data.orderDetail
+                    .combo-refund-list
+                      .combo-refund-item
+                        label.lab-title(for="" style="width:8rem;")=item.orderInfo
+                        .order-item.combo-order-item
+                          span.refund-panel
+                            if data.payType == 12
+                              input(name='partRefundAmount',readonly,type="tel", max=item.leftAmount, value=item.leftAmount)
+                              input(type="hidden" name="comboId" value=item.id)
+                            else 
+                              input.partRefundNum(name='partRefundAmount',type="tel", max=item.leftAmount, value=item.leftAmount)
+                              input(type="hidden" name="comboId" value=item.id)    
+                      if item.orderDetailModels && item.orderDetailModels.length > 0
+                        each it,ind in item.orderDetailModels
+                          if it.refunded == 'F' && it.checked == 'F'
+                            .combo-choose-realName.clearfix                       
+                              span(style="display: inline-block; vertical-align: middle; width:1rem;")
+                                i.xx-icon.icon-yuanxingweixuanzhong
+                              .realName-right(style="display: inline-block; vertical-align: middle; width:12rem;")
+                                span.rName=it.linkMan
+                                span.rIdNo=it.idcardNo
+                                input(type="hidden" value=it.id)
+                input(type="hidden", name="orderDetaimModelId")
+              else
+                li.normalTk(style="#{data.canRefundNum > 0 && data.isRetreat == 'T' ? '':'display:none'}")
+                  .combo-refund-item
+                    label.lab-title(for="") 退订份数
+                    .order-item
+                      span.refund-panel
+                        if data.payType == 12
+                          input(name='refundAmount',readonly,type="tel", value=maxNum)
+                        else 
+                          input.refundNum(name='refundAmount',type="tel", value=maxNum)
+                  //- each item,index in data.orderDetail
+                  //-   if item.orderDetailModels && item.orderDetailModels.length > 0
+                  //-     each it,ind in item.orderDetailModels
+                  //-       .combo-choose-wholeReal
+                  //-         span
+                  //-           i.xx-icon.icon-yuanxingweixuanzhong
+                  //-         span.rName=it.linkMan
+                  //-         span.rIdNo=it.idcardNo
+                  //-         input(type="hidden" value=it.id)
+
+                li.combo-partTk(style="#{data.canRefundNum > 0 && data.isRetreat == 'T' ? 'display:none':''}")
+                  each item,index in data.orderDetail
+                    .combo-refund-item
+                      label.lab-title(for="" style="width:8rem;")=item.orderInfo
+                      .order-item.combo-order-item
+                        span.refund-panel
+                          if data.payType == 12
+                            input(name='partRefundAmount',readonly,type="tel", max=item.leftAmount, value=item.leftAmount)
+                            input(type="hidden" name="comboId" value=item.id)
+                          else 
+                            input.partRefundNum(name='partRefundAmount',type="tel", max=item.leftAmount, value=item.leftAmount)
+                            input(type="hidden" name="comboId" value=item.id)    
+                //-     if item.orderDetailModels && item.orderDetailModels.length > 0
+                //-       each it,ind in item.orderDetailModels
+                //-         .combo-choose-realName                       
+                //-           span
+                //-             i.xx-icon.icon-yuanxingweixuanzhong
+                //-           span.rName=it.linkMan
+                //-           span.rIdNo=it.idcardNo
+                //-           input(type="hidden" value=it.id)
+                input(type="hidden", name="orderDetaimModelId")
+                    
+      //- else if module === 'ticket' 
+    else 
+      if data.orderDetail && data.orderDetail instanceof Array     
+        ul.order-list.myorder-list
+          each item in data.orderDetail
+            if item.id === +orderDetailId
+              li
+                label.lab-title(for="") 【#{item.orderInfo}】
+                input.refundSeats(name='refundSeats',hidden,type="text")
+              li#theaterLists       
+                  div 
+                    | 请选择想退的座位，最多可选
+                    span.c-price #{maxNum}
+                    | 个
+                  if data.seatVoList instanceof Array && data.seatVoList.length > 0
+                    - var seatsNum = 0;
+                    .order-item.ticket-list
+                      each _item in data.seatVoList
+                        if _item.isRetreated === 'F' && _item.orderDetailId === +orderDetailId
+                          - seatsNum ++
+                          .ticket-item-inner(data-item=_item,data-id=item.id)
+                            div
+                              p.ticket-name #{_item.snRow}排#{_item.seatName}座
+                              .ticket-price
+                                //- div 150元          
+                              i.ticket-icon  
+                    if !seatsNum
+                      p.ticket-name.c-price 没有可退座位                                          
+                  else 
+                     p.ticket-name.c-price 没有可退座位                                          
+    .page-line
+    ul.order-list.account-list  
+      li
+        label.lab-title(for='') 退款原因
+        .order-item
+          a#refundResion(href='javascript:;')
+            span=normalResions[0] 
+            i.xx-icon.icon-iconfont-jiantou
+    .page-line        
+    ul.order-list.account-list          
+      li
+        label.lab-title(for='') 退款说明
+        .order-item#normalRefundResion
+          textarea.order-txtarea(placeholder='请输入退款原因', name='reason')=normalResions[0] 
+    .btn-handle
+      a.btn#submitForm(href='javascript:;',class=(module === 'theater_ticket'? 'background-gray' : '')) 提交申请
+  .mask#mask
+  if !!normalResions
+    #refundDialog.sex-dialog
+      ul  
+        each item,index in normalResions  
+          if index === 0  
+            li
+              a.c-333.c-base(href='javascript:;') #{item}
+          else 
+            li
+              a.c-333(href='javascript:;') #{item}
+      .sex-handle.btn-handle
+        a#close.btn(href='javascript:;') 取消
+  .tips
+    p
+    a(href="javascript:;").queding 确定

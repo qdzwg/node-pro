@@ -1,0 +1,374 @@
+/************************************************************************************
+ * | base option |
+ ***********************************************************************************/
+.detail-header {
+  /* height: 5rem; */
+  height: auto;
+  width: 100%;
+}
+.detail-header .detail-header-info {
+  padding: 0.6rem;
+  box-sizing: border-box;
+  width: 12.5rem;
+  background-color: white;
+  height: 100%;
+}
+.detail-header .detail-header-info .detail-header-info-title {
+  font-size: 0.72rem;
+  color: #413838;
+  font-weight: 600;
+  overflow: hidden;
+  width: 100%;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 1rem;
+}
+.detail-header .detail-header-info .detail-header-info-subtitle {
+  font-size: 0.55rem;
+  color: #5c5c5c;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 1.5;
+  margin-top: 0.25rem;
+
+}
+.detail-header .detail-header-info .detail-header-info-prices {
+  font-size: 0.48rem;
+  color: #5c5c5c;
+}
+.detail-header .detail-header-info .detail-header-info-prices strong {
+  font-size: 0.72rem;
+  font-weight: 600;
+  margin-left: -0.1rem;
+}
+.detail-header .detail-header-info .detail-header-info-prices .qi {
+  font-size: 0.36rem;
+  margin: 0 0.1rem;
+}
+.detail-header .detail-header-info .detail-header-info-prices .price {
+  color: #fc4150;
+}
+.detail-header .detail-header-info .ticket-information {
+  font-size: 0.4rem;
+  color: #00699e;
+}
+.detail-header .detail-header-navigation {
+  width: 3.5rem;
+  background-color: #fafafa;
+  height: 100%;
+  display: table;
+}
+.detail-header .detail-header-navigation a {
+  width: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  color: #f05b47;
+  font-size: 1.5rem;
+  text-align: center;
+  line-height: 1rem;
+}
+.detail-header .detail-header-navigation a i {
+  text-align: center;
+}
+.detail-module {
+  padding: 0.6rem;
+  background: white;
+}
+.detail-module .detail-module-title {
+  font-size: 0.72rem;
+  padding-bottom: 0.5rem;
+  font-weight: 600;
+}
+.comment-title {
+  border-bottom: none;
+}
+.detail-module .comment-title .more {
+  height: 100%;
+}
+.detail-module .comment-title .more a {
+  color: #f05b47;
+  font-size: 0.52rem;
+}
+.detail-module .detail-module-content strong,
+.detail-module .detail-module-content b {
+  font-weight: bold;
+}
+.detail-module .detail-module-content table {
+  width: 100%!important;
+}
+.detail-module .detail-module-content em,
+.detail-module .detail-module-content i {
+  font-style: italic;
+}
+.detail-module .detail-module-content ul,
+.detail-module .detail-module-content p,
+.detail-module .detail-module-content img {
+  max-width: 100%!important;
+}
+.detail-module .detail-module-content .commit-list .commit-list-item {
+  margin-bottom: 0.4rem;
+}
+.detail-module .detail-module-content .commit-list .commit-list-item .user-face-img {
+  height: 1.4rem;
+}
+.detail-module .detail-module-content .commit-list .commit-list-item .user-face-img img {
+  height: 1rem;
+  width: 1rem;
+  border-radius: 50%;
+  display: block;
+  margin-top: 0.2rem;
+}
+.detail-module .detail-module-content .commit-list .commit-list-item .user-name {
+  font-size: 0.6rem;
+  color: #5c5c5c;
+  display: block;
+  line-height: 1.4rem;
+  margin-left: 0.3rem;
+}
+.detail-module .detail-module-content .commit-list .commit-list-item .commit-time {
+  line-height: 1.4rem;
+  color: #999999;
+}
+.detail-module .detail-module-content .commit-list .commit-list-item .commit-list-item-content {
+  font-size: 0.56rem;
+  color: #413838;
+}
+.detail-flow .flow-submit-btn {
+  width: 9.25rem;
+  background-color: #f05b47;
+}
+
+#mask {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0,0,0,.6);
+  z-index: 99;
+  display: none;
+}
+.booking-notice-flow {
+  background: white;
+  height: auto;
+}
+.booking-notice-titile {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-align: center;
+  height: 2.2rem;
+  line-height: 2.2rem;
+  color: #413838;
+  border-bottom: 1px solid #eaeaea;
+}
+.booking-notice-content {
+  padding:1rem 0.5rem;
+  font-size: 0.55rem;
+  color: #413838;
+  line-height: 2;
+  height: 10rem;
+  overflow-y: auto;
+
+}
+.booking-notice-content  strong,
+.booking-notice-content  b {
+  font-weight: bold;
+}
+.booking-notice-content  table {
+  width: 100%!important;
+}
+.booking-notice-content  em,
+.booking-notice-content  i {
+  font-style: italic;
+}
+.booking-notice-content  ul,
+.booking-notice-content  p,
+.booking-notice-content  img {
+  max-width: 100%!important;
+}
+.booking-notice-btns {
+  margin-top: 2px;
+}
+.booking-notice-btns .agree-notice {
+  height: 2rem;
+  line-height: 2rem;
+  color: white;
+  background: #f05b47;
+  text-align: center;
+  font-size: .68rem;
+}
+.booking-notice-btns .disagree-notice {
+    height: 2rem;
+    line-height: 2rem;
+    color: #413838;
+    text-align: center;
+    font-size: 0.68rem;
+}
+.flow-lists .flow-lists-item {
+  background: white;
+  display: table;
+  margin-bottom: 0.5rem;
+  padding: .5rem;
+  box-sizing: border-box;
+  width: 100%;
+}
+.flow-lists .flow-lists-item .flow-lists-item-time  {
+  display: table-cell;
+  vertical-align: middle;
+  width: 3.2rem;
+  text-align: left;
+}
+.flow-lists .flow-lists-item .flow-lists-item-showname {
+  display: table-cell;
+  text-align: left;
+  vertical-align: middle;
+}
+.flow-lists-item-time .in-time {
+  font-size: 0.64rem;
+  font-weight: 600;
+  color: #413838;
+}
+.flow-lists-item-time .out-time
+,.flow-lists-item-showname .place-name  {
+  font-size: 0.45rem;
+  color: #999999;
+}
+.flow-lists-item-showname .show-title {
+  font-size: 0.6rem;
+  color: #413838;
+}
+.flow-lists .no-place{
+  color: #999;
+  font-size: 0.6rem;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+.flow-lists .no-place span{
+  margin-left: 0.1rem;
+}
+.flow-lists .flow-lists-item_on{
+  background-color: #f05b47;
+}
+.flow-lists-item_on .flow-lists-item-time .in-time,.flow-lists-item_on .flow-lists-item-time .out-time,.flow-lists-item_on .flow-lists-item-showname .show-title,
+.flow-lists-item_on .flow-lists-item-showname .place-name{ color: #fff; }
+.detail-header .detail-header-info  .detail-header-show-info {
+  color: #413838;
+  font-size: 0.6rem;
+}
+
+.detail-header-navigation  .icon-zuoweiyuyue {
+  font-size: 1.2rem;
+
+}
+.detail-header-navigation .desc {
+  font-size: 0.44rem;
+  color: #413838;
+  text-align: center;
+}
+
+.show-area-table  .area-table-item {
+  height: 1.75rem;
+  display: table;
+  width: 90%;
+  padding: 0.35rem 5%;
+  border-bottom: 1px solid #eaeaea;
+}
+.show-area-table  .area-table-item:last-child {
+  border: none;
+}
+
+.area-table-item-name{
+  display: table-cell;
+  width: 70%;
+  text-align: center;
+  /*line-height: 1.75rem;*/
+  vertical-align: middle;
+  font-size: 0.6rem;
+  color: #413838;
+}
+
+.area-table-item-info{
+  width: 30%;
+  display: table-cell;
+  text-align: center;
+  font-size: .55rem;
+  color: #413838;
+  vertical-align: middle;
+}
+.area-table-item-price {
+  /*display: table-cell;*/
+  text-align: center;
+  /*line-height: 1.75rem;*/
+  font-size: 0.6rem;
+  color: #413838;
+}
+.area-table-item-num{
+  text-align: center;
+  /*margin-left: .5rem;*/
+}
+.bg-f63 .area-table-item-name,
+.bg-f63 .area-table-item-price,
+.bg-f63 .area-table-item-num{
+  color: white;
+}
+
+.detail-header {
+    display: table;
+}
+.detail-header .detail-header-info {
+    display: table-cell
+
+}
+ .detail-header .detail-header-navigation {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+ }
+.weui-toas_in {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+    position: initial;
+    background: unset;
+    color: #666;
+    margin: 0 auto;
+}
+.show-area-table .area-table-item.bg-f63 {
+    background-color: #f63;
+    color: white;
+}
+
+/* 日历 */
+ #calendar {height:auto}
+.calendar-contnet {padding-top:0}
+.monthPrev{ transform:rotate(180deg); -webkit-transform: rotate(180deg);display:inline-block;}
+.calendar-head ul {text-align:center;clear:both;overflow:hidden;padding:0;}
+.calendar-head ul li {float:left!important;display:block;width:25%;margin:0;line-height:1.5;}
+.calendar-head ul li div {padding:10px 0 5px;min-height:30px;}
+.calendar-head ul li .price {color:#f66;font-family: Arial}
+.calendar-head ul li .month {color:#19a0f0;}
+.calendar-head .today-month {border-bottom:2px solid #19a0f0;}
+.calendar-contnet table td.other .price strong {color:#ccc}
+.calendar-contnet table td.other .price em{color:#ccc}
+.calendar-contnet table td .price em {color:#f66}
+.details-list {width:100%;overflow:hidden;}
+.details-list .pro-price .price {margin-bottom:0}
+.pro-price .disabled {vertical-align: top;display: inline-block;text-align: center;width: 4rem;margin-bottom: .25rem;color: #999; font-size:0.55rem;}
+
+.ticket-select-name {
+  padding: 0 0.6rem;
+  font-size: 0.6rem;
+  color: #f66;
+}
+
+
+
+
+
+
+
+

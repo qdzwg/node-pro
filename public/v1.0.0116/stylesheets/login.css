@@ -1,0 +1,54 @@
+.login-bg{background:url(../images/login/login_bg_02.jpg) no-repeat center;background-size:cover}
+.login-logo{width:100%;height:5.75rem;text-align:center;line-height:5.75rem}
+.login-logo img{width:3.5rem;height:3.5rem;display:inline-block;vertical-align:middle}
+.login-main{padding:0 6%;width:88%}
+.login-main .login-type{width:100%}
+.login-main .login-type span{display:block;width:50%;float:left;box-sizing:border-box;transition:width .5s;-moz-transition:width .5s;-webkit-transition:width .5s;-o-transition:width .5s;text-align:center;line-height:1.15rem;border:1px solid #b6bfa6;color:#fff;font-size:.5rem}
+.login-main .login-type span.on{background:#ff9900;color:#fff;border:1px solid #ff9900}
+.login-main .login-type span:first-child{border-radius:.15rem 0 0 .15rem;border-right: none}
+.login-main .login-type span:last-child{border-radius:0 .15rem .15rem 0;border-left:none}
+.login-main .login-list{width:100%;padding-top:.65rem}
+.login-main .login-list .input-box{height:2.1rem;width:100%;border-radius:.15rem;margin-bottom:.6rem}
+.login-main .login-list .input-box.text{background:#fff}
+.login-main .login-list .input-box.text i{display:block;float:left;width:2.1rem;height:100%;line-height:2.1rem;text-align:center}
+.login-main .login-list .input-box.text i img{width:1rem;display:inline-block;vertical-align:middle}
+.login-main .login-list .input-box.text input[type=text],.login-main .login-list .input-box.text input[type=password],.login-main .login-list .input-box.text input[type=tel]{width:12rem;display:block;float:left;height:2.1rem;font-size:.6rem;color:#333;border:none;padding:0;margin:0}
+.login-main .login-list .input-box.input-button{background:#ff9900}
+.login-main .login-list .input-box.input-button input[type=button]{display:block;width:100%;height:100%;font-size:.7rem;color:#fff;border:none;background:0 0;margin:0;padding:0}
+.login-main .login-list .input-box.link{border:1px solid #b6bfa6;text-align:center;box-sizing:border-box;line-height:2.1rem;font-size:.7rem}
+.login-main .login-list .input-box.link a{color:#fff}
+.login-main .login-list .input-box.link a i{font-weight:600;font-size:.6rem}
+.login-main .login-list .other-box{margin-bottom:.5rem}
+.login-main .login-list .other-box>div{height:1rem}
+.login-main .login-list .other-box .forget-password{float:left;line-height:1rem}
+.login-main .login-list .other-box .forget-password a{color:#fff;height:.9rem;font-size:.5rem;display:inline-block;text-decoration:underline;vertical-align:middle}
+.login-main .login-list .other-box .go-register{float:right;line-height:1rem}
+.login-main .login-list .other-box .go-register a{display:inline-block;background:#e9e9e9;color:#666;font-size:.5rem;width:2.95rem;height:.9rem;text-align:center;line-height:1rem;vertical-align:middle;border-radius:.9rem}
+.login-main .login-list .third-party-login{width:100%;margin-top:1rem}
+.login-main .login-list .third-party-login .third-party-title{height:1rem;text-align:center;line-height:1rem}
+.login-main .login-list .third-party-login .third-party-title i{width:30%;height:1px;display:block;background:#b6bfa6;vertical-align:middle;padding:0;margin-top:.4rem}
+.login-main .login-list .third-party-login .third-party-title span{display:inline-block;font-size:.5rem;color:#b6bfa6;width:39%;text-align:center;margin:0;padding:0;vertical-align:middle}
+.login-main .login-list .third-party-login .third-party-way{width:9rem;margin:0 auto;height:2rem}
+.login-main .login-list .third-party-login .third-party-way a{display:block;float:left;width:33.33%;height:100%;text-align:center;line-height:2rem}
+.login-main .login-list .third-party-login .third-party-way a img{height:1.5rem;width:1.5rem;display:inline-block;vertical-align:middle}
+/* .login-main .quick-login .input-box.text .number-select{display:block;float:left;width:4rem;margin-left:.65rem;text-align:center;font-size:.6rem;color:#999;height:70%;margin-top:.35rem;border:none;border-right:1px solid #dadada} */
+/* .login-main .quick-login .input-box.text i{width:1.6rem}
+.login-main .quick-login .input-box.text input[type=text]{width:6.6rem} */
+.login-main .quick-login .input-box.code{background:0 0}
+.login-main .quick-login .input-box.code .input-code{display:block;width:6.75rem;height:100%;padding:0 .5rem;border-radius:.15rem;float:left;border:none;font-size:.6rem}
+.login-main .quick-login .input-box.code input[type=button]{width:5rem;height:100%;text-align:center;border:none;background:#f3bc69;color:#fff;font-size:.6rem;border-radius:.15rem}
+.register-main .login-list .input-box{width:92%;padding:0 4%}
+.register-main .login-list .input-box .check-btn{height:1rem;line-height:1rem;display:block;float:left;font-size:.55rem;color:#999}
+.register-main .login-list .input-box .check-btn i{display:inline-block;width:.6rem;margin-right:.3rem;height:.6rem;border-radius:100%;border:1px solid #c1c1c1;box-sizing:border-box;vertical-align:middle}
+.register-main .login-list .input-box .check-btn i.checked{border:none;background:url(../images/login/ico_checked_03.png) no-repeat center;background-size:100%}
+.register-main .login-list .input-box .check-btn em{display:inline-block;line-height:2;vertical-align:middle}
+.register-main .login-list .input-box .user-agreement{display:block;float:left;font-size:.55rem;color:#ff9900;line-height:2}
+.register-main .login-list .quick-login .input-box{width:100%;padding:0}
+
+/*验证码错误提示*/
+.input-box.code label {margin-left:.5rem;}
+
+/* 新增图片验证码 20191205*/
+.login-main .quick-login .input-box.code .code-img { width:5rem;height:100%;text-align:center;background-color: #999;}
+.login-main .quick-login .input-box.code .code-img img {height: 100%;width: 100%;}
+#showImgCode {display: none;}

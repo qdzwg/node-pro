@@ -1,0 +1,483 @@
+extends layout
+
+block stylesheets
+    link(href="#{baseUrl}/stylesheets/coupons.css?#{vCode}", rel="stylesheet")
+    link(href="#{baseUrl}/stylesheets/calendar.css?#{vCode}", rel="stylesheet")
+    link(href="#{baseUrl}/stylesheets/order.css?#{vCode}", rel="stylesheet")
+    link(href="#{baseUrl}/stylesheets/newOrder.css?#{vCode}", rel="stylesheet")
+    link(href="#{baseUrl}/stylesheets/face.css?#{vCode}", rel="stylesheet")
+    style.
+        .user-info-item .user-info-delete {height:3rem;top:0.5rem;line-height:3rem;}           
+block javascripts
+    script.
+        var module = '#{module}',validator;     
+    if cacheInfo && !cacheInfo.nodata
+       script.
+            if (module === 'hotel') {
+                var beginDate = '#{cacheInfo?cacheInfo.beginDate:""}',
+                    endDate = '#{cacheInfo?cacheInfo.endDate:""}'
+            }
+            var cacheInfo = !{JSON.stringify(cacheInfo)},productsInfo = !{JSON.stringify(data[1].data || '')};
+    - var isNeedIdCard = 'F';      
+    if seatsData && seatsData.ttlist    
+        each item in seatsData.ttlist
+            if item.isNeedIdCard === 'T' 
+                - isNeedIdCard = 'T'      
+    script.
+        var isNeedIdCard = '#{isNeedIdCard}'; 
+        var isWx = '#{isWx}';
+        var isAli = '#{isAli}';
+        var cameraType = 'face' // face or card
+    if isAli === 'T' 
+        script(src='//gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.js', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/jquery.calendar.js?#{vCode}', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/validate/jquery.validate.min.js', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/validate/messages_zh.min.js', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/validate/additional-methods.js?#{vCode}', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/lib/exif.js?#{vCode}', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/lib/jquery.crop.js?#{vCode}', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/pageItem.js?#{vCode}', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/getCoupon.js?#{vCode}', type='text/javascript')
+    if module === "shop"
+        script(src='#{baseUrl}/javascripts/adressChoice.js?#{vCode}', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/order.js?#{vCode}', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/newOrder.js?#{vCode}', type='text/javascript')
+    script(src='#{baseUrl}/javascripts/member/links.js?#{vCode}', type='text/javascript')
+block content
+    include order/orderBtn
+    include order/orderList
+    include common/index
+    include common/quickLink
+    include common/replaceNum
+    - var needFace = false;
+    - var linksManFace = false;
+    - var hasIdCardCamera = 'F'; 
+    - if (data.length > 3 && data[3].status === 200) hasIdCardCamera = data[3].data.enable;
+    form(action="")#form
+        input(name=orderFlag,type="text",hidden,value=false)
+        input(name='realNames',type="text",hidden,value='')
+        if module === 'theater'
+            .page-line
+            .order-header
+                .order-header-detail
+                    .order-header-table
+                        .header-table-tr  
+                            .header-table-td.header-table-title 演出名称：
+                            .header-table-td.header-table-content #{areaData.sessionName}
+                        .header-table-tr  
+                            .header-table-td.header-table-title 演出场所：
+                            .header-table-td.header-table-content #{areaData.areaName}
+                        .header-table-tr  
+                            .header-table-td.header-table-title 演出时间：
+                            .header-table-td.header-table-content #{areaData.playDate}
+                        .header-table-tr  
+                            .header-table-td.header-table-title 演出场次：
+                            .header-table-td.header-table-content #{areaData.startTime}
+                        - const ticketList = seatsData && seatsData.ttlist ? seatsData.ttlist : [];    
+                        - const stocks = seatsData && seatsData.seats ? seatsData.seats : [];  
+                        .header-table-tr 
+                            .header-table-td.header-table-title 票型信息：
+                            .header-table-td.header-table-content
+                                each item in ticketList
+                                    p 【#{item.name}】&ensp;#{item.amount}张
+                                      if(item.isRetreat=="F")
+                                        span.pro-flag.y-clr(style="margin-left:0.25rem")="不可退"
+                        .header-table-tr  
+                            .header-table-td.header-table-title 座位信息：
+                            .header-table-td.header-table-content
+                                p
+                                  -var retreat=false
+                                  each sitem in stocks
+                                    if(sitem.isRetreat=="F")
+                                      -retreat=true
+                                      span 【#{sitem.snRow}排#{sitem.seatName}座】
+                                  if(retreat)
+                                    span.pro-flag.y-clr(style="margin-left:0.25rem")="不可退"
+                                p
+                                  each sitem in stocks
+                                    if(sitem.isRetreat=="T")
+                                      span 【#{sitem.snRow}排#{sitem.seatName}座】
+                                    
+            input(name='modelCodes',type="text",hidden,value=areaData.showCode)                       
+            input(name='areaCode',type="text",hidden,value=areaData.areaCode)                       
+            input(name='amounts',type="text",hidden,value=seatsData.amounts)                       
+            input(name='startTime',type="text",hidden,value=areaData.playDate)                       
+            input(name='endTime',type="text",hidden,value=areaData.playDate)                       
+        //- content
+        .order-warp
+            if module === 'ticket'
+                .page-line
+                ul.order-list.account-list.order-calendar
+                    li
+                        if merchantInfoId === specialPark
+                            label.lab-title(for='') 预约日期
+                        else 
+                            label.lab-title(for='') 游玩日期
+                        .order-calendar__time
+                            span=cacheInfo.playDate
+                                input(name="startTime",type="hidden",value=cacheInfo.playDate)
+                        //- .order-calendar__icon 
+                            i.xx-icon.icon-rili.order-calendar-icon
+            if data.length > 2 && typeof data[1].data !== 'undefined'  
+                - var modelCodes = '',realNameIndex=-1;          
+                .order-module.persion-info
+                    .order-list.persion-info-list#tikcetOrderList
+                        each item, index in data[1].data
+                            - modelCodes += item.modelCode + ','
+                            //- 有一个订单需要人脸则要求传人脸
+                            if item.isRlsb === 'T'
+                                - needFace = true; 
+                                if item.isRealName !== 'T'
+                                    - linksManFace = true;
+                            input(name="modelCodes", type="hidden", value=item.modelCode)
+                            .persion-order-item
+                                .persion-info-warp.clearfix
+                                    .persion-info-warp__name
+                                        p 
+                                            | #{item.nickName}
+                                            if item.isRealName === 'T'
+                                                i.xx-icon.icon-shenfenzheng
+                                              
+                                    .persion-info-warp__number.fr
+                                        | ×
+                                        em.product-num #{cacheInfo.item[index].num}
+                                        input(name="amounts", type="hidden", value=cacheInfo.item[index].num)
+                                    if merchantInfoId !== specialPark  
+                                        .persion-info-warp__price.fl
+                                            em ￥
+                                            case module
+                                                when 'hotel'
+                                                    strong.product-price=cacheInfo.item[index].prices
+                                                default
+                                                    strong.product-price=item.priceSettle
+                                        if cacheInfo.item[index].stockCode
+                                            .persion-info-warp__time.fl
+                                                em 预约时间：#{cacheInfo.item[index].startTime} - #{cacheInfo.item[index].endTime}                                  
+                                            - var fsyyTimes = JSON.stringify({code:item.modelCode,startTime:cacheInfo.item[index].startTime,endTime:cacheInfo.item[index].endTime});
+                                            input(name="FsyyTimes", type="hidden", value=fsyyTimes)       
+
+                            if  item.isRealName === 'T' 
+                                - var arrayLength = (+cacheInfo.item[index].num);
+                                //- 实名制标记
+                                - realNameIndex++  
+                                .order-realName-lists(data-code=item.modelCode)
+                                    if arrayLength > 1
+                                        - var realNameArray = new Array(+cacheInfo.item[index].num)
+                                        each _item,_index in realNameArray                          
+                                            ul.order-list.myorder-list.order-input-list
+                                                li.title      
+                                                    .order-item.order-realname-title 游玩人#{_index+1}
+                                                    //- if hasIdCardCamera === 'T'
+                                                    //-     .order-camera__icon.openCardCamera    
+                                                    //-         i.xx-icon.icon-camera.order-calendar-icon     
+                                                    //-         span 拍照识别身份证                   
+                                                    .order-calendar__icon.openLinkBook      
+                                                        i.xx-icon.icon-lianxiren.order-calendar-icon     
+                                                        span 选择                 
+                                                li
+                                                    label.lab-title(for='') 姓名
+                                                    .order-item
+                                                        input.order-text.order-name(name='realName_'+realNameIndex+'_'+_index, type='text', value='', placeholder='须与证件上一致')  
+                                                        //- i.xx-icon.fr.icon-iconfont-xie      
+                                                //- li
+                                                //-     label.lab-title(for='') 身份证
+                                                //-     .order-item
+                                                //-         input.order-text.order-idcard(name='idCard_'+realNameIndex+'_'+_index, type='text', value='', placeholder='请填写身份证号') 
+                                                //-         i.xx-icon.fr.icon-iconfont-xie  
+                                                li(style="overflow:auto")
+                                                    .chooseType.card-type-label
+                                                        span.mnSelect
+                                                            em.input_select= '身份证'
+                                                            i.xx-icon.icon-xiangyoujiantou
+                                                            input.order-text.typeName(name='idcardType_'+realNameIndex+'_'+_index ,type="hidden",value='ID')
+                                                    .order-item                                
+                                                        input.order-text.order-idcard.buyerIdNo__id(type='text', name='idCard_'+realNameIndex+'_'+_index, value='', placeholder='请填写身份证号')  
+                                                        input.order-text.order-idcard.buyerIdNo__oc(type='text', name='idCard_'+realNameIndex+'_'+_index+'_oc', placeholder="请填写证件号", value='', style="display:none")    
+                                                        //- i.xx-icon.fr.icon-iconfont-xie
+                                                if needFace  
+                                                    li
+                                                        label.lab-title(for='') 人脸照
+                                                        .order-item.order-face.realNameFace
+                                                            .order-face-icon
+                                                                i.xx-icon.icon-camera
+                                                            span 人脸图片用于入园对比（必传）
+                                                        input.order-text.order-faceUrl(name='faceUrl_'+realNameIndex+'_'+_index,type="text",hidden) 
+                                                if hasIdCardCamera === 'T'
+                                                    li.order-item-card.openCardCamera
+                                                        .order-item-card-box
+                                                            i.xx-icon.icon-camera.order-item-camera
+                                                            span  
+                                                                | 拍照识别
+                                                            span
+                                                                | 身份证                  
+                                            .page-line                 
+                                    else
+                                        ul.order-list.myorder-list.order-input-list
+                                            li.title      
+                                                .order-item.order-realname-title 游玩人  
+                                                //- if hasIdCardCamera === 'T'
+                                                    //- .order-camera__icon.openCardCamera    
+                                                    //-     i.xx-icon.icon-camera.order-calendar-icon     
+                                                    //-     span 拍照识别身份证
+                                                .order-calendar__icon.openLinkBook      
+                                                    i.xx-icon.icon-lianxiren.order-calendar-icon 
+                                                    span 选择                    
+                                            li(style=hasIdCardCamera === 'T' ? 'width:80%':'')
+                                                label.lab-title(for='') 姓名
+                                                .order-item
+                                                    input.order-text.order-name(name='realName_'+realNameIndex+'_0', type='text', value='', placeholder='须与证件上一致')  
+                                                    //- i.xx-icon.fr.icon-iconfont-xie      
+                                            //- li
+                                            //-     label.lab-title(for='') 身份证
+                                            //-     .order-item
+                                            //-         input.order-text.order-idcard(name='idCard_'+realNameIndex+'_0', type='text', value='', placeholder='请填写身份证号') 
+                                            //-         i.xx-icon.fr.icon-iconfont-xie  
+                                            li(style="overflow:auto")
+                                                - var finalType = [1,2,3]
+                                                .chooseType.card-type-label
+                                                    span.mnSelect
+                                                        em.input_select= '身份证'
+                                                        i.xx-icon.icon-xiangyoujiantou
+                                                        input.order-text.typeName(name='idcardType_'+realNameIndex+'_0',type="hidden",value='ID')
+                                                .order-item                                
+                                                    input.order-text.order-idcard.buyerIdNo__id(type='text', name='idCard_'+realNameIndex+'_0', placeholder="请填写身份证号", value='')   
+                                                    input.order-text.order-idcard.buyerIdNo__oc(type='text',name='idCard_'+realNameIndex+'_0'+'_oc', placeholder="请填写证件号", value= '',style="display:none")  
+                                            if needFace
+                                                li
+                                                    label.lab-title(for='') 人脸照
+                                                    .order-item.order-face.realNameFace
+                                                        .order-face-icon
+                                                            i.xx-icon.icon-camera
+                                                        span 人脸图片用于入园对比（必传）
+                                                    input.order-text.order-faceUrl(name='faceUrl_'+realNameIndex+'_0',type="text",hidden)  
+                                            if hasIdCardCamera === 'T'
+                                                li.order-item-card.openCardCamera
+                                                    .order-item-card-box
+                                                        i.xx-icon.icon-camera.order-item-camera
+                                                        span  
+                                                            | 拍照识别
+                                                        span
+                                                            | 身份证
+                                        .page-line                                   
+            ul.order-list.myorder-list.order-input-list
+                li
+                    label.lab-title.order-input-list-title(for='') 联系人信息
+                    .order-calendar__icon.openLinkBook      
+                        i.xx-icon.icon-lianxiren.order-calendar-icon 
+                        span 选择          
+                li
+                    label.lab-title(for='') 姓名
+                    .order-item
+                        input.order-text(name='buyerName', type='text', value=(member.realName || member.nickName || ''), placeholder='请填写姓名')
+                        i.xx-icon.fr.icon-iconfont-xie
+                li
+                    label.lab-title(for='') 手机号
+                    .order-item
+                        if member.mobile
+                            span.changeInput
+                                +replacePhone(member.mobile)
+                            input.hide(name="buyerMobile", type="tel", placeholder="请填写手机号（必填）", value=member.mobile || '').order-text
+                        else
+                            span.changeInput(style="display:none")
+                            input(name="buyerMobile", type="tel", placeholder="请填写手机号（必填）", value=member.mobile || '').order-text
+                        i.xx-icon.fr.icon-iconfont-xie
+                li
+                    label.lab-title(for='') 身份证号
+                    - const placeholderStr = isNeedIdCard === 'T' ? '请填写身份证号（必填）' : '请填写身份证号';
+                    .order-item
+                        if member.idcard
+                            span.changeInput
+                                +replaceCertNo(member.idcard)
+                            input.hide(name="buyerIdNo", type="text", placeholder=placeholderStr, value=member.idcard || '').order-text
+                        else
+                            span.changeInput(style="display:none")
+                            input(name="buyerIdNo", type="text", placeholder=placeholderStr, value=member.idcard || '').order-text
+                        i.xx-icon.fr.icon-iconfont-xie
+                if linksManFace        
+                    li
+                        label.lab-title(for='') 人脸照
+                        .order-item.order-face#view
+                            .order-face-icon
+                                i.xx-icon.icon-camera
+                            span 人脸图片用于入园对比
+                        input#imagePath(name='faceUrl',type="text",hidden)    
+            if merchantInfoId !== specialPark && module !== 'theater'           
+                .page-line
+                ul.order-list.myorder-list
+                    li
+                        label.lab-title(for='') 优惠券
+                        if module === "mealCoupon"
+                            .order-item
+                                a(data-code=(data[1].data.productCode), data-init=0, href='javascript:;').c-666#choiceCoupons
+                                    span 优惠券选择
+                                    i.xx-icon.fr.icon-iconfont-jiantou
+                        else
+                            .order-item
+                                -var shopModelCodes=""
+                                each item in cacheInfo.item
+                                    -shopModelCodes=shopModelCodes+item.productCode+","
+                                - modelCodes = module === 'shop' ? shopModelCodes : modelCodes
+                                a(data-code=(modelCodes || ''), data-init=0, href='javascript:;').c-666#choiceCoupons
+                                    span 优惠券选择
+                                    i.xx-icon.fr.icon-iconfont-jiantou
+                        input(name='couponCode', type="hidden", value='')
+                    if module === "mealCoupon"
+                        li.mealCoupon-li
+                            label.lab-title(for='') 订单总额
+                            .order-item.fr
+                                span (
+                                em#mealCouponNum
+                                span 张)
+                                strong
+                                    em ¥
+                                    em#totalprice
+                    else
+                        li
+                            label.lab-title(for='') 优惠活动
+                            .order-item
+                                a(href='javascript:;').c-666
+                                    span#couponInfo(data-cut=0) 优惠活动信息
+        if module === 'ticket'                                
+            input(name="paySum", type="hidden", value=cacheInfo.totalPrice || 0)#paySum
+        else 
+            input(name="paySum", type="hidden", value=seatsData.price || 0)#paySum                             
+        +orderBtn(data[0].datas,module) 
+    .tips
+        p
+        a(href="javascript:;").queding 确定         
+    //-使用优惠券提醒登录
+    .ticket-layer#goLogin(style="display:none")
+        h3.notice-tit
+            | 优惠券使用提醒
+        .article-info.bgf
+            .article-main
+                | 登录后才可使用优惠券
+        .room-handle.clearfix
+            a.fr(href="/login?m_id="+merchantInfoId) 去登录
+            a.fl#cancleLayer(href="javascript:;") 不使用 
+    //-优惠券弹框
+    .couponListLayer#couponListLayer
+        .couponTit 使用优惠券
+        i.xx-icon.icon-guanbi1.layer-close#layer_close
+        .couponBody
+            .couponBodyTab(style="display:block")
+                .couponList.inner.coupons_list
+                    ul.page-list#couponList
+                    span.btn.cancle-coupon-choice#cancleCouponChoice  不使用优惠券                    
+    #mask.mask
+    .del#closeClip X
+    #clipArea
+    #showImg
+    #videoArea
+    #wxQrMask
+    #wxQr
+        p.wx-qr.title
+            em 公众号：
+            em#wxTitle
+        img(src="#{baseUrl}/images/member/lessimg.jpg", alt="微信二维码")
+        p.wx-qr 请长按二维码关注公众号后预订
+        .reload-qr#reloadQr 刷新
+    - const userInfoList = module === 'theater' ? data[0].data : data[2].data
+    if typeof userInfoList !== 'undefined' && userInfoList.length > 0 
+        #userEditer.user-editer
+            ul.user-info-lists#userInfolists(data-orderid=data[0].data.id)
+                each item in userInfoList
+                    li.user-info-item
+                        .user-info-content
+                            .user-info-detail(data-item=item)
+                                p.user-info-detail__name #{item.name}
+                                p.user-info-detail__phone
+                                    i.xx-icon.icon-shouji
+                                    em(readonly) #{item.phone}
+                                p.user-info-detail__idcard
+                                    if item.certNo
+                                        i.xx-icon.icon-shenfenzheng1
+                                        em #{item.certNo}   
+                                    else 
+                                        strong 信息不全,点击补充    
+                            .user-info-btns
+                                span.xx-icon.icon-yijianfankui.completeInfo(data-id=item.id, title="title")
+                                span.xx-icon.icon-shanchu
+                        .user-info-delete(data-id=item.id)
+                            | 删除             
+            .user-editer-close#userEditerClose
+                i.xx-icon.icon-guanbi2
+            .user-editer-btn#addUserLinks
+                | 添加联系人   
+    else 
+        #userEditer.user-editer
+            ul.user-info-lists#userInfolists
+                li.user-info-item.nodata  
+                    i.xx-icon.icon-tishifill
+                    p.nodata-text #{'暂无联系人数据'}  
+                //- li.user-info-item
+                    a.btn(href='/member/links/detail?orderId='+data[0].data.id) 去添加    
+            .user-editer-close#userEditerClose
+                i.xx-icon.icon-guanbi2  
+            .user-editer-btn#addUserLinks
+                | 添加联系人       
+    +flowBtn(userInfo,marketDisAccount,showWholeMarket) 
+        //- 地址弹层
+    .addressLayer#userEditerInput
+        .addressLayer-handle.background-base
+            a.userEditer-close#addUserEditerClose(href='javascript:;')
+                i.xx-icon.icon-guanbi1
+        .layerContent.newAddress(style='display:block;')
+            form.formBox#linksForm
+                .itemLine
+                    .itemLabel 姓名
+                    .itemVal
+                        input(name='name', type='text', value='', placeholder='请填写姓名')
+                .itemLine
+                    .itemLabel 手机号
+                    .itemVal
+                        input(name='phone', type='tel', value='', placeholder='请填写手机号码')
+                .itemLine
+                    .itemLabel 身份证号
+                    .itemVal
+                        input(name='certNo', type='text', value='', placeholder='请填写身份证号')
+                .itemLine
+                    .itemLabel 人脸照
+                    .itemVal
+                        .order-item.order-face#addUserEditerFace
+                            .order-face-icon
+                                i.xx-icon.icon-camera
+                            span 人脸图片用于入园对比
+                        //- input(name='faceUrl',type="text",hidden) 
+                        input(name='faceUrl', type='text',  hidden)
+                input(name='id',type="text",hidden)        
+            .btn#submitUserInfoForm 确定提交                
+
+
+                //- div(style="height:25rem")        
+
+    #pay-mask
+    .pay-module#payModule(class=(isWx === 'T') ?'wxpay':'alipay')
+        .pay-sealPrice
+            span 支付金额：
+            em.price-em ￥
+            span.price 0.00
+        ul#pay-mold.order-list.pay-list.pay-type 
+            if isWx === 'T'
+                li.wenxin
+                    a(href='javascript:;')
+                        label.lab-title(for='')
+                            i.xx-icon.icon-iconfont-weixin
+                            | 微信支付
+                        i.select-icon.xx-icon.fr.icon-yuanxingxuanzhongfill
+            else
+                li.zhifubao
+                    a(href='javascript:;')
+                        label.lab-title(for='')
+                            i.xx-icon.icon-iconfont-zhifubao
+                            | 支付宝
+                        i.select-icon.xx-icon.fr.icon-yuanxingxuanzhongfill
+            if merchantInfoId ===  '610'
+              li.longCard
+                  a(href='javascript:;')
+                      label.lab-title(for='')
+                          i.xx-icon.icon-longcard
+                          | 龙支付
+                      i.select-icon.xx-icon.fr.icon-yuanxingweixuanzhong                
+        .pay-btn 
+            a#goPayBtn(data-href="", data-chanel='normal',title="title")  去支付

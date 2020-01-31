@@ -1,0 +1,49 @@
+extends ../../layout
+block stylesheets
+    link(href="#{baseUrl}/stylesheets/order.css?#{vCode}", rel="stylesheet")
+    style.
+        .order-list li {color:#666}
+        .order-item p {word-break: break-all;}
+block javascripts
+    script(src='#{baseUrl}/javascripts/invoice.js', type='text/javascript')    
+block content   
+    if invoiceDetail && invoiceDetail.data
+        - var detail = invoiceDetail.data.invoicesInfo || {},userInfo = invoiceDetail.data.receiveInfo || {};
+    .goodsOrderList
+        ul.order-list.account-list
+            li(style='background-color:#f4f4f4')
+                label.lab-title(for='') 发票信息
+            li
+                label.lab-title(for='') 发票类型
+                if Number(detail.buyCategory) === 0
+                    .order-item 企业
+                else    
+                    .order-item 个人/其他 
+            li
+                label.lab-title(for='') 发票抬头
+                .order-item #{detail.userName} 
+            li
+                label.lab-title(for='') 发票金额
+                .order-item #{detail.nontaxAmount}元        
+            li
+                label.lab-title(for='') 开票时间
+                .order-item #{detail.invoiceTime}  
+        ul.order-list.account-list
+            li(style='background-color:#f4f4f4')
+                label.lab-title(for='') 接收信息    
+            if !!userInfo.buyTel
+                li
+                    label.lab-title(for='') 手机号码
+                    .order-item #{userInfo.buyTel}               
+            li
+                label.lab-title(for='') 邮箱地址
+                .order-item 
+                    p #{userInfo.receiveEmail}               
+
+
+
+
+
+
+
+

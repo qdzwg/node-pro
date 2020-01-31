@@ -1,0 +1,233 @@
+extends ../../layout
+block stylesheets
+    link(rel="stylesheet", href="#{baseUrl}/stylesheets/order.css?#{vCode}")
+block javascripts
+    script(type='text/javascript', src='#{baseUrl}/javascripts/member/order.js?#{vCode}')
+block content
+    include ../../common/index
+    include ../../common/quickLink
+    +flowBtn(userInfo,marketDisAccount,showWholeMarket) 
+    - var model = module === 'mdse' ? 'shop' : module;
+    - var datas = data[0].data;
+    .order-detail-module.p7
+        input(type="hidden",value=datas.id)#orderId
+        -var btnflag1=true
+        -var btnflag2=true
+        each item in datas.orderDetail
+            if item.refundStatus!=0
+                -btnflag1=false
+            if item.refundStatus==1
+                -btnflag2=false
+        .order-info
+            p
+                span 订单编号：
+                span.c-666#orderNo=datas.orderNo
+            p
+                span 订单状态：
+                span.order-status
+                    +payStatus(datas.orderStatus,module)
+            if module === 'route' && datas.startTime && datas.endTime   
+                p 
+                    span 出行日期：
+                    span.c-666 #{datas.startTime.substring(0,10)}~#{datas.endTime.substring(0,10)} 
+            if module === 'mdse'
+                if !datas.isSended&&btnflag1&&!(datas.orderStatus==5||datas.orderStatus==4)&&datas.deliverType!="自提"&&(!datas.groupStatus || datas.groupStatus==='1')
+                    p
+                        span.order-btn.c-666#remindDelivery 提醒发货
+                if datas.isSended&&datas.orderStatus==2&&btnflag2&&datas.deliverType!="自提"
+                    p
+                        span.order-btn.pay-btn#receipt 确认收货
+            if datas.orderStatus==0
+                p.clearfix 
+                    a(href="/pay/"+model+"/"+datas.payOrderNo+"?m_id="+merchantInfoId,style='width:45%').order-btn.fl.pay-btn 立即付款
+                    span.order-btn.fr.cancle-btn.c-666(style='width:45%',data-id=datas.orderNo)#cancel 取消订单
+            if module === 'route'
+                p.clearfix 
+                    if  datas.orderStatus === "3" || datas.orderStatus === "6" || datas.orderStatus === "4"
+                        a(href='/member/myTicket?id='+datas.id+'&m_id='+merchantInfoId,style='width:45%').order-btn.fl.qr-btn 查看二维码
+                    if (datas.orderStatus === "3" || datas.orderStatus === "8" || datas.orderStatus === "9") && datas.ableToRefund    
+                        a.order-btn.fr.cancle-btn.c-666(href='/member/refund/' + datas.orderType + '?refParams='+urlParams+'&orderId='+datas.id+'&m_id='+merchantInfoId,style='width:45%') 申请退款  
+                    if  datas.orderStatus === "4"&&datas.isCheckOver=="T"&&data[1].message == "T"  
+                        a.order-btn.fr.cancle-btn.c-666(href='/member/comment/'+ datas.orderType + '?orderNo=' + datas.orderNo+ '&orderId='+ datas.id +'&modelCode='+datas.orderDetail[0].modelCode+'&m_id='+merchantInfoId,style='width:45%') 发表评论       
+            if module === 'mdse' && datas.orderStatus==4&&btnflag1&&(!datas.groupStatus || datas.groupStatus==='1')&&data[1].message === 'T'
+                p
+                    a.btn(href='/member/comment/'+ datas.orderType + '?orderNo=' + datas.orderNo + '&orderId='+ datas.id + '&modelCode='+datas.modelCode+'&m_id='+merchantInfoId) 去评论 
+    if module === 'mdse'
+        .page-line 
+        .order-detail-module
+            .order-address.clearfix
+                .order-address-ico.fl
+                    i.xx-icon.icon-line
+                .order-user-info.c-666.fr
+                    p.order-user-name 
+                        em=datas.linkName
+                        em=datas.linkMobile
+                    p.order-address-info=datas.linkAddr
+    if module ==='mdse' && datas.isSended
+        .page-line
+        .order-detail-module
+            .order-address.clearfix
+                .order-address-ico.fl
+                    i.xx-icon.icon-ticketService
+                .order-user-info.c-666.fr
+                    if datas.expressType === 'sjtcps'
+                        p #{datas.expressMsg}                   
+                    else 
+                        a(href="https://m.kuaidi100.com/index_all.html?type="+datas.deliverType+"&postid="+datas.expressNo+"&callbackurl="+originalUrl)
+                            ="查看物流信息"
+                        i.xx-icon.icon-xiangyoujiantou.logistics
+    .page-line
+    if module === 'route'
+        - var hasRefundOrder = 0; //记录是否有退单
+    .order-detail-module
+        each item in datas.orderDetail
+            .order-detail-content.clearfix
+                if item.mdseDetail
+                    .order-info-image.fl
+                        img(src=item.mdseDetail.linkImg +'?imageMogr2/thumbnail/640x/strip/quality/100' || '#{baseUrl}/images/member/lessimg.jpg', alt='...')
+                    .order-info-content.fl
+                        p.order-info-name.c-666=item.orderInfo
+                        p.order-info-description
+                            +replaceStr(item.mdseDetail.specParam)
+                else
+                    .order-info-image.fl
+                        if item.linkMobileImg
+                            img(src=item.linkMobileImg + '?imageMogr2/thumbnail/640x/strip/quality/100' || '#{baseUrl}/images/member/lessimg.jpg', alt='')                           
+                        else
+                            img(src='#{baseUrl}/images/demo/goods-details.jpg', alt='...')
+                    .order-info-content.fl
+                        - var orderName = item.orderInfo
+                        - var orderTypeName = ['【成人票】','【儿童票】']
+                        - if (item.orderType === 'route') orderName = item.orderInfo + orderTypeName[Number(item.detailType)];
+                        p.order-info-name.c-333=orderName
+                        .order-info-description
+                            if !!item.checkAmount
+                                span 已检*#{item.checkAmount}
+                            if !!item.refundAmount
+                                - hasRefundOrder += item.refundAmount 
+                                span 已退*#{item.refundAmount}    
+                                      
+                .order-info-price-detail.c-666.fr
+                    p.order-price
+                        em ￥
+                        strong=item.price
+                    p.order-number="x"+item.amount
+
+                    if item.refundStatus==0&&!(datas.orderStatus==4||datas.orderStatus==5||datas.orderStatus==0 || datas.orderStatus==8)&&(!datas.groupStatus || datas.groupStatus==='1')
+                        -var fh=0
+                        if datas.isSended
+                            -fh=1
+                        a.order-handle-btn(href='/member/refund/' + item.orderType + '?orderDetailId=' + item.id+'&orderId='+item.orderId+'&maxNum='+item.amount+'&m_id='+merchantInfoId+'&fh='+fh) 退款
+                    else if item.orderType === 'mdse' && (item.refundStatus==1||item.refundStatus==2)
+                        a.order-handle-btn(href='/order/refundDetail?orderCode='+item.orderNo+'&id='+datas.id+'&m_id='+merchantInfoId) 退款详情
+    if module === 'route'
+        .page-line  
+        .order-detail-module.order-pay-detail.order-list-detail
+            .pay-lists 
+                if  datas.linkName 
+                    .list   
+                        span 联系人
+                        span.user-info #{datas.linkName}  
+                .list   
+                    span 联系电话
+                    span.user-info #{datas.linkMobile}
+                if !!datas.linkIdcard     
+                    .list   
+                        span 身份证
+                        span.user-info #{datas.linkIdcard} 
+        if typeof datas.orderTips !== 'undefined' &&  datas.orderTips instanceof Array  && datas.orderTips.length > 0               
+            .page-line  
+            .order-detail-module.order-pay-detail.order-list-detail
+                .pay-lists          
+                    each item in datas.orderTips  
+                        case item.type
+                            when 'lvPic'
+                                .list   
+                                    span=item.title
+                                    span.user-info 
+                                        if item.tips 
+                                            - let imgsArray = item.tips.split(',')
+                                            each imgUrl in imgsArray
+                                                img(src=imgUrl +'?imageMogr2/thumbnail/640x/strip/quality/100', alt="")
+                            default
+                                .list   
+                                    span=item.title
+                                    span.user-info=item.tips   
+    .page-line
+    .order-detail-module.order-pay-detail
+        .pay-lists
+            case module 
+                when 'mdse'
+                    .list
+                        span 商品总额
+                        span.price="¥"+datas.orderSum
+                    .list
+                        span 邮费
+                        span.price="¥"+datas.postage
+                    .list
+                        span 优惠券金额
+                        span.price="¥"+datas.couponSum
+                when 'route'    
+                    .list
+                        span 订单金额
+                        span.price="¥"+datas.orderSum 
+                    .list
+                        span 优惠券金额
+                        span.price="¥"+datas.couponSum    
+                    if !!hasRefundOrder 
+                        .list
+                            span 退款金额
+                            span.price="¥"+datas.refundSum    
+                        .list
+                            span 退款手续费
+                            span.price="¥"+datas.refundfee        
+                          
+    .order-detail-module.order-pay-detail.clearfix
+        .pay-lists.half.fr
+            .list
+                span 实付金额
+                span.price="¥"+datas.finalPaySum
+            .detail
+                span="下单时间："+datas.createTime 
+    .mask#mask
+    .tips
+        p
+        a(href="javascript:;").queding 确定
+    .confirmtips#confirm(data-bool='0')
+        p="确认收货吗？"
+        .tips-handle
+            a(href="javascript:;").queding 确定
+            a(href="javascript:;").cancel 取消
+    script.
+        $(function () {
+            $("#cancel").click(function (e) {
+                e.preventDefault();
+                var that = $(this);
+                var orderNo = $(this).data('id');
+                var confirmDel = confirm('确认要取消订单吗');
+                if (confirmDel) {
+                    $.post('/member/cancle/' + orderNo)
+                            .success(function (data) {
+                                console.log(data);
+                                $('.mask,.tips').show();
+                                $('.tips p').text(data[0].message);
+
+                                //that.text('删除订单');
+                                //$('.pay-mold').text('已取消')
+
+                                $('.tips a').on('click', function () {
+                                    $('.mask,.tips').hide();
+                                    window.location.reload();
+                                });
+
+                            })
+                            .error(function (err) {
+                                window.location.href = '/error';
+                            });
+                }
+            });
+            var checkNo = $(this).data('checkno')
+            if (checkNo) {
+                $(this).qrcode(checkNo)
+            }      
+        });
